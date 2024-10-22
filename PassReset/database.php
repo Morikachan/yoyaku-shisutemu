@@ -2,7 +2,7 @@
 
 function getPdo()
 {
-    $dsn = 'mysql:host=localhost;dbname=zenn;charset=utf8mb4';
+    $dsn = 'mysql:host=localhost;dbname=team_c;charset=utf8mb4';
     $options = [
         \PDO::ATTR_PERSISTENT => true,
         \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,
