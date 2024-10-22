@@ -39,8 +39,14 @@
         </div>
         <!--ここまででハンバーガメニュー終わり-->
     </header>
+    
     <h1>パスワードのリセット</h1>
-    <p>登録時のメールアドレスを入力してください。</p>
-    <input type="email" id="email">
+
+    <form action="request.php" method="POST">
+        <input type="hidden" name="_csrf_token" value="<?= $_SESSION['_csrf_token']; ?>">
+        <p>登録時のメールアドレスを入力してください。</p>
+        <input type="email" name="email" value="">
+        <button type="submit">送信</button>
+    </form>
 </body>
 </html>
