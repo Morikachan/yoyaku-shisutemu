@@ -16,7 +16,7 @@ header {
   background-color: #fff;
   box-shadow: 0 5px 2px -2px gray;
   width: 100%;
-  padding: 12px 0px;
+  padding:12px  0;
 }
 header img {
   width: 420px;
@@ -156,11 +156,14 @@ input[type="password"] {
     width: 100%;
     height: 100%;
     position: fixed;
-    top: 40;
+    top: 20%;
     left: 100%; /* メニューを画面の外に飛ばす */
     z-index: 99;
-    background: #fff;
+    /* background:rgba(255, 255, 255, 0.1);透明にするならばこのコメントアウトをとる */
+    background-color: #fff;
     transition: .5s;
+    padding:10px 10px;
+
 }
   
 /* メニュー黒ポチを消す */
@@ -170,7 +173,7 @@ input[type="password"] {
   
 /* アイコンがクリックされたらメニューを表示 */
   #drawer_input:checked ~ .nav_content {
-    left: 1000px;/* メニューを画面に入れる */
+    left: 85%;/* メニューを画面に入れる */
 }  
 
 /* ここまででハンバーガメニュー終わり */
