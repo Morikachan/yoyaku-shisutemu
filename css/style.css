@@ -93,87 +93,110 @@ input[type="password"] {
 }
 
 /* ここから下がハンバーガーメニューに関するCSS */
-  
-/* チェックボックスを非表示にする */
-.drawer_hidden {
-    display: none;
+body {
+	margin: 0;
+	padding: 0;
+	background: #f4f4f4;
+	color: #444444;
+	font-family: "Roboto", sans-serif;
+	overflow-x: hidden;
 }
-  
-  /* ハンバーガーアイコンの設置スペース */
-.drawer_open {
-    display: flex;
-    height: 60px;
-    width: 60px;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    z-index: 100;/* 重なり順を一番上にする */
-    cursor: pointer;
-}
-  
-  /* ハンバーガーメニューのアイコン */
-.drawer_open span,
-.drawer_open span:before,
-.drawer_open span:after {
-    content: '';
-    display: block;
-    height: 3px;
-    width: 25px;
-    border-radius: 3px;
-    background: #333;
-    transition: 0.5s;
-    position: absolute;
-}
-  
-/* 三本線の一番上の棒の位置調整 */
-.drawer_open span:before {
-    bottom: 8px;
-}
-  
-/* 三本線の一番下の棒の位置調整 */
-.drawer_open span:after {
-    top: 8px;
-}
-  
-/* アイコンがクリックされたら真ん中の線を透明にする */
-  #drawer_input:checked ~ .drawer_open span {
-    background: rgba(255, 255, 255, 0);
-}
-  
-/* アイコンがクリックされたらアイコンが×印になように上下の線を回転 */
-  #drawer_input:checked ~ .drawer_open span::before {
-    bottom: 0;
-    transform: rotate(45deg);
-}
-  
-#drawer_input:checked ~ .drawer_open span::after {
-    top: 0;
-    transform: rotate(-45deg);
-}
-    
-/* メニューのデザイン*/
-.nav_content {
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    top: 20%;
-    left: 100%; /* メニューを画面の外に飛ばす */
-    z-index: 99;
-    /* background:rgba(255, 255, 255, 0.1);透明にするならばこのコメントアウトをとる */
-    background-color: #fff;
-    transition: .5s;
-    padding:10px 10px;
 
+a {
+	text-decoration: none !important;
+	color: #232323;
+	transition: color 0.3s ease;
 }
-  
-/* メニュー黒ポチを消す */
-.nav_list {
-    list-style: none;
-}
-  
-/* アイコンがクリックされたらメニューを表示 */
-  #drawer_input:checked ~ .nav_content {
-    left: 85%;/* メニューを画面に入れる */
-}  
 
+a:hover {
+	color: #2ecc71;
+}
+
+#menuToggle {
+	display: block;
+	position: absolute;
+	top: 50px;
+	right: 50px;
+	z-index: 1;
+	-webkit-user-select: none;
+	user-select: none;
+}
+
+#menuToggle input {
+	display: block;
+	width: 40px;
+	height: 32px;
+	position: absolute;
+	top: -7px;
+	left: -5px;
+	cursor: pointer;
+	opacity: 0;
+	z-index: 2;
+	-webkit-touch-callout: none;
+}
+
+#menuToggle span {
+	display: block;
+	width: 33px;
+	height: 4px;
+	margin-bottom: 5px;
+	position: relative;
+	background: #cdcdcd;
+	border-radius: 3px;
+	z-index: 1;
+	transform-origin: 4px 0px;
+	transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0),
+	background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0),
+	opacity 0.55s ease;
+}
+
+#menuToggle span:first-child {
+	transform-origin: 0% 0%;
+}
+
+#menuToggle span:nth-last-child(2) {
+	transform-origin: 0% 100%;
+}
+
+#menuToggle input:checked~span {
+	opacity: 1;
+	transform: rotate(45deg) translate(-2px, -1px);
+	background: #232323;
+}
+
+#menuToggle input:checked~span:nth-last-child(3) {
+	opacity: 0;
+	transform: rotate(0deg) scale(0.2, 0.2);
+}
+
+#menuToggle input:checked~span:nth-last-child(2) {
+	opacity: 1;
+	transform: rotate(-45deg) translate(0, -1px);
+}
+
+#menu {
+	position: absolute;
+	width: 300px;
+	margin: -100px 0 0 0;
+	padding: 50px;
+	padding-top: 125px;
+	right: -100px;
+	background: #ededed;
+	list-style-type: none;
+	-webkit-font-smoothing: antialiased;
+	transform-origin: 0% 0%;
+	transform: translate(100%, 0);
+
+	transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
+}
+
+#menu li {
+	padding: 10px 0;
+	font-size: 22px;
+}
+
+#menuToggle input:checked~ul {
+	transform: scale(1.0, 1.0);
+	opacity: 1;
+}
 /* ここまででハンバーガメニュー終わり */
