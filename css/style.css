@@ -75,7 +75,7 @@ h3{
   font-weight: bold;
 }
 
-button {
+.login-submit {
   width: 100%;
   padding: 14px;
   margin: 20px 0;
@@ -85,6 +85,10 @@ button {
   font-size: 20px;
   border-radius: 4px;
 }
+
+.login-submit:hover {
+	cursor: pointer;
+  }
 
 input[type="email"],
 input[type="password"] {
@@ -103,16 +107,6 @@ body {
 	color: #444444;
 	font-family: "Roboto", sans-serif;
 	overflow-x: hidden;
-}
-
-a {
-	text-decoration: none !important;
-	color: #232323;
-	transition: color 0.3s ease;
-}
-
-a:hover {
-	color: #2ecc71;
 }
 
 #menuToggle {
@@ -178,11 +172,15 @@ a:hover {
 }
 
 #menu {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 	position: absolute;
 	width: 300px;
 	margin: -100px 0 0 0;
 	padding: 50px;
 	padding-top: 125px;
+	padding-bottom: 70vh;
 	right: -100px;
 	background: #ededed;
 	list-style-type: none;
@@ -196,6 +194,23 @@ a:hover {
 #menu li {
 	padding: 10px 0;
 	font-size: 22px;
+}
+
+#menu a {
+	width: 200px;
+	display: block;
+	color: #000000;
+	text-decoration: none;
+	border-bottom: 3px #CF220E solid;
+	margin-bottom: 16px;
+}
+
+#menu a:hover {
+	color: #CF220E;
+}
+
+#menu .school-info {
+	margin-top: 20px;
 }
 
 #menuToggle input:checked~ul {
