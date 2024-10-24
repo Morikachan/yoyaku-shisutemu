@@ -35,39 +35,42 @@ header img {
   transition: all 250ms ease-in-out;
 }
 .header-wrap {
+  width: 100%;
   box-sizing: border-box;
-  width: 300px;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
   align-items: center;
+}
+
+.header-wrap p:last-of-type {
+	margin-left: auto;
 }
 
 main {
   max-width: 1400px;
   background-color: #fff;
   margin: 0 auto;
-  padding: 120px 40px;
+  padding: 130px 40px;
 }
 
 h1 {
   border-bottom: 3px #CF220E solid;
-  margin-bottom: 30px;
+  margin-bottom:35px;
 }
 
 .content-container {
   width: 700px;
-  margin: 0 auto;
+  margin: 20px auto;
 }
 
 h2 {
+  max-width: 700px;
   margin: 20px 0px;
   background-color: #D9D9D9;
   padding: 10px;
 }
 
 h3{
-  margin: 10px 0;
+  margin: 16px 0;
 }
 
 .blue-link {
@@ -109,11 +112,15 @@ body {
 	overflow-x: hidden;
 }
 
+header .nav-wrap {
+	width: 100px;
+}
+
 #menuToggle {
 	display: block;
 	position: absolute;
-	top: 50px;
-	right: 50px;
+	top: 40px;
+	right: 35px;
 	z-index: 1;
 	-webkit-user-select: none;
 	user-select: none;
