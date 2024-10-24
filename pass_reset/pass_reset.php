@@ -5,7 +5,7 @@ $mail = $_POST['resetemail'];
 //メールの設定
     function mailSetting($mail){
         //送信先
-        $to = 'k248007@kccollege.ac.jp';
+        $to = $mail;
 
         //送信するメールの表題
         $subject = 'テスト';
@@ -30,9 +30,11 @@ $mail = $_POST['resetemail'];
     const DB_SERVER_NAME = 'localhost';
     const DB_USER_NAME = 'root';
     const DB_PASSWORD = '';
-    const DB_NAME = 'class';
+    const DB_NAME = 'reservationsystem_db';
 //ここまでデータベース情報
 //データベースの処理
+        //SQL文の設定
+
         function getDbConnection() {
             try {
                 $pdo = new PDO("mysql:host=" . DB_SERVER_NAME .
@@ -44,18 +46,16 @@ $mail = $_POST['resetemail'];
                 exit();
             }
         }
-
-        //SQL文の設定
-        function insertStudentData($pdo , $name, $password){
-            $sql = "INSERT INTO users (name,password) VALUES (:name, :password)";
+        function searchData($pdo , $mail){
+            $sql = "SELECT * FROM users_info WHERE mail = :mail ";
             try{
                 //SQL文に入れる値の設定
                 $stmt = $pdo->prepare($sql);
-                $stmt -> bindParam(":name" , $name);
-                $stmt -> bindParam(":password" , $password);
-                return $stmt -> execute();
-
-
+                $stmt -> bindParam(":mail" , $mail);;
+                $stmt -> execute();
+                // return $stmt -> execute(); // true or false
+                $rowsAffected = $stmt -> rowCount();
+                return $rowsAffected > 0;
             } catch (PDOException $e){
                 echo $e->getMessage();
                 return false;
@@ -66,8 +66,13 @@ $mail = $_POST['resetemail'];
         $pdo = getDbConnection();
 
 
-        $result = insertStudentData($pdo , $name ,$password);
+        $maildata = searchData($pdo , $mail);
+        if($maildata){
+            mailSetting($mail);
+        } else {
+            echo "入力されたメールアドレスが見つかりませんでした。新規登録をしてください。";
+        }
 
-        mailSetting($mail);
+        
 //ここまでデータベースの処理
 ?>
