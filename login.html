@@ -9,52 +9,50 @@
 <body>
     <header>
         <div class="header-wrap">
-            <img src="img/image 1.png" alt="Arts_Logo">
-        </div>
-        <div class="header-wrap">
-            <p><a href="#" class="red-button">ログイン</a></p>
+            <p><img src="img/image 1.png" alt="Arts_Logo"></p>
             <p><a href="#" class="red-button">新規登録</a></p>
-        <!-- ハンバーガーメニュー部分 -->
-        <nav role='navigation'>
-            <div id="menuToggle">
-                <input type="checkbox" />
-                <span></span>
-                <span></span>
-                <span></span>
-                <ul id="menu">
-                    <a href="https://www.kccollege.ac.jp/" target="_blank">
-                        <li>ホームページへ</li> 
-                    </a>
-                    <a href="#">
-                        <li>参加履歴</li>
-                    </a>
-                    <a href="#">
-                        <li>登録内容の変更</li>
-                    </a>
-                    <a href="#">
-                        <li>アカウント削除</li>
-                    </a>
-                    <a href="#" class="inquiry">
-                        <li>問い合わせ</li>
-                    </a>
-                    <div class="school-info">
-                        <p>アーツカレッジヨコハマ</p>
-                        <p>〒220-0072</p>
-                        <p>神奈川県横浜市西区浅間町2-105-8</p>
-                        <p>TEL：0120-557-754（平日9〜17時）</p>
-                        <p>MAIL：master@kccollege.ac.jp</p>
-                    </div>
-                </ul>
-            </div>
-        </nav>
-        <!--ここまででハンバーガメニュー終わり-->
-    </div>
+        <div/>
+        <div class="nav-wrap">
+            <!-- ハンバーガーメニュー部分 -->
+            <nav role='navigation'>
+                <div id="menuToggle">
+                    <input type="checkbox" />
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <ul id="menu">
+                        <a href="https://www.kccollege.ac.jp/" target="_blank">
+                            <li>ホームページへ</li> 
+                        </a>
+                        <a href="#">
+                            <li>参加履歴</li>
+                        </a>
+                        <a href="#">
+                            <li>登録内容の変更</li>
+                        </a>
+                        <a href="#">
+                            <li>アカウント削除</li>
+                        </a>
+                        <a href="#" class="inquiry">
+                            <li>問い合わせ</li>
+                        </a>
+                        <div class="school-info">
+                            <p>アーツカレッジヨコハマ</p>
+                            <p>〒220-0072</p>
+                            <p>神奈川県横浜市西区浅間町2-105-8</p>
+                            <p>TEL：0120-557-754（平日9〜17時）</p>
+                            <p>MAIL：master@kccollege.ac.jp</p>
+                        </div>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    <!--ここまででハンバーガメニュー終わり-->
     </header>
     <main>
         <h1>ログイン</h1>
             <div class="content-container">
                 <form action="login.php" method="post">
-                    <h2>ログイン情報</h2>
                     <h3>メールアドレス</h3>
                     <input type="email" name="mail" id="mail">
                     <h3>パスワード</h3>
