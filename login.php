@@ -15,6 +15,7 @@ echo "</br>";
 
 if (password_verify($passwd, $hash)) {
     echo 'Password is valid!';
+    header("Location: mypage.html");
 } else {
     echo 'Invalid password.';
 }
