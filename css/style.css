@@ -162,7 +162,9 @@ input[type="password"] {
 	  transition: 0.3s; /* カスタマイズしてください */
 	  top: 100%;
 	  width: 100%;
-	  flex-direction:column-reverse;
+	}
+	.item01{
+		order:1;
 	}
 	.school-info{
 		display: block;
