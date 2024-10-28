@@ -22,5 +22,6 @@ if (password_verify($passwd, $hash)) {
 } else {
     echo 'Invalid password.';
 }
+
 exit();
 ?>
