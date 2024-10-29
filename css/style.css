@@ -149,7 +149,7 @@ input[type="password"] {
 	position: relative;
   }
   
-  @media screen and (max-width: 750px) {
+  @media screen and (max-width: 1280px) {
 	.c-hamburger-menu__list {
 	  background-color: #eeeeee; /* カスタマイズしてください */
 	  align-items: flex-start;
@@ -159,7 +159,7 @@ input[type="password"] {
 	  padding: 2rem; /* カスタマイズしてください */
 	  position: absolute;
 	  transform: translateX(-100%);
-	  transition: 0.3s; /* カスタマイズしてください */
+	  /* transition: 0.3s; カスタマイズしてください */
 	  top: 100%;
 	  width: 100%;
 	  height: 100vh;
@@ -215,7 +215,7 @@ input[type="password"] {
 	display: none;
   }
   
-  @media screen and (max-width: 750px) {
+  @media screen and (max-width: 1280px) {
 	.red-button{
 		background-color:transparent;
 		color: #000;
