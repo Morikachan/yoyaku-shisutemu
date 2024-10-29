@@ -4,7 +4,7 @@ $mail = $_POST['resetemail'];
 
 //メールの設定
     function mailSetting($mail){
-        $url = "http://localhost/pass_reset/views/pass_reset.html";
+        $url = "http://localhost/yoyaku-shisutemu/pass_reset/new_pass/new_pass.html";
         //送信先
         $to = $mail;
 
