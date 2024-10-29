@@ -149,46 +149,6 @@ input[type="password"] {
 	position: relative;
   }
   
-  @media screen and (max-width: 1280px) {
-	.c-hamburger-menu__list {
-	  background-color: #eeeeee; /* カスタマイズしてください */
-	  align-items: flex-start;
-	  display: flex;
-	  flex-direction: column;
-	  left: 0;
-	  padding: 2rem; /* カスタマイズしてください */
-	  position: absolute;
-	  transform: translateX(-100%);
-	  /* transition: 0.3s; カスタマイズしてください */
-	  top: 100%;
-	  width: 100%;
-	  height: 100vh;
-	}
-	.item01{
-		order:1;
-	}
-	.item02{
-		order:2;
-	}
-	.item03{
-		order:3;
-	}
-	.item04{
-		order:4;
-	}
-	.item05{
-		order:5;
-	}
-	.school-info{
-		display: block;
-		order:6;
-	}
-  
-	#hamburger:checked ~ .c-hamburger-menu__list {
-	  transform: translateX(0%);
-	  transition: 0.3s;
-	}
-  }
   
   .c-hamburger-menu__input {
 	display: none;
@@ -216,6 +176,44 @@ input[type="password"] {
   }
   
   @media screen and (max-width: 1280px) {
+	.c-hamburger-menu__list {
+		background-color: #eeeeee; /* カスタマイズしてください */
+		align-items: flex-start;
+		display: flex;
+		flex-direction: column;
+		left: 0;
+		padding: 2rem; /* カスタマイズしてください */
+		position: absolute;
+		transform: translateX(-100%);
+		/* transition: 0.3s; カスタマイズしてください */
+		top: 100%;
+		width: 100%;
+		height: 100vh;
+	  }
+	  .item01{
+		  order:1;
+	  }
+	  .item02{
+		  order:2;
+	  }
+	  .item03{
+		  order:3;
+	  }
+	  .item04{
+		  order:4;
+	  }
+	  .item05{
+		  order:5;
+	  }
+	  .school-info{
+		  display: block;
+		  order:6;
+	  }
+	
+	  #hamburger:checked ~ .c-hamburger-menu__list {
+		transform: translateX(0%);
+		transition: 0.3s;
+	  }
 	.red-button{
 		background-color:transparent;
 		color: #000;
