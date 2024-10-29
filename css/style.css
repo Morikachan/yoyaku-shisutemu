@@ -59,7 +59,10 @@ h2 {
 h3{
   margin: 16px 0;
 }
-
+.flex{
+	display: flex;
+	justify-content: space-between; 
+}
 .blue-link {
   color: #54A9D9;
   font-weight: bold;
@@ -188,35 +191,15 @@ input[type="password"] {
 		top: 100%;
 		width: 100%;
 		height: 100vh;
-	  }
-	  .item01{
-		  order:1;
-	  }
-	  .item02{
-		  order:2;
-	  }
-	  .item03{
-		  order:3;
-	  }
-	  .item04{
-		  order:4;
-	  }
-	  .item05{
-		  order:5;
-	  }
-	  .school-info{
-		  display: block;
-		  order:6;
-	  }
+	   }
+
 	
+	  
 	  #hamburger:checked ~ .c-hamburger-menu__list {
 		transform: translateX(0%);
 		transition: 0.3s;
 	  }
-	.red-button{
-		background-color:transparent;
-		color: #000;
-	}
+
 	.c-hamburger-menu__button {
 	  
 	  align-items: center;
@@ -239,6 +222,7 @@ input[type="password"] {
 	height: 1px; /* カスタマイズしてください */
 	transition: 0.3s; /* カスタマイズしてください */
 	width: 30px; /* カスタマイズしてください */
+	
   }
 	#hamburger:checked
 	  ~ .c-hamburger-menu__button
