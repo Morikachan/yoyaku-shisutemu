@@ -8,10 +8,11 @@ $mail = $_POST['resetemail'];
         $to = $mail;
 
         //送信するメールの表題
-        $subject = 'テスト';
+        $subject = 'パスワードリセット用URLをお送りします';
 
         //本文
-        $message = '送信確認メール';
+        $message = '  24時間以内に下記URLへアクセスし、パスワードの変更を完了してください。';
+        {$url}
 
         //送信元
         $headers = 'From: k248007@kccollege.ac.jp';
@@ -75,4 +76,40 @@ $mail = $_POST['resetemail'];
 
         
 //ここまでデータベースの処理
+
+
+
+//ここからパスワードリセット用のトークンの作成
+    // 既にパスワードリセットのフロー中（もしくは有効期限切れ）かどうかを確認
+    // $passwordResetUserが取れればフロー中、取れなければ新規のリクエストということ
+    $sql = 'SELECT * FROM `reset_info` WHERE `email` = :email';
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindValue(':email', $email, \PDO::PARAM_STR);
+    $stmt->execute();
+    $passwordResetUser = $stmt->fetch(\PDO::FETCH_OBJ);
+
+    if (!$passwordResetUser) {
+        // $passwordResetUserがいなければ、仮登録としてテーブルにインサート
+        $sql = 'INSERT INTO `reset_info`(`email`, `token`, `token_sent_at`) VALUES(:email, :token, :token_sent_at)';
+    } else {
+        // 既にフロー中の$passwordResetUserがいる場合、tokenの再発行と有効期限のリセットを行う
+        $sql = 'UPDATE `reset_info` SET `token` = :token, `token_sent_at` = :token_sent_at WHERE `email` = :email';
+    }
+
+    // password reset token生成
+    $passwordResetToken = bin2hex(random_bytes(32));
+
+    // テーブルへの変更とメール送信は原子性を保ちたいため、トランザクションを設置する
+    // メール送信に失敗した場合は、パスワードリセット処理自体も失敗させる
+    try {
+        $pdo->beginTransaction();
+
+        // ユーザーを仮登録
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindValue(':email', $email, \PDO::PARAM_STR);
+        $stmt->bindValue(':token', $passwordResetToken, \PDO::PARAM_STR);
+        $stmt->bindValue(':token_sent_at', (new \DateTime())->format('Y-m-d H:i:s'), \PDO::PARAM_STR);
+        $stmt->execute();
+//ここまでパスワードリセット用のトークンの作成
+}
 ?>

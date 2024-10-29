@@ -7,47 +7,44 @@
     <title>ログイン</title>
 </head>
 <body>
-    <header>
-        <div class="header-wrap">
-            <p><img src="img/image 1.png" alt="Arts_Logo"></p>
-            <p><a href="#" class="red-button">新規登録</a></p>
-        <div/>
-        <div class="nav-wrap">
-            <!-- ハンバーガーメニュー部分 -->
-            <nav role='navigation'>
-                <div id="menuToggle">
-                    <input type="checkbox" />
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <ul id="menu">
-                        <a href="https://www.kccollege.ac.jp/" target="_blank">
-                            <li>ホームページへ</li> 
-                        </a>
-                        <a href="#">
-                            <li>参加履歴</li>
-                        </a>
-                        <a href="#">
-                            <li>登録内容の変更</li>
-                        </a>
-                        <a href="#">
-                            <li>アカウント削除</li>
-                        </a>
-                        <a href="#" class="inquiry">
-                            <li>問い合わせ</li>
-                        </a>
-                        <div class="school-info">
-                            <p>アーツカレッジヨコハマ</p>
-                            <p>〒220-0072</p>
-                            <p>神奈川県横浜市西区浅間町2-105-8</p>
-                            <p>TEL：0120-557-754（平日9〜17時）</p>
-                            <p>MAIL：master@kccollege.ac.jp</p>
-                        </div>
-                    </ul>
-                </div>
-            </nav>
-        </div>
-    <!--ここまででハンバーガメニュー終わり-->
+    <header class="c-header c-hamburger-menu"><!-- 追記 クラスを追記 -->
+                <a href="https://www.kccollege.ac.jp/" class="c-header__logo"><img src="img/image 1.png" alt="Arts_Logo"></a>
+                <input type="checkbox" name="hamburger" id="hamburger" class="c-hamburger-menu__input"/><!-- 追記 idはlabelのforと同じにする -->
+                <label for="hamburger" class="c-hamburger-menu__bg"></label><!-- 追記 ハンバーガーメニュを開いた時の背景 -->
+                <ul class="c-header__list c-hamburger-menu__list"><!-- 追記 クラスを追記 -->
+
+                  <li class="c-header__list-item item01">
+                    <a href="https://www.kccollege.ac.jp/" class="c-header__list-link">ホームページへ</a>
+                  </li>
+                  <li class="c-header__list-item item02">
+                    <a href="#" class="c-header__list-link">参加履歴</a>
+                  </li>
+                  <li class="c-header__list-item item03">
+                    <a href="#" class="c-header__list-link">登録内容の変更</a>
+                  </li>
+                  <li class="c-header__list-item item04">
+                    <a href="#" class="c-header__list-link">アカウント削除</a>
+                  </li>
+                  <li class="c-header__list-item item05">
+                    <a href="#" class="c-header__list-link">お問い合わせ</a>
+                    <div class="school-info">
+                        <p>アーツカレッジヨコハマ</p>
+                        <p>〒220-0072</p>
+                        <p>神奈川県横浜市西区浅間町2-105-8</p>
+                        <p>TEL：0120-557-754（平日9〜17時）</p>
+                        <p>MAIL：master@kccollege.ac.jp</p>
+                    </div>
+                  </li>
+                <li class="c-header__list-item">
+                    <a href="#" class="c-header__list-link red-button">新規登録</a>
+                </li>
+
+                </ul>
+                <label for="hamburger" class="c-hamburger-menu__button"><!-- 追記 ハンバーガーメニューのボタン -->
+                  <span class="c-hamburger-menu__button-mark"></span>
+                  <span class="c-hamburger-menu__button-mark"></span>
+                  <span class="c-hamburger-menu__button-mark"></span>
+                </label>
     </header>
     <main>
         <h1>ログイン</h1>
