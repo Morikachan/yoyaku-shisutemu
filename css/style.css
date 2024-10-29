@@ -162,6 +162,7 @@ input[type="password"] {
 	  transition: 0.3s; /* カスタマイズしてください */
 	  top: 100%;
 	  width: 100%;
+	  height: 100vh;
 	}
 	.item01{
 		order:1;
