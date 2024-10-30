@@ -15,14 +15,14 @@ header {
   position: fixed;
   background-color: #fff;
   box-shadow: 0 5px 2px -2px gray;
-  width: 100vw;
+  max-width: 100vw;
   padding:12px 0;
 }
 header img {
   width: 420px;
 }
 .header-wrap {
-  width: 100%;
+  width: 100vw;
   box-sizing: border-box;
   display: flex;
   align-items: center;
@@ -59,10 +59,7 @@ h2 {
 h3{
   margin: 16px 0;
 }
-.flex{
-	display: flex;
-	justify-content: space-between; 
-}
+
 .blue-link {
   color: #54A9D9;
   font-weight: bold;
@@ -123,6 +120,7 @@ input[type="password"] {
   .c-header__list-item {
 	list-style: none;
 	text-decoration: none;
+
   }
   
   .c-header__list-link {
@@ -131,6 +129,7 @@ input[type="password"] {
 	margin-right: 20px; /* カスタマイズしてください */
 	text-decoration: none;
 	padding: 10px 0px; /* カスタマイズしてください */
+	height: 100%;
   }
   .red-button {
 	background-color: #CF220E ;
@@ -178,6 +177,10 @@ input[type="password"] {
   }
   
   @media screen and (max-width: 1280px) {
+
+	.school-info{
+		display:block;
+	}
 	.c-hamburger-menu__list {
 		background-color: #eeeeee; /* カスタマイズしてください */
 		align-items: flex-start;
