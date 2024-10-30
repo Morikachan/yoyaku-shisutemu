@@ -1,10 +1,12 @@
 <?php
-
+//session利用開始
+session_start();
 $mail = $_POST['resetemail'];
+$_SESSION['mail'] = $mail;
 
 //メールの設定
     function mailSetting($mail){
-        $url = "http://localhost/yoyaku-shisutemu/pass_reset/new_pass/new_pass.html";
+        $url = "http://localhost/pass_reset/pass_reset3/new_pass/new_pass.html";
         //送信先
         $to = $mail;
 
@@ -30,27 +32,10 @@ $mail = $_POST['resetemail'];
     }
 //ここまでメールの設定
 
+        require_once './database.php';
+        $pdo = getDb();
 
-//データベース情報
-    const DB_SERVER_NAME = 'localhost';
-    const DB_USER_NAME = 'root';
-    const DB_PASSWORD = '';
-    const DB_NAME = 'reservationsystem_db';
-//ここまでデータベース情報
-//データベースの処理
-        //SQL文の設定
-
-        function getDbConnection() {
-            try {
-                $pdo = new PDO("mysql:host=" . DB_SERVER_NAME .
-                ";dbname=" . DB_NAME, DB_USER_NAME, DB_PASSWORD);
-                $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                return $pdo;
-            } catch (PDOException $e) {
-                echo '接続失敗' . $e->getMessage();
-                exit();
-            }
-        }
+        
         function searchData($pdo , $mail){
             $sql = "SELECT * FROM users_info WHERE mail = :mail ";
             try{
@@ -67,8 +52,6 @@ $mail = $_POST['resetemail'];
             }
             
         }    
-
-        $pdo = getDbConnection();
 
 
         $maildata = searchData($pdo , $mail);
