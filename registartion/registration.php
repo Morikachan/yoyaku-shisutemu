@@ -22,6 +22,9 @@ $zipcode = $_POST['zipcode'];
 $address1 = $_POST['address1'];
 $address2 = $_POST['address2'];
 
+session_start();
+$_SESSION['mail'] = $mail;
+
 
 const DB_SERVER_NAME = 'localhost';
 const DB_USER_NAME = 'root';
@@ -54,9 +57,10 @@ function insertStudentData($pdo, $name, $password){
 }
 
 $pdo = getDbConnection();
-$results = insertStudentData($pdo, $name, $password);
+$results = true;
+// $results = insertStudentData($pdo, $name, $password);
 if($results){
-    echo '正常に登録されました。';
+    header("Location: registration-confirm.php");
 } else {
     echo '登録失敗しました';
 }

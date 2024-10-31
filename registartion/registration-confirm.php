@@ -1,3 +1,14 @@
+<?php 
+
+    session_start();
+
+
+    $result = 'yes';
+    echo $result == 'yes' ?'true' : 'false';
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -5,7 +16,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="./registration_style.css">
-    <title>新規登録</title>
+    <title>新規登録確認</title>
 </head>
 <body>
     <header>
@@ -25,13 +36,13 @@
                     <h2>ログイン情報</h2>
                         <span class="required"></span>
                         <label for="email"><h3>メールアドレス</h3></label>
-                            <input type="email" name="mail" id="mail">
+                            <p id="mail"> <?php  ?></p>
                         <span class="required"></span>
                         <label for="password"><h3>パスワード</h3></label>
                             <input type="password" name="password" id="password">
                         <span class="required"></span>
                         <label for="password_check"><h3>パスワード確認</h3></label>
-                            <input type="password" name="password_check" id="password_check">
+                            <input type="password_check" name="password_check" id="password_check">
 
                     <h2>個人情報</h2>
                         <span class="required"></span><h3>希望学科</h3>
@@ -80,7 +91,7 @@
                             <input type="checkbox" name="approved" id="approved">
                             個人情報の保護に同意します。<br/>
                         </p>
-                        <button type="submit" class="login-submit">確認画面へ</button>
+                        <button type="submit" class="login-submit">登録</button>
                 </form>
             </div>
     </main>
