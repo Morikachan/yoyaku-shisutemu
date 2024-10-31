@@ -33,12 +33,12 @@ function deletData($pdo , $mail , $passwd){
         return false;
     }
 }
-function deletappoint($pdo , $passwd){
-    $sql = "DELETE FROM appointment WHERE passwd = :passwd";
+function deletappoint($pdo , $mail){
+    $sql = "DELETE FROM appointment WHERE mail = :mail";
 
     try{
         $stmt = $pdo->prepare($sql);
-        $stmt->bindParam(':passwd' , $passwd);
+        $stmt->bindParam(':mail' , $mail);
         //
         $stmt->execute();
         $rowsAffected = $stmt->rowCount();
@@ -59,8 +59,8 @@ $pdo = getDBConnection();
 $result = deletData($pdo , $mail , $passwd);
 if($result){
     $pdo = getDBConnection();
-    $passwd = $_SESSION['passwd'];
-    $result = deletappoint($pdo , $passwd);
+    $mail = $_SESSION['mail'];
+    $result = deletappoint($pdo , $mail);
     if($result){
         header('Location: ../html/success.html');
     }
