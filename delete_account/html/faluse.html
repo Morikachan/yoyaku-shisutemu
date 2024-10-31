@@ -3,13 +3,14 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/style.css">
         <link rel="stylesheet" href="../css/delete.css">
         <title>アカウント削除</title>
     </head>
     <body>
         <header>
             <div class="header-wrap">
-                <img src="../../img/image 1.png" alt="Arts_Logo">
+                <img src="../img/image 1.png" alt="Arts_Logo">
             </div>
             <div class="header-wrap">
                 
@@ -18,20 +19,25 @@
             </div>
         </header>
         <main>
-            <p class="locatoin"><a href="">ホームページ</a>へ/<a href="../../mypage/mypage.html">マイページ</a>へ/アカウント削除</p>
+            <p class="locatoin"><a href="">ホームページ</a>へ/<a href="../../マイページ/mypage.html">マイページ</a>へ/アカウント削除</p>
             <h1>アカウント削除</h1>
             <div class="content-container">
-                <h2 class="faluse">メールアドレスまたはパスワードが違います</h2>
-                <p class="faluse">もう一度やり直してください</p>
+                <div class="error">
+                    <p>・メールアドレスまたはパスワードが間違っています。</p>
+                    <p>　もう一度やり直してください。</p>
+                </div>
+                <h2 class="faluse">アカウント情報</h2>
                 <form action="../php/check.php" method="post" class="delete-form">
                     <p>
                         <h3>メールアドレス:</h3>
-                        <input type="email" name="mail" id="name">
+                        <input type="email" name="mail" id="name" class="error-input">
                     </p>
+                    <p class="error-font">メールアドレスを入力してください</p>
                     <p>
                         <h3>パスワード:</h3>
-                        <input type="password" name="passwd" id="passwd">
+                        <input type="password" name="passwd" id="passwd" class="error-input">
                     </p>
+                    <p class="error-font">パスワードを入力してください</p>
                     <p class="forget-passwd">パスワードを忘れた方は<a href="">こちら</a></p>
                     <button type="submit" class="red-button">アカウント削除</button>
                 </form>
