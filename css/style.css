@@ -45,8 +45,8 @@ h1 {
 }
 
 .content-container {
-  width: 80%;
-  margin: 20px auto;
+  width: 40vw;
+  margin: 0 auto;
 }
 
 h2 {
@@ -83,23 +83,23 @@ h3{
 input[type="email"],
 input[type="password"] {
   box-sizing: border-box;
+  text-align: center;
   width: 100%;
   padding: 14px;
   margin-bottom: 12px;
   font-size: 18px;
 }
 
+
 /* ここからハンバーガメニューとヘッダーに関するCSS */
-.school-info{
-	display: none;
-}
+
 
 .c-header {
 	align-items: center;
 	background-color: #ffffff; /* カスタマイズしてください */
 	box-sizing: border-box;
 	display: flex;
-	justify-content: space-between;
+	justify-content:space-between;
 	padding: 1rem 2rem; /* カスタマイズしてください */
 	width: 100%;
   }
@@ -139,6 +139,7 @@ input[type="password"] {
 	text-decoration: none;
 	color: #ffffff;
 	font-weight: bold;
+	width: 70px;
 	transition: all 250ms ease-in-out;
   }
   
@@ -175,12 +176,22 @@ input[type="password"] {
   .c-hamburger-menu__button {
 	display: none;
   }
+  .flex{
+	display:flex;
+	justify-content: space-between;
+  }
   
   @media screen and (max-width: 1280px) {
-
-	.school-info{
-		display:block;
+	.content-container {
+		width: 70%;
 	}
+	 .flex{
+		margin-left:auto;
+		padding:0 20px;
+	}
+	/* .red-button {
+		justify-content: end;
+	}  */
 	.c-hamburger-menu__list {
 		background-color: #eeeeee; /* カスタマイズしてください */
 		align-items: flex-start;
@@ -251,3 +262,9 @@ input[type="password"] {
 
 
 /* ここまでハンバーガメニューとヘッダーに関するCSS */
+
+@media screen and (max-width: 768px) {
+	.content-container {
+		width: 100%;
+	}
+}
