@@ -1,0 +1,129 @@
+@charset "UTF=8";
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.header-wrap {
+    box-sizing: border-box;
+    width: 300px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+header{
+    display: flex;
+    justify-content: space-between;
+    position: fixed;
+    background-color: #fff;
+    box-shadow: 0 5px 2px -2px gray;
+    width: 100vw;
+    padding: 12px 0;
+}
+header img {
+    width: 420px;
+    margin-left: 20px;
+}
+.red-button {
+    background-color: #CF220E ;
+    padding: 0px 12px;
+    border-radius: 4px;
+    display: block;
+    padding: 14px 18px;
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: bold;
+    transition: all 250ms ease-in-out;
+}
+  
+header .header{
+    display: flex;
+}
+header .header2{
+    display: flex;
+    justify-content: space-between;
+}
+body {
+	margin: 0;
+	padding: 0;
+	background: #f4f4f4;
+	color: #444444;
+	font-family: "Roboto", sans-serif;
+	overflow-x: hidden;
+}
+main{
+    max-width: 1400px;
+    background-color: #fff;
+    margin: 0 auto;
+    padding: 120px 40px;
+}
+.locatoin{
+    color: grey;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.locatoin a{
+    text-decoration: none;
+    color: #54A9D9;
+}
+h1{
+    border-bottom: 3px #CF220E solid;
+    margin-bottom: 30px;
+}
+.content-container {
+    width: 700px;
+    margin: 0 auto;
+}
+h2 {
+    margin: 20px 0px;
+    background-color: #D9D9D9;
+    padding: 10px;
+}
+/*ここからアカウント削除のCSS*/
+h2{
+    margin-top: 50px;
+}
+.delete-form{
+    width: 75%;
+    margin: 0 auto;
+    margin-top: 30px;
+}
+.delete-form .red-button{
+    margin: 0 auto;
+    margin-top: 20px;
+    
+}
+.delete-form input{
+    width: 100%;
+    padding: 10px 0;
+    margin-bottom: 20px;
+}
+.delete-form h3{
+    font-size: 1.5em;
+}
+.delete-form .forget-passwd{
+    margin-top: 10px;
+    font-size: 1.2em;
+}
+.delete-form .red-button{
+    border: none;
+}
+/*ここまでアカウント削除のCSS*/
+.check{
+    display: flex;
+}
+.faluse{
+    color: #CF220E;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+.success{
+    margin: 0 auto;
+    text-align: center;
+    width: 30%;
+    margin-top: 50px;
+}
