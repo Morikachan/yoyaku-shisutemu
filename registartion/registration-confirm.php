@@ -91,7 +91,14 @@
                             <input type="checkbox" name="approved" id="approved">
                             個人情報の保護に同意します。<br/>
                         </p>
-                        <button type="submit" class="login-submit">登録</button>
+                        <button type="submit" class="regist-submit" id="myBtn">登録</button>
+                        <div id="myModal" class="modal">
+                            <div class="modal-content">
+                              <span class="close">&times;</span>
+                              <p>登録できました。ログインしてください</p>
+                              <a href="../login.html">ログインへ</a>
+                            </div>
+                        </div>
                 </form>
             </div>
     </main>
