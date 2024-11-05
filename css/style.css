@@ -83,7 +83,6 @@ h3{
 input[type="email"],
 input[type="password"] {
   box-sizing: border-box;
-  text-align: center;
   width: 100%;
   padding: 14px;
   margin-bottom: 12px;
