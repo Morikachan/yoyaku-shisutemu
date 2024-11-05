@@ -12,14 +12,16 @@ echo "入力されたメールは、$mail";
 echo "</br>";
 echo "入力されたパスワードは、$passHash";
 echo "</br>";
+echo "</br>";
 
 if (password_verify($passwd, $hash)) {
-    echo 'Password is valid!';
-    header("Location: mypage.html");
+    echo 'パスワードの認証に成功しました';
+    echo "</br>";
+    echo "3秒後にリダイレクトします";
+    header("refresh:3; mypage/mypage.html");
 } else {
     echo 'Invalid password.';
 }
 
-//header("Location: mypage.html");
 exit();
 ?>
