@@ -16,17 +16,14 @@ function getDBConnection() {
     }
 }
 
-function checkData($pdo ,$mail , $passwd){
-    echo $mail;
-    echo $passwd;
+function checkData($pdo ,$mail){
         $sql = "SELECT * FROM users_info WHERE mail = :mail and passwd = :passwd";
         try{
             $stmt = $pdo->prepare($sql);
             $stmt->bindParam(':mail', $mail);
-            $stmt->bindParam(':passwd', $passwd);
             $stmt->execute();
-            $rowsAffected = $stmt->rowCount();
-            return $rowsAffected > 0;
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $user;
         }
         catch (PDOException $e){
             echo $e->getMessage();
@@ -41,8 +38,8 @@ function checkData($pdo ,$mail , $passwd){
     $_SESSION['mail'] = $mail;
     $_SESSION['passwd'] = $passwd;
 
-    $result  = checkData($pdo ,  $mail , $passwd);
-    if($result){
+    $user  = checkData($pdo ,  $mail);
+    if($user && password_verify($passwd , $user['passwd'])){
         header('Location: ../html/check.html');
     }
     else{
