@@ -1,23 +1,41 @@
 <?php
 session_start();
-// login.htmlから値を貰う
-$adminID = $_POST['adminID'];
-$passwd = $_POST['passwd'];
-$passHash = password_hash($passwd, PASSWORD_DEFAULT);
-$hash = '$2y$10$DYQDr/r6cgbqW0Dk84jJoOTS7Wl7FnHljvR6/aJt.TcGjYIhT0j4W';
+const DB_SERVER_NAME = 'localhost';
+const DB_USER_NAME = 'root';
+const DB_PASSWORD = '';
+const DB_NAME = 'test';
 
-$_SESSION['adminID'] = $adminID;
-$_SESSION['passwd'] = $passwd;
-echo "入力されたIDは、$adminID";
-echo "</br>";
-echo "入力されたパスワードは、$passHash";
-echo "</br>";
-
-if (password_verify($passwd, $hash)) {
-    echo 'パスワードの認証に成功';
-    header('location: ../user_information/user_information.php');
-} else {
-    echo 'パスワードが違います';
+try {
+    $pdo = new PDO("mysql:host=" . DB_SERVER_NAME . ";dbname=" . DB_NAME,DB_USER_NAME,DB_PASSWORD);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    echo '接続失敗';
+    exit();
 }
-exit();
+
+$sql = "SELECT appointment.id, name, katakana, gender, birthday, occupation, school, tel, address, mail, course, day, time, message from appointment JOIN user_info ON appointment.id = user_info.id;";
+// $sql = "SELECT * FROM user_info join appointment";
+
+try {
+    $stmt = $pdo->query($sql);
+    //fetchAllでテーブルのデータを取得
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $_SESSION['results'] = $results;
+    header("Location: ../user_information/user_information.php");
+    exit();
+    //echo('<pre>');
+    //var_dump($results);
+    //echo('</pre');
+} catch (PDOException $e) {
+    echo '取得失敗';
+    exit();
+}
 ?>
+
+<!-- 
+SELECT user_info,id,name,katakana,gender,birthday,occupation,school,tel,address,mail,course,day,time,message FROM user_info JOIN appointment;
+
+SELECT user_info.id,name,katakana,gender,birthday,occupation,school,tel,address,mail,course,day,time,message FROM appointment JOIN user_info GROUP BY day;
+
+select appointment.id, name, katakana, gender, birthday, occupation, school, tel, address, mail, course, day, time, message from appointment JOIN user_info ON appointment.id = user_info.id;
+-->
