@@ -15,10 +15,10 @@ $results = $_SESSION['results'];
     <title>管理者ページ</title>
 </head>
 <body>
-    <header>
-        <div class="header-wrap">
-            <p><img src="../../img/image 1.png" alt="Arts_Logo"></p>
-            <p><a href="#" class="red-button">ログアウト</a></p>
+    <header class="c-header c-hamburger-menu"><!-- 追記 クラスを追記 -->
+        <a href="https://www.kccollege.ac.jp/" class="c-header__logo"><img src="../../img/image 1.png" alt="Arts_Logo"></a>
+        <div class="flex">
+            <a href="#" class="red-button">ログアウト</a>
         </div>
     </header>
     <main>
