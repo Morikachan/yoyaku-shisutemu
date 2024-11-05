@@ -24,6 +24,7 @@ td {
     /* vertical-align: top; */
 }
 th {
+  color: #ffffff;
   background-color: #ff0000;
 }
 .table_td {
