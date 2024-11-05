@@ -1,12 +1,11 @@
 <?php
-//session利用開始
-session_start();
 $mail = $_POST['resetemail'];
-$_SESSION['mail'] = $mail;
-
+// password reset token生成
+$passwordResetToken = bin2hex(random_bytes(32));
 //メールの設定
-    function mailSetting($mail){
-        $url = "http://localhost/pass_reset/pass_reset3/new_pass/new_pass.html";
+    function mailSetting($mail,$passwordResetToken){
+
+        $url = "http://localhost/pass_reset/pass_reset3/new_pass/new_contact.php?token={$passwordResetToken}";
         //送信先
         $to = $mail;
 
@@ -23,6 +22,7 @@ $_SESSION['mail'] = $mail;
         //メールの送信
         if(mail($to, $subject, $message , $headers)) {
             echo 'メール送信が成功しました。';
+        
         } else {
             echo 'メール送信に失敗しました。';
         }
@@ -31,11 +31,11 @@ $_SESSION['mail'] = $mail;
 
     }
 //ここまでメールの設定
-
+//ここからデータベースの処理
         require_once './database.php';
         $pdo = getDb();
 
-        
+        //データの検索処理
         function searchData($pdo , $mail){
             $sql = "SELECT * FROM users_info WHERE mail = :mail ";
             try{
@@ -52,14 +52,32 @@ $_SESSION['mail'] = $mail;
             }
             
         }    
+        //トークンの登録処理
+        function insertToken($pdo , $mail, $passwordResetToken){
+            $sql = "INSERT INTO reset_info (email, token) VALUES (:email,:token)";
+            try{
+                //SQL文に入れる値の設定
+                $stmt = $pdo->prepare($sql);
+                $stmt -> bindParam(":email", $mail);
+                $stmt -> bindParam(":token" , $passwordResetToken);
+                return $stmt -> execute();
+    
+    
+            } catch (PDOException $e){
+                echo $e->getMessage();
+                return false;
+            }
+        }
+            
 
 
         $maildata = searchData($pdo , $mail);
         if($maildata){
-            mailSetting($mail);
-        } else {
-            echo "入力されたメールアドレスが見つかりませんでした。新規登録をしてください。";
-        }
+                mailSetting($mail,$passwordResetToken);
+                insertToken($pdo, $mail , $passwordResetToken);
+            } else{
+                echo "入力されたメールアドレスが見つかりませんでした。新規登録をしてください。";
+            }
 
         
 //ここまでデータベースの処理
