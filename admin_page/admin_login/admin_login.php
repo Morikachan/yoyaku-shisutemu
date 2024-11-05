@@ -15,10 +15,9 @@ echo "</br>";
 
 if (password_verify($passwd, $hash)) {
     echo 'パスワードの認証に成功';
+    header('location: ../user_information/user_information.php');
 } else {
     echo 'パスワードが違います';
 }
-
-//header("Location: mypage.html");
 exit();
 ?>
