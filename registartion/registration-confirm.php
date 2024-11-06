@@ -1,11 +1,27 @@
 <?php 
-
+    require_once '../core/Database.php';
+    
     session_start();
 
+    function insertStudentData($pdo, $name, $password){
+        $sql = "INSERT INTO users_info (mail, password) VALUES (:mail, :password)";
+        try{
+            $smtp = $pdo->prepare($sql);
+            $smtp->bindParam(':name', $name);
+            $smtp->bindParam(':password', $password);
+            return $smtp->execute();
+        } catch (PDOException $e){
+            echo $e->getMessage();
+            return false;
+        }
+    }
 
-    $result = 'yes';
-    echo $result == 'yes' ?'true' : 'false';
-
+    if($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $DB = new Database();
+        $pdo = $DB->getPDO();
+        $result = insertStudentData($pdo, $name, $password);
+        echo $result ? 'true' : 'false';
+    }
 ?>
 
 
@@ -91,12 +107,11 @@
                             <input type="checkbox" name="approved" id="approved">
                             個人情報の保護に同意します。<br/>
                         </p>
-                        <button type="submit" class="regist-submit" id="myBtn">登録</button>
-                        <div id="myModal" class="modal">
+                        <button type="submit" class="red-button" id="modalBtn">登録</button>
+                        <div id="modal" class="modal">
                             <div class="modal-content">
-                              <span class="close">&times;</span>
                               <p>登録できました。ログインしてください</p>
-                              <a href="../login.html">ログインへ</a>
+                              <p><a href="../login.html">ログインへ</a></p>
                             </div>
                         </div>
                 </form>
