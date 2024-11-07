@@ -2,13 +2,14 @@
     require_once '../core/Database.php';
     
     session_start();
+    $UserRegistrationInfo = $_SESSION['UserRegistrationInfo'];
 
-    function insertStudentData($pdo, $name, $password){
+    function insertStudentData($pdo, $UserRegistrationInfo){
         $sql = "INSERT INTO users_info (mail, password) VALUES (:mail, :password)";
         try{
             $smtp = $pdo->prepare($sql);
-            $smtp->bindParam(':name', $name);
-            $smtp->bindParam(':password', $password);
+            $smtp->bindParam(':name', $UserRegistrationInfo['name']);
+            $smtp->bindParam(':password', $UserRegistrationInfo['password']);
             return $smtp->execute();
         } catch (PDOException $e){
             echo $e->getMessage();
@@ -19,7 +20,7 @@
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
         $DB = new Database();
         $pdo = $DB->getPDO();
-        $result = insertStudentData($pdo, $name, $password);
+        $result = insertStudentData($pdo, $UserRegistrationInfo);
         echo $result ? 'true' : 'false';
     }
 ?>
@@ -51,57 +52,45 @@
                 <form action="registration.php" method="post">
                     <h2>ログイン情報</h2>
                         <span class="required"></span>
-                        <label for="email"><h3>メールアドレス</h3></label>
-                            <p id="mail"> <?php  ?></p>
+                        <h3>メールアドレス</h3>
+                            <p id="mail"> <?php echo $UserRegistrationInfo['name'] ?></p>
                         <span class="required"></span>
-                        <label for="password"><h3>パスワード</h3></label>
-                            <input type="password" name="password" id="password">
-                        <span class="required"></span>
-                        <label for="password_check"><h3>パスワード確認</h3></label>
-                            <input type="password_check" name="password_check" id="password_check">
-
+                        <h3>パスワード</h3>
+                            <p id="password"> <?php echo $UserRegistrationInfo['password'] ?></p>
                     <h2>個人情報</h2>
                         <span class="required"></span><h3>希望学科</h3>
-                            <select name="course" id="course">
-                                <option value="">選択してください</option>
-                                <option value="game">ゲームクリエイター学科</option>
-                                <option value="design">デザイン学科</option>
-                                <option value="cs">情報処理学科</option>
-                            </select>
+                            <p id="course"> <?php echo $UserRegistrationInfo['course'] ?></p>
                         <span class="required"></span><h3>氏名</h3>
                             <div>
                                 <div>
-                                    <input type="text" name="lastName" id="lastName" value="性">
-                                    <input type="text" name="firstName" id="firstName" value="名">
+                                    <span>性:</span>
+                                    <p id="lastName"> <?php echo $UserRegistrationInfo['lastName'] ?></p>
+                                    <span>名:</span>
+                                    <p id="firstName"> <?php echo $UserRegistrationInfo['firstName'] ?></p>
                                 </div>
                                 <div>
-                                    <input type="text" name="lastNameKana" id="lastNameKana" value="セイ">
-                                    <input type="text" name="firstNameKana" id="firstNameKana" value="メイ">
+                                    <span>セイ:</span>
+                                    <p id="lastName"> <?php echo $UserRegistrationInfo['lastNameKana'] ?></p>
+                                    <span>メイ:</span>
+                                    <p id="firstName"> <?php echo $UserRegistrationInfo['firstNameKana'] ?></p>
                                 </div>
                             </div>
                         <span class="required"></span><h3>性別</h3>
-                            <label><input type="radio" name="gender" value="女性">女性</label>
-                            <label><input type="radio" name="gender" value="男性">男性</label>
+                            <p id="gender"> <?php echo $UserRegistrationInfo['gender'] ?></p>
                         <span class="required"></span><h3>生年月日</h3>
-                            <input type="date" name="date" id="date"/>
+                            <p id="date"> <?php echo $UserRegistrationInfo['date'] ?></p>
                         <span class="required"></span><h3>職業</h3>
-                        <select name="occupation">
-                            <option value="">選択してください</option>
-                            <option value="game">ゲームクリエイター学科</option>
-                            <option value="design">デザイン学科</option>
-                            <option value="cs">情報処理学科</option>
-                        </select>
+                            <p id="occupation"> <?php echo $UserRegistrationInfo['occupation'] ?></p>
                         <label for="school"><h3>出身学校</h3></label>
-                            <input type="text" name="school" id="school">
+                            <p id="school"> <?php echo $UserRegistrationInfo['school'] ?></p>
                         <span class="required"></span><h3>電話番号</h3>
-                            <input type="tel" name="tel" id="tel" required />
-                        
+                            <p id="tel"> <?php echo $UserRegistrationInfo['tel'] ?></p>
                         <span class="required"></span><h3>住所</h3>
                             <div class="address">
-                                <input type="text" name="zipcode" id="zipcode">
+                                <p id="zipcode"> <?php echo $UserRegistrationInfo['zipcode'] ?></p>
                                 <button onclick="">検索</button>
-                                <input type="text" name="address1" id="address1">
-                                <input type="text" name="address2" id="address2">
+                                <p id="address1"> <?php echo $UserRegistrationInfo['address1'] ?></p>
+                                <p id="address2"> <?php echo $UserRegistrationInfo['address2'] ?></p>
                             </div>
                         <p>
                             <input type="checkbox" name="approved" id="approved">
