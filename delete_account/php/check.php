@@ -17,7 +17,7 @@ function getDBConnection() {
 }
 
 function checkData($pdo ,$mail){
-        $sql = "SELECT * FROM users_info WHERE mail = :mail and passwd = :passwd";
+        $sql = "SELECT * FROM users_info WHERE mail = :mail";
         try{
             $stmt = $pdo->prepare($sql);
             $stmt->bindParam(':mail', $mail);
@@ -38,7 +38,7 @@ function checkData($pdo ,$mail){
     $_SESSION['mail'] = $mail;
     $_SESSION['passwd'] = $passwd;
 
-    $user  = checkData($pdo ,  $mail);
+    $user = checkData($pdo ,  $mail);
     if($user && password_verify($passwd , $user['passwd'])){
         header('Location: ../html/check.html');
     }
