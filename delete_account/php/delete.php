@@ -132,13 +132,3 @@ else{
     header('Location: ../html/else.html');
 }
 ?>
-        header('Location: ../html/success.html');
-    }
-    else{
-      header('Location: ../html/else.html');
-    }
-}
-else{
-    header('Location: ../html/else.html');
-}
-?>
