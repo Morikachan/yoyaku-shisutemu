@@ -98,14 +98,11 @@ input[type="password"] {
 	background-color: #ffffff; /* カスタマイズしてください */
 	box-sizing: border-box;
 	display: flex;
-	justify-content:space-between;
 	padding: 1rem 2rem; /* カスタマイズしてください */
 	width: 100%;
   }
-  
   .c-header__logo {
-	color: #000; /* カスタマイズしてください */
-	min-width: 80px; /* カスタマイズしてください */
+	 /* カスタマイズしてください */
 	text-decoration: none;
   }
   
@@ -119,6 +116,7 @@ input[type="password"] {
   .c-header__list-item {
 	list-style: none;
 	text-decoration: none;
+	align-items:center;
 
   }
   
@@ -142,55 +140,58 @@ input[type="password"] {
 	transition: all 250ms ease-in-out;
   }
   
-  .c-header__list-link:hover {
-	filter: opacity(0.6); /* カスタマイズしてください */
-  }
   
   .c-hamburger-menu {
 	position: relative;
   }
   
   
-  .c-hamburger-menu__input {
-	display: none;
-  }
-  
-  .c-hamburger-menu__bg {
-	background-color: #000; /* カスタマイズしてください */
-	cursor: pointer;
-	display: none;
-	height: 100vh;
-	left: 0;
-	opacity: 0.4; /* カスタマイズしてください */
-	position: absolute;
-	top: 0;
-	width: 100%;
-	z-index: -1;
-  }
-  
-  #hamburger:checked ~ .c-hamburger-menu__bg {
-	display: block;
-  }
-  
-  .c-hamburger-menu__button {
-	display: none;
-  }
-  .flex{
+  .flex_header{
 	display:flex;
-	justify-content: space-between;
+	justify-content: end;
+	width: 100%;
   }
   
   @media screen and (max-width: 1280px) {
+	*{
+		max-width: 100%;
+	}
+	body{
+		overflow-x: hidden;
+	}
+	.flex_header{
+		justify-content: end;
+	}
+	.open{
+		background-image:url("../img/header_hamburger.png") ; 
+		background-repeat: no-repeat;
+		width: 70px;
+		margin-left:20px;
+		justify-items: end;
+	}
+	.close{
+		background-image:url("../img/header_close.png") ;
+		background-repeat: no-repeat;
+		width: 70px;
+		margin-left:20px;
+		justify-items: end;
+	} 
+	.open:hover{
+		cursor: pointer;
+	} 
+	.close:hover{
+		cursor: pointer;
+	} 
 	.content-container {
 		width: 70%;
 	}
-	 .flex{
-		margin-left:auto;
-		padding:0 20px;
+	.flex_logo{
+		margin:0 10px;
 	}
-	/* .red-button {
-		justify-content: end;
-	}  */
+	.red-button {
+		width: 70px;
+		justify-items: end;
+	} 
 	.c-hamburger-menu__list {
 		background-color: #eeeeee; /* カスタマイズしてください */
 		align-items: flex-start;
@@ -199,66 +200,17 @@ input[type="password"] {
 		left: 0;
 		padding: 2rem; /* カスタマイズしてください */
 		position: absolute;
-		transform: translateX(-100%);
-		/* transition: 0.3s; カスタマイズしてください */
+		opacity: 0; 
+		transform: (-100%, 0);
+		transition: 0.9s;
 		top: 100%;
 		width: 100%;
 		height: 100vh;
 	   }
-
 	
-	  
-	  #hamburger:checked ~ .c-hamburger-menu__list {
-		transform: translateX(0%);
-		transition: 0.3s;
-	  }
-
-	.c-hamburger-menu__button {
-	  
-	  align-items: center;
-	  appearance: none;
-	  background-color: transparent;
-	  border: none;
-	  cursor: pointer;
-	  display: flex;
-	  flex-direction: column;
-	  gap: 10px; /* カスタマイズしてください */
-	  height: 30px; /* カスタマイズしてください */
-	  justify-content: center;
-	  width: 30px; /* カスタマイズしてください */
-	}
   }
   
-  .c-hamburger-menu__button-mark {
-	background-color: #000; /* カスタマイズしてください */
-	display: block;
-	height: 1px; /* カスタマイズしてください */
-	transition: 0.3s; /* カスタマイズしてください */
-	width: 30px; /* カスタマイズしてください */
-	
-  }
-	#hamburger:checked
-	  ~ .c-hamburger-menu__button
-	  .c-hamburger-menu__button-mark:nth-of-type(1) {
-	  transform: translate(2px, 1px) rotate(50deg); /* カスタマイズしてください */
-	  transform-origin: 0%; /* カスタマイズしてください */
-	}
-	#hamburger:checked
-	  ~ .c-hamburger-menu__button
-	  .c-hamburger-menu__button-mark:nth-of-type(2) {
-	  opacity: 0;
-	}
-	#hamburger:checked
-	  ~ .c-hamburger-menu__button
-	  .c-hamburger-menu__button-mark:nth-of-type(3) {
-	  transform: translate(2px, 3px) rotate(-50deg); /* カスタマイズしてください */
-	  transform-origin: 0%; /* カスタマイズしてください */
-	}
-	#hamburger:checked
-	~ main {
-		background-color: #eeeeee;
-	}
-
+  
 
 /* ここまでハンバーガメニューとヘッダーに関するCSS */
 
