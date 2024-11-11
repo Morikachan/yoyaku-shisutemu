@@ -86,8 +86,9 @@
                         <span class="required"></span><h3>電話番号</h3>
                             <p id="tel"> <?php echo $UserRegistrationInfo['tel'] ?></p>
                         <span class="required"></span><h3>住所</h3>
-                                <p id="zipcode"> <?php echo $UserRegistrationInfo['zipcode'] ?></p>
                             <div class="address">
+                                <p id="zipcode"> <?php echo $UserRegistrationInfo['zipcode'] ?></p>
+                                <button onclick="">検索</button>
                                 <p id="address1"> <?php echo $UserRegistrationInfo['address1'] ?></p>
                                 <p id="address2"> <?php echo $UserRegistrationInfo['address2'] ?></p>
                             </div>
@@ -99,7 +100,7 @@
                         <div id="modal" class="modal">
                             <div class="modal-content">
                               <p>登録できました。ログインしてください</p>
-                              <p><a href="../login.php">ログインへ</a></p>
+                              <p><a href="../login.html">ログインへ</a></p>
                             </div>
                         </div>
                 </form>
