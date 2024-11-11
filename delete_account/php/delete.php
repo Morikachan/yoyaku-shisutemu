@@ -16,7 +16,7 @@ function getDBConnection() {
     }
 }
 
-function deletData($pdo , $mail , $passwd){
+function deleteData($pdo , $mail , $passwd){
     $sql = "DELETE FROM users_info WHERE mail = :mail and passwd = :passwd";
 
     try{
@@ -55,7 +55,7 @@ $pdo = getDBConnection();
 $mail = $_SESSION['mail'];
 $passwd = $_SESSION['passwd'];
 $hashPassword = password_hash($passwd, PASSWORD_DEFAULT);
-$result = deletData($pdo , $mail , $hashPassword);
+$result = deleteData($pdo , $mail , $hashPassword);
 if($result){
     $pdo = getDBConnection();
     $mail = $_SESSION['mail'];
