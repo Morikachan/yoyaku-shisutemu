@@ -4,9 +4,14 @@ $repeatpass = $_POST['repeat_pass'];
 session_start();
 $token = isset($_SESSION['token']) ? $_SESSION['token'] : '';
 $passwordResetToken = $token;
-// echo htmlspecialchars($token);
+// 今回はtokenの有効期間を24時間とする
+// $tokenValidPeriod = (new \DateTime())->modify("-24 hour")->format('Y-m-d H:i:s');
 
-// echo "Token : " . htmlspecialchars($token);
+//4分とする
+// $tokenValidPeriod = (new \DateTime())->modify("-4 minute")->format('Y-m-d H:i:s');
+
+//10秒とする
+// $tokenValidPeriod = (new \DateTime())->modify("-10 second")->format('Y-m-d H:i:s');
 
 if($newpass == "" || $repeatpass == ""){
     echo 'パスワードを入力してください。';
@@ -30,15 +35,14 @@ if($newpass == "" || $repeatpass == ""){
                 $result = $stmt->fetch(); 
                 return $result[0];
 
-                
-                
-
                 } catch (PDOException $e){
                     echo '取得失敗';
                     exit();
-                }
-            
+                } 
         }    
+
+
+           
         
         //パスワードのリセット処理
         function passreset($pdo , $mail, $newpass){
@@ -69,7 +73,6 @@ if($newpass == "" || $repeatpass == ""){
                 $stmt -> bindParam(":mail", $mail);
                //ここから修正
                 //return $stmt -> execute();
-                echo $mail;
                 return $stmt -> execute();
                 //ここまで
     
@@ -80,16 +83,12 @@ if($newpass == "" || $repeatpass == ""){
             }
             
         }    
-        echo $passwordResetToken;
         $mail = searchData($pdo, $passwordResetToken);
-        echo 'メール：' . $mail;
         $reset_result = passreset($pdo,$mail,$newpass);
-        
-        echo $reset_result;
         if($reset_result){
             echo 'パスワードの変更が完了しました。';
             $delete_result = deleteData($pdo , $mail);
-            echo '結果：' . $delete_result;
+
             if($delete_result){
                 echo "全ての処理が完了しました。\n 画面を閉じてください。";
             } else {

@@ -1,11 +1,13 @@
 <?php
 $mail = $_POST['resetemail'];
+
+
 // password reset token生成
 $passwordResetToken = bin2hex(random_bytes(32));
 //メールの設定
     function mailSetting($mail,$passwordResetToken){
 
-        $url = "http://localhost/pass_reset/pass_reset3/new_pass/new_contact.php?token={$passwordResetToken}";
+        $url = "http://localhost/yoyaku-shisutemu/pass_reset/new_pass/new_contact.php?token={$passwordResetToken}";
         //送信先
         $to = $mail;
 
