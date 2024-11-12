@@ -10,13 +10,17 @@ body {
 }
 
 header {
-  display: flex;
-  justify-content: space-between;
-  position: fixed;
-  background-color: #fff;
-  box-shadow: 0 5px 2px -2px gray;
-  max-width: 100vw;
-  padding:12px 0;
+	display: flex;
+	justify-content: space-between;
+	position: fixed;
+	background-color: #fff;
+	box-shadow: 0 10px 2px -2px gray;
+	max-width: 100vw;
+	padding: 12px 0;
+	z-index: 99;
+  }
+:not(.c-hamburger-menu__list){
+	z-index: 99;
 }
 header img {
   width: 420px;
@@ -195,20 +199,27 @@ input[type="password"] {
 		justify-items: end;
 	} 
 	.c-hamburger-menu__list {
-		background-color: #eeeeee; /* カスタマイズしてください */
+		background-color: #eeeeee;
 		align-items: flex-start;
 		display: flex;
 		flex-direction: column;
 		left: 0;
-		padding: 2rem; /* カスタマイズしてください */
+		padding: 2rem;
 		position: absolute;
-		opacity: 0; 
-		transform:translateX(-100%);
-		transition: 0.9s;
+		opacity: 0;
+		transform: translateX(-100%); 
+		transition: opacity 0.3s ease, transform 0.3s ease; 
 		top: 100%;
 		width: 100%;
 		height: 100vh;
-	   }
+		z-index: 1;
+	  }
+	
+	  .c-hamburger-menu__list.active {
+		opacity: 1;
+		transform: translateX(0); 
+		z-index: 1;
+	  }
 	
   }
   
