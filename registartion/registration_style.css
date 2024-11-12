@@ -1,12 +1,19 @@
 .required {
     background-color: #CF220E;
     color: #ffffff;
-    
+    padding: 2px 3px;
+    border-radius: 6px;
+    margin-right: 3px;
+}
+
+h3 {
+  display: inline-block;
 }
 
 input[type="password"],
 input[type="tel"],
 input[type="date"],
+input[type="text"],
 select {
   box-sizing: border-box;
   width: 100%;
@@ -54,3 +61,4 @@ select {
   from {top: -300px; opacity: 0}
   to {top: 0; opacity: 1}
 }
+

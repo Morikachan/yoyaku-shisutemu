@@ -7,9 +7,10 @@ class Database {
     private const USER_NAME = 'root';
     private const PASSWORD = '';
 
+    private static $instance = null;
     private $pdo;
     
-    public function __construct(){
+    private function __construct(){
         try {
             $this->pdo = new PDO("mysql:host=" . self::SERVER_NAME .
             ";dbname=" . self::DB_NAME, self::USER_NAME, self::PASSWORD);
@@ -20,6 +21,12 @@ class Database {
         }
     }
 
+    public static function getInstance(){
+        if(self::$instance === null) {
+            self::$instance = new Database();
+        }
+        return self::$instance;
+    }
     public function getPDO(){
         return $this->pdo;
     }
