@@ -100,36 +100,36 @@ input[type="password"] {
 	display: flex;
 	padding: 1rem 2rem; /* カスタマイズしてください */
 	width: 100%;
-  }
-  .c-header__logo {
-	 /* カスタマイズしてください */
+}
+.c-header__logo {
+	/* カスタマイズしてください */
 	text-decoration: none;
-  }
-  
-  .c-header__list {
+}
+
+.c-header__list {
 	box-sizing: border-box;
 	display: flex;
 	margin: 0;
 	padding: 0;
-  }
-  
-  .c-header__list-item {
-	  list-style: none;
-	  text-decoration: none;
-	  align-items:center;
-	  
-	}
+}
+
+.c-header__list-item {
+	list-style: none;
+	text-decoration: none;
+	align-items:center;
 	
-	.c-header__list-link {
-		color: #000; /* カスタマイズしてください */
-		display: block;
-		line-height:30px;
-		margin-right: 20px; /* カスタマイズしてください */
-		text-decoration: none;
-		padding: 10px 0px; /* カスタマイズしてください */
-		height: 100%;
-  }
-  .red-button {
+}
+	
+.c-header__list-link {
+	color: #000; /* カスタマイズしてください */
+	display: block;
+	line-height:30px;
+	margin-right: 20px; /* カスタマイズしてください */
+	text-decoration: none;
+	padding: 10px 0px; /* カスタマイズしてください */
+	height: 100%;
+}	
+.red-button {
 	background-color: #CF220E ;
 	border-radius: 4px;
 	display: block;
@@ -139,20 +139,20 @@ input[type="password"] {
 	font-weight: bold;
 	width: 70px;
 	transition: all 250ms ease-in-out;
-  }
+}
   
   
-  .c-hamburger-menu {
+.c-hamburger-menu {
 	position: relative;
-  }
+}
   
   
-  .flex_header{
+.flex_header{
 	display:flex;
 	justify-content: end;
 	width: 100%;
-  }
-  
+}
+
   
   @media screen and (max-width: 1280px) {
 	*{
