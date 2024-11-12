@@ -71,8 +71,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     $_SESSION['error'] =  array();
 
     $approvedChecked  = !empty($approved) ? true : false;    
-    $DB = new Database();
-    $pdo = $DB->getPDO();
+    $pdo = Database::getInstance()->getPDO();
     // Checking mail
     $user = searchMail($pdo, $mail);
     if(!empty($user) && !$approvedChecked){

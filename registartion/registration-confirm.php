@@ -18,8 +18,7 @@
     }
 
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $DB = new Database();
-        $pdo = $DB->getPDO();
+        $pdo = Database::getInstance()->getPDO();
         $result = insertStudentData($pdo, $UserRegistrationInfo);
         echo $result ? 'true' : 'false';
     }
@@ -51,16 +50,16 @@
             <div class="content-container">
                 <form action="registration.php" method="post">
                     <h2>ログイン情報</h2>
-                        <span class="required"></span>
+                        <span class="required">必須</span>
                         <h3>メールアドレス</h3>
                             <p id="mail"> <?php echo $UserRegistrationInfo['name'] ?></p>
-                        <span class="required"></span>
+                        <span class="required">必須</span>
                         <h3>パスワード</h3>
                             <p id="password"> <?php echo $UserRegistrationInfo['password'] ?></p>
                     <h2>個人情報</h2>
-                        <span class="required"></span><h3>希望学科</h3>
+                        <span class="required">必須</span><h3>希望学科</h3>
                             <p id="course"> <?php echo $UserRegistrationInfo['course'] ?></p>
-                        <span class="required"></span><h3>氏名</h3>
+                        <span class="required">必須</span><h3>氏名</h3>
                             <div>
                                 <div>
                                     <span>性:</span>
@@ -75,17 +74,17 @@
                                     <p id="firstName"> <?php echo $UserRegistrationInfo['firstNameKana'] ?></p>
                                 </div>
                             </div>
-                        <span class="required"></span><h3>性別</h3>
+                        <span class="required">必須</span><h3>性別</h3>
                             <p id="gender"> <?php echo $UserRegistrationInfo['gender'] ?></p>
-                        <span class="required"></span><h3>生年月日</h3>
+                        <span class="required">必須</span><h3>生年月日</h3>
                             <p id="date"> <?php echo $UserRegistrationInfo['date'] ?></p>
-                        <span class="required"></span><h3>職業</h3>
+                        <span class="required">必須</span><h3>職業</h3>
                             <p id="occupation"> <?php echo $UserRegistrationInfo['occupation'] ?></p>
                         <label for="school"><h3>出身学校</h3></label>
                             <p id="school"> <?php echo $UserRegistrationInfo['school'] ?></p>
-                        <span class="required"></span><h3>電話番号</h3>
+                        <span class="required">必須</span><h3>電話番号</h3>
                             <p id="tel"> <?php echo $UserRegistrationInfo['tel'] ?></p>
-                        <span class="required"></span><h3>住所</h3>
+                        <span class="required">必須</span><h3>住所</h3>
                                 <p id="zipcode"> <?php echo $UserRegistrationInfo['zipcode'] ?></p>
                             <div class="address">
                                 <p id="address1"> <?php echo $UserRegistrationInfo['address1'] ?></p>
