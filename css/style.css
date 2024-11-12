@@ -152,6 +152,7 @@ input[type="password"] {
 	width: 100%;
   }
   
+  
   @media screen and (max-width: 1280px) {
 	*{
 		max-width: 100%;
@@ -201,7 +202,7 @@ input[type="password"] {
 		padding: 2rem; /* カスタマイズしてください */
 		position: absolute;
 		opacity: 0; 
-		transform: (-100%, 0);
+		transform:translateX(-100%);
 		transition: 0.9s;
 		top: 100%;
 		width: 100%;
@@ -217,5 +218,21 @@ input[type="password"] {
 @media screen and (max-width: 768px) {
 	.content-container {
 		width: 100%;
+	}
+	.red-button {
+		width: 40px;
+		height: 20px;
+		font-size: 10px;
+		padding:5px 8px;
+		line-height:20px;
+		text-align: center;
+	}
+	.open{
+		width: 30px;
+		background-size: contain;
+	}
+	.close{
+		width: 30px;
+		background-size: contain;
 	}
 }
