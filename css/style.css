@@ -114,19 +114,20 @@ input[type="password"] {
   }
   
   .c-header__list-item {
-	list-style: none;
-	text-decoration: none;
-	align-items:center;
-
-  }
-  
-  .c-header__list-link {
-	color: #000; /* カスタマイズしてください */
-	display: block;
-	margin-right: 20px; /* カスタマイズしてください */
-	text-decoration: none;
-	padding: 10px 0px; /* カスタマイズしてください */
-	height: 100%;
+	  list-style: none;
+	  text-decoration: none;
+	  align-items:center;
+	  
+	}
+	
+	.c-header__list-link {
+		color: #000; /* カスタマイズしてください */
+		display: block;
+		line-height:30px;
+		margin-right: 20px; /* カスタマイズしてください */
+		text-decoration: none;
+		padding: 10px 0px; /* カスタマイズしてください */
+		height: 100%;
   }
   .red-button {
 	background-color: #CF220E ;

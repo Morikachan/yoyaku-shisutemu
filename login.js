@@ -13,7 +13,6 @@ function hamburgerClick(){
         hamburger_menu_list.style.opacity = '0';
         elem.classList.toggle('open');
    }
-   //document.querySelector('.close').classList.toggle("close");
    // closeからopenにします
    // closeの時 -> opacity: 0, transform: (-100%, 0);
    // openの時 -> opacity: 1, transform: (0, 0); 
