@@ -93,10 +93,6 @@
                                 <input type="text" class="p-region p-locality p-street-address p-extended-address" id="address1" />
                                 <input type="text" class="" id="address2" />
                             </div>
-                        <p>
-                            <input type="checkbox" name="approved" id="approved">
-                            個人情報の保護に同意します。<br/>
-                        </p>
                         <button type="submit" class="login-submit">確認画面へ</button>
                 </form>
             </div>

@@ -1,3 +1,5 @@
+let modal = document.getElementById("modal");
+
 function insertConfirm() {
       fetch('registration-confirm.php', {
         method: 'POST',
@@ -5,21 +7,9 @@ function insertConfirm() {
       .then(response => response.text())
       .then(text => {
         if(text === 'true') {
-          
+          modal.style.display = "block";
         }else {
           alert("Error")
         }
       })
-}
-
-// Получить модальный
-let modal = document.getElementById("modal");
-// Получить кнопку, которая открывает модальный
-let btn = document.getElementById("modalBtn");
-
-btn.onclick = function() {
-  modal.style.display = "block";
-}
-span.onclick = function() {
-  modal.style.display = "none";
 }

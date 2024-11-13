@@ -40,8 +40,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     $address1 = $_POST['address1'];
     $address2 = $_POST['address2'];
 
-    $approved = $_POST['approved'];
-
     $UserRegistrationInfo = new stdClass();
     // Added property to the object
     $UserRegistrationInfo->mail = $mail;
@@ -68,16 +66,18 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     $_SESSION['password'] = $password;
     $_SESSION['UserRegistrationInfo'] = $UserRegistrationInfo;
 
-    $_SESSION['error'] =  array();
+    // $_SESSION['error'] =  array();
 
     $approvedChecked  = !empty($approved) ? true : false;    
     $pdo = Database::getInstance()->getPDO();
     // Checking mail
     $user = searchMail($pdo, $mail);
-    if(!empty($user) && !$approvedChecked){
-        array_push($_SESSION['error'], 'ユーザがすでに存在します');
+    if($user){
+        // array_push($_SESSION['error'], 'ユーザがすでに存在します');
+        $_SESSION['error'] = 'ユーザがすでに存在します';
         header("Location: ./registration.php");
-    } else {
+    } 
+    else {
         header("Location: ./registration-confirm.html");
     }
 }
