@@ -1,25 +1,17 @@
-<!-- 
-SELECT user_info,id,name,katakana,gender,birthday,occupation,school,tel,address,mail,course,day,time,message FROM user_info JOIN appointment;
-
-SELECT user_info.id,name,katakana,gender,birthday,occupation,school,tel,address,mail,course,day,time,message FROM appointment JOIN user_info GROUP BY day;
-
-SELECT appointment.id, name, katakana, gender, birthday, occupation, school, tel, address, mail, course, day, time, message from appointment JOIN user_info ON appointment.id = user_info.id;
--->
 <?php
 session_start();
-
 // require_once '../../core/Database.php';
-
-const DB_SERVER_NAME = 'localhost';
-const DB_USER_NAME = 'root';
-const DB_PASSWORD = '';
-const DB_NAME = 'test';
 
 // テストデータの記入内容
 /* -------------------
     adminId   = 1        
     passwd = test
 ------------------- */
+//ーーーーーーーーーーーーーーーーーーーーーーーーーーーーここから下は消す予定ーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+const DB_SERVER_NAME = 'localhost';
+const DB_USER_NAME = 'root';
+const DB_PASSWORD = '';
+const DB_NAME = 'test';
 function getDbConnection() {
     try {
         $pdo = new PDO("mysql:host=" . DB_SERVER_NAME . 
@@ -31,6 +23,8 @@ function getDbConnection() {
         exit();
     }
 }
+//ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+
 function selectUserData($pdo,$adminId) {
     $sql = "SELECT * FROM admin_info WHERE adminId = :adminId";
     try {
@@ -49,29 +43,14 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     $pdo = getDbConnection();
     $adminId = $_POST['adminID'];
     $passwd = $_POST['passwd'];
-    $passHash = password_hash($passwd, PASSWORD_DEFAULT);
     $user = selectUserData($pdo,$adminId);
-        // echo "入力されたID";
-        // echo "</br>";
-        // echo $adminId;
-        // echo "</br>";
-        // echo "</br>";
-        // echo "入力されたパスワードは";
-        // echo "</br>";
-        // echo $passwd;
-        // echo "</br>";
-        // echo "</br>";
-        // echo "ハッシュ化されたパスワードは";
-        // echo "</br>";
-        // echo $passHash;
-        // echo "</br>";
-        // echo "</br>";
     if (!$user) {
         $_SESSION['error'] = '入力されたIDが見つかりませんでした';
         header("Location: ./admin_login.php");
         exit;
     } else if ($user && password_verify($passwd,$user['adminPass'])) {
-        echo "認証に成功しました";
+        header("Location: ../get_data/get_data.php");
+        exit;
     } else {
         $_SESSION['error'] = 'パスワードが違います';
         header("Location: ./admin_login.php");
@@ -80,7 +59,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 ?>
 
-<!------------------------------- PHP ------------------------------->
+
 
 <!DOCTYPE html>
 <html lang="ja">

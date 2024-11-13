@@ -1,7 +1,40 @@
 <?php
 session_start();
-
 $results = $_SESSION['results'];
+// require_once '../../core/Database.php';
+//ーーーーーーーーーーーーーーーーーーーーーーーーーーーーここから下は消す予定ーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+const DB_SERVER_NAME = 'localhost';
+const DB_USER_NAME = 'root';
+const DB_PASSWORD = '';
+const DB_NAME = 'test';
+function getDbConnection() {
+    try {
+        $pdo = new PDO("mysql:host=" . DB_SERVER_NAME . 
+        ";dbname=" . DB_NAME,DB_USER_NAME,DB_PASSWORD);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        return $pdo;
+    } catch (PDOException $e) {
+        echo '接続失敗' . $e->getMessage();
+        exit();
+    }
+}
+//ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+function getUserData($pdo) {
+    $sql = "SELECT appointment.id, name, katakana, gender, birthday, occupation, school, tel, address, mail, course, day, time, message from appointment JOIN user_info ON appointment.id = user_info.id;";
+    try {
+        $stmt = $pdo->query($sql);
+        //fetchAllでテーブルのデータを取得
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $_SESSION['results'] = $results;
+        exit();
+        //echo('<pre>');
+        //var_dump($results);
+        //echo('</pre');
+    } catch (PDOException $e) {
+        echo '取得失敗';
+        exit();
+    }
+}
 ?>
 
 
@@ -41,26 +74,13 @@ $results = $_SESSION['results'];
                         <th>時間</th>
                         <th>備考</th>
                     </tr>
-                    <tr>
-                        <td>10</td>
-                        <td>梶浦歩</td>
-                        <td>カジウラアユム</td>
-                        <td>男</td>
-                        <td>2005年05月01日</td>
-                        <td>専門学生</td>
-                        <td>アーツカレッジヨコハマ</td>
-                        <td>000-0000-0000</td>
-                        <td>神奈川県海老名市1-1-1-1-1-1</td>
-                        <td>k248004@kccollege.ac.jp</td>
-                        <td>情報処理学科</td>
-                        <td>10/30(水)</td>
-                        <td>09:15</td>
-                        <td>
-                            <div class="table_td">
-                                日本国民は、正当に選挙された国会における代表者を通じて行動し、われらとわれらの子孫のために、諸国民との協和による成果と、わが国全土にわたつて自由のもたらす恵沢を確保し、政府の行為によつて再び戦争の惨禍
-                            </div>
-                        </td>
-                    </tr>
+                    <?php if(isset($_SESSION['message'])) :?>
+                    <div class="error-message">
+                        <?php echo $_SESSION['message']?>
+                    </div>
+                    <?php 
+                        unset($_SESSION['message']);?>
+                    <?php endif;?>
                     <?php foreach ($results as $row): ?>
                         <tr>
                             <td><?php echo $row['id']; ?></td>
