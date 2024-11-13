@@ -1,21 +1,16 @@
 <?php
 session_start();
+// require_once './core/Database.php';
+
+/* ---------- 記入内容 ---------
+        meil   = aaa@aaa        
+        passwd = test
+---------------------------- */
+//ーーーーーーーーーーーーーーーーーーーーーーーーーーーーここから下は消す予定ーーーーーーーーーーーーーーーーーーーーーーーーーーーー
 const DB_SERVER_NAME = 'localhost';
 const DB_USER_NAME = 'root';
 const DB_PASSWORD = '';
 const DB_NAME = 'test';
-
-
-// ここから下記のコメントアウトを削除すると入力されたデータを表示できます 
-            /* ---------- 記入内容 ---------
-                    meil   = aaa@aaa        
-                    passwd = test
-            ---------------------------- */
-// login.htmlから値を貰う
-// $mail = $_POST['mail'];
-// $passwd = $_POST['passwd'];
-//テストで入力したパスワードをハッシュ化
-
 function getDbConnection() {
     try {
         $pdo = new PDO("mysql:host=" . DB_SERVER_NAME . 
@@ -27,6 +22,7 @@ function getDbConnection() {
         exit();
     }
 }
+//ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
 function selectUserData($pdo,$mail) {
     $sql = "SELECT * FROM user_info WHERE mail = :mail";
     try {
@@ -40,35 +36,17 @@ function selectUserData($pdo,$mail) {
         return false;
     }
 }
-
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
     $pdo = getDbConnection();
     $mail = $_POST['mail'];
     $passwd = $_POST['passwd'];
-    $passHash = password_hash($passwd, PASSWORD_DEFAULT);
     $user = selectUserData($pdo,$mail);
-    
-        // echo "入力されたメールアドレス";
-        // echo "</br>";
-        // echo $mail;
-        // echo "</br>";
-        // echo "</br>";
-        // echo "入力されたパスワードは";
-        // echo "</br>";
-        // echo $passwd;
-        // echo "</br>";
-        // echo "</br>";
-        // echo "ハッシュ化されたパスワードは";
-        // echo "</br>";
-        // echo $passHash;
-        // echo "</br>";
-        // echo "</br>";
     if (!$user) {
         $_SESSION['error'] = '入力されたメールアドレスが見つかりませんでした';
         header("Location: ./login.php");
         exit;
     } else if ($user && password_verify($passwd,$user['passwd'])) {
-        header("refresh:3;./mypage/mypage.html");
+        header("Location: ");
     } else {
         $_SESSION['error'] = 'パスワードが違います';
         header("Location: ./login.php");
@@ -76,6 +54,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="ja">
