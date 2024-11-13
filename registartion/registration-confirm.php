@@ -3,13 +3,21 @@
     
     session_start();
     $UserRegistrationInfo = $_SESSION['UserRegistrationInfo'];
-
     function insertStudentData($pdo, $UserRegistrationInfo){
-        $sql = "INSERT INTO users_info (mail, password) VALUES (:mail, :password)";
+        $sql = "INSERT INTO users_info (mail, passwd, name, katakana, gender, birthday, occupation, school, tel, address, course) 
+        VALUES (:mail, :passwd, :name, :katakana, :gender, :birthday, :occupation, :school, :tel, :address, :course)";
         try{
             $smtp = $pdo->prepare($sql);
-            $smtp->bindParam(':name', $UserRegistrationInfo['name']);
-            $smtp->bindParam(':password', $UserRegistrationInfo['password']);
+            $smtp->bindParam(':mail', $UserRegistrationInfo['mail']);
+            $smtp->bindParam(':passwd', $UserRegistrationInfo['password']);
+            $smtp->bindParam(':name', $UserRegistrationInfo['lastName']." ".$UserRegistrationInfo['firstName']);
+            $smtp->bindParam(':katakana', $UserRegistrationInfo['lastNameKana']." ".$UserRegistrationInfo['firstNameKana']);
+            $smtp->bindParam(':gender', $UserRegistrationInfo['gender']);
+            $smtp->bindParam(':date', $UserRegistrationInfo['date']);
+            $smtp->bindParam(':occupation', $UserRegistrationInfo['occupation']);
+            $smtp->bindParam(':school', $UserRegistrationInfo['school']);
+            $smtp->bindParam(':tel', $UserRegistrationInfo['tel']);
+            $smtp->bindParam(':address', $UserRegistrationInfo['address1'].$UserRegistrationInfo['address2']);
             return $smtp->execute();
         } catch (PDOException $e){
             echo $e->getMessage();
@@ -18,9 +26,17 @@
     }
 
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $pdo = Database::getInstance()->getPDO();
-        $result = insertStudentData($pdo, $UserRegistrationInfo);
-        echo $result ? 'true' : 'false';
+        $approved = $_POST['approved'];
+
+        if (!$approvedChecked){
+            $_SESSION['error'] = '個人情報の保護に同意してください';
+            header("Location: ./registration-confirm.php");
+        } 
+        else {
+            $pdo = Database::getInstance()->getPDO();
+            $result = insertStudentData($pdo, $UserRegistrationInfo);
+            echo $result ? 'true' : 'false';
+        }
     }
 ?>
 
@@ -49,6 +65,12 @@
         <h1>新規登録</h1>
             <div class="content-container">
                 <form action="registration.php" method="post">
+                    <?php if(isset($_SESSION['error'])):?>
+                        <div class="error-message">
+                            <?php echo $_SESSION['error'] ?>
+                        </div>
+                        <?php unset($_SESSION['error']);?>
+                    <?php endif;?>
                     <h2>ログイン情報</h2>
                         <span class="required">必須</span>
                         <h3>メールアドレス</h3>
@@ -94,7 +116,7 @@
                             <input type="checkbox" name="approved" id="approved">
                             個人情報の保護に同意します。<br/>
                         </p>
-                        <button type="submit" class="red-button" id="modalBtn">登録</button>
+                        <button type="submit" class="login-submit" id="modalBtn">登録</button>
                         <div id="modal" class="modal">
                             <div class="modal-content">
                               <p>登録できました。ログインしてください</p>
