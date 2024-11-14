@@ -18,6 +18,7 @@ main {
   padding: 130px 40px;
 }
 main.active{
+	/* ハンバーガメニューが開いたときに動くCSS */
 	padding: 0 0;
 }
 
@@ -74,6 +75,7 @@ input[type="password"] {
 
 /* ここからハンバーガメニューとヘッダーに関するCSS */
 
+/* header全体のCSS */
 header{
 	display: flex;
 	justify-content: space-between;
@@ -81,6 +83,8 @@ header{
 	background-color: #fff;
 	max-width: 100vw;
 }
+
+/* headerの下線を出すためのCSS */
 header::after{
 	content:"";
 	position:absolute;
@@ -92,23 +96,26 @@ header::after{
 }
 
 
+/* アーツのロゴの大きさ指定 */
 header img {
   width: 420px;
 }
 
+/* headerのクラス */
 .c-header {
 	align-items: center;
-	background-color: #ffffff; /* カスタマイズしてください */
+	background-color: #ffffff; 
 	box-sizing: border-box;
 	display: flex;
-	padding: 1rem 2rem; /* カスタマイズしてください */
+	padding: 1rem 2rem; 
 	width: 100%;
 }
+/* アーツのロゴ */
 .c-header__logo {
-	/* カスタマイズしてください */
 	text-decoration: none;
 }
 
+/* ハンバーガメニューリストのCSS */
 .c-header__list {
 	box-sizing: border-box;
 	display: flex;
@@ -116,22 +123,25 @@ header img {
 	padding: 0;
 }
 
+/* ハンバーガメニューリストのアイテム */
 .c-header__list-item {
 	list-style: none;
 	text-decoration: none;
 	align-items:center;
 	
 }
-	
+/* ハンバーガメニューリストのデザイン */
 .c-header__list-link {
-	color: #000; /* カスタマイズしてください */
+	color: #000;
 	display: block;
 	line-height:30px;
-	margin-right: 20px; /* カスタマイズしてください */
+	margin-right: 20px; 
 	text-decoration: none;
-	padding: 10px 0px; /* カスタマイズしてください */
+	padding: 10px 0px;
 	height: 100%;
 }	
+
+/* 新規登録ボタン */
 .red-button {
 	background-color: #CF220E ;
 	border-radius: 4px;
@@ -144,19 +154,19 @@ header img {
 	transition: all 250ms ease-in-out;
 }
   
-  
+  /* positionのヘッダーへの固定 */
 .c-hamburger-menu {
 	position: relative;
 }
   
-  
+  /* アーツのロゴを除くコンテンツを右へ固定するCSS */
 .flex_header{
 	display:flex;
 	justify-content: end;
 	width: 100%;
 }
 
-  
+
   @media screen and (max-width: 1280px) {
 	*{
 		max-width: 100%;
@@ -164,9 +174,8 @@ header img {
 	body{
 		overflow-x: hidden;
 	}
-	.flex_header{
-		justify-content: end;
-	}
+
+	/* ハンバーガメニューが閉じているときのCSS */
 	.open{
 		background-image:url("../img/header_hamburger.png") ; 
 		background-repeat: no-repeat;
@@ -174,6 +183,8 @@ header img {
 		margin-left:20px;
 		justify-items: end;
 	}
+
+	/* //ハンバーガメニューが開いているときのCSS */
 	.close{
 		background-image:url("../img/header_close.png") ;
 		background-repeat: no-repeat;
@@ -190,13 +201,19 @@ header img {
 	.content-container {
 		width: 70%;
 	}
+
+	/* アーツのロゴの大きさ変更 */
 	.flex_logo{
 		margin:0 10px;
 	}
+
+	/* 新規登録ボタンの大きさ変更 */
 	.red-button {
 		width: 70px;
 		justify-items: end;
 	} 
+
+	/* ハンバーガメニューのデザインのアニメーションの設定 */
 	.c-hamburger-menu__list {
 		background-color: #eeeeee;
 		box-sizing: border-box;
@@ -211,12 +228,11 @@ header img {
 		transition: opacity 0.3s ease, transform 0.3s ease; 
 		top: 100%;
 		width: 100%;
-
-		/* この値をコンテンツ（ページ）の大きさに応じて変更してください。 */
 		height: 100vh;
 
 	  }
 	
+	  /* ハンバーガメニューが開いているときはここが動く */
 	  .c-hamburger-menu__list.active {
 		opacity: 1;
 		transform: translateX(0); 
@@ -232,6 +248,8 @@ header img {
 	.content-container {
 		width: 100%;
 	}
+
+	/* 新規登録ボタンのサイズとデザイン変更 */
 	.red-button {
 		width: 40px;
 		height: 20px;
@@ -240,6 +258,8 @@ header img {
 		line-height:20px;
 		text-align: center;
 	}
+
+	/* ハンバーガボタンの大きさ変更 */
 	.open{
 		width: 30px;
 		background-size: contain;
