@@ -8,6 +8,7 @@
 
 body {
   background-color: #E9E9E9;
+  overflow-x: hidden;
 }
 
 
@@ -16,10 +17,6 @@ main {
   background-color: #fff;
   margin: 0 auto;
   padding: 130px 40px;
-}
-main.active{
-	/* ハンバーガメニューが開いたときに動くCSS */
-	padding: 0 0;
 }
 
 h1 {
@@ -171,8 +168,9 @@ header img {
 	*{
 		max-width: 100%;
 	}
-	body{
-		overflow-x: hidden;
+	main.active{
+		/* ハンバーガメニューが開いたときに動くCSS */
+		padding: 0 0;
 	}
 
 	/* ハンバーガメニューが閉じているときのCSS */
