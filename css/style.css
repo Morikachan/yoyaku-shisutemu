@@ -217,6 +217,8 @@ input[type="password"] {
 		transition: opacity 0.3s ease, transform 0.3s ease; 
 		top: 100%;
 		width: 100%;
+
+		/* この値をコンテンツ（ページ）の大きさに応じて変更してください。 */
 		height: 124vh;
 
 	  }
