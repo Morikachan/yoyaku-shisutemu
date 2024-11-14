@@ -30,7 +30,7 @@
                     <div class="error-message"></div>
                     <?php unset($_SESSION['error']);?>
                 <?php endif;?>
-                <form action="registration-confirm.php" method="post" class="h-adr">
+                <form action="registration-check.php" method="post" class="h-adr">
                     <h2>ログイン情報</h2>
                         <span class="required">必須</span>
                         <label for="email"><h3>メールアドレス</h3></label>
@@ -73,9 +73,16 @@
                         <span class="required">必須</span><h3>職業</h3>
                         <select name="occupation">
                             <option value="">選択してください</option>
-                            <option value="game">ゲームクリエイター学科</option>
-                            <option value="design">デザイン学科</option>
-                            <option value="cs">情報処理学科</option>
+                            <option value="highschool1">高校1年生</option>
+                            <option value="highschool2">高校2年生</option>
+                            <option value="highschool3">高校3年生</option>
+                            <option value="highschool3">高校4年生</option>
+                            <option value="university">大学生</option>
+                            <option value="juniorCollege">短大生</option>
+                            <option value="vocationalSchool">専門学校生</option>
+                            <option value="adult">社会人</option>
+                            <option value="internationalStudent">留学生</option>
+                            <option value="different">その他</option>
                         </select>
                         
                         <span class="required">必須</span>
@@ -88,11 +95,15 @@
                         
                         <span class="required">必須</span><h3>住所</h3>
                             <span class="p-country-name" style="display:none;">Japan</span>
-                               〒<input type="text" class="p-postal-code" size="8" maxlength="8" id="zipcode">
+                               <input type="text" class="p-postal-code" size="8" maxlength="8" id="zipcode" placeholder="〒">
                             <div class="address">
-                                <input type="text" class="p-region p-locality p-street-address p-extended-address" id="address1" />
-                                <input type="text" class="" id="address2" />
+                                <input type="text" class="p-region p-locality p-street-address p-extended-address" name="address1" id="address1" />
+                                <input type="text" class="" name="address2" id="address2" />
                             </div>
+                            <p>
+                                <input type="checkbox" name="approved" id="approved">
+                                個人情報の保護に同意します。<br/>
+                        </p>
                         <button type="submit" class="login-submit">確認画面へ</button>
                 </form>
             </div>

@@ -40,26 +40,23 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     $address1 = $_POST['address1'];
     $address2 = $_POST['address2'];
 
-    $UserRegistrationInfo = new stdClass();
-    // Added property to the object
-    $UserRegistrationInfo->mail = $mail;
-    $UserRegistrationInfo->password = $password;
-    $UserRegistrationInfo->course = $course;
-
-    $UserRegistrationInfo->lastName = $lastName;
-    $UserRegistrationInfo->firstName = $firstName;
-    $UserRegistrationInfo->lastNameKana = $lastNameKana;
-    $UserRegistrationInfo->firstNameKana = $firstNameKana;
-
-    $UserRegistrationInfo->gender = $gender;
-    $UserRegistrationInfo->date = $formattedDate;
-
-    $UserRegistrationInfo->occupation = $occupation;
-    $UserRegistrationInfo->school = $school;
-    $UserRegistrationInfo->tel = $tel;
-
-    $UserRegistrationInfo->zipcode = $zipcode;
-    $UserRegistrationInfo->address = $address;
+    $UserRegistrationInfo = [
+        'mail' => $mail,
+        'password' => $password,
+        'course' => $course,
+        'lastName' => $lastName,
+        'firstName' => $firstName,
+        'lastNameKana' => $lastNameKana,
+        'firstNameKana' => $firstNameKana,
+        'gender' => $gender,
+        'birthday' => $formattedDate,
+        'occupation' => $occupation,
+        'school' => $school,
+        'tel' => $tel,
+        'zipcode' => $zipcode,
+        'address1' => $address1,
+        'address2' => $address2,
+      ];
 
     session_start();
     $_SESSION['mail'] = $mail;
@@ -76,9 +73,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         // array_push($_SESSION['error'], 'ユーザがすでに存在します');
         $_SESSION['error'] = 'ユーザがすでに存在します';
         header("Location: ./registration.php");
-    } 
-    else {
-        header("Location: ./registration-confirm.html");
+    // } else if (!$approvedChecked){
+    //         $_SESSION['error'] = '個人情報の保護に同意してください';
+    //         header("Location: ./registration.php");
+    } else {
+        header("Location: ./registration-confirm.php");
     }
 }
 ?>
