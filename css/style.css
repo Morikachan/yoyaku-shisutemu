@@ -10,37 +10,6 @@ body {
   background-color: #E9E9E9;
 }
 
-header{
-	display: flex;
-	justify-content: space-between;
-	position: fixed;
-	background-color: #fff;
-	max-width: 100vw;
-}
-header::after{
-	content:"";
-	position:absolute;
-	bottom: 0;
-	left: 0;
-	width: 100vw;
-	height: 10px;
-	box-shadow: 0 5px 2px -2px gray;
-}
-
-
-header img {
-  width: 420px;
-}
-.header-wrap {
-  width: 100vw;
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;
-}
-
-.header-wrap p:last-of-type {
-	margin-left: auto;
-}
 
 main {
   max-width: 1400px;
@@ -55,7 +24,7 @@ h1 {
 }
 
 .content-container {
-  width: 40vw;
+  width: 40%;
   margin: 0 auto;
 }
 
@@ -102,6 +71,27 @@ input[type="password"] {
 
 /* ここからハンバーガメニューとヘッダーに関するCSS */
 
+header{
+	display: flex;
+	justify-content: space-between;
+	position: fixed;
+	background-color: #fff;
+	max-width: 100vw;
+}
+header::after{
+	content:"";
+	position:absolute;
+	bottom: 0;
+	left: 0;
+	width: 100vw;
+	height: 10px;
+	box-shadow: 0 5px 2px -2px gray;
+}
+
+
+header img {
+  width: 420px;
+}
 
 .c-header {
 	align-items: center;
@@ -206,6 +196,7 @@ input[type="password"] {
 	} 
 	.c-hamburger-menu__list {
 		background-color: #eeeeee;
+		box-sizing: border-box;
 		align-items: flex-start;
 		display: flex;
 		flex-direction: column;
@@ -219,7 +210,7 @@ input[type="password"] {
 		width: 100%;
 
 		/* この値をコンテンツ（ページ）の大きさに応じて変更してください。 */
-		height: 124vh;
+		height: 100vh;
 
 	  }
 	
