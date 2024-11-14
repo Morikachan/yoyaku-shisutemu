@@ -10,7 +10,7 @@ $results = $_SESSION['results'];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../css/style.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="./css/style.css">
     <title>管理者ページ</title>
 </head>
 <body>
@@ -63,7 +63,7 @@ $results = $_SESSION['results'];
                             <td><?php echo $row['day']; ?></td>
                             <td><?php echo $row['time']; ?></td>
                             <td>
-                                <div>
+                                <div class = "message_scroll">
                                     <?php echo $row['message']; ?>
                                 </div>
                             </td>

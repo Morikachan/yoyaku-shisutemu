@@ -17,20 +17,20 @@ try {
 }
 //ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
 
-$sql = "SELECT appointment.id, name, katakana, gender, birthday, occupation, school, tel, address, mail, course, day, time, message from appointment JOIN user_info ON appointment.id = user_info.id;";
+$sql = "SELECT appointment.id, name, katakana, gender, birthday, occupation, school, tel, address, mail, course, day, time, message from appointment JOIN user_info ON appointment.id = user_info.id ORDER BY appointment.id ASC;";
 // $sql = "SELECT * from test";
 try {
     $stmt = $pdo->query($sql);
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
     $_SESSION['results'] = $results;
     if(empty($results)){
-        $_SESSION['message'] = '予約情報を取得できませんでした';
+        $_SESSION['message'] = '表示する予約情報がありません';
     }
     var_dump($results);
     header("Location: ../user_information/user_information.php");
     exit();
 } catch (PDOException $e) {
-    echo '取得失敗';
+    echo 'データベース接続でエラーが発生しました';
     exit();
 }
 ?>

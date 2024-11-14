@@ -1,6 +1,5 @@
 @charset "UTF-8";
 
-/* ------------- テーブル ------------- */
 .table_wrap {
     overflow-x: auto;
 }
@@ -27,8 +26,7 @@ th {
   color: #ffffff;
   background-color: #ff0000;
 }
-.table_td {
+.message_scroll {
     height: 80px;
-    overflow:  hidden scroll;
+    overflow: auto;
 }
-/*------------------------------------- */
