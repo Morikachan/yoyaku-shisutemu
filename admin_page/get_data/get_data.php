@@ -23,7 +23,6 @@ try {
     $stmt = $pdo->query($sql);
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
     $_SESSION['results'] = $results;
-    $_SESSION['message'] ;
     if(empty($results)){
         $_SESSION['message'] = '予約情報を取得できませんでした';
     }

@@ -2,9 +2,10 @@
 session_start();
 // require_once './core/Database.php';
 
+// テストデータの記入内容
 /* ---------- 記入内容 ---------
-        meil   = aaa@aaa        
-        passwd = test
+    meil   = aaa@aaa        
+    passwd = test
 ---------------------------- */
 //ーーーーーーーーーーーーーーーーーーーーーーーーーーーーここから下は消す予定ーーーーーーーーーーーーーーーーーーーーーーーーーーーー
 const DB_SERVER_NAME = 'localhost';
@@ -46,7 +47,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         header("Location: ./login.php");
         exit;
     } else if ($user && password_verify($passwd,$user['passwd'])) {
-        header("Location: ");
+        header("Location: ./mypage/mypage.html");
     } else {
         $_SESSION['error'] = 'パスワードが違います';
         header("Location: ./login.php");

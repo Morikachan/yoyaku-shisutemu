@@ -1,40 +1,6 @@
 <?php
 session_start();
 $results = $_SESSION['results'];
-// require_once '../../core/Database.php';
-//ーーーーーーーーーーーーーーーーーーーーーーーーーーーーここから下は消す予定ーーーーーーーーーーーーーーーーーーーーーーーーーーーー
-const DB_SERVER_NAME = 'localhost';
-const DB_USER_NAME = 'root';
-const DB_PASSWORD = '';
-const DB_NAME = 'test';
-function getDbConnection() {
-    try {
-        $pdo = new PDO("mysql:host=" . DB_SERVER_NAME . 
-        ";dbname=" . DB_NAME,DB_USER_NAME,DB_PASSWORD);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        return $pdo;
-    } catch (PDOException $e) {
-        echo '接続失敗' . $e->getMessage();
-        exit();
-    }
-}
-//ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
-function getUserData($pdo) {
-    $sql = "SELECT appointment.id, name, katakana, gender, birthday, occupation, school, tel, address, mail, course, day, time, message from appointment JOIN user_info ON appointment.id = user_info.id;";
-    try {
-        $stmt = $pdo->query($sql);
-        //fetchAllでテーブルのデータを取得
-        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        $_SESSION['results'] = $results;
-        exit();
-        //echo('<pre>');
-        //var_dump($results);
-        //echo('</pre');
-    } catch (PDOException $e) {
-        echo '取得失敗';
-        exit();
-    }
-}
 ?>
 
 
