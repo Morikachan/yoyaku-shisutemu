@@ -18,22 +18,93 @@
     text-decoration: none;
     color: #54A9D9;
 }
+/*予約情報*/
 .Reservation {
     background-color: #e3e2de;
     padding:  20px 30px;
     width: 75%;
     margin: 0 auto;
-    margin-top: 60px;
+    margin-top: 40px;
     margin-bottom: 40px;
-    height: 200px;
+    padding-bottom: 60px;
+    max-height: 100%;
     font-size: larger;
+    border-radius: 20px;
 }
-.header-wrap{
-    justify-content: space-around;
+.content-container .title{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+.title a{
+    font-size: 0.9em;
+    
 }
 .content-container .Reservation-button{
     display: flex;
     justify-content: space-evenly;
+    margin-top: 40px;
+}
+.content-container h3{
+    font-size: 1.5em;
+    padding-top: 7px;
+}
+.reserve{
+    margin-top: 40px;
+}
+/*予約情報　予約日あり*/
+.content-container table{
+    margin: 0 auto;
+    margin-top: 40px;
+    width: 80%;
+    border-collapse: collapse;
+    background-color: #fff;
+    font-size: 1.2em;
+}
+table,
+th,
+td {
+    border: 3px solid black;
+}
+.content-container thead{
+    font-size: 1.2em;
+    background-color: #CF220E;
+    color: #ffffff;
+}
+/*予約情報　予約日なし*/
+.not-Reservation{
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.4em;
+    margin-top: 40px;
+}
+/*アクセス方法*/
+.accsess{
+    margin-top: 60px;
+}
+.accsess h2{
+    margin-bottom: 40px;
+}
+.accsess p{
+    font-size: 1.3em;
+    font-weight: bold;
+}
+.accsess h3 {
+    margin-bottom: 10px;
+}
+.direction{
+    padding-left: 20px;
+}
+.infomation{
+    width: 80%;
+    margin: 0 auto;
+}
+.map{
+    margin-bottom: 20px;
+}
+.map iframe{
+    height: 300px;
+    margin-top: 30px;
 }
 /*ここまででマイページのCSS終わり*/
 
