@@ -20,4 +20,15 @@ function hamburgerClick(){
    // closeからopenにします
    // closeの時 -> opacity: 0, transform: (-100%, 0);
    // openの時 -> opacity: 1, transform: (0, 0); 
+   function reportWindowSize() {
+     if(window.outerWidth >= 900){
+          hamburger_menu_list.classList.remove('active');
+          main.classList.remove('active');
+          body.classList.remove('active');
+          elem.classList.remove('close');
+          elem.classList.add('open');
+     }
+
+   }
+   window.onresize = reportWindowSize;
 }
