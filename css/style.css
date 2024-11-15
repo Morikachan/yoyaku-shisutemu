@@ -172,6 +172,9 @@ header img {
 		/* ハンバーガメニューが開いたときに動くCSS */
 		padding: 0 0;
 	}
+	body.active{
+		overflow: hidden;
+	}
 
 	/* ハンバーガメニューが閉じているときのCSS */
 	.open{
