@@ -54,6 +54,7 @@
             $pdo = Database::getInstance()->getPDO();
             $result = insertStudentData($pdo, $UserRegistrationInfo);
             // echo $result ? 'true' : 'false';
+            // echo $result ? json_decode('status' => true) : json_decode('status' => false);
             $result ? header("Location: ../login.php") : header("Location: ./registration-confirm.php");
     }
 ?>

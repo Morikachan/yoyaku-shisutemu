@@ -4,20 +4,16 @@ let button = document.getElementById("modalBtn");
 button.addEventListener("click", insertConfirm);
 
 function insertConfirm() {
-console.log("Hello!")
-
-      fetch('registration-confirm.php', {
-        method: 'POST',
-        body: formData
-      })
-      .then(response => response.text())
-      .then(text => {
-        console.log(true);
-        console.log(text);
-        if(text === 'true') {
-          modal.style.display = "block";
-        }else {
-          console.log(false);
-        }
-      })
+  fetch("registration-confirm.php", {
+    method: "POST",
+  })
+    .then((response) => response.json())
+    .then((responseData) => {
+      if (responseData.status === "true") {
+        modal.style.display = "block";
+      } else {
+        // alert("データベース接続に失敗発生");
+        alert("失敗発生");
+      }
+    });
 }
