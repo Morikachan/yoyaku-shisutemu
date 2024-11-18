@@ -64,6 +64,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="./admin_page/admin_login/style.css"><!-- 後で消します -->
     <title>ログイン</title>
 </head>
 <body>
@@ -98,26 +99,55 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                   <span class="c-hamburger-menu__button-mark"></span>
                 </label>
     </header>
+
     <main>
         <h1>ログイン</h1>
-            <div class="content-container">
-                <?php if(isset($_SESSION['error'])) :?>
-                        <div class="error-message">
-                            <?php echo $_SESSION['error']?>
-                        </div>
-                    <?php 
-                    unset($_SESSION['error']);?>
-                <?php endif;?>
-                <form action="./login.php" method="post">
-                    <h3>メールアドレス</h3>
-                    <input type="email" name="mail" id="mail">
-                    <h3>パスワード</h3>
-                    <input type="password" name="passwd" id="passwd">
-                    <p><a href="" class="blue-link">パスワードを忘れた方はこちら</a></p>
-                    <button type="submit" class="login-submit">ログイン</button>
-                </form>
-                <p>アカウントをお持ちでない方は<a href="" class="blue-link">こちら</a></p>
+        <?php if(isset($_SESSION['error'])) :?>
+            <div class="error-message">
+                <?php echo $_SESSION['error']?>
             </div>
+        <?php 
+        unset($_SESSION['error']);?>
+        <?php endif;?>
+
+        <div class="content-container">
+            <form action="./login.php" method="post">
+                <label for="mail"><h3>メールアドレス</h3></label>
+                <input type="email" id="mail" name="mail" oninput="checkInput()"><br>
+                <span id="mailError" style="color:red; display:none;">メールアドレスを入力してください。</span><br>
+
+                <label for="passwd"><h3>パスワード</h3></label>
+                <input type="password" id="passwd" name="passwd" oninput="checkInput()"><br>
+                <span id="passwdError" style="color:red; display:none;">パスワードを入力してください。</span><br>
+
+                <button type="submit" class="login-submit">ログイン</button>
+            </form>
+
+            <script>
+                function checkInput() {
+                    // メールアドレスとパスワードのフィールドの値を取得
+                    let mail = document.getElementById('mail').value;
+                    let passwd = document.getElementById('passwd').value;
+
+                    // メールアドレスが入力されていない場合、エラーメッセージを表示
+                    if (mail === "") {
+                        document.getElementById('mailError').style.display = 'inline';
+                    } else {
+                        document.getElementById('mailError').style.display = 'none';
+                    }
+
+                    // パスワードが入力されていない場合、エラーメッセージを表示
+                    if (passwd === "") {
+                        document.getElementById('passwdError').style.display = 'inline';
+                    } else {
+                        document.getElementById('passwdError').style.display = 'none';
+                    }
+                }
+            </script>
+            
+            <p>アカウントをお持ちでない方は<a href="" class="blue-link">こちら</a></p>
+        </div>
     </main>
+
 </body>
 </html>

@@ -44,20 +44,20 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     $adminId = $_POST['adminID'];
     $passwd = $_POST['passwd'];
     $user = selectUserData($pdo,$adminId);
-    if(!$adminId) {
-        $_SESSION['error2'] = 'IDを入力してください';
-    } else if (!$passwd) {
-        $_SESSION['error2'] = 'パスワードを入力してください';
-    }
+    // if(!$adminId) {
+    //     $_SESSION['error2'] = 'IDを入力してください';
+    // } else if (!$passwd) {
+    //     $_SESSION['error2'] = 'パスワードを入力してください';
+    // }
     if (!$user) {
-        $_SESSION['error1'] = '入力されたIDが見つかりませんでした';
+        $_SESSION['error'] = '入力されたIDが見つかりませんでした';
         header("Location: ./admin_login.php");
         exit;
     } else if ($user && password_verify($passwd,$user['adminPass'])) {
         header("Location: ../get_data/get_data.php");
         exit;
     } else {
-        $_SESSION['error1'] = 'パスワードが違います';
+        $_SESSION['error'] = 'パスワードが違います';
         header("Location: ./admin_login.php");
         exit;
     }
@@ -85,21 +85,21 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     </header>
     <main>
         <h1>管理者メニュー</h1>
-        <?php if(isset($_SESSION['error1'])) :?>
+        <?php if(isset($_SESSION['error'])) :?>
             <div class="error-message">
-                <?php echo $_SESSION['error1']?>
+                <?php echo $_SESSION['error']?>
             </div>
         <?php 
-        unset($_SESSION['error1']);?>
+        unset($_SESSION['error']);?>
         <?php endif;?>
 
         <div class="content-container"><!-- ここから下に➀のコード -->
             <form action="./admin_login.php" method="post">
-                <label for="adminID">管理者ID</label>
+                <label for="adminID"><h3>管理者ID</h3></label>
                 <input type="text" id="adminID" name="adminID" oninput="checkInput()"><br>
                 <span id="adminIDError" style="color:red; display:none;">管理者IDを入力してください。</span><br>
 
-                <label for="passwd">パスワード</label>
+                <label for="passwd"><h3>パスワード</h3></label>
                 <input type="password" id="passwd" name="passwd" oninput="checkInput()"><br>
                 <span id="passwdError" style="color:red; display:none;">パスワードを入力してください。</span><br>
 
@@ -108,11 +108,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             <script>
                 function checkInput() {
-                    // 名前とパスワードのフィールドの値を取得
+                    // 管理者IDとパスワードのフィールドの値を取得
                     let adminID = document.getElementById('adminID').value;
                     let passwd = document.getElementById('passwd').value;
 
-                    // 名前が入力されていない場合、エラーメッセージを表示
+                    // 管理者IDが入力されていない場合、エラーメッセージを表示
                     if (adminID === "") {
                         document.getElementById('adminIDError').style.display = 'inline';
                     } else {
@@ -125,7 +125,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                     } else {
                         document.getElementById('passwdError').style.display = 'none';
                     }
-                    }
+                }
             </script>
             
             <p>アカウントをお持ちでない方は<a href="" class="blue-link">こちら</a></p>
