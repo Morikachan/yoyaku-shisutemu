@@ -88,15 +88,14 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     $pdo = Database::getInstance()->getPDO();
     // Checking mail
     $user = searchMail($pdo, $mail);
-    if(!$user){
+    if($user){
         $_SESSION['error'] = 'ユーザがすでに存在します';
+        header("Location: ./registration.php");
+     } else if (!$approvedChecked){
+        $_SESSION['error'] = '個人情報の保護に同意してください';
         header("Location: ./registration.php");
     } else {
         header("Location: ./registration-confirm.php");
     }
-
-     // } else if (!$approvedChecked){
-    //         $_SESSION['error'] = '個人情報の保護に同意してください';
-    //         header("Location: ./registration.php");
 }
 ?>
