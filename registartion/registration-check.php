@@ -1,7 +1,26 @@
 <?php
 require_once '../core/Database.php';
+
+$courses = [
+    "game" => "ゲームクリエイター学科",
+    "design" => "デザイン学科",
+    "cs" => "情報処理学科"
+];
+
+$occupations = [
+    "highschool1" => "高校1年生",
+    "highschool2" => "高校2年生",
+    "highschool3" => "高校3年生",
+    "highschool4" => "高校4年生",
+    "university" => "大学生",
+    "juniorCollege" => "短大生",
+    "vocationalSchool" => "専門学校生",
+    "adult" => "社会人",
+    "internationalStudent" => "留学生",
+    "different" => "その他",
+]; 
 function searchMail($pdo, $mail){
-    $sql = "SELECT FROM users_info WHERE mail=:mail";
+    $sql = "SELECT * FROM users_info WHERE mail=:mail";
     try{
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':mail', $mail);
@@ -43,14 +62,14 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     $UserRegistrationInfo = [
         'mail' => $mail,
         'password' => $password,
-        'course' => $course,
+        'course' => $courses[$course],
         'lastName' => $lastName,
         'firstName' => $firstName,
         'lastNameKana' => $lastNameKana,
         'firstNameKana' => $firstNameKana,
         'gender' => $gender,
         'birthday' => $formattedDate,
-        'occupation' => $occupation,
+        'occupation' => $occupations[$occupation],
         'school' => $school,
         'tel' => $tel,
         'zipcode' => $zipcode,
@@ -69,15 +88,15 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     $pdo = Database::getInstance()->getPDO();
     // Checking mail
     $user = searchMail($pdo, $mail);
-    if($user){
-        // array_push($_SESSION['error'], 'ユーザがすでに存在します');
+    if(!$user){
         $_SESSION['error'] = 'ユーザがすでに存在します';
         header("Location: ./registration.php");
-    // } else if (!$approvedChecked){
-    //         $_SESSION['error'] = '個人情報の保護に同意してください';
-    //         header("Location: ./registration.php");
     } else {
         header("Location: ./registration-confirm.php");
     }
+
+     // } else if (!$approvedChecked){
+    //         $_SESSION['error'] = '個人情報の保護に同意してください';
+    //         header("Location: ./registration.php");
 }
 ?>
