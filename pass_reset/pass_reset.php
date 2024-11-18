@@ -1,4 +1,7 @@
 <?php
+
+//pass_reset.htmlの実行後に走る処理です。
+//トークンの作成とメールの送信を行っています。
 $mail = $_POST['resetemail'];
 
 
