@@ -146,7 +146,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                 }
             </script>
             
-            <p>アカウントをお持ちでない方は<a href="" class="blue-link">こちら</a></p>
+            <p>アカウントをお持ちでない方は<a href="./registartion/registration.php" class="blue-link">こちら</a></p>
         </div>
     </main>
 
