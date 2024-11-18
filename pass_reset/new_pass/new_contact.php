@@ -85,20 +85,72 @@ try{
 token_time($pdo,$passwordResetToken);
 ?>
 
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../pass_reset.css">
+    <title>ログイン</title>
+</head>
+<body id="body">
+    <script src="../../login.js"></script>
+    <header class="c-header c-hamburger-menu">
 
-<p>パスワードリセット</p>
+            <!-- アーツカレッジヨコハマのロゴ -->
+            <div class="flex_logo">
+                <a href="https://www.kccollege.ac.jp/" class="c-header__logo"><img src="../../img/image 1.png" alt="Arts_Logo"></a>
+            </div>
 
-
-<form action="./new_pass.php" method="POST">
-    <label>
-        新しいパスワード
-        <input type="password" name="reset_pass">
-    </label>
-    <br>
-    <label>
-        パスワード（確認用）
-        <input type="password" name="repeat_pass">
-    </label>
-    <br>
-    <button type="submit">送信する</button>
-</form>
+            <!-- ロゴを除くオブジェクトを右に固定するためのdiv -->
+            <div class="flex_header">    
+                
+                  <!-- ハンバーガメニューのリスト -->
+                  <ul class="c-header__list c-hamburger-menu__list" id="hamburger-menu_list"><!-- 追記 クラスを追記 -->
+                      <li class="c-header__list-item">
+                        <a href="https://www.kccollege.ac.jp/" class="c-header__list-link">ホームページへ</a>
+                      </li>
+                      <li class="c-header__list-item">
+                        <a href="#" class="c-header__list-link">参加履歴</a>
+                      </li>
+                      <li class="c-header__list-item">
+                        <a href="#" class="c-header__list-link">登録内容の変更</a>
+                      </li>
+                      <li class="c-header__list-item">
+                        <a href="#" class="c-header__list-link">アカウント削除</a>
+                      </li>
+                      <li class="c-header__list-item">
+                        <a href="#" class="c-header__list-link">お問い合わせ</a>
+                      </li>
+                  </ul>
+                  
+                  <!-- 新規登録ボタン -->
+                  <a href="#" class="red-button">新規登録</a>
+                  <!-- ハンバーガボタン -->
+                  <div id="hamburger-btn" class="open" onclick="hamburgerClick()"></div>
+            </div>
+        
+    </header>
+    <main id="main">
+        <p>パスワードリセット</p>
+        
+        
+        <div class="content-container">
+            <form action="./new_pass.php" method="POST">
+                <label>
+                    新しいパスワード
+                    <input type="password" name="reset_pass">
+                </label>
+                <br>
+                <label>
+                    パスワード（確認用）
+                    <input type="password" name="repeat_pass">
+                </label>
+                <br>
+                <button type="submit">送信する</button>
+            </form>
+        </div>
+    </main>
+</body>
+</html>
