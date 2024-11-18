@@ -27,7 +27,6 @@
             <main>
                 <h1 id="h1">新規登録確認</h1>
                 <div class="content-container">
-                <form method="post" action="./registration-db-log.php">
                     <?php if(isset($_SESSION['error'])):?>
                         <div class="error-message">
                             <?php echo $_SESSION['error'] ?>
@@ -72,14 +71,13 @@
                                 <p id="address1"> <?php echo $UserRegistrationInfo['address1'] ?></p>
                                 <p id="address2"> <?php echo $UserRegistrationInfo['address2'] ?></p>
                             </div>
-                            <button type="submit" class="login-submit" id="modalBtn">登録</button>
+                            <button type="button" method="post" class="login-submit" id="modalBtn">登録</button>
                             <div id="modal" class="modal">
                                 <div class="modal-content">
                                     <p>登録できました。ログインしてください</p>
                               <p><a href="../login.php">ログインへ</a></p>
                             </div>
                         </div>
-                    </form>
                 </div>
             </main>
             <script src="./modal-window.js" defer></script>

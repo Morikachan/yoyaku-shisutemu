@@ -37,7 +37,6 @@ function insertStudentData($pdo, $UserRegistrationInfo){
             $pdo = Database::getInstance()->getPDO();
             $result = insertStudentData($pdo, $UserRegistrationInfo);
             echo $result ? json_encode(['status' => true]) : json_encode(['status' => false]);
-            header("Location: ../login.php");
     }
 
     ?>
