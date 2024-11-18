@@ -317,7 +317,7 @@ header img {
 	/* 新規登録ボタンのサイズとデザイン変更 */
 	.red-button {
 		width: 30px;
-		height: 15px;
+		height: 14px;
 		font-size: 7px;
 		padding:5px 8px;
 		line-height:15px;
@@ -328,7 +328,6 @@ header img {
 	.open{
 		width: 26px;
 		margin-left: 10px;
-		
 	}
 	.close{
 		width: 26px;
