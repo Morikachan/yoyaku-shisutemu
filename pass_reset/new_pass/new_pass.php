@@ -1,4 +1,8 @@
+
 <?php
+//new_contact.phpを実行した後に走る処理です。
+//パスワードの再設定処理とトークンの削除を行っています。
+
 $newpass = $_POST['reset_pass'];
 $repeatpass = $_POST['repeat_pass'];
 session_start();

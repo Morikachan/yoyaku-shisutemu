@@ -1,4 +1,6 @@
 <?php
+//データベースの情報を記した処理です。
+
 //データベース情報
 const DB_SERVER_NAME = 'localhost';
 const DB_USER_NAME = 'root';

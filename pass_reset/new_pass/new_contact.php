@@ -1,5 +1,8 @@
 
 <?php 
+//パスワードの再設定のviewサイトです。
+//最初にトークンの確認処理をしています。
+
 //データベースのデータの参照
 require_once '../database.php';
 $pdo = getDb();
