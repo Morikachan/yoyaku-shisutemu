@@ -92,7 +92,7 @@ token_time($pdo,$passwordResetToken);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="../pass_reset.css">
-    <title>ログイン</title>
+    <title>パスワードの再設定</title>
 </head>
 <body id="body">
     <script src="../../login.js"></script>
@@ -133,7 +133,7 @@ token_time($pdo,$passwordResetToken);
         
     </header>
     <main id="main">
-        <p>パスワードリセット</p>
+        <h1>パスワードリセット</h1>
         
         
         <div class="content-container">
