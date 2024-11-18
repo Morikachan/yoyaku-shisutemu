@@ -27,7 +27,11 @@
         <h1>新規登録</h1>
             <div class="content-container">
                 <?php if(isset($_SESSION['error'])):?>
-                    <div class="error-message"></div>
+                    <div class="error-message">
+                        <p>
+                            <?php echo $_SESSION['error'] ?>
+                        </p>
+                    </div>
                     <?php unset($_SESSION['error']);?>
                 <?php endif;?>
                 <form action="registration-check.php" method="post" class="h-adr">
@@ -95,7 +99,7 @@
                         
                         <span class="required">必須</span><h3>住所</h3>
                             <span class="p-country-name" style="display:none;">Japan</span>
-                               <input type="text" class="p-postal-code" size="8" maxlength="8" id="zipcode" placeholder="〒">
+                               <input type="text" class="p-postal-code" size="8" maxlength="8" id="zipcode" placeholder="〒" name="zipcode">
                             <div class="address">
                                 <input type="text" class="p-region p-locality p-street-address p-extended-address" name="address1" id="address1" />
                                 <input type="text" class="" name="address2" id="address2" />
