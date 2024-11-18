@@ -1,0 +1,18 @@
+@charset "UTF-8";
+
+input[type="text"], 
+input[type="password"] {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 14px;
+  margin-bottom: 12px;
+  font-size: 18px;
+}
+.error-message {
+  padding: 20px;
+  background-color: #FF8989;
+  margin-bottom: 20px;
+}
+.error-message2 {
+  color: red;
+}

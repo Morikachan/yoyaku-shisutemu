@@ -1,9 +1,0 @@
-@charset "UTF-8";
-
-input[type="text"] {
-  box-sizing: border-box;
-  width: 100%;
-  padding: 14px;
-  margin-bottom: 12px;
-  font-size: 18px;
-}
