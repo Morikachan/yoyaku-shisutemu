@@ -1,7 +1,6 @@
 @charset "UTF-8";
 
-input[type="text"], 
-input[type="password"] {
+input[type="text"] {
   box-sizing: border-box;
   width: 100%;
   padding: 14px;

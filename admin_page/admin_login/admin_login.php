@@ -44,11 +44,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     $adminId = $_POST['adminID'];
     $passwd = $_POST['passwd'];
     $user = selectUserData($pdo,$adminId);
-    // if(!$adminId) {
-    //     $_SESSION['error2'] = 'IDを入力してください';
-    // } else if (!$passwd) {
-    //     $_SESSION['error2'] = 'パスワードを入力してください';
-    // }
     if (!$user) {
         $_SESSION['error'] = '入力されたIDが見つかりませんでした';
         header("Location: ./admin_login.php");
@@ -93,7 +88,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         unset($_SESSION['error']);?>
         <?php endif;?>
 
-        <div class="content-container"><!-- ここから下に➀のコード -->
+        <div class="content-container">
             <form action="./admin_login.php" method="post">
                 <label for="adminID"><h3>管理者ID</h3></label>
                 <input type="text" id="adminID" name="adminID" oninput="checkInput()"><br>
@@ -102,9 +97,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <label for="passwd"><h3>パスワード</h3></label>
                 <input type="password" id="passwd" name="passwd" oninput="checkInput()"><br>
                 <span id="passwdError" style="color:red; display:none;">パスワードを入力してください。</span><br>
+                <p><a href="./pass_reset/pass_reset.html" class="blue-link">パスワードを忘れた方はこちら</a></p>
 
                 <button type="submit" class="login-submit">ログイン</button>
-            </form><!-- ここまで➀のコード -->
+            </form>
 
             <script>
                 function checkInput() {
@@ -127,26 +123,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                     }
                 }
             </script>
-            
-            <p>アカウントをお持ちでない方は<a href="" class="blue-link">こちら</a></p>
         </div>
     </main>
 </body>
 </html>
-
-<!-- 過去のコード➀
-    <form action="./admin_login.php" method="post">
-    <h3>管理者ID</h3>
-    <input type="text" name="adminID" id="adminID">
-    <?php //if(isset($_SESSION['error2'])) :?>
-        <div class="error-message2">
-            <?php //echo $_SESSION['error2']?>
-        </div>
-        <?php //unset($_SESSION['error2']);?>
-    <?php //endif;?>
-    <h3>パスワード</h3>
-    <input type="password" name="passwd" id="passwd">
-    <p><a href="" class="blue-link">パスワードを忘れた方はこちら</a></p>
-    <button type="submit" class="login-submit">ログイン</button>
-    </form>
--->

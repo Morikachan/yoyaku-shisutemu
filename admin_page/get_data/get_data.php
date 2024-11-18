@@ -18,7 +18,8 @@ try {
 //ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
 
 $sql = "SELECT appointment.id, name, katakana, gender, birthday, occupation, school, tel, address, mail, course, day, time, message from appointment JOIN user_info ON appointment.id = user_info.id ORDER BY appointment.id ASC;";
-// $sql = "SELECT * from test";
+// $sql = "SELECT * from test";/*-- 取得件数を0件でテストしたい場合使用 --*/
+
 try {
     $stmt = $pdo->query($sql);
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -26,7 +27,6 @@ try {
     if(empty($results)){
         $_SESSION['message'] = '表示する予約情報がありません';
     }
-    var_dump($results);
     header("Location: ../user_information/user_information.php");
     exit();
 } catch (PDOException $e) {
