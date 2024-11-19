@@ -1,0 +1,52 @@
+@charset "UTF-8";
+body{
+    overflow: hidden;
+}
+main{
+    margin: 50px auto;
+    padding: 90px 10px;
+    padding-top:20px ;
+    height: 100%;
+    width: 90%;
+    border-radius:4px ;
+}
+.content-container{
+    text-align: center;
+}
+p{
+    font-size: 15px;
+}
+@media screen and (max-width: 900px) {
+    h1{
+        font-size: 20px;
+    }
+    p{
+        font-size: 15px;
+    }
+    main{
+        padding-bottom: 40px;
+    }
+    textarea{
+        width: 70%;
+    }
+    
+    input[type="email"]{
+        height: 20px;
+        width: 70%;
+    }
+    
+    button[type="submit"]{
+        width: 70%;
+    }
+}
+@media screen and (max-width: 426px){ 
+    h1{
+        font-size: 13px;
+    }
+    p{
+        font-size: 10px;
+    }
+    main{
+        padding-bottom: 40px;
+    }
+}
