@@ -19,7 +19,6 @@ $nowtime = new DateTime('now',$timezone);
 $nowtime ->format('Y-m-d H:i:s');
 
 
-
 //トークンの期限確認
 // 今回はtokenの有効期間を24時間とする
 function token_time($pdo,$passwordResetToken){
@@ -66,7 +65,23 @@ try{
         exit();
     } 
 }  
- //トークンの削除
+//  データベースにメアドがあるかの確認
+function searchToken($pdo,$passwordResetToken){
+    $sql = "SELECT email FROM reset_info WHERE token = :token";
+    try{
+        //SQL文に入れる値の設定
+        $stmt = $pdo->prepare($sql);
+        $stmt -> bindParam(":token" , $passwordResetToken);
+        $stmt -> execute();
+        $rowsAffected = $stmt -> rowCount();
+        return $rowsAffected > 0;
+    } catch (PDOException $e){
+        echo $e->getMessage();
+        return false;
+    }
+    }
+    
+//トークンの削除
  function deleteData($pdo , $mail){
     $sql = "DELETE FROM reset_info WHERE email = :mail";
     try{
@@ -85,7 +100,13 @@ try{
     }
     
 }
-token_time($pdo,$passwordResetToken);
+if(searchToken($pdo, $passwordResetToken)){
+    token_time($pdo,$passwordResetToken);
+} else {
+    echo "トークンの期限切れです";
+    exit();
+}
+
 ?>
 
 <!DOCTYPE html>
