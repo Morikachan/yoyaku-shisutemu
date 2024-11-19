@@ -29,29 +29,54 @@ select {
   left: 0;
   top: 0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background-color: rgba(0,0,0,0.4);
 }
 
 .modal-content {
-  background-color: #fefefe;
-  margin: auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
-}
-
-.modal-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
   position: relative;
+  top: 30%;
   background-color: #fefefe;
   margin: auto;
-  top: 50%;
-  padding: 20px;
+  padding: 30px;
   border: 1px solid #888;
-  width: 50%;
+  width: 40%;
+  height: 180px;
+  border-radius: 4px;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
   animation-name: animateShow;
   animation-duration: 0.5s
+}
+
+.modal-content h4 {
+  font-size: 32px;
+  font-weight: normal;
+  margin-bottom: 10px;
+  text-align: center;
+  border-bottom: solid 2px rgb(136, 136, 136, 0.8);
+  width: 100%;
+}
+
+.modal-content p {
+  margin: 10px 6px;
+}
+
+.modal-content p {
+  margin: 3px;
+}
+
+.modal-content .return-btn {
+  display: block;
+  margin-top: 15px;
+  text-decoration: none;
+  color: #fefefe;
+  padding: 10px;
+  border-radius: 4px;
+  background-color: #CF220E;
 }
 
 @keyframes animateShow {
@@ -59,3 +84,15 @@ select {
   to {opacity: 1}
 }
 
+@media screen and (max-width: 426px){ 
+  .modal-content {
+    width: 60%;
+  }
+  .modal-content h4 {
+    font-size: 24px;
+  }
+  .modal-content p {
+    font-size: 14px;
+    margin: 0;
+  }
+}

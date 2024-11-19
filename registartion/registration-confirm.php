@@ -74,8 +74,10 @@
                             <button type="button" method="post" class="login-submit" id="modalBtn">登録</button>
                             <div id="modal" class="modal">
                                 <div class="modal-content">
-                                    <p>登録できました。ログインしてください</p>
-                              <p><a href="../login.php">ログインへ</a></p>
+                                    <h4>登録完了</h4>
+                                    <p>登録できました</p>
+                                    <p>ログインしてください</p>
+                                    <a class="return-btn" href="../login.php">ログインへ</a>
                             </div>
                         </div>
                 </div>
