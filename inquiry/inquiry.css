@@ -30,14 +30,6 @@ p{
         width: 70%;
     }
     
-    input[type="email"]{
-        height: 20px;
-        width: 70%;
-    }
-    
-    button[type="submit"]{
-        width: 70%;
-    }
 }
 @media screen and (max-width: 426px){ 
     h1{
