@@ -43,13 +43,13 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     $passwd = $_POST['passwd'];
     $user = selectUserData($pdo,$mail);
     if (!$user) {
-        $_SESSION['error'] = '入力されたメールアドレスが見つかりませんでした';
+        $_SESSION['error'] = '入力されたメールアドレスが見つかりませんでした。</br>もう一度やり直してください。';
         header("Location: ./login.php");
         exit;
     } else if ($user && password_verify($passwd,$user['passwd'])) {
         header("Location: ./mypage/mypage.html");
     } else {
-        $_SESSION['error'] = 'パスワードが違います';
+        $_SESSION['error'] = 'パスワードが違います。</br>もう一度やり直してください。';
         header("Location: ./login.php");
         exit;
     }
@@ -114,36 +114,44 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
             <form action="./login.php" method="post">
                 <label for="mail"><h3>メールアドレス</h3></label>
                 <input type="email" id="mail" name="mail" oninput="checkInput()"><br>
-                <span id="mailError" style="color:red; display:none;">メールアドレスを入力してください。</span><br>
+                <span class="inputErrorMess" id="mailError">メールアドレスを入力してください。</span><br>
 
                 <label for="passwd"><h3>パスワード</h3></label>
                 <input type="password" id="passwd" name="passwd" oninput="checkInput()"><br>
-                <span id="passwdError" style="color:red; display:none;">パスワードを入力してください。</span><br>
+                <span class="inputErrorMess" id="passwdError">パスワードを入力してください。</span><br>
                 <a href="./pass_reset/pass_reset.html" class="blue-link">パスワードを忘れた方はこちら</a>
 
                 <button type="submit" class="login-submit">ログイン</button>
             </form>
 
             <script>
-                function checkInput() {
-                    // メールアドレスとパスワードのフィールドの値を取得
-                    let mail = document.getElementById('mail').value;
-                    let passwd = document.getElementById('passwd').value;
+                // メールとパスワードのフィールドの値を取得
+                const mail = document.getElementById('mail');
+                const passwd = document.getElementById('passwd');
 
-                    // メールアドレスが入力されていない場合、エラーメッセージを表示
-                    if (mail === "") {
-                        document.getElementById('mailError').style.display = 'inline';
+                mail.addEventListener('focusout', () => {
+                    // 管理者IDが入力されていない場合、エラーメッセージを表示
+                    if (mail.value === "") {
+                        console.log(mail.value);
+                        document.getElementById('mailError').style.display = 'inline-block';
+                        document.getElementById('mail').style.backgroundColor = '#FF8989';
                     } else {
                         document.getElementById('mailError').style.display = 'none';
+                        document.getElementById('mail').style.backgroundColor = '#FFFFFF';
                     }
+                })
 
+                passwd.addEventListener('focusout', () => {
                     // パスワードが入力されていない場合、エラーメッセージを表示
-                    if (passwd === "") {
-                        document.getElementById('passwdError').style.display = 'inline';
+                    if (passwd.value === "") {
+                        document.getElementById('passwdError').style.display = 'inline-block';
+                        document.getElementById('passwdError').style.marginBottom = '20px';
+                        document.getElementById('passwd').style.backgroundColor = '#FF8989';
                     } else {
                         document.getElementById('passwdError').style.display = 'none';
+                        document.getElementById('passwd').style.backgroundColor = '#FFFFFF';
                     }
-                }
+                })
             </script>
             
             <p>アカウントをお持ちでない方は<a href="./registartion/registration.php" class="blue-link">こちら</a></p>

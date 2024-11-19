@@ -45,14 +45,14 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     $passwd = $_POST['passwd'];
     $user = selectUserData($pdo,$adminId);
     if (!$user) {
-        $_SESSION['error'] = '入力されたIDが見つかりませんでした';
+        $_SESSION['error'] = '入力されたIDが見つかりませんでした。</br>もう一度やり直してください。';
         header("Location: ./admin_login.php");
         exit;
     } else if ($user && password_verify($passwd,$user['adminPass'])) {
         header("Location: ../get_data/get_data.php");
         exit;
     } else {
-        $_SESSION['error'] = 'パスワードが違います';
+        $_SESSION['error'] = 'パスワードが違います。</br>もう一度やり直してください。';
         header("Location: ./admin_login.php");
         exit;
     }
@@ -68,7 +68,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="./style.css">
-    <title>ログイン</title>
+    <title>管理者ログイン</title>
 </head>
 <body>
     <header class="c-header c-hamburger-menu"><!-- 追記 クラスを追記 -->
@@ -80,6 +80,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     </header>
     <main>
         <h1>管理者メニュー</h1>
+        <div class="content-container">
         <?php if(isset($_SESSION['error'])) :?>
             <div class="error-message">
                 <?php echo $_SESSION['error']?>
@@ -87,41 +88,46 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         <?php 
         unset($_SESSION['error']);?>
         <?php endif;?>
-
-        <div class="content-container">
             <form action="./admin_login.php" method="post">
                 <label for="adminID"><h3>管理者ID</h3></label>
-                <input type="text" id="adminID" name="adminID" oninput="checkInput()"><br>
-                <span id="adminIDError" style="color:red; display:none;">管理者IDを入力してください。</span><br>
+                <input type="text" id="adminID" name="adminID"><br>
+                <span class="inputErrorMess" id="adminIDError">管理者IDを入力してください。</span><br>
 
                 <label for="passwd"><h3>パスワード</h3></label>
-                <input type="password" id="passwd" name="passwd" oninput="checkInput()"><br>
-                <span id="passwdError" style="color:red; display:none;">パスワードを入力してください。</span><br>
+                <input type="password" id="passwd" name="passwd"><br>
+                <span class="inputErrorMess" id="passwdError">パスワードを入力してください。</span><br>
                 <p><a href="./pass_reset/pass_reset.html" class="blue-link">パスワードを忘れた方はこちら</a></p>
 
                 <button type="submit" class="login-submit">ログイン</button>
             </form>
 
             <script>
-                function checkInput() {
-                    // 管理者IDとパスワードのフィールドの値を取得
-                    let adminID = document.getElementById('adminID').value;
-                    let passwd = document.getElementById('passwd').value;
+                // 管理者IDとパスワードのフィールドの値を取得
+                const adminID = document.getElementById('adminID');
+                const passwd = document.getElementById('passwd');
 
+                adminID.addEventListener('focusout', () => {
                     // 管理者IDが入力されていない場合、エラーメッセージを表示
-                    if (adminID === "") {
-                        document.getElementById('adminIDError').style.display = 'inline';
+                    if (adminID.value === "") {
+                        document.getElementById('adminIDError').style.display = 'inline-block';
+                        document.getElementById('adminID').style.backgroundColor = '#FF8989';
                     } else {
                         document.getElementById('adminIDError').style.display = 'none';
+                        document.getElementById('adminID').style.backgroundColor = '#FFFFFF';
                     }
+                })
 
+                passwd.addEventListener('focusout', () => {
                     // パスワードが入力されていない場合、エラーメッセージを表示
-                    if (passwd === "") {
-                        document.getElementById('passwdError').style.display = 'inline';
+                    if (passwd.value === "") {
+                        document.getElementById('passwdError').style.display = 'inline-block';
+                        document.getElementById('passwdError').style.marginBottom = '20px';
+                        document.getElementById('passwd').style.backgroundColor = '#FF8989';
                     } else {
                         document.getElementById('passwdError').style.display = 'none';
+                        document.getElementById('passwd').style.backgroundColor = '#FFFFFF';
                     }
-                }
+                })
             </script>
         </div>
     </main>
