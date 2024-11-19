@@ -5,12 +5,16 @@ body{
 main{
     margin: 50px auto;
     padding: 90px 10px;
+    padding-top:20px ;
     height: 100%;
     width: 50%;
     border-radius:4px ;
 }
-p{
+.content-container{
     text-align: center;
+}
+input[type="email"]{
+    height: 20px;
 }
 button[type="submit"]{
     width: 100%;
@@ -23,4 +27,33 @@ button[type="submit"]{
     /* クリックした際に枠線をnone消す */
     outline: none;
     border-radius: 4px;
+}
+@media screen and (max-width: 900px) {
+    h1{
+        font-size: 20px;
+    }
+    p{
+        font-size: 15px;
+    }
+    main{
+        padding-bottom: 40px;
+    }
+    input[type="email"]{
+        height: 20px;
+        width: 60%;
+    }
+    button[type="submit"]{
+        width: 60%;
+    }
+}
+@media screen and (max-width: 426px){ 
+    h1{
+        font-size: 13px;
+    }
+    p{
+        font-size: 10px;
+    }
+    main{
+        padding-bottom: 40px;
+    }
 }
