@@ -27,12 +27,12 @@ $content  = $_POST['inquiryContent'];
 
         //メールの送信
         if(mail($to, $subject, $message , $headers)) {
-            echo 'メール送信が成功しました。';
             header("Location:http://localhost/yoyaku-shisutemu/inquiry/views/index.html");
             exit();
 
         } else {
-            echo 'メール送信に失敗しました。';
+            header("Location:http://localhost/yoyaku-shisutemu/inquiry/views/mail_error.html");
+            exit();
         }
     }
 //ここまでメールの設定
