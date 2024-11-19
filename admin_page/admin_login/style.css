@@ -15,3 +15,7 @@ input[type="text"] {
 .error-message2 {
   color: red;
 }
+.inputErrorMess {
+  color: red;
+  display: none;
+}
