@@ -17,10 +17,13 @@ $content  = $_POST['inquiryContent'];
         $subject = 'お問い合わせメールです。';
 
         //本文
-        $message = "お問い合わせ内容\r\n{$content}";
+        
+        $message = "{$mail}様から。\r\n お問い合わせ内容\r\n{$content}";
 
-        //送信元
-        $headers = "From:{$mail}";
+        //送信元{送信者のメアドか管理者のメアドを入れてください}
+        //$headers = "From: {$mail}";
+        $headers = "From: k248007@kccollege.ac.jp";
+
 
         //メールの送信
         if(mail($to, $subject, $message , $headers)) {
