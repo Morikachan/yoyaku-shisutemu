@@ -94,7 +94,8 @@ if($newpass == "" || $repeatpass == ""){
             $delete_result = deleteData($pdo , $mail);
 
             if($delete_result){
-                echo "全ての処理が完了しました。\n 画面を閉じてください。";
+                header("Location:http://localhost/yoyaku-shisutemu/pass_reset/views/complete.html");
+                exit();
             } else {
                 echo "パスワードのリセットに失敗しました。\n 大変申し訳ありませんがお問い合わせください。";
             }
