@@ -3,6 +3,7 @@
 require_once '../core/Database.php';
     
     session_start();
+
     $UserRegistrationInfo = $_SESSION['UserRegistrationInfo'];
 
 function insertStudentData($pdo, $UserRegistrationInfo){
@@ -37,6 +38,7 @@ function insertStudentData($pdo, $UserRegistrationInfo){
             $pdo = Database::getInstance()->getPDO();
             $result = insertStudentData($pdo, $UserRegistrationInfo);
             echo $result ? json_encode(['status' => true]) : json_encode(['status' => false]);
+            session_destroy();
     }
 
     ?>

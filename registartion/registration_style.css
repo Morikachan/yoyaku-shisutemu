@@ -79,6 +79,11 @@ select {
   background-color: #CF220E;
 }
 
+.errorMessage {
+  color:red; 
+  display:none;
+}
+
 @keyframes animateShow {
   from {opacity: 0}
   to {opacity: 1}
