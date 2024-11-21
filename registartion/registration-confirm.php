@@ -1,5 +1,8 @@
 <?php 
     session_start();
+    if(empty($_SESSION['UserRegistrationInfo'])){
+        header("Location: ./registration.php");
+    }
     $UserRegistrationInfo = $_SESSION['UserRegistrationInfo'];
 
 ?>
