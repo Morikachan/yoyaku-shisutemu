@@ -1,0 +1,204 @@
+@charset "UTF=8";
+*{
+    margin: 0;
+    padding: 0;
+}
+.header-wrap {
+    box-sizing: border-box;
+    width: 300px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+header{
+    display: flex;
+    justify-content: space-between;
+    position: fixed;
+    background-color: #fff;
+    box-shadow: 0 5px 2px -2px gray;
+    width: 100vw;
+    padding: 12px 0;
+}
+header img {
+    width: 420px;
+    margin-left: 20px;
+}
+.red-button {
+    background-color: #CF220E ;
+    padding: 0px 12px;
+    border-radius: 4px;
+    display: block;
+    padding: 14px 18px;
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: bold;
+    transition: all 250ms ease-in-out;
+}
+  
+header .header{
+    display: flex;
+}
+header .header2{
+    display: flex;
+    justify-content: space-between;
+}
+body {
+	margin: 0;
+	padding: 0;
+	background: #f4f4f4;
+	color: #444444;
+	font-family: "Roboto", sans-serif;
+	overflow-x: hidden;
+}
+main{
+    max-width: 1400px;
+    background-color: #fff;
+    margin: 0 auto;
+    padding: 120px 40px;
+}
+h1{
+    border-bottom: 3px #CF220E solid;
+    margin-bottom: 30px;
+}
+.content-container {
+    width: 700px;
+    margin: 0 auto;
+}
+h2 {
+    margin: 20px 0px;
+    background-color: #D9D9D9;
+    padding: 10px;
+}
+
+/*ここから予約キャンセルに関するcss*/
+*{
+    box-sizing: border-box;
+}
+.locatoin{
+    color: grey;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.locatoin a{
+    text-decoration: none;
+    color: #54A9D9;
+}
+/*予約情報*/
+.Reservation {
+    background-color: #e3e2de;
+    padding:  20px 30px;
+    width: 75%;
+    margin: 0 auto;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    padding-bottom: 60px;
+    max-height: 100%;
+    font-size: larger;
+    border-radius: 20px;
+}
+.content-container .title{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+.title a{
+    font-size: 0.9em;
+    
+}
+.content-container .red-button{
+    margin: 0 auto;
+    margin-top: 40px;
+    width: 80%;
+    text-align: center;
+    border: none;
+}
+.content-container h3{
+    font-size: 1.5em;
+    padding-top: 7px;
+    margin-top: 20px;
+}
+.reserve{
+    margin-top: 40px;
+}
+/*予約キャンセル*/
+.content-container table{
+    margin: 0 auto;
+    margin-top: 20px;
+    width: 80%;
+    border-collapse: collapse;
+    background-color: #fff;
+    font-size: 1.0em;
+}
+table,
+th,
+td {
+    border: 3px solid black;
+}
+.content-container thead{
+    font-size: 1.2em;
+    background-color: #CF220E;
+    color: #ffffff;
+}
+input[type=checkbox]{
+    transform: scale(1.5);
+}
+h4{
+    font-size: 1.2em;
+    margin-top: 10px;
+}
+.check{
+    width: 100%;
+    margin: 10px;
+    padding: 5px 0;
+    font-size: 1.2em;
+}
+.check-zone{
+    width: 90%;
+    margin: 0 auto;
+}
+/*予約キャンセル成功*/
+.Reservation-button{
+    display: flex;
+    justify-content: space-evenly;
+}
+.Reservation-button p{
+    flex-basis: 50%;
+}
+/*エラー*/
+.error{
+    max-width: 80%;
+    background-color: #FF8989;
+    border-radius: 4px;
+    padding: 20px 10px;
+    margin: 30px auto;
+    font-size: large;
+    font-weight: bold;
+    color: #000;
+}
+.error p{
+    text-align: center;
+}
+.error2{
+    width: 60%;
+}
+.error-input{
+    background-color: #FF8989;
+    border: #000 2px solid;
+}
+.error-font{
+    font-size: 1em;
+    margin-left: 10px;
+    margin-bottom: 20px;
+    color: #CF220E;
+}
+.error-font2{
+    margin-top: 10px;
+    margin-left: 50px;
+}
+/*ここまでで予約キャンセルのCSS終わり*/
+
+/* ここから下がハンバーガーメニューに関するCSS */
+/* ここまででハンバーガメニュー終わり */

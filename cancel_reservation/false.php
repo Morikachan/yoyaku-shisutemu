@@ -1,0 +1,79 @@
+<?php
+session_start();
+$results = $_SESSION['results'];
+?>
+
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./cancel.css">
+        <title>予約キャンセル</title>
+    </head>
+    <body>
+        <header>
+            <div class="header-wrap">
+                <img src="../img/image 1.png" alt="Arts_Logo">
+            </div>
+            <div class="header-wrap">
+                
+                <!-- ハンバーガーメニュー部分 -->
+                
+                <!--ここまででハンバーガメニュー終わり-->
+            </div>
+        </header>
+        <main>
+            <p class="locatoin"><a href="">ホームページ</a>へ/<a href="../mypage/mypage.php">マイページ</a>へ/予約キャンセル</p>
+            <h1>予約キャンセル</h1>
+            <div class="content-container">
+                <div class="error">
+                    <p>・メールアドレスまたはパスワードが間違っています。</p>
+                    <p>　もう一度やり直してください。</p>
+                </div>
+                <h2>予約情報</h2>
+                <div class="Reservation">
+                    <h3>・現在の予約状況</h3>
+                    <form action="./check_cancel.php" method="post">
+                        <table border="1">
+                            <tr>
+                                <thead>
+                                    <th>No.</th>
+                                    <th>予約日</th>
+                                    <th>予約時間</th>
+                                    <th>キャンセル</th>
+                                </thead>
+                            </tr>
+                            <?php $counter = 1;foreach ($results as $row):?>
+                                <tr>
+                                    <th><?= $counter; ?></th>
+                                    <th><?= htmlspecialchars($row['day']); ?></th>
+                                    <th><?= htmlspecialchars($row['time']); ?>時～</th>
+                                    <th>
+                                        <input type="checkbox" name="selected[]" value="<?= $counter; ?>">
+                                        <input type="hidden" name="day_<?= $counter; ?>" value="<?= htmlspecialchars($row['day']); ?>">
+                                        <input type="hidden" name="time_<?= $counter; ?>" value="<?= htmlspecialchars($row['time']); ?>">
+                                    </th>
+                                </tr>
+                            <?php $counter++; endforeach; ?>
+                        </table>
+                        <h3>・本人確認</h3>
+                        <div class="check-zone">
+                            <p>
+                            <h3>メールアドレス:</h3>
+                            <input type="email" name="mail" id="name" class="check error-input">
+                            </p>
+                            <p class="error-font">※メールアドレスを入力してください</p>
+                            <p>
+                            <h3>パスワード:</h3>
+                            <input type="password" name="passwd" id="passwd" class="check error-input">
+                            </p>
+                            <p class="error-font">※パスワードを入力してください</p>
+                        </div>
+                        <button type="submit" class="red-button">予約キャンセル</button>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </body>
+</html>
