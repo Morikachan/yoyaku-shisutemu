@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="./style.css">
+    <script src="./calendarScript.js" defer></script>
     <title>予約</title>
 </head>
 <body>
@@ -13,7 +14,7 @@
 
             <!-- アーツカレッジヨコハマのロゴ -->
             <div class="flex_logo">
-                <a href="https://www.kccollege.ac.jp/" class="c-header__logo"><img src="img/image 1.png" alt="Arts_Logo"></a>
+                <a href="https://www.kccollege.ac.jp/" class="c-header__logo"><img src="../img/image 1.png" alt="Arts_Logo"></a>
             </div>
 
             <!-- ロゴを除くオブジェクトを右に固定するためのdiv -->
@@ -45,20 +46,21 @@
             </div>
     </header>
     <main>
-        <div class="container" style="display: none">
+        <h1>予約ページ</h1>
+        <div class="content-container">
             <h3>日付</h3>
             <div class="calendar">
                 <div class="header">
                     <!-- 先月 -->
-                    <div class="btn prev">
+                    <button class="btn prev">
                         <i>≪</i>
-                    </div>
+                    </button>
                     <!-- 今月 -->
                     <div class="month">11月 2024年</div>
                     <!-- 来月 -->
-                    <div class="btn next">
+                    <button class="btn next">
                         <i>≫</i>
-                    </div>
+                    </button>
                 </div>
                 <div class="weekdays">
                     <div class="day">日</div>
