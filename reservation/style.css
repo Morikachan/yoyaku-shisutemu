@@ -1,12 +1,12 @@
 :root {
     --primary-color: #CF220E;
     --text-color: #1d1d1d;
-    --bg-color: #fefefe;
+    --bg-color: #f1f1fb;
 }
 
 .calendar {
     width: 100%;
-    max-width: 600px;
+    max-width: 50%;
     background: var(--bg-color);
     padding: 30px 20px;
     border-radius: 10px;
@@ -19,4 +19,84 @@
     margin-bottom: 20px;
     padding-bottom: 20px;
     border-bottom: 2px solid var(--primary-color);
+}
+.calendar .header .month {
+    display: flex;
+    align-items: center;
+    font-size: 25px;
+    font-weight: 600;
+    color: var(--text-color);
   }
+  .calendar .header .btn {
+    width: 50px;
+    height: 40px;
+    background: var(--primary-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .calendar .header .btn:disabled, .btn[disabled]{
+    border: 1px solid #999999;
+    background-color: #cccccc;
+    border: none;
+    color: #666666;
+    cursor: auto;
+  }
+  .calendar .header .btn:not(.btn:disabled, .btn[disabled]):hover {
+    transform: scale(1.05);
+  }
+  .calendar .weekdays {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .calendar .weekdays .day {
+    width: calc(100% / 7 - 10px);
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+  }
+  .calendar .days {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .calendar .days .day {
+    width: calc(100% / 7 - 10px);
+    height: 50px;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--text-color);
+    transition: all 0.3s;
+    user-select: none;
+  }
+  .calendar .days .day:not(.next):not(.prev):hover {
+    color: #fff;
+    background: var(--primary-color);
+    transform: scale(1.05);
+  }
+  .calendar .days .day.next,
+  .calendar .days .day.prev {
+    color: #ccc;
+  }
+  .calendar .days .day.today {
+    color: #fff;
+    background: var(--primary-color);
+  }
+
+@media screen and (min-width: 768px) {
+    .content-container {
+        width: 70%;
+    }
+}

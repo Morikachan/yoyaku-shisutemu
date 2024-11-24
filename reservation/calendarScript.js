@@ -18,7 +18,6 @@ const days = ["日", "月", "火", "水", "木", "金", "土"];
 const daysContainer = document.querySelector(".days");
 const nextBtn = document.querySelector(".next");
 const prevBtn = document.querySelector(".prev");
-const todayBtn = document.querySelector(".today");
 const month = document.querySelector(".month");
 
 const date = new Date();
@@ -28,6 +27,7 @@ let currentYear = date.getFullYear();
 const renderCalendar = () => {
   date.setDate(1);
 
+  const today = new Date().getDate();
   const firstDay = new Date(currentYear, currentMonth, 1); // 今月の初日のデータ
   const lastDay = new Date(currentYear, currentMonth + 1, 0); //  今月の最終日のデータ
   const lastDayIndex = lastDay.getDay(); // 今月の最終日の曜日
@@ -39,8 +39,77 @@ const renderCalendar = () => {
 
   month.innerHTML = `${months[currentMonth]} ${currentYear}`;
 
+  const info = {
+    firstDay: firstDay,
+    lastDay: lastDay,
+    lastDayIndex: lastDayIndex,
+    lastDayDate: lastDayDate,
+    prevLastDay: prevLastDay,
+    prevLastDayDate: prevLastDayDate,
+    nextDays: nextDays,
+  };
+
+  console.log(info);
+
   let days = "";
   for (let i = firstDay.getDay(); i > 0; i--) {
-    days += `<div class="day prev">${prevLastDayDate - x + 1}</div>`;
+    days += `<div class="day prev">${prevLastDayDate - i + 1}</div>`;
   }
+  console.log(days); // last month's days
+
+  for (let i = 1; i <= lastDayDate; i++) {
+    if (
+      i === today &&
+      currentMonth === new Date().getMonth() &&
+      currentYear === new Date().getFullYear()
+    ) {
+      days += `<div class="day today">${i}</div>`;
+    } else if (
+      i <= today &&
+      currentMonth === new Date().getMonth() &&
+      currentYear === new Date().getFullYear()
+    ) {
+      days += `<div class="day prev">${i}</div>`;
+    } else {
+      days += `<div class="day">${i}</div>`;
+    }
+  }
+
+  for (let i = 1; i <= nextDays; i++) {
+    days += `<div class="day next">${i}</div>`;
+  }
+
+  daysContainer.innerHTML = days;
+  PrevBtnDisabled();
 };
+
+nextBtn.addEventListener("click", () => {
+  currentMonth++;
+  if (currentMonth > 11) {
+    currentMonth = 0;
+    currentYear++;
+  }
+  renderCalendar();
+});
+
+prevBtn.addEventListener("click", () => {
+  currentMonth--;
+  if (currentMonth < 0) {
+    currentMonth = 11;
+    currentYear--;
+  }
+  renderCalendar();
+});
+
+renderCalendar();
+
+function PrevBtnDisabled() {
+  if (
+    currentMonth === new Date().getMonth() &&
+    currentYear === new Date().getFullYear()
+  ) {
+    prevBtn.disabled = true;
+  } else {
+    prevBtn.disabled = false;
+  }
+}
