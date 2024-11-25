@@ -203,9 +203,12 @@ header img {
 /* @media screen and (max-width: 768px) { */
 @media screen and (max-width: 900px) {
 
+main{
+	padding:50px 40px;
+}
 main.active{
 	/* ハンバーガメニューが開いたときに動くCSS */
-	padding: 0 0;
+	padding: 50px 40px;
 }
 body.active{
 	overflow: hidden;
