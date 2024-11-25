@@ -40,7 +40,7 @@ function token_time($pdo,$passwordResetToken){
         if ($date < $nowtime) {
             $mail = searchData($pdo, $passwordResetToken);
             deleteData($pdo , $mail);
-            header("Location:http://yoyaku-shisutemu/pass_reset/views/token_timeout.html");
+            header("Location:http://localhost/yoyaku-shisutemu/pass_reset/views/token_timeout.html");
             exit();
         }            
 }
@@ -62,7 +62,7 @@ try{
     return $result[0];
     
     } catch (PDOException $e){
-        header("Location:http://yoyaku-shisutemu/pass_reset/views/databeses_error.html");
+        header("Location:http://localhost/yoyaku-shisutemu/pass_reset/views/databeses_error.html");
         exit();
     } 
 }  
@@ -104,7 +104,7 @@ function searchToken($pdo,$passwordResetToken){
 if(searchToken($pdo, $passwordResetToken)){
     token_time($pdo,$passwordResetToken);
 } else {
-    header("Location:http://yoyaku-shisutemu/pass_reset/views/token_timeout.html");
+    header("Location:http://localhost/yoyaku-shisutemu/pass_reset/views/token_timeout.html");
     exit();
 }
 
@@ -120,7 +120,7 @@ if(searchToken($pdo, $passwordResetToken)){
     <title>パスワードの再設定</title>
 </head>
 <body id="body">
-    <script src="../../login.js"></script>
+    <script src="../../hamburger.js"></script>
     <header class="c-header c-hamburger-menu">
 
             <!-- アーツカレッジヨコハマのロゴ -->
