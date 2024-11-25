@@ -18,11 +18,16 @@ $passwordResetToken = $token;
 // $tokenValidPeriod = (new \DateTime())->modify("-10 second")->format('Y-m-d H:i:s');
 
 if($newpass == "" || $repeatpass == ""){
-    echo 'パスワードを入力してください。';
+    $mail = searchData($pdo, $passwordResetToken);
+    deleteData($pdo , $mail);
+    header("Location:http://yoyaku-shisutemu/pass_reset/views/null_pass.html");
+    exit();
 } else {
     if($newpass != $repeatpass){
-        $alert = "<script type='text/javascript'>alert('同じパスワードを入力してください。');</script>";
-        echo $alert;
+        $mail = searchData($pdo, $passwordResetToken);
+        deleteData($pdo , $mail);
+        header("Location:http://yoyaku-shisutemu/pass_reset/views/pass_same.html");
+        exit();
     } else {
         //データベースのデータの参照
         require_once '../database.php';
@@ -40,7 +45,7 @@ if($newpass == "" || $repeatpass == ""){
                 return $result[0];
 
                 } catch (PDOException $e){
-                    echo '取得失敗';
+                    header("Location:http://yoyaku-shisutemu/pass_reset/views/databeses_error.html");
                     exit();
                 } 
         }    
@@ -90,17 +95,19 @@ if($newpass == "" || $repeatpass == ""){
         $mail = searchData($pdo, $passwordResetToken);
         $reset_result = passreset($pdo,$mail,$newpass);
         if($reset_result){
-            echo 'パスワードの変更が完了しました。';
+            header("Location:http://yoyaku-shisutemu/pass_reset/views/complete.html");
             $delete_result = deleteData($pdo , $mail);
 
             if($delete_result){
                 header("Location:http://localhost/yoyaku-shisutemu/pass_reset/views/complete.html");
                 exit();
             } else {
-                echo "パスワードのリセットに失敗しました。\n 大変申し訳ありませんがお問い合わせください。";
+                header("Location:http://yoyaku-shisutemu/pass_reset/views/error.html");
+                exit();
             }
         } else {
-            echo "パスワードのリセットに失敗しました。 \n 何回も続く場合はお問い合わせ画面よりお問い合わせください";
+            header("Location:http://yoyaku-shisutemu/pass_reset/views/error.html");
+            exit();
         }
     }
 }

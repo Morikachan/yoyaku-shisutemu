@@ -40,7 +40,8 @@ function token_time($pdo,$passwordResetToken){
         if ($date < $nowtime) {
             $mail = searchData($pdo, $passwordResetToken);
             deleteData($pdo , $mail);
-            exit('有効期限外です');
+            header("Location:http://yoyaku-shisutemu/pass_reset/views/token_timeout.html");
+            exit();
         }            
 }
 
@@ -61,7 +62,7 @@ try{
     return $result[0];
     
     } catch (PDOException $e){
-        echo '取得失敗';
+        header("Location:http://yoyaku-shisutemu/pass_reset/views/databeses_error.html");
         exit();
     } 
 }  
@@ -103,7 +104,7 @@ function searchToken($pdo,$passwordResetToken){
 if(searchToken($pdo, $passwordResetToken)){
     token_time($pdo,$passwordResetToken);
 } else {
-    echo "トークンの期限切れです";
+    header("Location:http://yoyaku-shisutemu/pass_reset/views/token_timeout.html");
     exit();
 }
 

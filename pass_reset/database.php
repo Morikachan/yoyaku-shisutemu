@@ -14,7 +14,7 @@ function getDb(){
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             return $pdo;
         } catch (PDOException $e) {
-            echo '接続失敗' . $e->getMessage();
+            header("Location:http://yoyaku-shisutemu/pass_reset/views/databeses_error.html"); . $e->getMessage();
             exit();
         }
     }
