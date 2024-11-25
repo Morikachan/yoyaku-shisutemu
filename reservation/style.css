@@ -4,9 +4,27 @@
     --bg-color: #f1f1fb;
 }
 
+.required {
+  background-color: var(--primary-color);
+  color: #ffffff;
+  padding: 2px 3px;
+  border-radius: 6px;
+  margin-right: 3px;
+}
+
+h3 {
+  display: inline-block;
+}
+
+.content-container {
+  display: flex;
+}
+
+.calendar-container {
+  flex-basis: 60%;
+}
+
 .calendar {
-    width: 100%;
-    max-width: 50%;
     background: var(--bg-color);
     padding: 30px 20px;
     border-radius: 10px;
@@ -81,20 +99,25 @@
     transition: all 0.3s;
     user-select: none;
   }
-  .calendar .days .day:not(.next):not(.prev):hover {
+  .calendar .days .day:not(.next):not(.prev):not(.current-prev):hover {
     color: #fff;
     background: var(--primary-color);
     transform: scale(1.05);
+    cursor: pointer;
   }
   .calendar .days .day.next,
-  .calendar .days .day.prev {
+  .calendar .days .day.prev,
+  .calendar .days .day.current-prev {
     color: #ccc;
   }
-  .calendar .days .day.today {
+  .calendar .days .day.active {
     color: #fff;
     background: var(--primary-color);
   }
 
+  .day-info ul {
+    list-style: none;
+  }
 @media screen and (min-width: 768px) {
     .content-container {
         width: 70%;
