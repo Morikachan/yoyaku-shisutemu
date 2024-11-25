@@ -16,7 +16,7 @@ main {
   max-width: 1400px;
   background-color: #fff;
   margin: 0 auto;
-  padding: 130px 40px;
+  padding: 80px 40px;
 }
 
 h1 {
@@ -207,7 +207,7 @@ header img {
 @media screen and (max-width: 900px) {
 
 main{
-	padding:50px 40px;
+	padding:20px 40px;
 }
 main.active{
 	/* ハンバーガメニューが開いたときに動くCSS */
@@ -316,6 +316,9 @@ header img {
 
   /* スマホ用 */
 @media screen and (max-width: 426px){ 
+	main{
+		padding: 20px 40px;
+	}
 	.content-container {
 		width: 100%;
 	}
