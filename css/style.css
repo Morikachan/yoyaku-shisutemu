@@ -16,7 +16,7 @@ main {
   max-width: 1400px;
   background-color: #fff;
   margin: 0 auto;
-  padding: 80px 40px;
+  padding: 50px 40px;
 }
 
 h1 {
@@ -174,9 +174,6 @@ header img {
 @media screen and (max-width: 1024px) {
 	*{
 		max-width: 100%;
-  }
-  main{
-	padding:50px 40px;
   }
   .c-header__list-link {
 		height: 50%;
