@@ -20,13 +20,13 @@ $passwordResetToken = $token;
 if($newpass == "" || $repeatpass == ""){
     $mail = searchData($pdo, $passwordResetToken);
     deleteData($pdo , $mail);
-    header("Location:http://yoyaku-shisutemu/pass_reset/views/null_pass.html");
+    header("Location:http://localhost/yoyaku-shisutemu/pass_reset/views/null_pass.html");
     exit();
 } else {
     if($newpass != $repeatpass){
         $mail = searchData($pdo, $passwordResetToken);
         deleteData($pdo , $mail);
-        header("Location:http://yoyaku-shisutemu/pass_reset/views/pass_same.html");
+        header("Location:http://localhost/yoyaku-shisutemu/pass_reset/views/pass_same.html");
         exit();
     } else {
         //データベースのデータの参照
@@ -45,7 +45,7 @@ if($newpass == "" || $repeatpass == ""){
                 return $result[0];
 
                 } catch (PDOException $e){
-                    header("Location:http://yoyaku-shisutemu/pass_reset/views/databeses_error.html");
+                    header("Location:http://localhost/yoyaku-shisutemu/pass_reset/views/databeses_error.html");
                     exit();
                 } 
         }    
@@ -95,18 +95,18 @@ if($newpass == "" || $repeatpass == ""){
         $mail = searchData($pdo, $passwordResetToken);
         $reset_result = passreset($pdo,$mail,$newpass);
         if($reset_result){
-            header("Location:http://yoyaku-shisutemu/pass_reset/views/complete.html");
+            header("Location:http://localhost/yoyaku-shisutemu/pass_reset/views/complete.html");
             $delete_result = deleteData($pdo , $mail);
 
             if($delete_result){
                 header("Location:http://localhost/yoyaku-shisutemu/pass_reset/views/complete.html");
                 exit();
             } else {
-                header("Location:http://yoyaku-shisutemu/pass_reset/views/error.html");
+                header("Location:http://localhost/yoyaku-shisutemu/pass_reset/views/error.html");
                 exit();
             }
         } else {
-            header("Location:http://yoyaku-shisutemu/pass_reset/views/error.html");
+            header("Location:http://localhost/yoyaku-shisutemu/pass_reset/views/error.html");
             exit();
         }
     }
