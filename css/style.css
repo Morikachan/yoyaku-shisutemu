@@ -208,7 +208,7 @@ main{
 }
 main.active{
 	/* ハンバーガメニューが開いたときに動くCSS */
-	padding: 50px 40px;
+	padding: 20px 40px;
 }
 body.active{
 	overflow: hidden;
