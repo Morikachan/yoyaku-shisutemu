@@ -35,7 +35,7 @@
 
     //予約キャンセル
     function deletappoint($pdo , $mail , $day , $time){
-        $sql = "DELETE FROM appointment WHERE mail = :mail AND day = :day AND time = :time";
+        $sql = "DELETE FROM appointment WHERE mail = :mail AND DATE_FORMAT(day, '%m/%d') = :day AND time = :time";
     
         try{
             $stmt = $pdo->prepare($sql);
