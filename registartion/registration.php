@@ -9,22 +9,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="./registration_style.css">
+    <script src="../login.js" defer></script>
     <script src="https://yubinbango.github.io/yubinbango/yubinbango.js" charset="UTF-8"></script>
     <script src="./input-check.js" defer></script>
     <title>新規登録</title>
 </head>
-<body>
-    <header>
-        <div class="header-wrap">
-            <p><img src="../img/image 1.png" alt="Arts_Logo"></p>
-            <p><a href="#" class="red-button">新規登録</a></p>
-        <div/>
-        <div class="nav-wrap">
-            <!-- ハンバーガーメニュー部分 -->
-            
-            <!--ここまででハンバーガメニュー終わり-->
+<body id="body">
+    <header class="c-header c-hamburger-menu">
+
+            <!-- アーツカレッジヨコハマのロゴ -->
+            <div class="flex_logo">
+                <a href="https://www.kccollege.ac.jp/" class="c-header__logo"><img src="../img/image 1.png" alt="Arts_Logo"></a>
+            </div>
+
+            <!-- ロゴを除くオブジェクトを右に固定するためのdiv -->
+            <div class="flex_header">    
+                
+                  <!-- ハンバーガメニューのリスト -->
+                  <ul class="c-header__list c-hamburger-menu__list" id="hamburger-menu_list"><!-- 追記 クラスを追記 -->
+                      <li class="c-header__list-item">
+                        <a href="https://www.kccollege.ac.jp/" class="c-header__list-link">ホームページへ</a>
+                      </li>
+                      <li class="c-header__list-item">
+                        <a href="#" class="c-header__list-link">参加履歴</a>
+                      </li>
+                      <li class="c-header__list-item">
+                        <a href="#" class="c-header__list-link">登録内容の変更</a>
+                      </li>
+                      <li class="c-header__list-item">
+                        <a href="#" class="c-header__list-link">アカウント削除</a>
+                      </li>
+                      <li class="c-header__list-item">
+                        <a href="#" class="c-header__list-link">お問い合わせ</a>
+                      </li>
+                  </ul>
+                  
+                  <!-- 新規登録ボタン -->
+                  <a href="#" class="red-button">新規登録</a>
+                  <!-- ハンバーガボタン -->
+                  <div id="hamburger-btn" class="open" onclick="hamburgerClick()"></div>
+            </div>
+        
     </header>
-    <main>
+    <main id="main">
         <h1>新規登録</h1>
             <div class="content-container">
                 <?php if(isset($_SESSION['error'])):?>
@@ -69,10 +96,10 @@
                         <div>
                             <span class="required">必須</span><h3>性別</h3>
                             <div>
-                                <label><input type="radio" name="gender" value="男性" id="genderMan" required>男性</label>
-                                <label><input type="radio" name="gender" value="女性" id="genderWoman" required>女性</label>
-                                <span id="genderError" class="errorMessage"></span><br>
+                                <label><input type="radio" name="gender" value="男性" id="genderMan">男性</label>
+                                <label><input type="radio" name="gender" value="女性" id="genderWoman">女性</label>
                             </div>
+                            <span id="genderError" class="errorMessage"></span><br>
                         </div>
                         <span class="required">必須</span><h3>生年月日</h3>
                             <input type="date" name="date" id="date">
@@ -86,25 +113,25 @@
                             </select>
                             <span id="courseError" class="errorMessage"></span><br>
                         <span class="required">必須</span><h3>職業</h3>
-                        <select name="occupation">
-                            <option value="">選択してください</option>
-                            <option value="highschool1">高校1年生</option>
-                            <option value="highschool2">高校2年生</option>
-                            <option value="highschool3">高校3年生</option>
-                            <option value="highschool3">高校4年生</option>
-                            <option value="university">大学生</option>
-                            <option value="juniorCollege">短大生</option>
-                            <option value="vocationalSchool">専門学校生</option>
-                            <option value="adult">社会人</option>
-                            <option value="internationalStudent">留学生</option>
-                            <option value="different">その他</option>
-                        </select>
+                            <select name="occupation" id="occupation">
+                                <option value="">選択してください</option>
+                                <option value="highschool1">高校1年生</option>
+                                <option value="highschool2">高校2年生</option>
+                                <option value="highschool3">高校3年生</option>
+                                <option value="highschool3">高校4年生</option>
+                                <option value="university">大学生</option>
+                                <option value="juniorCollege">短大生</option>
+                                <option value="vocationalSchool">専門学校生</option>
+                                <option value="adult">社会人</option>
+                                <option value="internationalStudent">留学生</option>
+                                <option value="different">その他</option>
+                            </select>
                         <span id="occupationError" class="errorMessage"></span><br>
                         
                         <span class="required">必須</span>
                         <label for="school"><h3>出身学校</h3></label>
-                        <input type="text" name="school" id="school">
-                        <span id="schoolError" class="errorMessage"></span><br>
+                            <input type="text" name="school" id="school">
+                            <span id="schoolError" class="errorMessage"></span><br>
 
                         <span class="required">必須</span>
                         <label for="tel"><h3>電話番号</h3></label>
@@ -114,17 +141,16 @@
                             <span class="required">必須</span><h3>住所</h3>
                             <span class="p-country-name" style="display:none;">Japan</span>
                                 <input type="text" class="p-postal-code" size="8" maxlength="8" id="zipcode" placeholder="〒" name="zipcode">
-                                <span id="zipcodeError" class="errorMessage"></span><br>
                             <div class="address">
                                 <input type="text" class="p-region p-locality p-street-address p-extended-address" name="address1" id="address1">
                                 <input type="text" class="" name="address2" id="address2">
-                                <span id="address2Error" class="errorMessage"></span><br>
                             </div>
-                            <p>
+                            <span id="addressError" class="errorMessage"></span><br>
+                            <p id="info-confirm">
                                 <input type="checkbox" name="approved" id="approved">
                                 個人情報の保護に同意します。<br/>
-                        </p>
-                        <button type="submit" class="login-submit">確認画面へ</button>
+                            </p>
+                        <button type="submit" class="login-submit" disabled>新規登録の情報を入力してください</button>
                 </form>
             </div>
     </main>

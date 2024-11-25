@@ -94,10 +94,5 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     } else {
         header("Location: ./registration-confirm.php");
     }
-
-// } else if (!$approvedChecked){
-//     $_SESSION['error'] = '個人情報の保護に同意してください';
-//     header("Location: ./registration.php");
-
 }
 ?>
