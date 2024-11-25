@@ -183,17 +183,17 @@ occupation.addEventListener('focusout', () => {
 approved.addEventListener("change", () => {
     console.log(userInfo);
     
-    if(!approved.checked) {
-        button[0].disabled = true;
-        button[0].textContent = '新規登録の情報を入力してください';
-    } else {
+    if(approved.checked) {
+        button[0].disabled = false;
+        button[0].textContent = '確認画面へ';
         for(let key in userInfo) {
             if(userInfo[key] === null || userInfo[key] === "") {
                 button[0].disabled = true;
                 button[0].textContent = '新規登録の情報を入力してください';
             }
         }
-        button[0].disabled = false;
-        button[0].textContent = '確認画面へ';
+    } else {
+        button[0].disabled = true;
+        button[0].textContent = '新規登録の情報を入力してください';
     }
 });
