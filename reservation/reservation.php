@@ -48,36 +48,38 @@
     <main>
         <h1>予約ページ</h1>
         <div class="content-container">
-            <h3>日付</h3>
-            <div class="calendar">
-                <div class="header">
-                    <!-- 先月 -->
-                    <button class="btn prev">
-                        <i>≪</i>
-                    </button>
-                    <!-- 今月 -->
-                    <div class="month">11月 2024年</div>
-                    <!-- 来月 -->
-                    <button class="btn next">
-                        <i>≫</i>
-                    </button>
-                </div>
-                <div class="weekdays">
-                    <div class="day">日</div>
-                    <div class="day">月</div>
-                    <div class="day">火</div>
-                    <div class="day">水</div>
-                    <div class="day">木</div>
-                    <div class="day">金</div>
-                    <div class="day">土</div>
-                </div>
-                <div class="days">
-                    <!-- jsでの処理 -->
+        <div class="calendar-container">
+                <span class="required">必須</span><h3>日付</h3>
+                <div class="calendar">
+                    <div class="header">
+                        <!-- 先月 -->
+                        <button class="btn prev">
+                            <i>≪</i>
+                        </button>
+                        <!-- 今月 -->
+                        <div class="month">11月 2024年</div>
+                        <!-- 来月 -->
+                        <button class="btn next">
+                            <i>≫</i>
+                        </button>
+                    </div>
+                    <div class="weekdays">
+                        <div class="day">日</div>
+                        <div class="day">月</div>
+                        <div class="day">火</div>
+                        <div class="day">水</div>
+                        <div class="day">木</div>
+                        <div class="day">金</div>
+                        <div class="day">土</div>
+                    </div>
+                    <div class="days">
+                        <!-- jsでの処理 -->
+                    </div>
                 </div>
             </div>
 
             <div class="day-info">
-                <h3>時間</h3>
+                <span class="required">必須</span><h3>時間</h3>
                 <div>
                     <ul>
                         <li>9:00</li>

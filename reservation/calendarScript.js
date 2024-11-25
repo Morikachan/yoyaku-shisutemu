@@ -19,8 +19,10 @@ const daysContainer = document.querySelector(".days");
 const nextBtn = document.querySelector(".next");
 const prevBtn = document.querySelector(".prev");
 const month = document.querySelector(".month");
+const time = document.querySelector("#day-time");
 
 const date = new Date();
+let activeDay;
 let currentMonth = date.getMonth();
 let currentYear = date.getFullYear();
 
@@ -49,13 +51,17 @@ const renderCalendar = () => {
     nextDays: nextDays,
   };
 
-  console.log(info);
-
   let days = "";
   for (let i = firstDay.getDay(); i > 0; i--) {
-    days += `<div class="day prev">${prevLastDayDate - i + 1}</div>`;
+    if (
+      currentMonth === new Date().getMonth() &&
+      currentYear === new Date().getFullYear()
+    ) {
+      days += `<div class="day current-prev">${prevLastDayDate - i + 1}</div>`;
+    } else {
+      days += `<div class="day prev">${prevLastDayDate - i + 1}</div>`;
+    }
   }
-  console.log(days); // last month's days
 
   for (let i = 1; i <= lastDayDate; i++) {
     if (
@@ -63,13 +69,13 @@ const renderCalendar = () => {
       currentMonth === new Date().getMonth() &&
       currentYear === new Date().getFullYear()
     ) {
-      days += `<div class="day today">${i}</div>`;
+      days += `<div class="day today active">${i}</div>`;
     } else if (
       i <= today &&
       currentMonth === new Date().getMonth() &&
       currentYear === new Date().getFullYear()
     ) {
-      days += `<div class="day prev">${i}</div>`;
+      days += `<div class="day current-prev">${i}</div>`;
     } else {
       days += `<div class="day">${i}</div>`;
     }
@@ -81,25 +87,76 @@ const renderCalendar = () => {
 
   daysContainer.innerHTML = days;
   PrevBtnDisabled();
+  addListner();
 };
 
-nextBtn.addEventListener("click", () => {
-  currentMonth++;
-  if (currentMonth > 11) {
-    currentMonth = 0;
-    currentYear++;
-  }
-  renderCalendar();
-});
+function addListner() {
+  const days = document.querySelectorAll(".day");
+  days.forEach((day) => {
+    if (!day.classList.contains("current-prev")) {
+      day.addEventListener("click", (e) => {
+        //remove active
+        days.forEach((day) => {
+          day.classList.remove("active");
+        });
+        //if clicked prev-date or next-date switch to that month
+        if (e.target.classList.contains("prev")) {
+          prevMonth();
+          //add active to clicked day afte month is change
+          setTimeout(() => {
+            //add active where no prev-date or next-date
+            const days = document.querySelectorAll(".day");
+            days.forEach((day) => {
+              if (
+                !day.classList.contains("prev") &&
+                day.innerHTML === e.target.innerHTML
+              ) {
+                day.classList.add("active");
+              }
+            });
+          }, 100);
+        } else if (e.target.classList.contains("next")) {
+          nextMonth();
+          //add active to clicked day afte month is changed
+          setTimeout(() => {
+            const days = document.querySelectorAll(".day");
+            days.forEach((day) => {
+              if (
+                !day.classList.contains("next") &&
+                day.innerHTML === e.target.innerHTML
+              ) {
+                day.classList.add("active");
+              }
+            });
+          }, 100);
+        } else {
+          e.target.classList.add("active");
+        }
+      });
+    }
+  });
+}
 
-prevBtn.addEventListener("click", () => {
+const prevMonth = () => {
   currentMonth--;
   if (currentMonth < 0) {
     currentMonth = 11;
     currentYear--;
   }
   renderCalendar();
-});
+};
+
+const nextMonth = () => {
+  currentMonth++;
+  if (currentMonth > 11) {
+    currentMonth = 0;
+    currentYear++;
+  }
+  renderCalendar();
+};
+
+prevBtn.addEventListener("click", prevMonth);
+nextBtn.addEventListener("click", nextMonth);
 
 renderCalendar();
 
