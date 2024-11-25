@@ -182,17 +182,18 @@ occupation.addEventListener('focusout', () => {
 // checkboxの処理
 approved.addEventListener("change", () => {
     console.log(userInfo);
-    for(let key in userInfo) {
-        if(userInfo[key] === null && userInfo[key] === "" && approved.checked) {
-            button[0].disabled = true;
-            button[0].textContent = '新規登録の情報を入力してください';
+    
+    if(!approved.checked) {
+        button[0].disabled = true;
+        button[0].textContent = '新規登録の情報を入力してください';
+    } else {
+        for(let key in userInfo) {
+            if(userInfo[key] === null || userInfo[key] === "") {
+                button[0].disabled = true;
+                button[0].textContent = '新規登録の情報を入力してください';
+            }
         }
-        else if(!approved.checked) {
-            button[0].disabled = true;
-            button[0].textContent = '新規登録の情報を入力してください';
-        } else {
-            button[0].disabled = false;
-            button[0].textContent = '確認画面へ';
-        }
+        button[0].disabled = false;
+        button[0].textContent = '確認画面へ';
     }
 });
