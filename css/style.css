@@ -175,6 +175,9 @@ header img {
 	*{
 		max-width: 100%;
   }
+  main{
+	padding:50px 40px;
+  }
   .c-header__list-link {
 		height: 50%;
 		line-height:35px;
