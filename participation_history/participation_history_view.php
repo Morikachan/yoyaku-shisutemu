@@ -52,6 +52,7 @@ $results = $_SESSION['results'];
                 <h2>参加情報</h2>
                 <div class="participation">
                     <h3>・参加履歴</h3>
+                    <p class="delete-history"><a href="./delete_history.php">・<span>履歴をリセット</span>する</a></p>
                     <table border="1">
                         <thead>
                             <tr>
