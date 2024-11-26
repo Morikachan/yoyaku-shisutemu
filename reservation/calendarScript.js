@@ -25,6 +25,10 @@ const date = new Date();
 let activeDay;
 let currentMonth = date.getMonth();
 let currentYear = date.getFullYear();
+let dateAndTime = {
+  'date': '',
+  'time': '',
+}
 
 const renderCalendar = () => {
   date.setDate(1);
@@ -53,13 +57,14 @@ const renderCalendar = () => {
 
   let days = "";
   for (let i = firstDay.getDay(); i > 0; i--) {
+    let prevDay = prevLastDayDate - i + 1;
     if (
       currentMonth === new Date().getMonth() &&
       currentYear === new Date().getFullYear()
     ) {
-      days += `<div class="day current-prev">${prevLastDayDate - i + 1}</div>`;
+      days += `<div class="day current-prev">${prevDay}</div>`;
     } else {
-      days += `<div class="day prev">${prevLastDayDate - i + 1}</div>`;
+      days += `<div class="day prev" id="${new Date(currentYear, currentMonth, prevDay)}">${prevDay}</div>`;
     }
   }
 
@@ -69,7 +74,7 @@ const renderCalendar = () => {
       currentMonth === new Date().getMonth() &&
       currentYear === new Date().getFullYear()
     ) {
-      days += `<div class="day today active">${i}</div>`;
+      days += `<div class="day today active" id="${new Date(currentYear, currentMonth, i)}">${i}</div>`;
     } else if (
       i <= today &&
       currentMonth === new Date().getMonth() &&
@@ -77,17 +82,20 @@ const renderCalendar = () => {
     ) {
       days += `<div class="day current-prev">${i}</div>`;
     } else {
-      days += `<div class="day">${i}</div>`;
+      days += `<div class="day" id="${new Date(currentYear, currentMonth, i)}">${i}</div>`;
     }
   }
 
   for (let i = 1; i <= nextDays; i++) {
-    days += `<div class="day next">${i}</div>`;
+    days += `<div class="day next" id="${new Date(currentYear, currentMonth, i)}">${i}</div>`;
   }
 
   daysContainer.innerHTML = days;
   PrevBtnDisabled();
   addListner();
+  createTimetable(new Date());
+  dateAndTime.date = new Date();
+  console.log(dateAndTime);
 };
 
 function addListner() {
@@ -132,9 +140,39 @@ function addListner() {
         } else {
           e.target.classList.add("active");
         }
+          dateAndTime.date = e.target.id;
+          // after picking a new date make time clear
+          dateAndTime.time = "";
+          console.log(dateAndTime);
+
+        setTimeout(() => {
+          createTimetable(e.target.id);
+          const timeOptions = document.querySelectorAll(".time");
+          timeOptions.forEach((time) => {
+            time.addEventListener("click", (e) => {
+                //remove active
+                timeOptions.forEach((time) => {
+                  time.classList.remove("active");
+                });
+                e.target.classList.add("active");
+                dateAndTime.time = e.target.textContent;
+                console.log(dateAndTime);
+            })
+          })
+        }, 100);
       });
     }
   });
+}
+
+const createTimetable = (date) => {
+  const timeContainer = document.querySelector(".timetable");
+  let timeInfo = "";
+  let registredTime = "php";
+  for(let i = 9; i <= 16; i++) {
+    timeInfo += `<li class="time">${i}:00</li>`;
+  }
+  timeContainer.innerHTML = timeInfo;
 }
 
 const prevMonth = () => {

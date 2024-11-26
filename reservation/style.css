@@ -18,6 +18,7 @@ h3 {
 
 .content-container {
   display: flex;
+  justify-content: space-between;
 }
 
 .calendar-container {
@@ -115,8 +116,44 @@ h3 {
     background: var(--primary-color);
   }
 
+  .day-info {
+    flex-basis: 35%;
+  }
+
   .day-info ul {
     list-style: none;
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-rows: repeat(4, auto);
+    column-gap: 1.5em;
+  }
+  .day-info ul li {
+    background-color: var(--bg-color);
+    padding: 8px;
+    margin-bottom: 8px;
+    border-radius: 6px;
+    text-align: center;
+  }
+  .day-info ul li:hover {
+    background-color: var(--primary-color);
+    cursor: pointer;
+    color: #ffffff;
+  }
+
+  .day-info ul li.active {
+    background-color: var(--primary-color);
+    cursor: pointer;
+    color: #ffffff;
+  }
+  .day-info button {
+    display: block;
+    margin: 10px auto;
+    padding: 8px 16px;
+    color: #ffffff;
+    background-color: var(--primary-color);
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
   }
 @media screen and (min-width: 768px) {
     .content-container {
