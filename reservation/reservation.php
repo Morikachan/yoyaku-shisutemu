@@ -6,10 +6,10 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="./style.css">
     <script src="./calendarScript.js" defer></script>
+    <script src="../hamburger.js"></script>
     <title>予約</title>
 </head>
 <body>
-    <script src="../login.js"></script>
     <header class="c-header c-hamburger-menu">
 
             <!-- アーツカレッジヨコハマのロゴ -->
@@ -48,7 +48,7 @@
     <main>
         <h1>予約ページ</h1>
         <div class="content-container">
-        <div class="calendar-container">
+            <div class="calendar-container">
                 <span class="required">必須</span><h3>日付</h3>
                 <div class="calendar">
                     <div class="header">
@@ -81,20 +81,16 @@
             <div class="day-info">
                 <span class="required">必須</span><h3>時間</h3>
                 <div>
-                    <ul>
-                        <li>9:00</li>
-                        <li>10:00</li>
-                        <li>11:00</li>
-                        <li>12:00</li>
-                        <li>13:00</li>
-                        <li>14:00</li>
-                        <li>15:00</li>
-                        <li>16:00</li>
+                    <ul class="timetable">
+                        <!-- jsとphpでの処理 -->
                     </ul>
                 </div>
 
                 <h3>備考</h3>
-                <textarea name="note" id="note" col=30 row=100></textarea>
+                <textarea name="note" id="note" cols="50" rows="10" style="display: block"></textarea>
+                <p>
+                    <button type="button">予約する</button>
+                </p>
             </div>
         </div>
     </main>
