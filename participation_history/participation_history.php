@@ -18,7 +18,7 @@ function getDBConnection() {
 }
 //予約日の表示させるやつ
 function checkData($pdo ,$mail , $day){
-    $sql = "SELECT DATE_FORMAT(day, '%Y/%m/%d') as day ,time FROM appointment WHERE mail = :mail AND DATE_FORMAT(day, '%Y/%m/%d') < :day";
+    $sql = "SELECT DATE_FORMAT(day, '%Y/%m/%d') as day ,time FROM appointment WHERE mail = :mail AND DATE_FORMAT(day, '%Y/%m/%d') <= :day";
     try{
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':mail', $mail);
@@ -35,12 +35,13 @@ function checkData($pdo ,$mail , $day){
     }
 }
 //予約日を確認するやつ
-function checknumber($pdo , $mail){
-    $sql = "SELECT * FROM appointment WHERE mail = :mail";
+function checknumber($pdo , $mail , $day){
+    $sql = "SELECT * FROM appointment WHERE mail = :mail AND DATE_FORMAT(day, '%Y/%m/%d') <= :day";
 
     try{
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':mail', $mail);
+        $stmt->bindParam(':day', $day);
         $stmt->execute();
         //$results = $stmt->fetch(PDO::FETCH_ASSOC);
         //$sth = $pdo -> query($sql);
@@ -56,7 +57,7 @@ $mail = $_SESSION['mail'];
 $day = date("Y/m/d");
 $pdo = getDBConnection();
 $result = checkData($pdo , $mail , $day);
-$result2 = checknumber($pdo , $mail);
+$result2 = checknumber($pdo , $mail , $day);
 
 if($result2 == 0){
     header('Location: ./participation_history.html');
