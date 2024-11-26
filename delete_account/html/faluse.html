@@ -8,16 +8,40 @@
         <title>アカウント削除</title>
     </head>
     <body>
+        <script src="../hamburger.js"></script>
         <header>
             <div class="header-wrap">
                 <img src="../img/image 1.png" alt="Arts_Logo">
             </div>
-            <div class="header-wrap">
+            <!-- ロゴを除くオブジェクトを右に固定するためのdiv -->
+            <div class="flex_header">    
                 
-                <!--ここからハンバーガーメニュー-->
-                <!--ここまでハンバーガーメニュー-->
+                  <!-- ハンバーガメニューのリスト -->
+                  <ul class="c-header__list c-hamburger-menu__list" id="hamburger-menu_list"><!-- 追記 クラスを追記 -->
+                      <li class="c-header__list-item">
+                        <a href="https://www.kccollege.ac.jp/" class="c-header__list-link">ホームページへ</a>
+                      </li>
+                      <li class="c-header__list-item">
+                        <a href="#" class="c-header__list-link">参加履歴</a>
+                      </li>
+                      <li class="c-header__list-item">
+                        <a href="#" class="c-header__list-link">登録内容の変更</a>
+                      </li>
+                      <li class="c-header__list-item">
+                        <a href="#" class="c-header__list-link">アカウント削除</a>
+                      </li>
+                      <li class="c-header__list-item">
+                        <a href="#" class="c-header__list-link">お問い合わせ</a>
+                      </li>
+                  </ul>
+                  
+                  <!-- 新規登録ボタン -->
+                  <a href="#" class="red-button">新規登録</a>
+                  <!-- ハンバーガボタン -->
+                  <div id="hamburger-btn" class="open" onclick="hamburgerClick()"></div>
             </div>
         </header>
+
         <main>
             <p class="locatoin"><a href="">ホームページ</a>へ/<a href="../../マイページ/mypage.html">マイページ</a>へ/アカウント削除</p>
             <h1>アカウント削除</h1>
