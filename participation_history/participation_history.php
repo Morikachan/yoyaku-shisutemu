@@ -18,7 +18,7 @@ function getDBConnection() {
 }
 //予約日の表示させるやつ
 function checkData($pdo ,$mail , $day){
-    $sql = "SELECT DATE_FORMAT(day, '%Y/%m/%d') as day ,time FROM appointment WHERE mail = :mail AND DATE_FORMAT(day, '%Y/%m/%d') <= :day";
+    $sql = "SELECT DATE_FORMAT(day, '%Y/%m/%d') as day ,time FROM appointment WHERE mail = :mail AND DATE_FORMAT(day, '%Y/%m/%d') < :day";
     try{
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':mail', $mail);
@@ -36,7 +36,7 @@ function checkData($pdo ,$mail , $day){
 }
 //予約日を確認するやつ
 function checknumber($pdo , $mail , $day){
-    $sql = "SELECT * FROM appointment WHERE mail = :mail AND DATE_FORMAT(day, '%Y/%m/%d') <= :day";
+    $sql = "SELECT * FROM appointment WHERE mail = :mail AND DATE_FORMAT(day, '%Y/%m/%d') < :day";
 
     try{
         $stmt = $pdo->prepare($sql);
