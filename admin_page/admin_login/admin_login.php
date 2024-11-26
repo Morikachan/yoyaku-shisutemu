@@ -1,5 +1,11 @@
 <?php
 session_start();
+// もし既にログインされているなら
+if (isset($_SESSION['logged'])){
+    header("Location: ../user_information/user_information.php");
+    exit;
+}
+
 // require_once '../../core/Database.php';
 
 // テストデータの記入内容
@@ -44,16 +50,14 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     $adminId = $_POST['adminID'];
     $passwd = $_POST['passwd'];
     $user = selectUserData($pdo,$adminId);
-    if (!$user) {
-        $_SESSION['error'] = '入力されたIDが見つかりませんでした。</br>もう一度やり直してください。';
+    
+    if (!$user || !password_verify($passwd,$user['adminPass'])) {
+        $_SESSION['error'] = 'IDまたはパスワードが違います</br>もう一度やり直してください。';
         header("Location: ./admin_login.php");
         exit;
     } else if ($user && password_verify($passwd,$user['adminPass'])) {
-        header("Location: ../get_data/get_data.php");
-        exit;
-    } else {
-        $_SESSION['error'] = 'パスワードが違います。</br>もう一度やり直してください。';
-        header("Location: ./admin_login.php");
+        $_SESSION['logged'] = true;
+        header("Location: ../user_information/user_information.php");
         exit;
     }
 }
@@ -72,7 +76,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 <body>
     <header class="c-header c-hamburger-menu"><!-- 追記 クラスを追記 -->
-          
         <a href="https://www.kccollege.ac.jp/" class="c-header__logo"><img src="../../img/image 1.png" alt="Arts_Logo"></a>
         <div class="flex">
             <a href="#" class="red-button">お問い合わせ</a>
@@ -81,13 +84,13 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     <main>
         <h1>管理者メニュー</h1>
         <div class="content-container">
-        <?php if(isset($_SESSION['error'])) :?>
-            <div class="error-message">
-                <?php echo $_SESSION['error']?>
-            </div>
-        <?php 
-        unset($_SESSION['error']);?>
-        <?php endif;?>
+            <?php if(isset($_SESSION['error'])) :?>
+                <div class="error-message">
+                    <?php echo $_SESSION['error']?>
+                </div>
+            <?php 
+            unset($_SESSION['error']);?>
+            <?php endif;?>
             <form action="./admin_login.php" method="post">
                 <label for="adminID"><h3>管理者ID</h3></label>
                 <input type="text" id="adminID" name="adminID"><br>

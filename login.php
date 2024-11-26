@@ -69,35 +69,34 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 <body>
     <header class="c-header c-hamburger-menu"><!-- 追記 クラスを追記 -->
-          
-                <a href="https://www.kccollege.ac.jp/" class="c-header__logo"><img src="img/image 1.png" alt="Arts_Logo"></a>
-            <div class="flex">
-                <input type="checkbox" name="hamburger" id="hamburger" class="c-hamburger-menu__input"/><!-- 追記 idはlabelのforと同じにする -->
-                <label for="hamburger" class="c-hamburger-menu__bg"></label><!-- 追記 ハンバーガーメニュを開いた時の背景 -->
-                <ul class="c-header__list c-hamburger-menu__list"><!-- 追記 クラスを追記 -->
-                    <li class="c-header__list-item">
-                      <a href="https://www.kccollege.ac.jp/" class="c-header__list-link">ホームページへ</a>
-                    </li>
-                    <li class="c-header__list-item">
-                      <a href="#" class="c-header__list-link">参加履歴</a>
-                    </li>
-                    <li class="c-header__list-item">
-                      <a href="#" class="c-header__list-link">登録内容の変更</a>
-                    </li>
-                    <li class="c-header__list-item">
-                      <a href="#" class="c-header__list-link">アカウント削除</a>
-                    </li>
-                    <li class="c-header__list-item">
-                      <a href="#" class="c-header__list-link">お問い合わせ</a>
-                    </li>
-                </ul>
-                <a href="#" class="red-button">新規登録</a>
-            </div>
-                <label for="hamburger" class="c-hamburger-menu__button"><!-- 追記 ハンバーガーメニューのボタン -->
-                  <span class="c-hamburger-menu__button-mark"></span>
-                  <span class="c-hamburger-menu__button-mark"></span>
-                  <span class="c-hamburger-menu__button-mark"></span>
-                </label>
+        <a href="https://www.kccollege.ac.jp/" class="c-header__logo"><img src="img/image 1.png" alt="Arts_Logo"></a>
+        <div class="flex">
+            <input type="checkbox" name="hamburger" id="hamburger" class="c-hamburger-menu__input"/><!-- 追記 idはlabelのforと同じにする -->
+            <label for="hamburger" class="c-hamburger-menu__bg"></label><!-- 追記 ハンバーガーメニュを開いた時の背景 -->
+            <ul class="c-header__list c-hamburger-menu__list"><!-- 追記 クラスを追記 -->
+                <li class="c-header__list-item">
+                    <a href="https://www.kccollege.ac.jp/" class="c-header__list-link">ホームページへ</a>
+                </li>
+                <li class="c-header__list-item">
+                    <a href="#" class="c-header__list-link">参加履歴</a>
+                </li>
+                <li class="c-header__list-item">
+                    <a href="#" class="c-header__list-link">登録内容の変更</a>
+                </li>
+                <li class="c-header__list-item">
+                    <a href="#" class="c-header__list-link">アカウント削除</a>
+                </li>
+                <li class="c-header__list-item">
+                    <a href="#" class="c-header__list-link">お問い合わせ</a>
+                </li>
+            </ul>
+            <a href="#" class="red-button">新規登録</a>
+        </div>
+        <label for="hamburger" class="c-hamburger-menu__button"><!-- 追記 ハンバーガーメニューのボタン -->
+            <span class="c-hamburger-menu__button-mark"></span>
+            <span class="c-hamburger-menu__button-mark"></span>
+            <span class="c-hamburger-menu__button-mark"></span>
+        </label>
     </header>
 
     <main>
@@ -113,11 +112,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         <div class="content-container">
             <form action="./login.php" method="post">
                 <label for="mail"><h3>メールアドレス</h3></label>
-                <input type="email" id="mail" name="mail" oninput="checkInput()"><br>
+                <input type="email" id="mail" name="mail"><br>
                 <span class="inputErrorMess" id="mailError">メールアドレスを入力してください。</span><br>
 
                 <label for="passwd"><h3>パスワード</h3></label>
-                <input type="password" id="passwd" name="passwd" oninput="checkInput()"><br>
+                <input type="password" id="passwd" name="passwd"><br>
                 <span class="inputErrorMess" id="passwdError">パスワードを入力してください。</span><br>
                 <a href="./pass_reset/pass_reset.html" class="blue-link">パスワードを忘れた方はこちら</a>
 
