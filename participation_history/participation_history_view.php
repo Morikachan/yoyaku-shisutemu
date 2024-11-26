@@ -12,7 +12,7 @@ $results = $_SESSION['results'];
         <title>参加履歴</title>
     </head>
     <body>
-    <script src="./hamburger.js"></script>
+    <script src="../hamburger.js"></script>
         <header>
             <div class="header-wrap">
                 <img src="../img/image 1.png" alt="Arts_Logo">
