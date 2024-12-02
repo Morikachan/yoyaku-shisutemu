@@ -20,16 +20,17 @@ const nextBtn = document.querySelector(".next");
 const prevBtn = document.querySelector(".prev");
 const month = document.querySelector(".month");
 const time = document.querySelector("#day-time");
+const message = document.querySelector("#message");
 
 const date = new Date();
 let activeDay;
 let currentMonth = date.getMonth();
 let currentYear = date.getFullYear();
 let dateAndTime = {
-  'date': '',
-  'time': '',
+  date: '',
+  time: '',
+  message: '',
 }
-
 const renderCalendar = () => {
   date.setDate(1);
 
@@ -64,7 +65,7 @@ const renderCalendar = () => {
     ) {
       days += `<div class="day current-prev">${prevDay}</div>`;
     } else {
-      days += `<div class="day prev" id="${new Date(currentYear, currentMonth, prevDay)}">${prevDay}</div>`;
+      days += `<div class="day prev" data-day="${currentYear}-${currentMonth}-${i}">${prevDay}</div>`;
     }
   }
 
@@ -74,7 +75,7 @@ const renderCalendar = () => {
       currentMonth === new Date().getMonth() &&
       currentYear === new Date().getFullYear()
     ) {
-      days += `<div class="day today active" id="${new Date(currentYear, currentMonth, i)}">${i}</div>`;
+      days += `<div class="day today active" data-day="${currentYear}-${currentMonth + 1}-${i}">${i}</div>`;
     } else if (
       i <= today &&
       currentMonth === new Date().getMonth() &&
@@ -82,19 +83,19 @@ const renderCalendar = () => {
     ) {
       days += `<div class="day current-prev">${i}</div>`;
     } else {
-      days += `<div class="day" id="${new Date(currentYear, currentMonth, i)}">${i}</div>`;
+      days += `<div class="day" data-day="${currentYear}-${currentMonth + 1}-${i}">${i}</div>`;
     }
   }
 
   for (let i = 1; i <= nextDays; i++) {
-    days += `<div class="day next" id="${new Date(currentYear, currentMonth, i)}">${i}</div>`;
+    days += `<div class="day next" data-day="${currentYear}-${currentMonth + 1}-${i}">${i}</div>`;
   }
 
   daysContainer.innerHTML = days;
   PrevBtnDisabled();
   addListner();
-  createTimetable(new Date());
-  dateAndTime.date = new Date();
+  createTimetable(`${new Date().getFullYear()}-${(new Date().getMonth() + 1).toString().padStart(2, '0')}-${(new Date().getDate()).toString().padStart(2, '0')}`);
+  dateAndTime.date = `${new Date().getFullYear()}-${(new Date().getMonth() + 1).toString().padStart(2, '0')}-${(new Date().getDate()).toString().padStart(2, '0')}`;
   console.log(dateAndTime);
 };
 
@@ -125,7 +126,7 @@ function addListner() {
           }, 100);
         } else if (e.target.classList.contains("next")) {
           nextMonth();
-          //add active to clicked day afte month is changed
+          //add active to clicked day after month is changed
           setTimeout(() => {
             const days = document.querySelectorAll(".day");
             days.forEach((day) => {
@@ -140,13 +141,13 @@ function addListner() {
         } else {
           e.target.classList.add("active");
         }
-          dateAndTime.date = e.target.id;
+          dateAndTime.date = e.target.dataset.day;
           // after picking a new date make time clear
           dateAndTime.time = "";
           console.log(dateAndTime);
 
         setTimeout(() => {
-          createTimetable(e.target.id);
+          createTimetable(e.target.dataset.day);
           const timeOptions = document.querySelectorAll(".time");
           timeOptions.forEach((time) => {
             time.addEventListener("click", (e) => {
@@ -155,7 +156,7 @@ function addListner() {
                   time.classList.remove("active");
                 });
                 e.target.classList.add("active");
-                dateAndTime.time = e.target.textContent;
+                dateAndTime.time = e.target.textContent.split(':')[0];
                 console.log(dateAndTime);
             })
           })
@@ -168,9 +169,27 @@ function addListner() {
 const createTimetable = (date) => {
   const timeContainer = document.querySelector(".timetable");
   let timeInfo = "";
-  let registredTime = "php";
+  let reservedTime = [];
+  const data = { date: date};
+
+  fetch('checkDate.php', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    body: new URLSearchParams(data),
+  })
+  .then((response) =>  response.json())
+  .then((responseData) => {
+    if (responseData.status === true) {
+      reservedTime = responseData.timeArray;
+    } else {
+      alert("失敗発生");
+    }
+  });
+
   for(let i = 9; i <= 16; i++) {
-    timeInfo += `<li class="time">${i}:00</li>`;
+    reservedTime.includes(i) ? timeInfo += `<li class="time">${i}:00</li>` : timeInfo += `<li class="time reserved">${i}:00</li>`;
   }
   timeContainer.innerHTML = timeInfo;
 }
@@ -197,6 +216,11 @@ prevBtn.addEventListener("click", prevMonth);
 nextBtn.addEventListener("click", nextMonth);
 
 renderCalendar();
+
+message.addEventListener("change", () => {
+  dateAndTime.message = message.value;
+  console.log(dateAndTime);
+});
 
 function PrevBtnDisabled() {
   if (
