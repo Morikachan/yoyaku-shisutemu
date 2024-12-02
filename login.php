@@ -47,6 +47,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         header("Location: ./login.php");
         exit;
     } else if ($user && password_verify($passwd,$user['passwd'])) {
+        $_SESSION['id'] = $user['id'];
         header("Location: ./mypage/mypage.html");
     } else {
         $_SESSION['error'] = 'パスワードが違います。</br>もう一度やり直してください。';

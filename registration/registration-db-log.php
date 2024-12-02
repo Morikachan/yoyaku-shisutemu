@@ -2,9 +2,8 @@
 
 require_once '../core/Database.php';
     
-    session_start();
-
-    $UserRegistrationInfo = $_SESSION['UserRegistrationInfo'];
+session_start();
+$UserRegistrationInfo = $_SESSION['UserRegistrationInfo'];
 
 function insertStudentData($pdo, $UserRegistrationInfo){
         $sql = "INSERT INTO users_info (mail, passwd, name, katakana, gender, birthday, occupation, school, tel, address, course) 

@@ -127,19 +127,21 @@ h3 {
     grid-template-rows: repeat(4, auto);
     column-gap: 1.5em;
   }
-  .day-info ul li {
+  .day-info ul li.time {
     background-color: var(--bg-color);
     padding: 8px;
     margin-bottom: 8px;
     border-radius: 6px;
     text-align: center;
   }
-  .day-info ul li:hover {
+  .day-info ul li .time .reserved {
+    color: #ccc;
+  }
+  .day-info ul li.time:not(.reserved):hover {
     background-color: var(--primary-color);
     cursor: pointer;
     color: #ffffff;
   }
-
   .day-info ul li.active {
     background-color: var(--primary-color);
     cursor: pointer;

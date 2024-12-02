@@ -87,7 +87,7 @@
                 </div>
 
                 <h3>備考</h3>
-                <textarea name="note" id="note" cols="50" rows="10" style="display: block"></textarea>
+                <textarea name="message" id="message" cols="50" rows="10" style="display: block"></textarea>
                 <p>
                     <button type="button">予約する</button>
                 </p>
