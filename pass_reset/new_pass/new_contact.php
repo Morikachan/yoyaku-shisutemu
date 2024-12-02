@@ -121,6 +121,7 @@ if(searchToken($pdo, $passwordResetToken)){
 </head>
 <body id="body">
     <script src="../../hamburger.js"></script>
+    
     <header class="c-header c-hamburger-menu">
 
             <!-- アーツカレッジヨコハマのロゴ -->
@@ -157,6 +158,8 @@ if(searchToken($pdo, $passwordResetToken)){
             </div>
         
     </header>
+    <div class="alert_message1">パスワードを入力してください。</div>
+    <div class="alert_message2">パスワードが一致しません</div>
     <main id="main">
         <h1>パスワードリセット</h1>
         
@@ -165,17 +168,18 @@ if(searchToken($pdo, $passwordResetToken)){
             <form action="./new_pass.php" method="POST">
                 <label>
                     新しいパスワード
-                    <input type="password" name="reset_pass">
+                    <input type="password" name="reset_pass" id="reset_pass">
                 </label>
                 <br>
                 <label>
                     パスワード（確認用）
-                    <input type="password" name="repeat_pass">
+                    <input type="password" name="repeat_pass" id="repeat_pass">
                 </label>
                 <br>
                 <button type="submit">送信する</button>
             </form>
         </div>
     </main>
+    <script src="./new_contact.js"></script>
 </body>
 </html>
