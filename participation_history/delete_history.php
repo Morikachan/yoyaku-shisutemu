@@ -39,11 +39,6 @@
     $pdo = getDBConnection();
     $result = checkData($pdo , $day);
 
-    if($result){
-        header('Location: ./participation_history.php');
-    }
-    else{
-        header('Location: ./participation_history.php');
-    }
+    header('Location: ./participation_history.php');
 
 ?>
