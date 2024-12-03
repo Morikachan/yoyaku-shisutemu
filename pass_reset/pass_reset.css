@@ -28,21 +28,17 @@ button[type="submit"]{
     outline: none;
     border-radius: 4px;
 }
-.alert_message1{
+/* button[type="submit"].active{
+    background-color: #888888;
+    color: #ffffff;
+} */
+.alert_message{
     opacity: 0;
 }
-.alert_message1.active{
+.alert_message.active{
     opacity: 1;
     background-color: #CF220E;
     color:#ffffff;
-}
-.alert_message2{
-    opacity: 0;
-}
-.alert_message2.active{
-    opacity: 1;
-    background-color: #CF220E;
-    color: #ffffff;
 }
 @media screen and (max-width: 1024px){
     main{

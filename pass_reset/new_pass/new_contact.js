@@ -1,24 +1,39 @@
 const reset_pass = document.getElementById('reset_pass');
-const repeat_pass = document.getElementById('reset_pass');
-const alert_message1 =document.querySelector('.alert_message1');
-const alert_message2 =document.querySelector('.alert_message2');
-reset_pass.addEventListener('input', function pass(event) {
+const repeat_pass = document.getElementById('repeat_pass');
+const alert_message =document.querySelector('.alert_message');
+const button = document.getElementById('sendButton');
+button.style.backgroundColor = '#888888';
+button.style.color = '#000000';
+
+reset_pass.addEventListener('change', function pass(event) {
     newPass();
 });
-repeat_pass.addEventListener('input', function pass(event){
+repeat_pass.addEventListener('change', function pass(event){
     newPass();
 });
 function newPass(){
-    if(reset_pass != '' || repeat_pass != ''){
-        alert_message1.classList.remove('active');
-        alert_message2.classList.remove('active');
-        alert(1);
-    } else if(reset_pass != repeat_pass) {
-        alert_message2.classList.add('active');
-        alert(2);
-    } else {
-        alert_message1.classList.add('active');
-        alert(3);
-    }
-}
 
+    const repeatValue = repeat_pass.value;
+    const resetValue = reset_pass.value;
+    if(resetValue && repeatValue){
+        if(resetValue !== repeatValue){
+            //不一致の場合
+            alert_message.classList.add('active');
+            button.style.backgroundColor = '#888888';
+            button.style.color = '#000000';
+            button.disabled = true;
+        } else {
+            //一致した場合
+            alert_message.classList.remove('active');
+            button.style.backgroundColor = '#CF220E';
+            button.style.color = '#ffffff';
+            button.disabled = false;
+        }
+    } else  {
+        //例外処理
+        button.style.backgroundColor = '#888888';
+        button.style.color = '#000000';
+        button.disabled = true;
+    }
+    
+}

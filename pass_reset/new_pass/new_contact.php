@@ -104,7 +104,10 @@ function searchToken($pdo,$passwordResetToken){
 if(searchToken($pdo, $passwordResetToken)){
     token_time($pdo,$passwordResetToken);
 } else {
+    $mail = searchData($pdo, $passwordResetToken);
+    deleteData($pdo , $mail);
     header("Location:http://localhost/yoyaku-shisutemu/pass_reset/views/token_timeout.html");
+    
     exit();
 }
 
@@ -158,8 +161,7 @@ if(searchToken($pdo, $passwordResetToken)){
             </div>
         
     </header>
-    <div class="alert_message1">パスワードを入力してください。</div>
-    <div class="alert_message2">パスワードが一致しません</div>
+    <div class="alert_message">パスワードが一致しません</div>
     <main id="main">
         <h1>パスワードリセット</h1>
         
@@ -176,7 +178,7 @@ if(searchToken($pdo, $passwordResetToken)){
                     <input type="password" name="repeat_pass" id="repeat_pass">
                 </label>
                 <br>
-                <button type="submit">送信する</button>
+                <button type="submit" id=sendButton disabled>送信する</button>
             </form>
         </div>
     </main>
