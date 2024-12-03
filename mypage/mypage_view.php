@@ -8,12 +8,12 @@ $results = $_SESSION['results'];
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
+        <link rel="stylesheet" href="./mypage.css">
         <title>マイページ</title>
     </head>
     <body>
-        <script src="../hamburger.js"></script>
-        <header>
+    <script src="./hamburger.js"></script>
+    <header>
             <div class="header-wrap">
                 <img src="../img/image 1.png" alt="Arts_Logo">
             </div>
@@ -51,31 +51,40 @@ $results = $_SESSION['results'];
             <div class="content-container">
                 <h2>予約情報</h2>
                 <div class="Reservation">
-                    <div class="title">
-                        <h3>・現在の予約状況</h3>
-                        <a href="./mypage.php" class="red-button">情報を更新する</a>
-                    </div>
-                    <table border="1">
-                        <tr>
+                    <?php if($results): ?>
+                        <div class="title">
+                            <h3>・現在の予約状況</h3>
+                            <a href="./mypage.php" class="red-button">情報を更新する</a>
+                        </div>
+                        <table border="1">
                             <thead>
-                                <th>No.</th>
-                                <th>予約日</th>
-                                <th>予約時間</th>
+                                <tr>
+                                    <th>No.</th>
+                                    <th>予約日</th>
+                                    <th>予約時間</th>
+                                </tr>
                             </thead>
-                        </tr>
-                        <?php $counter = 1;foreach ($results as $row):?>
-                            <tr>
-                                <th><?php echo $counter; ?></th>
-                                <th><?php echo $row['day']; ?></th>
-                                <th><?php echo $row['time']; ?>～</th>
-                            </tr>
-                        <?php $counter++; endforeach; ?>
-                    </table>
-                    <h3 class="reserve">・予約する</h3>
-                    <diV class="Reservation-button">
-                        <p><a href="" class="red-button">予約登録</a></p>
-                        <p><a href="" class="red-button">予約キャンセル</a></p>
-                    </div>
+                            <tbody>
+                            <?php $counter = 1;foreach ($results as $row):?>
+                                <tr>
+                                    <th><?php echo $counter; ?></th>
+                                    <th><?php echo $row['day']; ?></th>
+                                    <th><?php echo $row['time']; ?>時～</th>
+                                </tr>
+                            <?php $counter++; endforeach; ?>
+                            </tbody>
+                        </table>
+                        <h3 class="reserve">・予約する</h3>
+                        <diV class="Reservation-button">
+                            <p><a href="" class="red-button">予約登録</a></p>
+                            <p><a href="../cancel_reservation/cancel.php" class="red-button">予約キャンセル</a></p>
+                        </div>
+                    <?php else: ?>
+                        <h3>・現在の予約状況</h3>
+                        <p class="not-Reservation">予約はありません</p>
+                        <h3 class="reserve">・予約する</h3>
+                        <p><a href="" class="red-button not-Reservation-button">予約登録</a></p>
+                    <?php endif; ?>  
                 </div>
                 <div class="accsess">
                     <h2>アクセス情報</h2>
