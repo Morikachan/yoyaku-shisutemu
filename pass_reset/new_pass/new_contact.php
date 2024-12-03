@@ -150,7 +150,7 @@ if(searchToken($pdo, $passwordResetToken)){
                         <a href="#" class="c-header__list-link">アカウント削除</a>
                       </li>
                       <li class="c-header__list-item">
-                        <a href="#" class="c-header__list-link">お問い合わせ</a>
+                        <a href="http://localhost/yoyaku-shisutemu/inquiry/inquiry.html" class="c-header__list-link">お問い合わせ</a>
                       </li>
                   </ul>
                   
