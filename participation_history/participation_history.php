@@ -59,11 +59,6 @@ $pdo = getDBConnection();
 $result = checkData($pdo , $mail , $day);
 $result2 = checknumber($pdo , $mail , $day);
 
-if($result2 == 0){
-    header('Location: ./participation_history.html');
-}
-else{
-    header('Location: ./participation_history_view.php');
-}
-exit();
+header('Location: ./participation_history_view.php');
+
 ?>
