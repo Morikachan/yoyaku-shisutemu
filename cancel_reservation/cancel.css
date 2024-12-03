@@ -124,10 +124,16 @@ h2 {
     margin-top: 40px;
 }
 /*予約キャンセル*/
+.not-cancel{
+    margin-top: 20px;
+    font-size: 1.5em;
+    font-weight: bold;
+    text-align: center;
+}
 .content-container table{
     margin: 0 auto;
     margin-top: 20px;
-    width: 80%;
+    width: 90%;
     border-collapse: collapse;
     background-color: #fff;
     font-size: 1.0em;
