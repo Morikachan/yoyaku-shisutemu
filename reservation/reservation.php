@@ -89,8 +89,15 @@
                 <h3>備考</h3>
                 <textarea name="message" id="message" cols="50" rows="10" style="display: block"></textarea>
                 <p>
-                    <button type="button">予約する</button>
+                    <button type="button" id="sendReserv-btn" disabled>予約する</button>
                 </p>
+            </div>
+        </div>
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <h4>予約完了</h4>
+                <p>予約できました</p>
+                <a class="return-btn" href="../mypage/mypage.php">マイページへ戻る</a>
             </div>
         </div>
     </main>

@@ -2,9 +2,6 @@
 require_once '../core/Database.php';
 
 session_start();
-// $userID = $_SESSION['id'];
-$receivedDate = $_POST['data'];
-echo 'check';
 
 function selectDateTime($pdo, $receivedDate) {
     $sql = "SELECT time FROM appointment WHERE day = :day";
@@ -12,16 +9,18 @@ function selectDateTime($pdo, $receivedDate) {
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':day', $receivedDate);
         $stmt->execute();
-        $timeArray = $stmt->fetchAll();
-        return $timeArray;
+        $time = $stmt->fetchAll(PDO::FETCH_COLUMN);
+        return $time;
     } catch (PDOException $e) {
         echo $e->getMessage();
         return false;
     }
 }
 
-$pdo = Database::getInstance()->getPDO();
-// $result = selectDateTime($pdo, $receivedDate['data']);
-$result = selectDateTime($pdo, '2024-12-03');
-echo $result ? json_encode(['status' => true, 'timeArray' => $result]) : json_encode(['status' => false]);
+if($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $receivedDate = $_POST['date'];
+    $pdo = Database::getInstance()->getPDO();
+    $result = selectDateTime($pdo, $receivedDate);
+    echo json_encode(['status' => true, 'time' => $result]);
+}
 ?>

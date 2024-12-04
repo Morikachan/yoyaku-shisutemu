@@ -21,17 +21,18 @@ const prevBtn = document.querySelector(".prev");
 const month = document.querySelector(".month");
 const time = document.querySelector("#day-time");
 const message = document.querySelector("#message");
+const sendReservation = document.querySelector('#sendReserv-btn');
 
 const date = new Date();
 let activeDay;
 let currentMonth = date.getMonth();
 let currentYear = date.getFullYear();
-let dateAndTime = {
+let reservationInfo = {
   date: '',
   time: '',
   message: '',
 }
-const renderCalendar = () => {
+function renderCalendar() {
   date.setDate(1);
 
   const today = new Date().getDate();
@@ -45,16 +46,6 @@ const renderCalendar = () => {
   const nextDays = 7 - lastDayIndex - 1; // 来月の初日の曜日
 
   month.innerHTML = `${months[currentMonth]} ${currentYear}`;
-
-  const info = {
-    firstDay: firstDay,
-    lastDay: lastDay,
-    lastDayIndex: lastDayIndex,
-    lastDayDate: lastDayDate,
-    prevLastDay: prevLastDay,
-    prevLastDayDate: prevLastDayDate,
-    nextDays: nextDays,
-  };
 
   let days = "";
   for (let i = firstDay.getDay(); i > 0; i--) {
@@ -93,13 +84,12 @@ const renderCalendar = () => {
 
   daysContainer.innerHTML = days;
   PrevBtnDisabled();
-  addListner();
+  addListener();
   createTimetable(`${new Date().getFullYear()}-${(new Date().getMonth() + 1).toString().padStart(2, '0')}-${(new Date().getDate()).toString().padStart(2, '0')}`);
-  dateAndTime.date = `${new Date().getFullYear()}-${(new Date().getMonth() + 1).toString().padStart(2, '0')}-${(new Date().getDate()).toString().padStart(2, '0')}`;
-  console.log(dateAndTime);
+  reservationInfo.date = `${new Date().getFullYear()}-${(new Date().getMonth() + 1).toString().padStart(2, '0')}-${(new Date().getDate()).toString().padStart(2, '0')}`;
 };
 
-function addListner() {
+function addListener() {
   const days = document.querySelectorAll(".day");
   days.forEach((day) => {
     if (!day.classList.contains("current-prev")) {
@@ -111,7 +101,7 @@ function addListner() {
         //if clicked prev-date or next-date switch to that month
         if (e.target.classList.contains("prev")) {
           prevMonth();
-          //add active to clicked day afte month is change
+          //add active to clicked day after month is change
           setTimeout(() => {
             //add active where no prev-date or next-date
             const days = document.querySelectorAll(".day");
@@ -141,36 +131,23 @@ function addListner() {
         } else {
           e.target.classList.add("active");
         }
-          dateAndTime.date = e.target.dataset.day;
+          reservationInfo.date = e.target.dataset.day;
           // after picking a new date make time clear
-          dateAndTime.time = "";
-          console.log(dateAndTime);
-
+          reservationInfo.time = "";
         setTimeout(() => {
           createTimetable(e.target.dataset.day);
-          const timeOptions = document.querySelectorAll(".time");
-          timeOptions.forEach((time) => {
-            time.addEventListener("click", (e) => {
-                //remove active
-                timeOptions.forEach((time) => {
-                  time.classList.remove("active");
-                });
-                e.target.classList.add("active");
-                dateAndTime.time = e.target.textContent.split(':')[0];
-                console.log(dateAndTime);
-            })
-          })
         }, 100);
+        checkInfo();
       });
     }
   });
 }
 
-const createTimetable = (date) => {
+function createTimetable (date) {
   const timeContainer = document.querySelector(".timetable");
   let timeInfo = "";
   let reservedTime = [];
-  const data = { date: date};
+  const data = { date: date };
 
   fetch('checkDate.php', {
     method: 'POST',
@@ -181,17 +158,37 @@ const createTimetable = (date) => {
   })
   .then((response) =>  response.json())
   .then((responseData) => {
-    if (responseData.status === true) {
-      reservedTime = responseData.timeArray;
-    } else {
+    try {
+      if (responseData.status === true) {
+        reservedTime = responseData.time;
+        for(let i = 9; i <= 16; i++) {
+          !reservedTime.includes(i) ? timeInfo += `<li class="time">${i}:00</li>` : timeInfo += `<li class="time reserved">${i}:00</li>`;
+        }
+        timeContainer.innerHTML = timeInfo;
+
+        const timeOptions = document.querySelectorAll(".time");
+            timeOptions.forEach((time) => {
+              if (!time.classList.contains("reserved")) {
+                time.addEventListener("click", (e) => {
+                    //remove active
+                    timeOptions.forEach((time) => {
+                      time.classList.remove("active");
+                    });
+                    e.target.classList.add("active");
+                    reservationInfo.time = e.target.textContent.split(':')[0];
+                    checkInfo();
+                })
+              }
+        })
+      } 
+    } catch (error) {
       alert("失敗発生");
     }
   });
+}
 
-  for(let i = 9; i <= 16; i++) {
-    reservedTime.includes(i) ? timeInfo += `<li class="time">${i}:00</li>` : timeInfo += `<li class="time reserved">${i}:00</li>`;
-  }
-  timeContainer.innerHTML = timeInfo;
+const checkInfo = () => {
+  reservationInfo.date !== '' && reservationInfo.time !== '' ? sendReservation.disabled = false : sendReservation.disabled = true;
 }
 
 const prevMonth = () => {
@@ -218,8 +215,7 @@ nextBtn.addEventListener("click", nextMonth);
 renderCalendar();
 
 message.addEventListener("change", () => {
-  dateAndTime.message = message.value;
-  console.log(dateAndTime);
+  reservationInfo.message = message.value;
 });
 
 function PrevBtnDisabled() {
@@ -232,3 +228,28 @@ function PrevBtnDisabled() {
     prevBtn.disabled = false;
   }
 }
+
+sendReservation.addEventListener("click", () => {
+  const body = document.querySelector("body");
+  const modal = document.querySelector("#modal");
+
+  fetch('makeReservation.php', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    body: new URLSearchParams(reservationInfo),
+  })
+  .then((response) =>  response.json())
+  .then((responseData) => {
+    try {
+      if (responseData.status === true) {
+        console.log("Reservation done!")
+        body.style.overflow = 'hidden';
+        modal.style.display = 'block';
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  });
+});
