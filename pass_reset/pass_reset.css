@@ -1,5 +1,5 @@
 @charset "UTF-8";
-body{
+/* body{
     overflow: hidden;
 }
 main{
@@ -9,10 +9,10 @@ main{
     height: 100%;
     width: 70%;
     border-radius:4px ;
-}
-.content-container{
+} */
+.content-container p{
     text-align: center;
-}
+} 
 input[type="email"]{
     height: 20px;
 }
@@ -28,25 +28,25 @@ button[type="submit"]{
     outline: none;
     border-radius: 4px;
 }
-/* button[type="submit"].active{
+button[type="submit"].active{
     background-color: #888888;
     color: #ffffff;
-} */
+}
 .alert_message{
-    opacity: 0;
+    display: none;
 }
 .alert_message.active{
-    opacity: 1;
+    display: block;
     background-color: #CF220E;
     color:#ffffff;
 }
 @media screen and (max-width: 1024px){
-    main{
+     /* main{
         width: 80%;
-    }
+    } */
     p{
         font-size: 15px;
-    }
+    } 
 }
 @media screen and (max-width: 900px) {
     h1{
