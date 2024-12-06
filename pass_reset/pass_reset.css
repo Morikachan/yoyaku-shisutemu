@@ -10,9 +10,12 @@ main{
     width: 70%;
     border-radius:4px ;
 } */
-.content-container p{
+.content-container {
     text-align: center;
 } 
+.content-container h3{
+    text-align: start;
+}
 input[type="email"]{
     height: 20px;
 }

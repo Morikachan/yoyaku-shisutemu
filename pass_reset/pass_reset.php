@@ -60,7 +60,7 @@ $passwordResetToken = bin2hex(random_bytes(32));
         }    
         //トークンの登録処理
         function insertToken($pdo , $mail, $passwordResetToken){
-            $sql = "UPDATE reset_info SET email = :email, token = :token";
+            $sql = "INSERT INTO reset_info (email, token) VALUES (:email,:token)";
             try{
                 //SQL文に入れる値の設定
                 $stmt = $pdo->prepare($sql);

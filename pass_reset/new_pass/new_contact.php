@@ -29,7 +29,7 @@ function token_time($pdo,$passwordResetToken){
         $stmt->execute();
         $passwordResetuser = $stmt->fetch(\PDO::FETCH_OBJ);
         //トークンの制限時間を10秒とする。
-        // $date = getAsiaTime($passwordResetuser -> token_sent_at)-> modify('+10 second')-> format('Y-m-d H:i:s');
+        //$date = getAsiaTime($passwordResetuser -> token_sent_at)-> modify('+1 second')-> format('Y-m-d H:i:s');
 
 
         //トークンの制限時間を24時間とする。
