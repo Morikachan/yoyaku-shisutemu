@@ -22,6 +22,20 @@ select {
   font-size: 18px;
 }
 
+.name-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.name-container input {
+  flex-basis: 48%;
+}
+
+.gender-container p, input {
+  display: inline;
+ margin-right: 4px;
+}
+
 #info-confirm{
   text-align: center;
 }

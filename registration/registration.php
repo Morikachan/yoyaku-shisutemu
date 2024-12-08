@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="./registration_style.css">
-    <script src="../login.js" defer></script>
+    <script src="../hamburger.js" defer></script>
     <script src="https://yubinbango.github.io/yubinbango/yubinbango.js" charset="UTF-8"></script>
     <script src="./input-check.js" defer></script>
     <title>新規登録</title>
@@ -28,7 +28,7 @@
                   <!-- ハンバーガメニューのリスト -->
                   <ul class="c-header__list c-hamburger-menu__list" id="hamburger-menu_list"><!-- 追記 クラスを追記 -->
                       <li class="c-header__list-item">
-                        <a href="https://www.kccollege.ac.jp/" class="c-header__list-link">ホームページへ</a>
+                        <a href="https://www.kccollege.ac.jp/" class="c-header__list-link"><p>ホームページへ</p></a>
                       </li>
                       <li class="c-header__list-item">
                         <a href="#" class="c-header__list-link">参加履歴</a>
@@ -42,10 +42,17 @@
                       <li class="c-header__list-item">
                         <a href="#" class="c-header__list-link">お問い合わせ</a>
                       </li>
+                      <li class="c-header__list-item">
+                        <div class="school-info-container" style="display: none">
+                            <a href="#">
+                                <img src="../img/inst-icon.png" alt="インスタグラム">
+                            </a>
+                        </div>
+                      </li>
                   </ul>
                   
                   <!-- 新規登録ボタン -->
-                  <a href="#" class="red-button">新規登録</a>
+                  <a href="#" class="red-button">ログイン</a>
                   <!-- ハンバーガボタン -->
                   <div id="hamburger-btn" class="open" onclick="hamburgerClick()"></div>
             </div>
@@ -66,7 +73,7 @@
                     <h2>ログイン情報</h2>
                         <span class="required">必須</span>
                         <label for="email"><h3>メールアドレス</h3></label>
-                            <input type="email" name="mail" id="mail">
+                            <input type="email" name="mail" id="mail" placeholder="例）example@mail.com">
                             <span id="mailError" class="errorMessage"></span><br>
 
                         <span class="required">必須</span>
@@ -82,24 +89,24 @@
                     <h2>個人情報</h2>
                         <span class="required">必須</span><h3>氏名</h3>
                             <div>
-                                <div>
-                                    <input type="text" name="lastName" id="lastName" placeholder="性" value="">
-                                    <input type="text" name="firstName" id="firstName" placeholder="名" value="">
-                                    <span id="nameError" class="errorMessage"></span><br>
+                                <div class="name-container">
+                                    <input type="text" name="lastName" id="lastName" placeholder="例）山田" value="">
+                                    <input type="text" name="firstName" id="firstName" placeholder="例）太郎" value="">
                                 </div>
-                                <div>
-                                    <input type="text" name="lastNameKana" id="lastNameKana" placeholder="セイ" value="">
-                                    <input type="text" name="firstNameKana" id="firstNameKana" placeholder="メイ" value="">
-                                    <span id="nameKanaError" class="errorMessage"></span><br>
+                                <span id="nameError" class="errorMessage" style="margin-bottom: 10px"></span>
+                                <div class="name-container">
+                                    <input type="text" name="lastNameKana" id="lastNameKana" placeholder="例）ヤマダ" value="">
+                                    <input type="text" name="firstNameKana" id="firstNameKana" placeholder="例）タロウ" value="">
                                 </div>
+                                <span id="nameKanaError" class="errorMessage"></span>
                             </div>
                         <div>
                             <span class="required">必須</span><h3>性別</h3>
-                            <div>
-                                <label><input type="radio" name="gender" value="男性" id="genderMan">男性</label>
-                                <label><input type="radio" name="gender" value="女性" id="genderWoman">女性</label>
+                            <div class="gender-container">
+                                <label><p><input type="radio" name="gender" value="男性" id="genderMan">男性</p></label>
+                                <label><p></p><input type="radio" name="gender" value="女性" id="genderWoman">女性</p></label>
                             </div>
-                            <span id="genderError" class="errorMessage"></span><br>
+                            <span id="genderError" class="errorMessage"></span>
                         </div>
                         <span class="required">必須</span><h3>生年月日</h3>
                             <input type="date" name="date" id="date">
@@ -130,12 +137,12 @@
                         
                         <span class="required">必須</span>
                         <label for="school"><h3>出身学校</h3></label>
-                            <input type="text" name="school" id="school">
+                            <input type="text" name="school" id="school" placeholder="例）〇〇〇高等学校">
                             <span id="schoolError" class="errorMessage"></span><br>
 
                         <span class="required">必須</span>
                         <label for="tel"><h3>電話番号</h3></label>
-                            <input type="tel" name="tel" id="tel" required>
+                            <input type="tel" name="tel" id="tel" placeholder="例）080123456789" required>
                             <span id="telError" class="errorMessage"></span><br>
                             
                             <span class="required">必須</span><h3>住所</h3>
@@ -145,7 +152,7 @@
                                 <input type="text" class="p-region p-locality p-street-address p-extended-address" name="address1" id="address1">
                                 <input type="text" class="" name="address2" id="address2">
                             </div>
-                            <span id="addressError" class="errorMessage"></span><br>
+                            <span id="addressError" class="errorMessage" style="margin-bottom: 10px"></span><br>
                             <p id="info-confirm">
                                 <input type="checkbox" name="approved" id="approved">
                                 個人情報の保護に同意します。<br/>
