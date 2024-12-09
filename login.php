@@ -4,8 +4,8 @@ session_start();
 
 // テストデータの記入内容
 /* ---------- 記入内容 ---------
-    meil   = aaa@aaa        
-    passwd = test
+    meil   = aaa@aaa            
+    passwd = aaa
 ---------------------------- */
 //ーーーーーーーーーーーーーーーーーーーーーーーーーーーーここから下は消す予定ーーーーーーーーーーーーーーーーーーーーーーーーーーーー
 const DB_SERVER_NAME = 'localhost';
