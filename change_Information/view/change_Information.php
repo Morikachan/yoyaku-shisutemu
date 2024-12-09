@@ -12,69 +12,96 @@ $results = $_SESSION['results'];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="../css/style.css">
-
+    <script src="../../login.js"></script>
     <title>登録情報の変更</title>
 </head>
 <body>
-    <header class="c-header c-hamburger-menu"><!-- 追記 クラスを追記 -->
-        <a href="https://www.kccollege.ac.jp/" class="c-header__logo"><img src="../../img/image 1.png" alt="Arts_Logo"></a>
-        <div class="flex">
-            <a href="#" class="red-button">お問い合わせ</a>
+    <header class="c-header c-hamburger-menu">
+
+        <!-- アーツカレッジヨコハマのロゴ -->
+        <div class="flex_logo">
+            <a href="https://www.kccollege.ac.jp/" class="c-header__logo"><img src="../../img/image 1.png" alt="Arts_Logo"></a>
+        </div>
+
+        <!-- ロゴを除くオブジェクトを右に固定するためのdiv -->
+        <div class="flex_header">    
+            
+            <!-- ハンバーガメニューのリスト -->
+            <ul class="c-header__list c-hamburger-menu__list" id="hamburger-menu_list"><!-- 追記 クラスを追記 -->
+                <li class="c-header__list-item">
+                    <a href="https://www.kccollege.ac.jp/" class="c-header__list-link">ホームページへ</a>
+                </li>
+                <li class="c-header__list-item">
+                    <a href="#" class="c-header__list-link">参加履歴</a>
+                </li>
+                <li class="c-header__list-item">
+                    <a href="#" class="c-header__list-link">登録内容の変更</a>
+                </li>
+                <li class="c-header__list-item">
+                    <a href="#" class="c-header__list-link">アカウント削除</a>
+                </li>
+                <li class="c-header__list-item">
+                    <a href="#" class="c-header__list-link">お問い合わせ</a>
+                </li>
+            </ul>
+            
+            <!-- 新規登録ボタン -->
+            <a href="#" class="red-button">新規登録</a>
+            <!-- ハンバーガボタン -->
+            <div id="hamburger-btn" class="open" onclick="hamburgerClick()"></div>
         </div>
     </header>
     <main>
         <h1>登録情報の変更</h1>
         <div class="content-container">
-            <form action="../backend/change_Information.php" method="post">
+            <!-- inputに予めvalueで値を入れておく -->
+            <form action="../backend/checkData.php" method="post">
                 <?php foreach ($results as $row): ?>
+                    <!-- 名前や電話番号を区切って配列に入れています -->
                     <?php
                         $name = explode("　",$row['name']);
                         $katakana = explode("　",$row['katakana']);
-                        $birthday = explode("/",$row['birthday']);
+                        $tel = explode("-",$row['tel']);
                     ?>
-                    <table border="1">
-                        <tr>
-                            <th>ユーザーID</th>
-                            <td><?php echo $row['id']; ?></td>
-                        </tr>
+                    <table border="0">
                         <tr>
                             <th>名前</th>
-                            <td colspan="2">
-                                <input type="text" value=<?php echo $name[0]?> placeholder="性">
-                                <input type="text" value=<?php echo $name[1]?> placeholder="名">
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>名前(フリガナ)</th>
                             <td>
-                                <input type="text" class="nameee" value=<?php echo $katakana[0]?> placeholder="セイ">
-                                <input type="text" class="nameee" value=<?php echo $katakana[1]?> placeholder="メイ">
+                                <input class="nameSpace" name="lastName" type="text" value=<?php echo $name[0]?> placeholder="性" required>
+                                <input class="nameSpace" name="firstName" type="text" value=<?php echo $name[1]?> placeholder="名" required>
+                                <br>
+                                <input class="nameSpace" name="lastKana" type="text" value=<?php echo $katakana[0]?> placeholder="セイ" required>
+                                <input class="nameSpace" name="firstKana" type="text" value=<?php echo $katakana[1]?> placeholder="メイ" required>
                             </td>
                         </tr>
                         <tr>
                             <th>性別</th>
                             <td>
-                                <p>
-                                <label><input type="radio" name="gender" value="男性" <?= $row['gender'] == '男性' ? 'checked' : ''; ?>>男性</label>
-                                <label><input type="radio" name="gender" value="女性" <?= $row['gender'] == '女性' ? 'cheaked' : ''; ?>>女性</label>
-                                <label><input type="radio" name="gender" value="その他" <?= $row['gender'] == 'その他' ? 'checked' : ''; ?>>その他</label>
-                                </p>
-                                <!-- <select name="gender">
-                                    <option value="男性" <?= $row['gender'] == '男性' ? 'selected' : ''; ?>>男性</option>
-                                    <option value="女性" <?= $row['gender'] == '女性' ? 'selected' : ''; ?>>女性</option>
-                                    <option value="その他" <?= $row['gender'] == 'その他' ? 'selected' : ''; ?>>その他</option>
-                                </select> -->
+                                <div>
+                                    <label class="fontSizeChange">
+                                        <input type="radio" name="gender" value="男性" <?= $row['gender'] == '男性' ? 'checked' : ''; ?>>
+                                        男性
+                                    </label>
+                                    <label class="fontSizeChange">
+                                        <input type="radio" name="gender" value="女性" <?= $row['gender'] == '女性' ? 'checked' : ''; ?>>
+                                        女性
+                                    </label>
+                                    <label class="fontSizeChange">
+                                        <input type="radio" name="gender" value="その他" <?= $row['gender'] == 'その他' ? 'checked' : ''; ?>>
+                                        その他
+                                    </label>
+                                </div>
                             </td>
                         </tr>
                         <tr>
                             <th>誕生日</th>
                             <td>
-                                <input type="date" name="birthday" value=<?= htmlspecialchars(str_replace("/","-",$row['birthday'])); ?>>
+                                <input class="width_100percent" type="date" name="birthday" value=<?php echo $row['birthday']; ?> required>
                             </td>
                         <tr>
                             <th>職業</th>
                             <td>
-                                <select name="occupation">
+                                <select name="occupation" class="width_100percent arrow">
                                     <option value="高校1年生1" <?= $row['occupation'] == '高校1年生' ? 'selected' : ''; ?>>高校1年生</option>
                                     <option value="高校2年生" <?= $row['occupation'] == '高校2年生' ? 'selected' : ''; ?>>高校2年生</option>
                                     <option value="高校3年生" <?= $row['occupation'] == '高校3年生' ? 'selected' : ''; ?>>高校3年生</option>
@@ -99,24 +126,29 @@ $results = $_SESSION['results'];
                         </tr>
                         <tr>
                             <th>出身学校</th>
-                            <td><input type="text" value=<?php echo $row['school']?>></td>
+                            <td><input class="width_100percent" type="text" name="school" value=<?php echo $row['school']?> required></td>
                         </tr>
                         <tr>
                             <th>電話番号</th>
-                            <td><input type="text" value=<?php echo $row['tel']?>></td>
+                            <td>
+                                <input class="size150" type="text" name="thirdTel" value=<?php echo $row['tel']?> maxlength="11" required>
+                            </td>
                         </tr>
                         <tr>
                             <th>住所</th>
-                            <td><input type="text" value=<?php echo $row['address']?>></td>
+                            <td>
+                                <input class="width_100percent" type="text" name="address" value=<?php echo $row['address']?> required>
+
+                            </td>
                         </tr>
                         <tr>
                             <th>メールアドレス</th>
-                            <td><input type="email" value=<?php echo $row['mail']?>></td>
+                            <td><input class="width_100percent" type="email" name="mail" value=<?php echo $row['mail']?> required></td>
                         </tr>
                         <tr>
                             <th>希望学科</th>
                             <td>
-                                <select name="cource">
+                                <select name="cource" class="width_100percent arrow">
                                     <option value="ゲーム学科" <?= $row['course'] == 'ゲーム学科' ? 'selected' : ''; ?>>ゲーム学科</option>
                                     <option value="デザイン学科" <?= $row['course'] == 'デザイン学科' ? 'selected' : ''; ?>>デザイン学科</option>
                                     <option value="情報処理学科" <?= $row['course'] == '情報処理学科' ? 'selected' : ''; ?>>情報処理学科</option>

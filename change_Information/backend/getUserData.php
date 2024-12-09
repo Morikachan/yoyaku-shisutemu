@@ -17,7 +17,7 @@ try {
 }
 //ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
 
-$sql = "SELECT * from user_info where id = 0";
+$sql = "SELECT * from user_info where id = 1";
 try {
     $stmt = $pdo->query($sql);
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
