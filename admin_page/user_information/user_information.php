@@ -85,12 +85,14 @@ $results = $_SESSION['results'];
                     <th>時間</th>
                     <th>備考</th>
                 </tr>
-                <?php if(isset($_SESSION['message'])) :?>
-                <div class="error-message">
-                    <?php echo $_SESSION['message']?>
-                </div>
-                    
-                <?php endif;?>
+                <?php if(!empty($_SESSION['message'])):
+                ?>
+                    <div class="error-message">
+                        <?php echo $_SESSION['message']?>
+                    </div>
+                <?php 
+                endif;
+                ?>
                 <?php foreach ($results as $row): ?>
                     <tr>
                         <td><?php echo $row['id']; ?></td>
