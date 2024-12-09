@@ -73,8 +73,7 @@ h2 {
     padding: 10px;
 }
 
-/*ここからマイページに関するcss*/
-/*マイページ*/
+/*ここから予約キャンセルに関するcss*/
 *{
     box-sizing: border-box;
 }
@@ -109,26 +108,35 @@ h2 {
     font-size: 0.9em;
     
 }
-.content-container .Reservation-button{
-    display: flex;
-    justify-content: space-evenly;
+.content-container .red-button{
+    margin: 0 auto;
     margin-top: 40px;
+    width: 80%;
+    text-align: center;
+    border: none;
 }
 .content-container h3{
     font-size: 1.5em;
     padding-top: 7px;
+    margin-top: 20px;
 }
 .reserve{
     margin-top: 40px;
 }
-/*予約情報　予約日あり*/
+/*予約キャンセル*/
+.not-cancel{
+    margin-top: 20px;
+    font-size: 1.5em;
+    font-weight: bold;
+    text-align: center;
+}
 .content-container table{
     margin: 0 auto;
-    margin-top: 40px;
-    width: 80%;
+    margin-top: 20px;
+    width: 90%;
     border-collapse: collapse;
     background-color: #fff;
-    font-size: 1.2em;
+    font-size: 1.0em;
 }
 table,
 th,
@@ -140,47 +148,63 @@ td {
     background-color: #CF220E;
     color: #ffffff;
 }
-/*予約情報　予約日なし*/
-.not-Reservation{
-    text-align: center;
-    font-weight: bold;
-    font-size: 1.4em;
-    margin-top: 40px;
+input[type=checkbox]{
+    transform: scale(1.5);
 }
-.not-Reservation-button{
-    text-align: center;
-    margin-top: 40px
+h4{
+    font-size: 1.2em;
+    margin-top: 10px;
 }
-/*アクセス方法*/
-.accsess{
-    margin-top: 60px;
+.check{
+    width: 100%;
+    margin: 10px;
+    padding: 5px 0;
+    font-size: 1.2em;
 }
-.accsess h2{
-    margin-bottom: 40px;
-}
-.accsess p{
-    font-size: 1.3em;
-    font-weight: bold;
-}
-.accsess h3 {
-    margin-bottom: 10px;
-}
-.direction{
-    padding-left: 20px;
-}
-.infomation{
-    width: 80%;
+.check-zone{
+    width: 90%;
     margin: 0 auto;
 }
-.map{
+/*予約キャンセル成功*/
+.Reservation-button{
+    display: flex;
+    justify-content: space-evenly;
+}
+.Reservation-button p{
+    flex-basis: 50%;
+}
+/*エラー*/
+.error{
+    max-width: 80%;
+    background-color: #FF8989;
+    border-radius: 4px;
+    padding: 20px 10px;
+    margin: 30px auto;
+    font-size: large;
+    font-weight: bold;
+    color: #000;
+}
+.error p{
+    text-align: center;
+}
+.error2{
+    width: 60%;
+}
+.error-input{
+    background-color: #FF8989;
+    border: #000 2px solid;
+}
+.error-font{
+    font-size: 1em;
+    margin-left: 10px;
     margin-bottom: 20px;
+    color: #CF220E;
 }
-.map iframe{
-    height: 300px;
-    margin-top: 30px;
+.error-font2{
+    margin-top: 10px;
+    margin-left: 50px;
 }
-
-/*ここまででマイページのCSS終わり*/
+/*ここまでで予約キャンセルのCSS終わり*/
 
 /* ここから下がハンバーガーメニューに関するCSS */
 /* ここまででハンバーガメニュー終わり */

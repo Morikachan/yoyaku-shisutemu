@@ -16,29 +16,27 @@ function getDBConnection() {
     }
 }
 
-function deleteData($pdo , $mail , $passwd){
-    $sql = "DELETE FROM users_info WHERE mail = :mail and passwd = :passwd";
+function deletData($pdo , $mail , $passwd){
+    
+    $sql = 'DELETE FROM users_info WHERE mail = :mail';
 
     try{
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':mail' , $mail);
-        $stmt->bindParam(':passwd' , $passwd);
         //
-        $stmt->execute();
-        $rowsAffected = $stmt->rowCount();
-        return $rowsAffected > 0;
+        return $stmt->execute(); 
     }
     catch (PDOException $e){
         echo $e->getMessage();
         return false;
     }
 }
-function deletappoint($pdo , $mail){
-    $sql = "DELETE FROM appointment WHERE mail = :mail";
+function deletappoint($pdo , $id){
+    $sql = "DELETE FROM appointment WHERE id = :id";
 
     try{
         $stmt = $pdo->prepare($sql);
-        $stmt->bindParam(':mail' , $mail);
+        $stmt->bindParam(':id' , $id);
         //
         $stmt->execute();
         $rowsAffected = $stmt->rowCount();
@@ -54,18 +52,15 @@ session_start();
 $pdo = getDBConnection();
 $mail = $_SESSION['mail'];
 $passwd = $_SESSION['passwd'];
+$id = $_SESSION['id'];
 $hashPassword = password_hash($passwd, PASSWORD_DEFAULT);
-$result = deleteData($pdo , $mail , $hashPassword);
+$result = deletData($pdo , $mail , $hashPassword);
 if($result){
     $pdo = getDBConnection();
     $mail = $_SESSION['mail'];
-    $result = deletappoint($pdo , $mail);
-    if($result){
-        header('Location: ../html/success.html');
-    }
-    else{
-      header('Location: ../html/else.html');
-    }
+    $result = deletappoint($pdo , $id);
+    header('Location: ../html/success.html');
+    
 }
 else{
     header('Location: ../html/else.html');

@@ -5,15 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="./style.css">
+    <script src="./calendarScript.js" defer></script>
+    <script src="../hamburger.js"></script>
     <title>予約</title>
 </head>
 <body>
-    <script src="../login.js"></script>
     <header class="c-header c-hamburger-menu">
 
             <!-- アーツカレッジヨコハマのロゴ -->
             <div class="flex_logo">
-                <a href="https://www.kccollege.ac.jp/" class="c-header__logo"><img src="img/image 1.png" alt="Arts_Logo"></a>
+                <a href="https://www.kccollege.ac.jp/" class="c-header__logo"><img src="../img/image 1.png" alt="Arts_Logo"></a>
             </div>
 
             <!-- ロゴを除くオブジェクトを右に固定するためのdiv -->
@@ -45,52 +46,58 @@
             </div>
     </header>
     <main>
-        <div class="container" style="display: none">
-            <h3>日付</h3>
-            <div class="calendar">
-                <div class="header">
-                    <!-- 先月 -->
-                    <div class="btn prev">
-                        <i>≪</i>
+        <h1>予約ページ</h1>
+        <div class="content-container">
+            <div class="calendar-container">
+                <span class="required">必須</span><h3>日付</h3>
+                <div class="calendar">
+                    <div class="header">
+                        <!-- 先月 -->
+                        <button class="btn prev">
+                            <i>≪</i>
+                        </button>
+                        <!-- 今月 -->
+                        <div class="month">11月 2024年</div>
+                        <!-- 来月 -->
+                        <button class="btn next">
+                            <i>≫</i>
+                        </button>
                     </div>
-                    <!-- 今月 -->
-                    <div class="month">11月 2024年</div>
-                    <!-- 来月 -->
-                    <div class="btn next">
-                        <i>≫</i>
+                    <div class="weekdays">
+                        <div class="day">日</div>
+                        <div class="day">月</div>
+                        <div class="day">火</div>
+                        <div class="day">水</div>
+                        <div class="day">木</div>
+                        <div class="day">金</div>
+                        <div class="day">土</div>
                     </div>
-                </div>
-                <div class="weekdays">
-                    <div class="day">日</div>
-                    <div class="day">月</div>
-                    <div class="day">火</div>
-                    <div class="day">水</div>
-                    <div class="day">木</div>
-                    <div class="day">金</div>
-                    <div class="day">土</div>
-                </div>
-                <div class="days">
-                    <!-- jsでの処理 -->
+                    <div class="days">
+                        <!-- jsでの処理 -->
+                    </div>
                 </div>
             </div>
 
             <div class="day-info">
-                <h3>時間</h3>
+                <span class="required">必須</span><h3>時間</h3>
                 <div>
-                    <ul>
-                        <li>9:00</li>
-                        <li>10:00</li>
-                        <li>11:00</li>
-                        <li>12:00</li>
-                        <li>13:00</li>
-                        <li>14:00</li>
-                        <li>15:00</li>
-                        <li>16:00</li>
+                    <ul class="timetable">
+                        <!-- jsとphpでの処理 -->
                     </ul>
                 </div>
 
                 <h3>備考</h3>
-                <textarea name="note" id="note" col=30 row=100></textarea>
+                <textarea name="message" id="message" cols="50" rows="10" style="display: block"></textarea>
+                <p>
+                    <button type="button" id="sendReserv-btn" disabled>予約する</button>
+                </p>
+            </div>
+        </div>
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <h4>予約完了</h4>
+                <p>予約できました</p>
+                <a class="return-btn" href="../mypage/mypage.php">マイページへ戻る</a>
             </div>
         </div>
     </main>

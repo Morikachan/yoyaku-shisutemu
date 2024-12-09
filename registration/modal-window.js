@@ -1,6 +1,6 @@
-let body = document.getElementsByTagName("body");
-let modal = window.document.getElementById("modal");
-let button = document.getElementById("modalBtn");
+const body = document.querySelector("body");
+const modal = document.querySelector("#modal");
+const button = document.querySelector("#modalBtn");
 
 button.addEventListener("click", insertConfirm);
 
@@ -11,7 +11,7 @@ function insertConfirm() {
     .then((response) => response.json())
     .then((responseData) => {
       if (responseData.status === true) {
-        body[0].style.overflow = 'hidden';
+        body.style.overflow = 'hidden';
         modal.style.display = 'block';
       } else {
         alert("失敗発生");

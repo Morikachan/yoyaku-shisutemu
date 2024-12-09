@@ -8,12 +8,12 @@ $results = $_SESSION['results'];
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="./mypage.css">
-        <title>マイページ</title>
+        <link rel="stylesheet" href="./reservation_history.css">
+        <title>参加履歴</title>
     </head>
     <body>
     <script src="./hamburger.js"></script>
-    <header>
+        <header>
             <div class="header-wrap">
                 <img src="../img/image 1.png" alt="Arts_Logo">
             </div>
@@ -46,22 +46,45 @@ $results = $_SESSION['results'];
             </div>
         </header>
         <main>
-            <p class="locatoin"><a href="">ホームページ</a>へ/マイページ</p>
-            <h1>マイページ</h1>
+            <p class="locatoin"><a href="">ホームページ</a>へ/<a href="../mypage/mypage.php">マイページ</a>へ/参加履歴</p>
+            <h1>参加履歴</h1>
             <div class="content-container">
-                <h2>予約情報</h2>
-                <div class="Reservation">
-                    <?php if($results): ?>
-                        <div class="title">
-                            <h3>・現在の予約状況</h3>
-                            <a href="./mypage.php" class="red-button">情報を更新する</a>
-                        </div>
+                <?php if($results): ?>
+                    <h2>参加情報</h2>
+                    <div class="participation">
+                        <h3>・参加履歴</h3>
+                        <p class="delete-history"><button class="openDialog">・<span>履歴をリセット</span>する</button></p>
+                        <dialog class="dialogDemo">
+                            <p>本当に削除しますか？</P>
+                            <div class="chose">
+                                <button class="yes">はい</button>
+                                <button class="no">キャンセル</button>
+                            </div>
+                        </dialog>
+                        <script>
+                            const openBtn = document.querySelector('.openDialog');
+                            const dialogDemo = document.querySelector('.dialogDemo');
+                            const yes = document.querySelector('.yes');
+                            const no = document.querySelector('.no');
+                            //ダイアログを開く
+                            openBtn.addEventListener('click', () => {
+                                dialogDemo.showModal();
+                            });
+                            //ダイアログを閉じる
+                            no.addEventListener('click', () => {
+                                dialogDemo.close();
+                            });
+                            //移動する
+                            yes.addEventListener('click', () => {
+                                location.href = './delete_history.php';
+                            });
+                        </script>
                         <table border="1">
                             <thead>
                                 <tr>
-                                    <th>No.</th>
-                                    <th>予約日</th>
-                                    <th>予約時間</th>
+                                    <th>NO.</th>
+                                    <th>参加日</th>
+                                    <th>参加日時</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -74,34 +97,23 @@ $results = $_SESSION['results'];
                             <?php $counter++; endforeach; ?>
                             </tbody>
                         </table>
-                        <h3 class="reserve">・予約する</h3>
-                        <diV class="Reservation-button">
+                        <diV class="button">
                             <p><a href="" class="red-button">予約登録</a></p>
-                            <p><a href="../cancel_reservation/cancel.php" class="red-button">予約キャンセル</a></p>
+                            <p><a href="../mypage/mypage.php" class="red-button">マイページ</a></p>
                         </div>
-                    <?php else: ?>
-                        <h3>・現在の予約状況</h3>
-                        <p class="not-Reservation">予約はありません</p>
-                        <h3 class="reserve">・予約する</h3>
-                        <p><a href="" class="red-button not-Reservation-button">予約登録</a></p>
-                    <?php endif; ?>  
-                </div>
-                <div class="accsess">
-                    <h2>アクセス情報</h2>
-                    <h3>アクセス方法</h3>
-                    <p class="time">・徒歩：横浜駅から約20分</p>
-                    <p class="time">・バス：浅岡橋で降りてから徒歩約3分</p>
-                    <div class="infomation">
-                        <p class="map">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6499.293489360594!2d139.609711!3d35.463539000000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60185c09e09a76a5%3A0xd9f33045278944be!2z44Ki44O844OE44Kr44Os44OD44K444Oo44Kz44OP44Oe!5e0!3m2!1sja!2sjp!4v1731385159979!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                        </p>
-                        <h3>アドレス</h3>
-                        <p>・郵便番号：〒220-0072</p>
-                        <p>・所在地　：神奈川県横浜市 西区浅間町2-105-8</p>
-                        <p>・電話番号：045-324-0011</p>
-                        <p>・営業時間：9:00～17:00</p>
                     </div>
-                </div>
+                <?php else: ?>
+                    <h2>参加情報</h2>
+                    <div class="participation">
+                        
+                        <h3>参加履歴</h3>
+                        <p class="none-participation">・現在参加履歴はありません</p>
+                        <diV class="button">
+                            <p><a href="" class="red-button">予約登録</a></p>
+                            <p><a href="../mypage/mypage.php" class="red-button">マイページ</a></p>
+                        </div>
+                    </div>
+                <?php endif; ?>        
             </div>
         </main>
     </body>

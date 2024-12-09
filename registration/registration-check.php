@@ -48,7 +48,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $gender = $_POST['gender'];
     $date = $_POST['date'];
-    $formattedDate = date("Y/n/j", strtotime($date)). "<br/>";
+    $formattedDate = date("Y/n/j", strtotime($date));
 
     $occupation = $_POST['occupation'];
     $school = $_POST['school'];
@@ -90,9 +90,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     $user = searchMail($pdo, $mail);
     if($user){
         $_SESSION['error'] = 'ユーザがすでに存在します';
-        header("Location: ./registration.php");
-     } else if (!$approvedChecked){
-        $_SESSION['error'] = '個人情報の保護に同意してください';
         header("Location: ./registration.php");
     } else {
         header("Location: ./registration-confirm.php");

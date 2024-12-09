@@ -26,10 +26,11 @@ $passwordResetToken = bin2hex(random_bytes(32));
 
         //メールの送信
         if(mail($to, $subject, $message , $headers)) {
-            echo 'メール送信が成功しました。';
+            header("Location:http://localhost/yoyaku-shisutemu/pass_reset/views/mail_complete.html");
         
         } else {
-            echo 'メール送信に失敗しました。';
+            header("Location:http://localhost/yoyaku-shisutemu/pass_reset/views/mail_error.html");
+            exit();
         }
         //header("Location:http://localhost/pass_reset/views/pass_reset.html");
         //exit();
@@ -81,7 +82,8 @@ $passwordResetToken = bin2hex(random_bytes(32));
                 mailSetting($mail,$passwordResetToken);
                 insertToken($pdo, $mail , $passwordResetToken);
             } else{
-                echo "入力されたメールアドレスが見つかりませんでした。新規登録をしてください。";
+                header("Location:http://localhost/yoyaku-shisutemu/pass_reset/views/null_mail.html");
+                exit();
             }
 
         

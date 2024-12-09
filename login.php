@@ -1,17 +1,7 @@
 <?php
 session_start();
-// require_once './core/Database.php';
+require_once '../core/Database.php';
 
-// テストデータの記入内容
-/* ---------- 記入内容 ---------
-    meil   = aaa@aaa            
-    passwd = aaa
----------------------------- */
-//ーーーーーーーーーーーーーーーーーーーーーーーーーーーーここから下は消す予定ーーーーーーーーーーーーーーーーーーーーーーーーーーーー
-const DB_SERVER_NAME = 'localhost';
-const DB_USER_NAME = 'root';
-const DB_PASSWORD = '';
-const DB_NAME = 'test';
 function getDbConnection() {
     try {
         $pdo = new PDO("mysql:host=" . DB_SERVER_NAME . 
@@ -23,7 +13,7 @@ function getDbConnection() {
         exit();
     }
 }
-//ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+
 function selectUserData($pdo,$mail) {
     $sql = "SELECT * FROM user_info WHERE mail = :mail";
     try {
@@ -38,7 +28,7 @@ function selectUserData($pdo,$mail) {
     }
 }
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $pdo = getDbConnection();
+    $pdo = Database::getInstance()->getPDO();
     $mail = $_POST['mail'];
     $passwd = $_POST['passwd'];
     $user = selectUserData($pdo,$mail);
@@ -47,6 +37,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         header("Location: ./login.php");
         exit;
     } else if ($user && password_verify($passwd,$user['passwd'])) {
+        $_SESSION['id'] = $user['id'];
         header("Location: ./mypage/mypage.html");
     } else {
         $_SESSION['error'] = 'パスワードが違います。</br>もう一度やり直してください。';
@@ -65,38 +56,43 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="./admin_page/admin_login/style.css"><!-- 後で消します(梶浦) -->
+    <script src="./hamburger.js"></script>
     <title>ログイン</title>
 </head>
 <body>
-    <header class="c-header c-hamburger-menu"><!-- 追記 クラスを追記 -->
-        <a href="https://www.kccollege.ac.jp/" class="c-header__logo"><img src="img/image 1.png" alt="Arts_Logo"></a>
-        <div class="flex">
-            <input type="checkbox" name="hamburger" id="hamburger" class="c-hamburger-menu__input"/><!-- 追記 idはlabelのforと同じにする -->
-            <label for="hamburger" class="c-hamburger-menu__bg"></label><!-- 追記 ハンバーガーメニュを開いた時の背景 -->
-            <ul class="c-header__list c-hamburger-menu__list"><!-- 追記 クラスを追記 -->
-                <li class="c-header__list-item">
-                    <a href="https://www.kccollege.ac.jp/" class="c-header__list-link">ホームページへ</a>
-                </li>
-                <li class="c-header__list-item">
-                    <a href="#" class="c-header__list-link">参加履歴</a>
-                </li>
-                <li class="c-header__list-item">
-                    <a href="#" class="c-header__list-link">登録内容の変更</a>
-                </li>
-                <li class="c-header__list-item">
-                    <a href="#" class="c-header__list-link">アカウント削除</a>
-                </li>
-                <li class="c-header__list-item">
-                    <a href="#" class="c-header__list-link">お問い合わせ</a>
-                </li>
-            </ul>
-            <a href="#" class="red-button">新規登録</a>
-        </div>
-        <label for="hamburger" class="c-hamburger-menu__button"><!-- 追記 ハンバーガーメニューのボタン -->
-            <span class="c-hamburger-menu__button-mark"></span>
-            <span class="c-hamburger-menu__button-mark"></span>
-            <span class="c-hamburger-menu__button-mark"></span>
-        </label>
+    <header class="c-header c-hamburger-menu">
+            <!-- アーツカレッジヨコハマのロゴ -->
+            <div class="flex_logo">
+                <a href="https://www.kccollege.ac.jp/" class="c-header__logo"><img src="img/image 1.png" alt="Arts_Logo"></a>
+            </div>
+
+            <!-- ロゴを除くオブジェクトを右に固定するためのdiv -->
+            <div class="flex_header">    
+                
+                  <!-- ハンバーガメニューのリスト -->
+                  <ul class="c-header__list c-hamburger-menu__list" id="hamburger-menu_list"><!-- 追記 クラスを追記 -->
+                      <li class="c-header__list-item">
+                        <a href="https://www.kccollege.ac.jp/" class="c-header__list-link">ホームページへ</a>
+                      </li>
+                      <li class="c-header__list-item">
+                        <a href="#" class="c-header__list-link">参加履歴</a>
+                      </li>
+                      <li class="c-header__list-item">
+                        <a href="#" class="c-header__list-link">登録内容の変更</a>
+                      </li>
+                      <li class="c-header__list-item">
+                        <a href="http://localhost/yoyaku-shisutemu\delete_account\html\delete.html" class="c-header__list-link">アカウント削除</a>
+                      </li>
+                      <li class="c-header__list-item">
+                        <a href="http://localhost/yoyaku-shisutemu/inquiry/inquiry.html" class="c-header__list-link">お問い合わせ</a>
+                      </li>
+                  </ul>
+                  
+                  <!-- 新規登録ボタン -->
+                  <a href="#" class="red-button">新規登録</a>
+                  <!-- ハンバーガボタン -->
+                  <div id="hamburger-btn" class="open" onclick="hamburgerClick()"></div>
+            </div>
     </header>
 
     <main>
@@ -153,7 +149,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                 })
             </script>
             
-            <p>アカウントをお持ちでない方は<a href="./registartion/registration.php" class="blue-link">こちら</a></p>
+            <p>アカウントをお持ちでない方は<a href="./registration/registration.php" class="blue-link">こちら</a></p>
         </div>
     </main>
 

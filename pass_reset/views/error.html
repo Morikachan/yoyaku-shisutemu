@@ -1,17 +1,21 @@
 <!DOCTYPE html>
 <html lang="ja">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../css/delete.css">
-        <title>アカウント削除</title>
-    </head>
-    <body>
-        <script src="../hamburger.js"></script>
-        <header>
-            <div class="header-wrap">
-                <img src="../img/image 1.png" alt="Arts_Logo">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../pass_reset.css">
+    <title>パスワードリセット</title>
+</head>
+<body id="body">
+    <script src="../../hamburger.js"></script>
+    <header class="c-header c-hamburger-menu">
+
+            <!-- アーツカレッジヨコハマのロゴ -->
+            <div class="flex_logo">
+                <a href="https://www.kccollege.ac.jp/" class="c-header__logo"><img src="../../img/image 1.png" alt="Arts_Logo"></a>
             </div>
+
             <!-- ロゴを除くオブジェクトを右に固定するためのdiv -->
             <div class="flex_header">    
                 
@@ -30,7 +34,7 @@
                         <a href="#" class="c-header__list-link">アカウント削除</a>
                       </li>
                       <li class="c-header__list-item">
-                        <a href="#" class="c-header__list-link">お問い合わせ</a>
+                        <a href="http://localhost/yoyaku-shisutemu/inquiry/inquiry.html" class="c-header__list-link">お問い合わせ</a>
                       </li>
                   </ul>
                   
@@ -39,17 +43,15 @@
                   <!-- ハンバーガボタン -->
                   <div id="hamburger-btn" class="open" onclick="hamburgerClick()"></div>
             </div>
-        </header>
-
-        <main>
-            <p class="locatoin"><a href="">ホームページ</a>へ/<a href="../../mypage/mypage.html">マイページ</a>へ/アカウント削除</p>
-            <h1>アカウント削除</h1>
-            <div class="content-container">
-                <h2>削除に成功しました</h2>
-                <div class="success">
-                    <a class="red-button" href="../../login.html">ログインページへ</a>
-                </div>
-            </div>
-        </main>
-    </body>
+        
+    </header>
+    <main id="main">
+        <h1>パスワードリセット</h1>
+        
+        <div class="content-container">
+            <p>パスワードのリセットに失敗しました。</p>
+            <p>繰り返し起こる場合はお問い合わせください。</p>
+        </div>
+    </main>
+</body>
 </html>

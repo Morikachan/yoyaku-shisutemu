@@ -29,7 +29,7 @@ function token_time($pdo,$passwordResetToken){
         $stmt->execute();
         $passwordResetuser = $stmt->fetch(\PDO::FETCH_OBJ);
         //トークンの制限時間を10秒とする。
-        // $date = getAsiaTime($passwordResetuser -> token_sent_at)-> modify('+10 second')-> format('Y-m-d H:i:s');
+        //$date = getAsiaTime($passwordResetuser -> token_sent_at)-> modify('+1 second')-> format('Y-m-d H:i:s');
 
 
         //トークンの制限時間を24時間とする。
@@ -40,7 +40,8 @@ function token_time($pdo,$passwordResetToken){
         if ($date < $nowtime) {
             $mail = searchData($pdo, $passwordResetToken);
             deleteData($pdo , $mail);
-            exit('有効期限外です');
+            header("Location:http://localhost/yoyaku-shisutemu/pass_reset/views/token_timeout.html");
+            exit();
         }            
 }
 
@@ -61,7 +62,7 @@ try{
     return $result[0];
     
     } catch (PDOException $e){
-        echo '取得失敗';
+        header("Location:http://localhost/yoyaku-shisutemu/pass_reset/views/databeses_error.html");
         exit();
     } 
 }  
@@ -103,7 +104,10 @@ function searchToken($pdo,$passwordResetToken){
 if(searchToken($pdo, $passwordResetToken)){
     token_time($pdo,$passwordResetToken);
 } else {
-    echo "トークンの期限切れです";
+    $mail = searchData($pdo, $passwordResetToken);
+    deleteData($pdo , $mail);
+    header("Location:http://localhost/yoyaku-shisutemu/pass_reset/views/token_timeout.html");
+    
     exit();
 }
 
@@ -119,7 +123,8 @@ if(searchToken($pdo, $passwordResetToken)){
     <title>パスワードの再設定</title>
 </head>
 <body id="body">
-    <script src="../../login.js"></script>
+    <script src="../../hamburger.js"></script>
+    
     <header class="c-header c-hamburger-menu">
 
             <!-- アーツカレッジヨコハマのロゴ -->
@@ -145,7 +150,7 @@ if(searchToken($pdo, $passwordResetToken)){
                         <a href="#" class="c-header__list-link">アカウント削除</a>
                       </li>
                       <li class="c-header__list-item">
-                        <a href="#" class="c-header__list-link">お問い合わせ</a>
+                        <a href="http://localhost/yoyaku-shisutemu/inquiry/inquiry.html" class="c-header__list-link">お問い合わせ</a>
                       </li>
                   </ul>
                   
@@ -161,20 +166,22 @@ if(searchToken($pdo, $passwordResetToken)){
         
         
         <div class="content-container">
+            <div class="alert_message">パスワードが一致しません</div>
             <form action="./new_pass.php" method="POST">
                 <label>
-                    新しいパスワード
-                    <input type="password" name="reset_pass">
+                    <h3>新しいパスワード</h3>
+                    <input type="password" name="reset_pass" id="reset_pass">
                 </label>
                 <br>
                 <label>
-                    パスワード（確認用）
-                    <input type="password" name="repeat_pass">
+                    <h3>パスワード（確認用）</h3>
+                    <input type="password" name="repeat_pass" id="repeat_pass">
                 </label>
                 <br>
-                <button type="submit">送信する</button>
+                <button type="submit" id=sendButton disabled>送信する</button>
             </form>
         </div>
     </main>
+    <script src="./new_contact.js"></script>
 </body>
 </html>

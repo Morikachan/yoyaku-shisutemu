@@ -3,9 +3,8 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../../css/style.css">
-        <link rel="stylesheet" href="../css/delete.css">
-        <title>アカウント削除</title>
+        <link rel="stylesheet" href="./reservation_history.css">
+        <title>参加履歴</title>
     </head>
     <body>
         <script src="../hamburger.js"></script>
@@ -41,31 +40,20 @@
                   <div id="hamburger-btn" class="open" onclick="hamburgerClick()"></div>
             </div>
         </header>
-
         <main>
-            <p class="locatoin"><a href="">ホームページ</a>へ/<a href="../../マイページ/mypage.html">マイページ</a>へ/アカウント削除</p>
-            <h1>アカウント削除</h1>
-            <div class="content-container">
-                <div class="error">
-                    <p>・メールアドレスまたはパスワードが間違っています。</p>
-                    <p>　もう一度やり直してください。</p>
-                </div>
-                <h2 class="faluse">アカウント情報</h2>
-                <form action="../php/check.php" method="post" class="delete-form">
-                    <p>
-                        <h3>メールアドレス:</h3>
-                        <input type="email" name="mail" id="name" class="error-input">
-                    </p>
-                    <p class="error-font">メールアドレスを入力してください</p>
-                    <p>
-                        <h3>パスワード:</h3>
-                        <input type="password" name="passwd" id="passwd" class="error-input">
-                    </p>
-                    <p class="error-font">パスワードを入力してください</p>
-                    <p class="forget-passwd">パスワードを忘れた方は<a href="">こちら</a></p>
-                    <button type="submit" class="red-button faluse-button">アカウント削除</button>
-                </form>
+          <p class="locatoin"><a href="">ホームページ</a>へ/<a href="../mypage/mypage.php">マイページ</a>へ/参加履歴</p>
+          <h1>参加履歴</h1>
+          <div class="content-container">
+            <h2>参加情報</h2>
+            <div class="participation">
+              <h3>参加履歴</h3>
+              <p class="none-participation">・現在参加履歴はありません</p>
+              <diV class="button">
+                <p><a href="" class="red-button">予約登録</a></p>
+                <p><a href="../mypage/mypage.php" class="red-button">マイページ</a></p>
+              </div>
             </div>
+          </div>
         </main>
     </body>
 </html>
