@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once '../core/Database.php';
+require_once './core/Database.php';
 
 function getDbConnection() {
     try {
