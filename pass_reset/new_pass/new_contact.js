@@ -1,6 +1,7 @@
 const reset_pass = document.getElementById('reset_pass');
 const repeat_pass = document.getElementById('repeat_pass');
 const alert_message =document.querySelector('.alert_message');
+const body = document.querySelector("body");
 const button = document.getElementById('sendButton');
 button.style.backgroundColor = '#888888';
 button.style.color = '#000000';
@@ -37,3 +38,8 @@ function newPass(){
     }
     
 }
+
+// function insertConfirm() {
+//         body.style.overflow = 'hidden';
+//         modal.style.display = 'block';
+// } 

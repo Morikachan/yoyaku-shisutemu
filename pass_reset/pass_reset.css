@@ -1,27 +1,69 @@
 @charset "UTF-8";
-/* body{
-    overflow: hidden;
+.modal {
+    display: block;
+    position: fixed;
+    z-index: 99;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.4);
 }
-main{
-    margin: 50px auto;
-    padding: 90px 10px;
-    padding-top:20px ;
-    height: 100%;
-    width: 70%;
-    border-radius:4px ;
-} */
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
+    top: 30%;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 30px;
+    border: 1px solid #888;
+    width: 40%;
+    height: 180px;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    animation-name: animateShow;
+    animation-duration: 0.5s
+}
+.modal-content h4 {
+    font-size: 32px;
+    font-weight: normal;
+    margin-bottom: 10px;
+    text-align: center;
+    border-bottom: solid 2px rgb(136, 136, 136, 0.8);
+    width: 100%;
+  }
+  
+.modal-content p {
+    margin: 10px 6px;
+}
+  
+.modal-content p {
+    margin: 3px;
+}
+.modal-content .return-btn {
+    display: block;
+    margin-top: 15px;
+    text-decoration: none;
+    color: #fefefe;
+    padding: 10px;
+    border-radius: 4px;
+    background-color: #CF220E;
+}
+@keyframes animateShow {
+    from {opacity: 0}
+    to {opacity: 1}
+  }
 .content-container {
     text-align: center;
 } 
 .content-container h3{
     text-align: start;
 }
-input[type="email"]{
-    height: 20px;
-}
 button[type="submit"]{
     width: 100%;
-    height: 30px;
     box-sizing: border-box;
     background-color: #CF220E;
     color: #ffffff;
@@ -85,5 +127,15 @@ button[type="submit"].active{
     }
     main{
         padding-bottom: 40px;
+    }
+    .modal-content {
+        width: 60%;
+    }
+      .modal-content h4 {
+        font-size: 24px;
+    }
+      .modal-content p {
+        font-size: 14px;
+        margin: 0;
     }
 }

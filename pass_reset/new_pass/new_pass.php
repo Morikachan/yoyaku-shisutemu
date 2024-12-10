@@ -96,12 +96,9 @@ if($newpass == "" || $repeatpass == ""){
         $mail = searchData($pdo, $passwordResetToken);
         $reset_result = passreset($pdo,$mail,$newpass);
         if($reset_result){
-            header("Location:http://localhost/yoyaku-shisutemu/pass_reset/views/complete.html");
             $delete_result = deleteData($pdo , $mail);
 
             if($delete_result){
-                header("Location:http://localhost/yoyaku-shisutemu/pass_reset/views/complete.html");
-                exit();
             } else {
                 header("Location:http://localhost/yoyaku-shisutemu/pass_reset/views/error.html");
                 exit();
@@ -113,3 +110,61 @@ if($newpass == "" || $repeatpass == ""){
     }
 }
 ?>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/style.css">
+        <link rel="stylesheet" href="../pass_reset.css">
+        <title>パスワードの再設定</title>
+    </head>
+    <body id="body">
+    <script src="../../hamburger.js"></script>
+    <header class="c-header c-hamburger-menu">
+        
+        <!-- アーツカレッジヨコハマのロゴ -->
+        <div class="flex_logo">
+            <a href="https://www.kccollege.ac.jp/" class="c-header__logo"><img src="../../img/image 1.png" alt="Arts_Logo"></a>
+        </div>
+        
+        <!-- ロゴを除くオブジェクトを右に固定するためのdiv -->
+        <div class="flex_header">    
+            
+            <!-- ハンバーガメニューのリスト -->
+            <ul class="c-header__list c-hamburger-menu__list" id="hamburger-menu_list"><!-- 追記 クラスを追記 -->
+                <li class="c-header__list-item">
+                    <a href="https://www.kccollege.ac.jp/" class="c-header__list-link">ホームページへ</a>
+                </li>
+                <li class="c-header__list-item">
+                    <a href="#" class="c-header__list-link">参加履歴</a>
+                </li>
+                <li class="c-header__list-item">
+                    <a href="#" class="c-header__list-link">登録内容の変更</a>
+                </li>
+                <li class="c-header__list-item">
+                    <a href="#" class="c-header__list-link">アカウント削除</a>
+                </li>
+                      <li class="c-header__list-item">
+                        <a href="http://localhost/yoyaku-shisutemu/inquiry/inquiry.html" class="c-header__list-link">お問い合わせ</a>
+                    </li>
+                </ul>
+                
+                <!-- 新規登録ボタン -->
+                <a href="#" class="red-button">新規登録</a>
+                <!-- ハンバーガボタン -->
+                <div id="hamburger-btn" class="open" onclick="hamburgerClick()"></div>
+            </div>
+            
+        </header>
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <h4>更新完了</h4>
+                <p>パスワードを更新しました。</p>
+                <p>ログインしてください</p>
+                <a class="return-btn" href="../../login.php">ログインへ</a>
+            </div>
+        <script src="./new_contact.js"></script>
+
+
+    </body>
+</html>
