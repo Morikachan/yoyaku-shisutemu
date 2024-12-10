@@ -44,9 +44,10 @@ $passwordResetToken = $token;
  function passreset($pdo , $mail, $newpass){
      $sql = "UPDATE users_info SET passwd = :newpass WHERE mail = :mail";
      try{
+        $passwordHash = password_hash($newpass, PASSWORD_DEFAULT);
          //SQL文に入れる値の設定
          $stmt = $pdo->prepare($sql);
-         $stmt -> bindParam(":newpass" , $newpass);
+         $stmt -> bindParam(":newpass" , $passwordHash);
          $stmt -> bindParam(":mail" , $mail);
          //$stmt -> execute();
          return $stmt -> execute(); // true or false
