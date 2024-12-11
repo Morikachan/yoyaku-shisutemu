@@ -32,7 +32,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     $mail = $_POST['mail'];
     $passwd = $_POST['passwd'];
     $user = selectUserData($pdo,$mail);
-    echo $user;
     if (!$user) {
         $_SESSION['error'] = '入力されたメールアドレスが見つかりませんでした。</br>もう一度やり直してください。';
         header("Location: ./login.php");
@@ -98,15 +97,14 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <main>
         <h1>ログイン</h1>
-        <?php if(isset($_SESSION['error'])) :?>
-            <div class="error-message">
-                <?php echo $_SESSION['error']?>
-            </div>
-        <?php 
-        unset($_SESSION['error']);?>
-        <?php endif;?>
-
         <div class="content-container">
+            <?php if(isset($_SESSION['error'])) :?>
+                <div class="error-message">
+                    <?php echo $_SESSION['error']?>
+                </div>
+            <?php 
+                unset($_SESSION['error']);?>
+            <?php endif;?>
             <form action="./login.php" method="post">
                 <label for="mail"><h3>メールアドレス</h3></label>
                 <input type="email" id="mail" name="mail"><br>
