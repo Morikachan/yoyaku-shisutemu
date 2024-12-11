@@ -83,6 +83,7 @@ button[type="submit"].active{
 .alert_message.active{
     display: block;
     background-color: #CF220E;
+    border-radius: 10px;
     color:#ffffff;
 }
 @media screen and (max-width: 1024px){

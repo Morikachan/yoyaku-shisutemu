@@ -29,7 +29,7 @@ $passwordResetToken = $token;
          $stmt -> bindParam(":token" , $passwordResetToken);
          $stmt -> execute();
          $result = $stmt->fetch(); 
-         return $result[0];
+         return $result['email'];
 
          } catch (PDOException $e){
              header("Location:http://localhost/yoyaku-shisutemu/pass_reset/views/databeses_error.html");
