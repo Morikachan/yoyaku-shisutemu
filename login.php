@@ -15,7 +15,7 @@ function getDbConnection() {
 }
 
 function selectUserData($pdo,$mail) {
-    $sql = "SELECT * FROM user_info WHERE mail = :mail";
+    $sql = "SELECT * FROM users_info WHERE mail = :mail";
     try {
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':mail',$mail);
@@ -32,6 +32,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     $mail = $_POST['mail'];
     $passwd = $_POST['passwd'];
     $user = selectUserData($pdo,$mail);
+    echo $user;
     if (!$user) {
         $_SESSION['error'] = '入力されたメールアドレスが見つかりませんでした。</br>もう一度やり直してください。';
         header("Location: ./login.php");
