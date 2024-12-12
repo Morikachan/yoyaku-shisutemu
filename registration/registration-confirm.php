@@ -62,43 +62,45 @@
                         </div>
                         <?php unset($_SESSION['error']);?>
                         <?php endif;?>
-                        <h2>ログイン情報</h2>
-                        <span class="required">必須</span>
-                        <h3>メールアドレス</h3>
-                            <p id="mail"> <?php echo $UserRegistrationInfo['mail'] ?></p>
+                    <h2>ログイン情報</h2>
+                        <span class="required">必須</span><h3>メールアドレス</h3>
+                            <input type="text" name="mail" id="mail" value=<?php echo $UserRegistrationInfo['mail'] ?> readonly>  
                     <h2>個人情報</h2>
-                        <span class="required">必須</span><h3>希望学科</h3>
-                            <p id="course"> <?php echo $UserRegistrationInfo['course'] ?></p>
                         <span class="required">必須</span><h3>氏名</h3>
                         <div>
-                            <div>
-                                <span>性:</span>
-                                <p id="lastName"> <?php echo $UserRegistrationInfo['lastName'] ?></p>
-                                <span>名:</span>
-                                <p id="firstName"> <?php echo $UserRegistrationInfo['firstName'] ?></p>
+                            <h4>姓・名</h4>
+                            <div class="name-container">
+                                <input type="text" name="lastName" id="lastName" value=<?php echo $UserRegistrationInfo['lastName'] ?> readonly>
+                                <input type="text" name="firstName" id="firstName" value=<?php echo $UserRegistrationInfo['firstName'] ?> readonly>
                             </div>
-                            <div>
-                                <span>セイ:</span>
-                                    <p id="lastName"> <?php echo $UserRegistrationInfo['lastNameKana'] ?></p>
-                                    <span>メイ:</span>
-                                    <p id="firstName"> <?php echo $UserRegistrationInfo['firstNameKana'] ?></p>
-                                </div>
+                            <h4>姓・名（フリガナ）</h4>
+                            <div class="name-container">
+                                <input type="text" name="lastNameKana" id="lastNameKana" value=<?php echo $UserRegistrationInfo['lastNameKana'] ?> readonly>
+                                <input type="text" name="firstNameKana" id="firstNameKana" value=<?php echo $UserRegistrationInfo['firstNameKana'] ?> readonly>
                             </div>
+                        </div>
                         <span class="required">必須</span><h3>性別</h3>
-                            <p id="gender"> <?php echo $UserRegistrationInfo['gender'] ?></p>
+                            <input type="text" name="gender" id="gender" value=<?php echo $UserRegistrationInfo['gender'] ?> readonly>
                         <span class="required">必須</span><h3>生年月日</h3>
-                            <p id="date"> <?php echo $UserRegistrationInfo['birthday'] ?></p>
-                            <span class="required">必須</span><h3>職業</h3>
-                            <p id="occupation"> <?php echo $UserRegistrationInfo['occupation']?></p>
-                            <label for="school"><h3>出身学校</h3></label>
-                            <p id="school"> <?php echo $UserRegistrationInfo['school'] ?></p>
-                            <span class="required">必須</span><h3>電話番号</h3>
-                            <p id="tel"> <?php echo $UserRegistrationInfo['tel'] ?></p>
-                            <span class="required">必須</span><h3>住所</h3>
-                            <p id="zipcode"> <?php echo $UserRegistrationInfo['zipcode'] ?></p>
+                            <input type="date" name="date" id="date" value=<?php echo $UserRegistrationInfo['birthday'] ?> readonly>
+                        <span class="required">必須</span><h3>希望学科</h3>
+                            <!-- <input type="text" name="course" id="course" value=<?php echo $UserRegistrationInfo['course'] ?> required readonly> -->
+                            <select name="course" id="course">
+                                <option value="course"><?php echo $UserRegistrationInfo['course'] ?></option>
+                            </select>
+                        <span class="required">必須</span><h3>職業</h3>
+                            <select name="occupation" id="occupation">
+                                <option value="occupation"><?php echo $UserRegistrationInfo['occupation']?></option>
+                            </select>
+                        <label for="school"><h3>出身学校</h3></label>
+                            <input type="text" name="school" id="school" value=<?php echo $UserRegistrationInfo['school'] ?> readonly>
+                        <span class="required">必須</span><h3>電話番号</h3>
+                            <input type="tel" name="tel" id="tel" value=<?php echo $UserRegistrationInfo['tel'] ?> readonly>
+                        <span class="required">必須</span><h3>住所</h3>
+                            <input type="text" name="zipcode" id="zipcode" value=<?php echo $UserRegistrationInfo['zipcode'] ?> readonly>
                             <div class="address">
-                                <p id="address1"> <?php echo $UserRegistrationInfo['address1'] ?></p>
-                                <p id="address2"> <?php echo $UserRegistrationInfo['address2'] ?></p>
+                                <input type="text" name="address1" id="address1" value=<?php echo $UserRegistrationInfo['address1'] ?> readonly>
+                                <input type="text" name="address2" id="address2" value=<?php echo $UserRegistrationInfo['address2'] ?> readonly>
                             </div>
                             <button type="button" method="post" class="login-submit" id="modalBtn">登録</button>
                             <div id="modal" class="modal">

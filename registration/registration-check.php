@@ -48,7 +48,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $gender = $_POST['gender'];
     $date = $_POST['date'];
-    $formattedDate = date("Y/n/j", strtotime($date));
+    $formattedDate = date("Y-m-d", strtotime($date));
 
     $occupation = $_POST['occupation'];
     $school = $_POST['school'];
