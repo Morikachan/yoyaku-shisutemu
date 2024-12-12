@@ -8,6 +8,7 @@ $results = $_SESSION['results'];
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../css/style.css">
         <link rel="stylesheet" href="./mypage.css">
         <title>マイページ</title>
     </head>
@@ -83,7 +84,7 @@ $results = $_SESSION['results'];
                         <h3>・現在の予約状況</h3>
                         <p class="not-Reservation">予約はありません</p>
                         <h3 class="reserve">・予約する</h3>
-                        <p><a href="" class="red-button not-Reservation-button">予約登録</a></p>
+                        <p><a href="../reservation\reservation.php" class="red-button not-Reservation-button">予約登録</a></p>
                     <?php endif; ?>  
                 </div>
                 <div class="accsess">
