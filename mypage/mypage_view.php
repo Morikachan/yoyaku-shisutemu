@@ -77,14 +77,14 @@ $results = $_SESSION['results'];
                         </table>
                         <h3 class="reserve">・予約する</h3>
                         <diV class="Reservation-button">
-                            <p><a href="" class="red-button">予約登録</a></p>
+                            <p><a href="../reservation/reservation.php" class="red-button">予約登録</a></p>
                             <p><a href="../cancel_reservation/cancel.php" class="red-button">予約キャンセル</a></p>
                         </div>
                     <?php else: ?>
                         <h3>・現在の予約状況</h3>
                         <p class="not-Reservation">予約はありません</p>
                         <h3 class="reserve">・予約する</h3>
-                        <p><a href="../reservation\reservation.php" class="red-button not-Reservation-button">予約登録</a></p>
+                        <p><a href="../reservation/reservation.php" class="red-button not-Reservation-button">予約登録</a></p>
                     <?php endif; ?>  
                 </div>
                 <div class="accsess">
