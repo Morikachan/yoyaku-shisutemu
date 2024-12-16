@@ -170,7 +170,7 @@ if(searchToken($pdo, $passwordResetToken)){
             
             
             <div class="content-container">
-                <div class="alert_message">パスワードが一致しません</div>
+                <div class="alert_message">・パスワードが一致しません</div>
                 <form action="./new_pass.php" method="POST">
                     <label>
                         <h3>新しいパスワード</h3>
