@@ -243,6 +243,16 @@ body.active{
 	overflow: hidden;
 }
 
+h3 {
+	font-size: 16px;
+}
+
+.login-submit {
+	padding: 8px;
+	margin: 10px 0;
+	font-size: 14px;
+}
+
 /* ハンバーガメニューが閉じているときのCSS */
 .open{
 	background-image:url("../img/header_hamburger.png") ; 
@@ -354,6 +364,10 @@ header img {
 	}
 	.content-container {
 		width: 100%;
+	}
+	h3 {
+		font-size: 12px;
+		margin: 8px 0px;
 	}
 
 	/* 新規登録ボタンのサイズとデザイン変更 */
