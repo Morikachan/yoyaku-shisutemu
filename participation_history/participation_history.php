@@ -17,11 +17,11 @@ function getDBConnection() {
     }
 }
 //予約日の表示させるやつ
-function checkData($pdo ,$mail , $day){
-    $sql = "SELECT DATE_FORMAT(day, '%Y/%m/%d') as day ,time FROM appointment WHERE mail = :mail AND DATE_FORMAT(day, '%Y/%m/%d') < :day";
+function checkData($pdo ,$id , $day){
+    $sql = "SELECT DATE_FORMAT(day, '%Y/%m/%d') as day ,time FROM appointment WHERE id = :id AND DATE_FORMAT(day, '%Y/%m/%d') < :day";
     try{
         $stmt = $pdo->prepare($sql);
-        $stmt->bindParam(':mail', $mail);
+        $stmt->bindParam(':id', $id);
         $stmt->bindParam(':day', $day);
         $stmt->execute();
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -35,12 +35,12 @@ function checkData($pdo ,$mail , $day){
     }
 }
 //予約日を確認するやつ
-function checknumber($pdo , $mail , $day){
-    $sql = "SELECT * FROM appointment WHERE mail = :mail AND DATE_FORMAT(day, '%Y/%m/%d') < :day";
+function checknumber($pdo , $id , $day){
+    $sql = "SELECT * FROM appointment WHERE id = :id AND DATE_FORMAT(day, '%Y/%m/%d') < :day";
 
     try{
         $stmt = $pdo->prepare($sql);
-        $stmt->bindParam(':mail', $mail);
+        $stmt->bindParam(':id', $id);
         $stmt->bindParam(':day', $day);
         $stmt->execute();
         //$results = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -53,11 +53,21 @@ function checknumber($pdo , $mail , $day){
         return false;
     }
 }
-$mail = $_SESSION['mail'];
+$id = $_SESSION['id'];
 $day = date("Y/m/d");
 $pdo = getDBConnection();
-$result = checkData($pdo , $mail , $day);
-$result2 = checknumber($pdo , $mail , $day);
+$result = checkData($pdo , $id , $day);
+$result2 = checknumber($pdo , $id , $day);
+
+$delte = $_SESSION['delte'];
+
+if($delte = 1){
+    $delte = $_SESSION['delte'];
+}
+else{
+    $delte = 0;
+    $_SESSION['delte'] = $delte;
+}
 
 header('Location: ./participation_history_view.php');
 
