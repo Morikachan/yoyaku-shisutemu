@@ -17,8 +17,9 @@ $passwordResetToken = $token;
 //10秒とする
 // $tokenValidPeriod = (new \DateTime())->modify("-10 second")->format('Y-m-d H:i:s');
  //データベースのデータの参照
- require_once '../database.php';
- $pdo = getDb();
+ //データベースへのアクセス
+require_once '../../core/Database.php';
+$pdo = Database::getInstance()->getPDO();
 
   //データの検索処理
   function searchData($pdo,$passwordResetToken){

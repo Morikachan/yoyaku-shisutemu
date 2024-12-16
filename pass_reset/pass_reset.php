@@ -38,8 +38,10 @@ $passwordResetToken = bin2hex(random_bytes(32));
     }
 //ここまでメールの設定
 //ここからデータベースの処理
-        require_once './database.php';
-        $pdo = getDb();
+
+//データベースへのアクセス
+require_once '../core/Database.php';
+$pdo = Database::getInstance()->getPDO();
 
         //データの検索処理
         function searchData($pdo , $mail){

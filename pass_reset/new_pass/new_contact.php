@@ -4,8 +4,9 @@
 //最初にトークンの確認処理をしています。
 
 //データベースのデータの参照
-require_once '../database.php';
-$pdo = getDb();
+//データベースへのアクセス
+require_once '../../core/Database.php';
+$pdo = Database::getInstance()->getPDO();
 
 session_set_cookie_params(60 * 3);
 //session利用開始
@@ -63,6 +64,8 @@ try{
     
     } catch (PDOException $e){
         header("Location:http://localhost/yoyaku-shisutemu/pass_reset/views/databeses_error.html");
+        $mail = searchData($pdo, $passwordResetToken);
+        deleteData($pdo , $mail);
         exit();
     } 
 }  
