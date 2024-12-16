@@ -1,8 +1,8 @@
 <?php
 session_start();
 $results = $_SESSION['results'];
+$delte = $_SESSION['delte'];
 ?>
-
 <!DOCTYPE html>
 <html lang="ja">
     <head>
@@ -13,38 +13,7 @@ $results = $_SESSION['results'];
     </head>
     <body>
     <script src="./hamburger.js"></script>
-        <header>
-            <div class="header-wrap">
-                <img src="../img/image 1.png" alt="Arts_Logo">
-            </div>
-            <!-- ロゴを除くオブジェクトを右に固定するためのdiv -->
-            <div class="flex_header">    
-                
-                  <!-- ハンバーガメニューのリスト -->
-                  <ul class="c-header__list c-hamburger-menu__list" id="hamburger-menu_list"><!-- 追記 クラスを追記 -->
-                      <li class="c-header__list-item">
-                        <a href="https://www.kccollege.ac.jp/" class="c-header__list-link">ホームページへ</a>
-                      </li>
-                      <li class="c-header__list-item">
-                        <a href="#" class="c-header__list-link">参加履歴</a>
-                      </li>
-                      <li class="c-header__list-item">
-                        <a href="#" class="c-header__list-link">登録内容の変更</a>
-                      </li>
-                      <li class="c-header__list-item">
-                        <a href="#" class="c-header__list-link">アカウント削除</a>
-                      </li>
-                      <li class="c-header__list-item">
-                        <a href="#" class="c-header__list-link">お問い合わせ</a>
-                      </li>
-                  </ul>
-                  
-                  <!-- 新規登録ボタン -->
-                  <a href="#" class="red-button">新規登録</a>
-                  <!-- ハンバーガボタン -->
-                  <div id="hamburger-btn" class="open" onclick="hamburgerClick()"></div>
-            </div>
-        </header>
+    
         <main>
             <p class="locatoin"><a href="">ホームページ</a>へ/<a href="../mypage/mypage.php">マイページ</a>へ/参加履歴</p>
             <h1>参加履歴</h1>
@@ -97,21 +66,28 @@ $results = $_SESSION['results'];
                             <?php $counter++; endforeach; ?>
                             </tbody>
                         </table>
-                        <diV class="button">
-                            <p><a href="" class="red-button">予約登録</a></p>
-                            <p><a href="../mypage/mypage.php" class="red-button">マイページ</a></p>
-                        </div>
+                        <p class="mypage-move"><a href="../mypage/mypage.php" class="red-button">マイページ</a></p>
                     </div>
                 <?php else: ?>
                     <h2>参加情報</h2>
                     <div class="participation">
-                        
+                        <?php if(!empty($delte)){ ?>
+                            <dialog open class="deletedialog">
+                                <p>削除が完了しました</P>
+                                <p class="close-font"><button class="close">閉じる</button></P>
+                            </dialog>
+                            <script>
+                                const deletedialog = document.querySelector('.deletedialog');
+                                const close = document.querySelector('.close');
+                                //ダイアログを閉じる
+                                close.addEventListener('click', () => {
+                                    deletedialog.close();
+                                });
+                            </script>
+                        <?php $_SESSION['delte'] = 0;} ?>
                         <h3>参加履歴</h3>
                         <p class="none-participation">・現在参加履歴はありません</p>
-                        <diV class="button">
-                            <p><a href="" class="red-button">予約登録</a></p>
-                            <p><a href="../mypage/mypage.php" class="red-button">マイページ</a></p>
-                        </div>
+                        <p class="mypage-move"><a href="../mypage/mypage.php" class="red-button">マイページ</a></p>
                     </div>
                 <?php endif; ?>        
             </div>
