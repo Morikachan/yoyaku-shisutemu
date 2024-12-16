@@ -53,10 +53,7 @@ $results = $_SESSION['results'];
                 <h2>予約情報</h2>
                 <div class="Reservation">
                     <?php if($results): ?>
-                        <div class="title">
-                            <h3>・現在の予約状況</h3>
-                            <a href="./mypage.php" class="red-button">情報を更新する</a>
-                        </div>
+                        <h3>・現在の予約状況</h3>
                         <table border="1">
                             <thead>
                                 <tr>
