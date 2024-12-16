@@ -133,14 +133,57 @@ td {
     margin-top: 20px;
 }
 .delete-history{
-    margin-top: 40px;
+    margin-top: 10px;
     text-align: right;
 }
-.delete-history a{
-    text-decoration: none;
-    color: #444444;
+.delete-history button{
+    border: none;
+    background-color: #e3e2de;
+    font-size: 1em;
 }
 .delete-history span{
     color: #0055a6;
 }
+.mypage-move{
+    margin-top: 20px;
+    text-align: center;
+}
+/*ダイアログ*/
+.dialogDemo {
+    margin: 100px auto 0;
+    font-size: 30px;
+    font-weight: bold;
+    padding: 40px 70px;
+    border-radius: 20px;
+}
+.chose{
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
+}
+.yes,
+.no,
+.close {
+    border: none;
+    padding: 10px 20px;
+    font-weight: bold;
+    font-size: 20px;
+    background-color: #CF220E;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 20px;
+}
+.close-font{
+    text-align: center;
+    margin-top: 20px;
+}
+.deletedialog{
+    top: 100px;
+    margin: 0 auto;
+    font-size: 30px;
+    font-weight: bold;
+    padding: 40px 70px;
+    border-radius: 20px;
+}
+
 /*ここまで参加履歴についてのCSS*/
