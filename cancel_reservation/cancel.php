@@ -67,6 +67,7 @@ $results = $_SESSION['results'];
                                 </P>
                             </div>
                             <button type="submit" class="red-button">予約キャンセル</button>
+                            <p><a href="../mypage/mypage.php" class="red-button">マイページ</a></p>
                         </form>
                     <?php else: ?>
                         <h3>・現在の予約状況</h3>
