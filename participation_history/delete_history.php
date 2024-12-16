@@ -18,10 +18,11 @@
         }
     }
     //参加日消すやつ
-    function checkData($pdo , $day){
-        $sql = "DELETE FROM appointment WHERE DATE_FORMAT(day, '%Y/%m/%d') <= :day";
+    function checkData($pdo , $id , $day){
+        $sql = "DELETE FROM appointment WHERE id = :id AND DATE_FORMAT(day, '%Y/%m/%d') <= :day";
         try{
             $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(':id', $id);
             $stmt->bindParam(':day', $day);
             $stmt->execute();
             $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -35,10 +36,15 @@
         }
     }
 
+    $id = $_SESSION['id'];
     $day = date("Y/m/d");
     $pdo = getDBConnection();
-    $result = checkData($pdo , $day);
+    $result = checkData($pdo , $id , $day);
 
+    $delte = 1;
+    $_SESSION['delte'] = $delte;
+    
     header('Location: ./participation_history.php');
-
+    exit;
+    
 ?>
