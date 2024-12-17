@@ -175,12 +175,12 @@ if(searchToken($pdo, $passwordResetToken)){
                 <form action="./new_pass.php" method="POST">
                     <label>
                         <h3>新しいパスワード</h3>
-                        <input type="password" name="reset_pass" id="reset_pass">
+                        <input type="password" class="input" name="reset_pass" id="reset_pass">
                     </label>
                     <br>
                     <label>
                         <h3>パスワード（確認用）</h3>
-                        <input type="password" name="repeat_pass" id="repeat_pass">
+                        <input type="password" class="input" name="repeat_pass" id="repeat_pass">
                     </label>
                     <br>
                     <button type="submit" class="login-submit" id="sendButton" disabled>送信する</button>
