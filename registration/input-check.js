@@ -9,18 +9,18 @@ const firstName = document.getElementById("firstName");
 const lastNameKana = document.getElementById("lastNameKana");
 const firstNameKana = document.getElementById("firstNameKana");
 
-const genderMan = document.getElementById("genderMan");
-const genderWoman = document.getElementById("genderWoman");
+const genders = document.querySelector("input[type='radio']");
 const date = document.getElementById("date");
 const course = document.getElementById("course");
 const occupation = document.getElementById("occupation");
 const school = document.getElementById("school");
 const tel = document.getElementById("tel");
 const zipcode = document.getElementById("zipcode");
+const address1 = document.getElementById("address1");
 const address2 = document.getElementById("address2");
 
 const approved = document.getElementById("approved");
-const button = document.getElementsByTagName("button");
+const button = document.querySelector("button");
 
 const registrationInfo = {
   mail: {
@@ -83,14 +83,15 @@ const registrationInfo = {
     elementError: document.getElementById("addressError"),
     elementErrorText: "郵便番号を入れてください",
   },
+  address1: {
+    element: address1,
+  },
   address2: {
     element: address2,
     elementError: document.getElementById("addressError"),
     elementErrorText: "住所情報を入れてください",
   },
 };
-
-console.log("HI!");
 
 const userInfo = {
   mail: null,
@@ -107,6 +108,7 @@ const userInfo = {
   school: null,
   tel: null,
   zipcode: null,
+  address1: null,
   address2: null,
 };
 
@@ -114,8 +116,8 @@ for (let registrationKey in registrationInfo) {
   registrationInfo[registrationKey].element.addEventListener("change", () => {
     userInfo[registrationKey] = null;
     approved.checked = false;
-    button[0].disabled = true;
-    button[0].textContent = "新規登録の情報を入力してください";
+    button.disabled = true;
+    button.textContent = "新規登録の情報を入力してください";
     if (registrationInfo[registrationKey].element.value === "") {
       registrationInfo[registrationKey].elementError.style.display =
         "inline-block";
@@ -129,26 +131,24 @@ for (let registrationKey in registrationInfo) {
       registrationInfo[registrationKey].elementError.style.display = "none";
       registrationInfo[registrationKey].element.style.backgroundColor =
         "#FFFFFF";
+      inputInfoToLocalStorage();
     }
   });
 }
 
 passwordCheck.addEventListener("change", () => {
   const passwordCheckError = document.getElementById("passwordCheckError");
-  if (passwordCheck.value === "") {
-    passwordCheckError.style.display = "inline-block";
-    passwordCheckError.textContent = "パスワード確認を入力してください";
-    passwordCheck.style.backgroundColor = "#FF8989";
-  } else if (passwordCheck.value !== password.value) {
+  if (passwordCheck.value !== password.value) {
     passwordCheckError.style.display = "inline-block";
     passwordCheckError.textContent = "パスワードとパスワード確認が違います";
     passwordCheck.style.backgroundColor = "#FF8989";
-    button[0].disabled = true;
-    button[0].textContent = "新規登録の情報を入力してください";
+    button.disabled = true;
+    button.textContent = "新規登録の情報を入力してください";
   } else {
     passwordCheckError.style.display = "none";
     passwordCheck.style.backgroundColor = "#FFFFFF";
     userInfo.passwordCheck = passwordCheck.value;
+    inputInfoToLocalStorage();
   }
 });
 
@@ -161,26 +161,48 @@ if (!genderMan.checked || !genderWoman.checked) {
 genderMan.addEventListener("change", () => {
   genderError.style.display = "none";
   userInfo.gender = true;
+  localStorage.setItem('gender', true);
 });
 genderWoman.addEventListener("change", () => {
   userInfo.gender = true;
   genderError.style.display = "none";
+  localStorage.setItem('gender', true);
 });
+
+const inputInfoToLocalStorage = () => {
+  for (let field in userInfo) {
+    localStorage.setItem(field, userInfo[field]);
+  }
+}
+
+const checkLocalStorage = () => {
+  for (let registrationKey in registrationInfo) {
+    if(localStorage.getItem(registrationKey) != "null") {
+      registrationInfo[registrationKey].element.value = localStorage.getItem(registrationKey);
+    }
+    password.value = localStorage.getItem(password);
+    passwordCheck.value = localStorage.getItem(password);
+    // 性別
+    userInfo[registrationKey] = localStorage.getItem(registrationKey);
+  }
+}
 // checkboxの処理
 approved.addEventListener("change", () => {
   console.log(userInfo);
 
   if (approved.checked) {
-    button[0].disabled = false;
-    button[0].textContent = "確認画面へ";
+    button.disabled = false;
+    button.textContent = "確認画面へ";
     for (let key in userInfo) {
       if (userInfo[key] === null || userInfo[key] === "") {
-        button[0].disabled = true;
-        button[0].textContent = "新規登録の情報を入力してください";
+        button.disabled = true;
+        button.textContent = "新規登録の情報を入力してください";
       }
     }
   } else {
-    button[0].disabled = true;
-    button[0].textContent = "新規登録の情報を入力してください";
+    button.disabled = true;
+    button.textContent = "新規登録の情報を入力してください";
   }
 });
+
+checkLocalStorage();

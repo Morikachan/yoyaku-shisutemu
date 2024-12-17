@@ -103,8 +103,9 @@
                         <div>
                             <span class="required">必須</span><h3>性別</h3>
                             <div class="gender-container">
-                                <label><p><input type="radio" name="gender" value="男性" id="genderMan">男性</p></label>
-                                <label><p></p><input type="radio" name="gender" value="女性" id="genderWoman">女性</p></label>
+                                <label><p><input type="radio" name="gender" value="男性" id="0">男性</p></label>
+                                <label><p><input type="radio" name="gender" value="女性" id="1">女性</p></label>
+                                <label><p><input type="radio" name="gender" value="その他" id="2">その他</p></label>
                             </div>
                             <span id="genderError" class="errorMessage"></span>
                         </div>

@@ -13,6 +13,7 @@ function insertConfirm() {
       if (responseData.status === true) {
         body.style.overflow = 'hidden';
         modal.style.display = 'block';
+        localStorage.clear();
       } else {
         alert("失敗発生");
       }
