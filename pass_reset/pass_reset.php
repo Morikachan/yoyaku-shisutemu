@@ -62,7 +62,11 @@ $pdo = Database::getInstance()->getPDO();
         }    
         //トークンの登録処理
         function insertToken($pdo , $mail, $passwordResetToken){
-            $sql = "INSERT INTO reset_info (email, token) VALUES (:email,:token)";
+            if(searchToken($pdo , $mail)){
+                $sql = "UPDATE reset_info SET token = :token WHERE  email = :email";
+            } else {
+                $sql = "INSERT INTO reset_info (email, token) VALUES (:email,:token)";
+            }
             try{
                 //SQL文に入れる値の設定
                 $stmt = $pdo->prepare($sql);
@@ -77,6 +81,22 @@ $pdo = Database::getInstance()->getPDO();
             }
         }
             
+        function searchToken($pdo , $mail){
+            $sql = "SELECT * FROM reset_info WHERE email = :mail ";
+            try{
+                //SQL文に入れる値の設定
+                $stmt = $pdo->prepare($sql);
+                $stmt -> bindParam(":mail" , $mail);;
+                $stmt -> execute();
+                // return $stmt -> execute(); // true or false
+                $rowsAffected = $stmt -> rowCount();
+                return $rowsAffected > 0;
+            } catch (PDOException $e){
+                echo $e->getMessage();
+                return false;
+            }
+
+        }
 
 
         $maildata = searchData($pdo , $mail);
