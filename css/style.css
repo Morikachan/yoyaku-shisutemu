@@ -224,8 +224,27 @@ header img {
   }
 }
   
-  
+footer .footer-container {
+	display: flex;
+	justify-content: space-between;
+	height: 120px;
+	padding: 16px;
+	background-color: #333333;
+	color: #ffffff;
+}
 
+.footer-section {
+	flex-basis: 31%;
+}
+
+.footer-section h3 {
+
+}
+
+footer small {
+	background-color: rgb(40, 40, 40);
+	color: #D9D9D9;
+}
 
 /* タブレット用 */
 /* デザインの都合上大きく設定しています */
