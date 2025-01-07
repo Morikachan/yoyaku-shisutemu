@@ -37,15 +37,15 @@ function newPass(){
             //例外処理
 
             if((resetValue === repeatValue)){
-                alert_message.classList.add('active');
-            } else {
                 alert_message.classList.remove('active');
+            } else {
+                alert_message.classList.add('active');
             }
 
             } if(((countPass >= 8) && (countPass2 >= 8))){
-                alert_message2.classList.add('active');
-            } else{
                 alert_message2.classList.remove('active');
+            } else {
+                alert_message2.classList.add('active');
             }
             input.classList.add('active');
             input2.classList.add('active');
