@@ -85,7 +85,6 @@ button[type="submit"].active{
     height: 50px;
     display: block;
     background-color: #FF8989;
-    border-radius: 4px;
 }
 .alert_message2{
     display: none;
@@ -95,12 +94,13 @@ button[type="submit"].active{
     height: 50px;
     display: block;
     background-color: #FF8989;
-    border-radius: 4px;
 }
-input[type="password"].active{
+.input.active{
    background-color: #FF8989;
 }
-
+.input2.active{
+    background-color: #FF8989;
+ }
 @media screen and (max-width: 1024px){
      /* main{
         width: 80%;

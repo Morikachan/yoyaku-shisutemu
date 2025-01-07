@@ -180,7 +180,7 @@ if(searchToken($pdo, $passwordResetToken)){
                     <br>
                     <label>
                         <h3>パスワード（確認用）</h3>
-                        <input type="password" class="input" name="repeat_pass" id="repeat_pass">
+                        <input type="password" class="input2" name="repeat_pass" id="repeat_pass">
                     </label>
                     <br>
                     <button type="submit" class="login-submit" id="sendButton" disabled>送信する</button>
