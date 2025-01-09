@@ -16,13 +16,12 @@ repeat_pass.addEventListener('change', function pass(event){
     newPass();
 });
 function newPass(){
-
+  
     const repeatValue = repeat_pass.value;
     const resetValue = reset_pass.value;
     const countPass = resetValue.length;
     const countPass2 = repeatValue.length;
-    console.log(countPass);
-    console.log(countPass2);
+
     if(resetValue && repeatValue){
         if(((countPass >= 8) && (countPass2 >= 8)) && (resetValue === repeatValue)){
             //一致した場合
@@ -38,21 +37,25 @@ function newPass(){
 
             if((resetValue === repeatValue)){
                 alert_message.classList.remove('active');
+                
             } else {
                 alert_message.classList.add('active');
+              
             }
 
-            } if(((countPass >= 8) && (countPass2 >= 8))){
+            if(((countPass >= 8) && (countPass2 >= 8))){
                 alert_message2.classList.remove('active');
+               
             } else {
                 alert_message2.classList.add('active');
+                
             }
             input.classList.add('active');
             input2.classList.add('active');
             button.style.backgroundColor = '#888888';
             button.style.color = '#000000';
             button.disabled = true;
-        
+        }
     } else {
         //例外処理
         button.style.backgroundColor = '#888888';
