@@ -2,6 +2,7 @@ const reset_pass = document.getElementById('reset_pass');
 const repeat_pass = document.getElementById('repeat_pass');
 const alert_message =document.querySelector('.alert_message');
 const alert_message2 =document.querySelector('.alert_message2');
+const alert_message3 =document.querySelector('.alert_message3');
 const body = document.querySelector("body");
 const button = document.getElementById('sendButton');
 const input = document.querySelector('.input');
@@ -23,10 +24,11 @@ function newPass(){
     const countPass2 = repeatValue.length;
 
     if(resetValue && repeatValue){
-        if(((countPass >= 8) && (countPass2 >= 8)) && (resetValue === repeatValue)){
+        if(((countPass >= 16) && (countPass2 >= 16)) && (resetValue === repeatValue)){
             //一致した場合
             alert_message.classList.remove('active');
             alert_message2.classList.remove('active');
+            alert_message3.classList.remove('active');
             input.classList.remove('active');
             input2.classList.remove('active');
             button.style.backgroundColor = '#CF220E';
@@ -43,13 +45,19 @@ function newPass(){
               
             }
 
-            if(((countPass >= 8) && (countPass2 >= 8))){
+            if(((countPass >= 16) && (countPass2 >= 16))){
                 alert_message2.classList.remove('active');
                
             } else {
                 alert_message2.classList.add('active');
                 
             }
+            if(((countPass <= 64) && (countPass2 <= 64))){
+                alert_message3.classList.remove('active');
+            } else {
+                alert_message3.classList.add('active');
+            }
+            
             input.classList.add('active');
             input2.classList.add('active');
             button.style.backgroundColor = '#888888';
