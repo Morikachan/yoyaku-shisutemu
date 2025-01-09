@@ -102,6 +102,7 @@
                                 <input type="text" name="address1" id="address1" value=<?php echo $UserRegistrationInfo['address1'] ?> readonly>
                                 <input type="text" name="address2" id="address2" value=<?php echo $UserRegistrationInfo['address2'] ?> readonly>
                             </div>
+                            <button type="button" class="login-submit" onclick="history.back()">戻る</button>
                             <button type="button" method="post" class="login-submit" id="modalBtn">登録</button>
                             <div id="modal" class="modal">
                                 <div class="modal-content">

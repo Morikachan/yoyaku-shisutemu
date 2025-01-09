@@ -223,14 +223,16 @@ header img {
 	text-align: center;
   }
 }
+
+footer {
+	background-color: #333333;
+	color: #ffffff;
+}
   
 footer .footer-container {
 	display: flex;
 	justify-content: space-between;
-	height: 120px;
-	padding: 16px;
-	background-color: #333333;
-	color: #ffffff;
+	padding: 16px 20px;
 }
 
 .footer-section {
@@ -242,6 +244,12 @@ footer .footer-container {
 }
 
 footer small {
+	display: block;
+	max-width: 100%;
+	font-size: 18px;
+	font-weight: bold;
+	padding: 4px;
+	text-align: center;
 	background-color: rgb(40, 40, 40);
 	color: #D9D9D9;
 }
