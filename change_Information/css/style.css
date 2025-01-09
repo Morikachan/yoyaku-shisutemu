@@ -1,4 +1,7 @@
 @charset "UTF-8";
+select {
+	font-size: 16px;
+}
 .content-container {
 	width: 70%;
 }
@@ -12,7 +15,7 @@ th {
 	border-collapse: collapse;
 	/* border: 1.5px solid #000000; */
 	border-bottom: 1px solid #9a9a9a;
-	padding: 30px 10px;
+padding: 30px 10px;
 }
 th {
 	width: 150px;
@@ -22,31 +25,14 @@ th {
 	display: block;
 	margin: 50px auto;
 }
-
-
-/* 電話番号のハイフン */
-td { 
-	font-size: 0;
-}
-/* 電話番号の入力スペース */
-.size150 {
-	width: 126px;
-	height: 26px;
-	padding: 10px;
-}
 /* 性別を選択するチェックボックス */
 .fontSizeChange {
 	font-size: 15px;
 	padding: 0 7px;
 }
 /* 名前の入力箇所 */
-.nameSpace {
-	display: inline-block;
-	margin-right: 5px;
-	margin-bottom: 20px;
-	width: 30%;
-	height: 20px;
-	padding:13px;
+.nameSpace{
+	width: 40% !important;
 }
 /* input部分 */
 .width_100percent {
@@ -55,11 +41,102 @@ td {
 	height: 50px;
 	padding:10px;
 }
-
+/* selectの矢印 */
 .arrow {
 	appearance: none;
 	background-image: url(../../img/arrow.png);
 	background-repeat: no-repeat;
 	background-size: 18px auto;
 	background-position: right 12px center; 
+}
+
+  .info-message {
+	padding: 20px;
+	background-color: #91ff89;
+	margin-bottom: 20px;
+	text-align: center;
+  }
+
+/* 900px以下は名前の入力欄を横に伸ばす */
+@media screen and (max-width: 900px) {
+	.nameSpace {
+		width: 100% !important;
+	}
+}
+
+/* ボタンが無効（初期状態） */
+.btn-disabled {
+	background-color: gray;
+	color: white;
+	cursor: not-allowed;
+}
+
+/* ボタンが有効（変更があった場合） */
+.btn-enabled {
+	background-color: red;
+	color: white;
+	cursor: pointer;
+}
+
+
+
+
+/*==============================================================*/
+/*popup template design*/
+.popup-background{
+/*position size*/
+position: fixed;
+z-index : 100;
+top : 0;
+left : 0;
+height : 100vh;
+width : 100vw;
+
+/*design*/
+background-color: gray;
+opacity : 0.5
+}
+.popup{
+/*position size*/
+--height : 300px;
+--width : 300px;
+z-index : 101;
+position: fixed;
+top : calc(50vh - calc(var(--height) / 2));
+left : calc(50vw - calc(var(--width) / 2));
+height : var(--height);
+width : var(--width);
+
+/*design*/
+overflow : hidden;
+background-color: white;
+border-radius: 10px;
+box-shadow: 0px 0px 3px 1px gray;
+}
+.popup > .close-button{
+/*position size*/
+--size : 20px;
+position:absolute;
+top : calc(var(--size)/4);
+left : calc(var(--width) - var(--size) * 5/4);/*css variables are available in children*/
+height : var(--size);
+width : var(--size);
+
+/*design*/
+display: flex;
+justify-content: center;
+align-items: center;
+background-color: transparent;
+color : gray;
+font-size: var(--size);
+border-radius: calc(var(--size)/5);
+}
+.popup > .close-button:hover{
+/*design*/
+background-color: red;
+color : white;
+}
+.popup > .content{
+padding: 10px;
+text-align: center;
 }

@@ -1,9 +1,13 @@
 <?php
 session_start();
+
+// このページに直接飛ばされたとき
+if(!isset($_SESSION['results'])){
+    header("Location: ../backend/getUserData.php");
+    exit;
+}
 $results = $_SESSION['results'];
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="ja">
@@ -13,6 +17,16 @@ $results = $_SESSION['results'];
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="../css/style.css">
     <script src="../../login.js"></script>
+    <script src="https://yubinbango.github.io/yubinbango/yubinbango.js" charset="UTF-8"></script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript" src="../backend/jquery.autoKana.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            $.fn.autoKana('input[name="firstName"] ', 'input[name="firstKana"]', {katakana:true});
+            $.fn.autoKana('input[name="lastName"] ', 'input[name="lastKana"]', {katakana:true});
+        });	
+    </script>
     <title>登録情報の変更</title>
 </head>
 <body>
@@ -55,13 +69,19 @@ $results = $_SESSION['results'];
         <h1>登録情報の変更</h1>
         <div class="content-container">
             <!-- inputに予めvalueで値を入れておく -->
-            <form action="../backend/checkData.php" method="post">
+            <?php if (isset($_SESSION['message'])): ?>
+                <div class="info-message">
+                    <?php echo htmlspecialchars($_SESSION['message'], ENT_QUOTES, 'UTF-8'); ?>
+                    <?php unset($_SESSION['message']); ?>
+                </div>
+            <?php endif; ?>
+            <form action="../backend/checkData.php" method="post" class="h-adr">
                 <?php foreach ($results as $row): ?>
+                    <input name="id" type="hidden" value=<?php echo $row['id']?>>
                     <!-- 名前や電話番号を区切って配列に入れています -->
                     <?php
                         $name = explode("　",$row['name']);
                         $katakana = explode("　",$row['katakana']);
-                        $tel = explode("-",$row['tel']);
                     ?>
                     <table border="0">
                         <tr>
@@ -69,7 +89,6 @@ $results = $_SESSION['results'];
                             <td>
                                 <input class="nameSpace" name="lastName" type="text" value=<?php echo $name[0]?> placeholder="性" required>
                                 <input class="nameSpace" name="firstName" type="text" value=<?php echo $name[1]?> placeholder="名" required>
-                                <br>
                                 <input class="nameSpace" name="lastKana" type="text" value=<?php echo $katakana[0]?> placeholder="セイ" required>
                                 <input class="nameSpace" name="firstKana" type="text" value=<?php echo $katakana[1]?> placeholder="メイ" required>
                             </td>
@@ -126,29 +145,41 @@ $results = $_SESSION['results'];
                         </tr>
                         <tr>
                             <th>出身学校</th>
-                            <td><input class="width_100percent" type="text" name="school" value=<?php echo $row['school']?> required></td>
+                            <td>
+                                <input class="width_100percent" type="text" name="school" value=<?php echo $row['school']?> required>
+                            </td>
                         </tr>
                         <tr>
                             <th>電話番号</th>
                             <td>
-                                <input class="size150" type="text" name="thirdTel" value=<?php echo $row['tel']?> maxlength="11" required>
+                                <input type="text" name="tel" value=<?php echo $row['tel']?> maxlength="11" required>
                             </td>
                         </tr>
                         <tr>
                             <th>住所</th>
                             <td>
-                                <input class="width_100percent" type="text" name="address" value=<?php echo $row['address']?> required>
-
+                                <input type="hidden" class="p-country-name" value="Japan">
+                                <p>郵便番号：</p>
+                                <input type="text" class="p-postal-code" name="postalcode" value=<?php echo $row['postalcode']?> maxlength="7" required><br>
+                                <p>住所</p>
+                                <input type="text" id="address" class="p-region p-locality p-street-address p-extended-address" name="address" value=<?php echo $row['address']?> required>
+                                <!-- <p>町域名・番地</p>
+                                <input type="text" id="address" class="p-street-address p-extended-address" name="address2" value=<?php echo $row['address']?>>
+                                <p>建物名 部屋番号</p>
+                                <input type="text" id="waddress" name="address3"> -->
                             </td>
                         </tr>
+                        
                         <tr>
                             <th>メールアドレス</th>
-                            <td><input class="width_100percent" type="email" name="mail" value=<?php echo $row['mail']?> required></td>
+                            <td>
+                                <input class="width_100percent" type="email" name="mail" value=<?php echo $row['mail']?> required>
+                            </td>
                         </tr>
                         <tr>
                             <th>希望学科</th>
                             <td>
-                                <select name="cource" class="width_100percent arrow">
+                                <select name="course" class="width_100percent arrow">
                                     <option value="ゲーム学科" <?= $row['course'] == 'ゲーム学科' ? 'selected' : ''; ?>>ゲーム学科</option>
                                     <option value="デザイン学科" <?= $row['course'] == 'デザイン学科' ? 'selected' : ''; ?>>デザイン学科</option>
                                     <option value="情報処理学科" <?= $row['course'] == '情報処理学科' ? 'selected' : ''; ?>>情報処理学科</option>
@@ -158,9 +189,110 @@ $results = $_SESSION['results'];
                         </tr>
                     </table>
                 <?php endforeach; ?>
-                <button type="submit" class="login-submit">変更</button>
+                <button type="submit" class="login-submit btn-disabled" disabled>変更</button>
             </form>
         </div>
     </main>
+
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.querySelector("form");
+            const inputs = form.querySelectorAll("input, select, textarea"); // フォーム内すべての入力要素を取得
+            const submitButton = form.querySelector(".login-submit");
+
+            // 初期値を保存
+            const initialValues = Array.from(inputs).map(input => {
+                if (input.type === "radio") {
+                    // ラジオボタンは選択されている値を保存
+                    const radioGroup = form.querySelectorAll(`input[name="${input.name}"]`);
+                    return Array.from(radioGroup).find(radio => radio.checked)?.value || "";
+                }
+                return input.value;
+            });
+
+            // 入力値が変更されたかどうかを確認する関数
+            function checkForChanges() {
+                let hasChanges = false;
+                inputs.forEach((input, index) => {
+                    if (input.type === "radio") {
+                        // ラジオボタンは選択されている値をチェック
+                        const radioGroup = form.querySelectorAll(`input[name="${input.name}"]`);
+                        const selectedValue = Array.from(radioGroup).find(radio => radio.checked)?.value || "";
+                        if (selectedValue !== initialValues[index]) {
+                            hasChanges = true;
+                        }
+                    } else {
+                        // その他の要素は値を直接比較
+                        if (input.value !== initialValues[index]) {
+                            hasChanges = true;
+                        }
+                    }
+                });
+
+                // クラスと状態の切り替え
+                if (hasChanges) {
+                    submitButton.disabled = false;
+                    submitButton.classList.remove("btn-disabled");
+                    submitButton.classList.add("btn-enabled");
+                } else {
+                    submitButton.disabled = true;
+                    submitButton.classList.remove("btn-enabled");
+                    submitButton.classList.add("btn-disabled");
+                }
+            }
+
+            // 入力要素の変更を監視
+            inputs.forEach(input => {
+                input.addEventListener("input", checkForChanges);
+                input.addEventListener("change", checkForChanges); // ラジオボタンやセレクトボックスに対応
+            });
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const inputs = document.querySelectorAll("input[required], select[required]");
+
+            inputs.forEach(input => {
+                // フォーカスが外れた時の処理
+                input.addEventListener("blur", function () {
+                    const container = input.parentNode; // 親要素
+                    let errorMessage = container.querySelector(".error-text");
+
+                    // 既存のエラーメッセージがある場合は削除
+                    if (errorMessage) {
+                        errorMessage.remove();
+                    }
+
+                    // 入力が空の場合のみエラーメッセージを表示
+                    if (!input.value.trim()) {
+                        const error = document.createElement("div");
+                        error.className = "error-text";
+                        error.style.color = "red";
+                        error.style.fontSize = "0.9em";
+
+                        // 関連するthタグまたはpタグの内容を取得
+                        const th = input.closest("tr")?.querySelector("th");
+                        const p = input.previousElementSibling?.tagName === "P" ? input.previousElementSibling : null;
+
+                        const fieldName = th ? th.innerText : (p ? p.innerText.replace('：', '') : "この項目");
+
+                        error.innerText = `${fieldName} を入力してください。`;
+                        container.appendChild(error);
+                    }
+                });
+
+                // 入力が行われた時の処理（エラーメッセージ削除）
+                input.addEventListener("input", function () {
+                    const container = input.parentNode;
+                    let errorMessage = container.querySelector(".error-text");
+
+                    if (errorMessage) {
+                        errorMessage.remove();
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>

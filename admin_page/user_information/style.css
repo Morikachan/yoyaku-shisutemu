@@ -7,6 +7,7 @@
 .table_wrap table {
     min-width: 2500px;
 }
+
 table {
     border-collapse: collapse;
     width: 100%;
@@ -23,10 +24,23 @@ td {
     /* vertical-align: top; */
 }
 th {
-  color: #ffffff;
-  background-color: #ff0000;
+    color: #ffffff;
+    background-color: #ff0000;
+}
+/* テーブルを縞模様にする */
+/* 奇数行のスタイル */
+table tr:nth-child(odd){
+    background-color:#f0f0f0;
+}
+/* 偶数行のスタイル */
+table tr:nth-child(even){
+    background-color:white;
 }
 .message_scroll {
     height: 80px;
     overflow: auto;
 }
+
+
+
+/* ---------------------------------変更点--------------------------------- */
