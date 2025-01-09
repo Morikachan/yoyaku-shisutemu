@@ -1,6 +1,6 @@
 <?php 
 session_start();
-session_destroy();
+// session_destroy();
 // 直接このphpファイルパスを指定された場合、ログイン画面に遷移させる
 if((!isset($_SESSION['logged']) || $_SESSION['logged'] !== true)){
     header("Location: ../admin_login/admin_login.php");
@@ -67,6 +67,11 @@ $results = $_SESSION['results'];
     </header>
     <main>
         <h1>予約情報</h1>
+
+        <!-- 選択ボタン -->
+        <button type="button" id="select-button">選択</button>
+        <button>変更</button>
+
         <div class="table_wrap">
             <table>
                 <tr>
@@ -85,14 +90,11 @@ $results = $_SESSION['results'];
                     <th>時間</th>
                     <th>備考</th>
                 </tr>
-                <?php if(!empty($_SESSION['message'])):
-                ?>
+                <?php if(!empty($_SESSION['message'])):?>
                     <div class="error-message">
                         <?php echo $_SESSION['message']?>
                     </div>
-                <?php 
-                endif;
-                ?>
+                <?php endif;?>
                 <?php foreach ($results as $row): ?>
                     <tr>
                         <td><?php echo $row['id']; ?></td>
@@ -118,5 +120,5 @@ $results = $_SESSION['results'];
             </table>
         </div>
     </main>
-</body>
+</body> 
 </html>

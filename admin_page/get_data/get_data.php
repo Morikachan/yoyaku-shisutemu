@@ -25,6 +25,9 @@ try {
     if(!isset($result)){
         $_SESSION['message'] = '表示する予約情報がありません';
     }
+    // if(empty($results)){
+    //     $_SESSION['message'] = '表示する予約情報がありません';
+    // }
 } catch (PDOException $e) {
     exit();
 }
