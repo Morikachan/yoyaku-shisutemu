@@ -171,8 +171,9 @@ if(searchToken($pdo, $passwordResetToken)){
             
             <div class="content-container">
                 <div class="alert_message">・パスワードが一致しません</div>
-                <div class="alert_message2">・16文字以上で設定してください</div>
-                <div class="alert_message3">・64文字以下で設定してください</div>
+                <div class="alert_message2">・8文字以上で設定してください</div>
+                <div class="alert_message3">・24文字以下で設定してください</div>
+                <div class="alert_message4">・大文字と小文字、数字と記号をそれぞれ１つ以上パスワードにいれてください。</div>
                 <form action="./new_pass.php" method="POST">
                     <label>
                         <h3>新しいパスワード</h3>
