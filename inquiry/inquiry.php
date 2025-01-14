@@ -36,6 +36,38 @@ $photo = $_POST['avatar'];
             exit();
         }
     }
+
+
+
+    
+    function yourmailSetting($mail,$content,$photo){
+
+        //送信先{管理者のメアドを登録してください}
+        $to = $mail;
+
+        //送信するメールの表題
+        $subject = 'お問い合わせを受け付けました。';
+
+        //本文
+        
+        $message = "{$mail}様\r\nお問い合わせ内容 \r\n {$content} \r\n 添付ファイル \r\n {$photo}\r\n上記の通りお問い合わせを受け付けました。\r\n 後ほどご連絡させて頂きますので少々お待ちください。";
+
+        //送信元{送信者のメアドか管理者のメアドを入れてください}
+        //$headers = "From: {$mail}";
+        $headers = "From: k248007@kccollege.ac.jp";
+
+
+        //メールの送信
+        if(mail($to, $subject, $message , $headers)) {
+            header("Location:http://localhost/yoyaku-shisutemu/inquiry/views/index.html");
+            exit();
+
+        } else {
+            header("Location:http://localhost/yoyaku-shisutemu/inquiry/views/mail_error.html");
+            exit();
+        }
+    }
 //ここまでメールの設定
     mailSetting($mail,$content,$photo);
+    yourmailSetting($mail,$content,$photo);
 ?>
