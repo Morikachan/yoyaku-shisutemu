@@ -1,7 +1,7 @@
 @charset "UTF-8";
-.content-container{
+/* .content-container{
     text-align: center;
-}
+} */
 input[type="email"]{
     height: 20px;
     width: 100%;

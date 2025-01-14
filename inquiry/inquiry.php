@@ -4,11 +4,12 @@
 //メールの送信を行っています。
 $mail = $_POST['inquiryEmail'];
 $content  = $_POST['inquiryContent'];
+$photo = $_POST['avatar'];
 
 
 
 //メールの設定
-    function mailSetting($mail,$content){
+    function mailSetting($mail,$content,$photo){
 
         //送信先{管理者のメアドを登録してください}
         $to = 'k248007@kccollege.ac.jp';
@@ -18,7 +19,7 @@ $content  = $_POST['inquiryContent'];
 
         //本文
         
-        $message = "{$mail}様から。\r\n お問い合わせ内容\r\n{$content}";
+        $message = "{$mail}様から。\r\n お問い合わせ内容 \r\n {$content} \r\n 添付ファイル \r\n {$photo}";
 
         //送信元{送信者のメアドか管理者のメアドを入れてください}
         //$headers = "From: {$mail}";
@@ -36,5 +37,5 @@ $content  = $_POST['inquiryContent'];
         }
     }
 //ここまでメールの設定
-    mailSetting($mail,$content)
+    mailSetting($mail,$content,$photo);
 ?>
