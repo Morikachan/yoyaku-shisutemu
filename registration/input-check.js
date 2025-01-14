@@ -9,7 +9,7 @@ const firstName = document.getElementById("firstName");
 const lastNameKana = document.getElementById("lastNameKana");
 const firstNameKana = document.getElementById("firstNameKana");
 
-const genders = document.querySelector("input[type='radio']");
+const genders = document.querySelectorAll("input[type=radio]");
 const date = document.getElementById("date");
 const course = document.getElementById("course");
 const occupation = document.getElementById("occupation");
@@ -152,18 +152,12 @@ passwordCheck.addEventListener("change", () => {
   }
 });
 
-if (!genderMan.checked || !genderWoman.checked) {
-  const genderError = document.getElementById("genderError");
-  genderError.style.display = "inline-block";
-  genderError.style.margin = "6px 0";
-  genderError.textContent = "性別を入力してください";
-}
-genderMan.addEventListener("change", () => {
+genders[0].addEventListener("change", () => {
   genderError.style.display = "none";
   userInfo.gender = true;
   localStorage.setItem('gender', true);
 });
-genderWoman.addEventListener("change", () => {
+genders[1].addEventListener("change", () => {
   userInfo.gender = true;
   genderError.style.display = "none";
   localStorage.setItem('gender', true);
@@ -182,7 +176,7 @@ const checkLocalStorage = () => {
     }
     password.value = localStorage.getItem(password);
     passwordCheck.value = localStorage.getItem(password);
-    // 性別
+    userInfo.gender = localStorage.getItem('gender');
     userInfo[registrationKey] = localStorage.getItem(registrationKey);
   }
 }
@@ -191,6 +185,12 @@ approved.addEventListener("change", () => {
   console.log(userInfo);
 
   if (approved.checked) {
+    if (!genders[0].checked || !genders[1].checked) {
+      const genderError = document.getElementById("genderError");
+      genderError.style.display = "inline-block";
+      genderError.style.margin = "6px 0";
+      genderError.textContent = "性別を入力してください";
+    }
     button.disabled = false;
     button.textContent = "確認画面へ";
     for (let key in userInfo) {
