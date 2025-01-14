@@ -3,6 +3,7 @@ const repeat_pass = document.getElementById('repeat_pass');
 const alert_message =document.querySelector('.alert_message');
 const alert_message2 =document.querySelector('.alert_message2');
 const alert_message3 =document.querySelector('.alert_message3');
+const alert_message4 =document.querySelector('.alert_message4');
 const body = document.querySelector("body");
 const button = document.getElementById('sendButton');
 const input = document.querySelector('.input');
@@ -22,13 +23,16 @@ function newPass(){
     const resetValue = reset_pass.value;
     const countPass = resetValue.length;
     const countPass2 = repeatValue.length;
+    const regex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])[a-zA-Z0-9!#$%&?*@]{8,36}$/;
+    const regex2 = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])[a-zA-Z0-9]/;
 
     if(resetValue && repeatValue){
-        if(((countPass >= 16) && (countPass2 >= 16)) && (resetValue === repeatValue)){
+        if((regex.test(resetValue) && regex.test(repeatValue)) && (resetValue === repeatValue)){
             //一致した場合
             alert_message.classList.remove('active');
             alert_message2.classList.remove('active');
             alert_message3.classList.remove('active');
+            alert_message4.classList.remove('active');
             input.classList.remove('active');
             input2.classList.remove('active');
             button.style.backgroundColor = '#CF220E';
@@ -36,7 +40,6 @@ function newPass(){
             button.disabled = false;
         } else {
             //例外処理
-
             if((resetValue === repeatValue)){
                 alert_message.classList.remove('active');
                 
@@ -45,17 +48,22 @@ function newPass(){
               
             }
 
-            if(((countPass >= 16) && (countPass2 >= 16))){
+            if(((countPass >= 8) && (countPass2 >= 8))){
                 alert_message2.classList.remove('active');
                
             } else {
                 alert_message2.classList.add('active');
                 
             }
-            if(((countPass <= 64) && (countPass2 <= 64))){
+            if(((countPass <= 24) && (countPass2 <= 24))){
                 alert_message3.classList.remove('active');
             } else {
                 alert_message3.classList.add('active');
+            }
+            if(regex2.test(resetValue) && regex2.test(repeatValue)){
+                alert_message4.classList.remove('active');
+            } else {
+                alert_message4.classList.add('active');
             }
             
             input.classList.add('active');
