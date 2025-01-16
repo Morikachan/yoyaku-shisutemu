@@ -87,10 +87,10 @@ $results = $_SESSION['results'];
                         <tr>
                             <th>名前</th>
                             <td>
-                                <input class="nameSpace" name="lastName" type="text" value=<?php echo $name[0]?> placeholder="性" required>
-                                <input class="nameSpace" name="firstName" type="text" value=<?php echo $name[1]?> placeholder="名" required>
-                                <input class="nameSpace" name="lastKana" type="text" value=<?php echo $katakana[0]?> placeholder="セイ" required>
-                                <input class="nameSpace" name="firstKana" type="text" value=<?php echo $katakana[1]?> placeholder="メイ" required>
+                                <input class="nameSpace" name="lastName" type="text" value=<?php echo $name[0]?> placeholder="例）山田" required>
+                                <input class="nameSpace" name="firstName" type="text" value=<?php echo $name[1]?> placeholder="例）太郎" required>
+                                <input class="nameSpace" name="lastKana" type="text" value=<?php echo $katakana[0]?> placeholder="例）ヤマダ" required>
+                                <input class="nameSpace" name="firstKana" type="text" value=<?php echo $katakana[1]?> placeholder="例）タロウ" required>
                             </td>
                         </tr>
                         <tr>
