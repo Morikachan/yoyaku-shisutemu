@@ -97,6 +97,22 @@ select {
   background-color: #CF220E;
 }
 
+.registration-confirm-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.registration-confirm-buttons button {
+  flex-basis: 48%;
+}
+
+.registration-confirm-buttons button:first-child{
+  background-color: #666666;
+}
+.registration-confirm-buttons button:first-child:hover{
+  background-color:  #CF220E;
+}
+
 .errorMessage {
   color:red; 
   display:none;

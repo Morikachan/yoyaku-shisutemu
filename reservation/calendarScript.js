@@ -14,6 +14,7 @@ const months = [
 ];
 
 const days = ["日", "月", "火", "水", "木", "金", "土"];
+let weekends = [];
 
 const daysContainer = document.querySelector(".days");
 const nextBtn = document.querySelector(".next");
@@ -32,6 +33,7 @@ let reservationInfo = {
   time: '',
   message: '',
 }
+
 function renderCalendar() {
   date.setDate(1);
 
@@ -73,7 +75,12 @@ function renderCalendar() {
       currentYear === new Date().getFullYear()
     ) {
       days += `<div class="day current-prev">${i}</div>`;
-    } else {
+    } else if ( new Date(currentYear, currentMonth,i).getDay() === 0 || new Date(currentYear, currentMonth, i).getDay() === 6) {
+      days += `<div class="day prev weekend" data-day="${currentYear}-${currentMonth + 1}-${i}">${i}</div>`;
+    } else if (weekends.includes(new Date(currentYear, currentMonth, i).toLocaleDateString("ja-JP", {year: "numeric",month: "2-digit",day: "2-digit"}).replaceAll('/', '-'))) {
+      days += `<div class="day prev weekend" data-day="${currentYear}-${currentMonth + 1}-${i}">${i}</div>`;
+    }
+    else {
       days += `<div class="day" data-day="${currentYear}-${currentMonth + 1}-${i}">${i}</div>`;
     }
   }
@@ -196,6 +203,7 @@ const prevMonth = () => {
   if (currentMonth < 0) {
     currentMonth = 11;
     currentYear--;
+    checkWeekends();
   }
   renderCalendar();
 };
@@ -205,14 +213,13 @@ const nextMonth = () => {
   if (currentMonth > 11) {
     currentMonth = 0;
     currentYear++;
+    checkWeekends();
   }
   renderCalendar();
 };
 
 prevBtn.addEventListener("click", prevMonth);
 nextBtn.addEventListener("click", nextMonth);
-
-renderCalendar();
 
 message.addEventListener("change", () => {
   reservationInfo.message = message.value;
@@ -253,3 +260,23 @@ sendReservation.addEventListener("click", () => {
     }
   });
 });
+
+function checkWeekends(){
+  let url = `https://holidays-jp.github.io/api/v1/${currentYear}/date.json`;
+  weekends = [];
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            console.log('JSONファイルの内容:');
+            console.log(data)
+            for(let day in data) {
+              weekends.push((day));
+            }
+            renderCalendar();
+        })
+        .catch(error => {
+            console.error('エラー:', error);
+        });
+}
+
+window.addEventListener("load", () => (checkWeekends()));
