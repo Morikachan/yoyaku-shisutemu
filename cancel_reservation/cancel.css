@@ -208,3 +208,94 @@ h4{
 
 /* ここから下がハンバーガーメニューに関するCSS */
 /* ここまででハンバーガメニュー終わり */
+
+/*モバイル対応*/
+
+/* スマホ向け*/
+@media (max-width: 370px){
+    .content-container{
+        max-width: 370px;
+        width: 100%;
+        margin: 0 auto;
+    }
+    main{
+        font-size: calc(0.6em + 0.5vw);
+    }
+    .Reservation{
+        max-width: 370px;
+        width: 100%;
+    }
+    .error{
+        font-size: 1.3em;
+    }
+    .cancel-button,
+    .mypage-move{
+        font-size: calc(0.1vw + 0.9em);
+    }
+    .Reservation table{
+        width: 100%;
+    }
+    .Reservation thead{
+        font-size: 1em;
+    }
+
+    .no{
+        width: 1%;
+    }
+    .day{
+        width: 49%;
+    }
+    .time{
+        width: 20%;
+    }
+    .cancel{
+        width: 20%;
+    }
+    input[type=checkbox] {
+        transform: scale(0.8);
+    }
+    
+}
+@media (min-width: 370px) and  (max-width: 600px) {
+    .content-container{
+        max-width: 600px;
+        width: 100%;
+    }
+    main{
+        font-size: 2.5vw;
+    }
+    .error{
+        font-size: 1.5em;
+    }
+    .red-button{
+        font-size: 1.2em;
+    }
+    .cancel-button,
+    .mypage-move{
+        font-size: 1em;
+    }
+    
+}
+
+/* タブレット向け（画面幅が601pxから900px） */
+@media (min-width: 601px) and (max-width: 900px) {
+    
+    .content-container table{ 
+        max-width: 900px;
+        width: 50%;
+    }
+    .content-container thead{
+        font-size: calc(1vw + 0.8rem);
+    }
+    
+    
+}
+
+@media (min-width: 900px){
+    
+    .Reservation{
+        max-width: 1280px;
+        width: 100%;
+    }
+}
+/*ここまででマイページのCSS終わり*/
