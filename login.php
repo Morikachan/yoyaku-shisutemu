@@ -79,7 +79,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <a href="#" class="c-header__list-link">参加履歴</a>
                       </li>
                       <li class="c-header__list-item">
-                        <a href="#" class="c-header__list-link">登録内容の変更</a>
+                        <a href="./change_Information/view/change_Information.php" class="c-header__list-link">登録内容の変更</a>
                       </li>
                       <li class="c-header__list-item">
                         <a href="http://localhost/yoyaku-shisutemu\delete_account\html\delete.html" class="c-header__list-link">アカウント削除</a>
@@ -90,7 +90,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                   </ul>
                   
                   <!-- 新規登録ボタン -->
-                  <a href="#" class="red-button">新規登録</a>
+                  <a href="./registration/registration.php" class="red-button">新規登録</a>
                   <!-- ハンバーガボタン -->
                   <div id="hamburger-btn" class="open" onclick="hamburgerClick()"></div>
             </div>
