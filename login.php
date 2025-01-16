@@ -193,7 +193,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d6499.293489360595!2d139.609711!3d35.463539!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60185c09e09a76a5%3A0xd9f33045278944be!2z44Ki44O844OE44Kr44Os44OD44K444Oo44Kz44OP44Oe!5e0!3m2!1sja!2sjp!4v1736212708651!5m2!1sja!2sjp" width="500" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </div>
-        <small>Copyright　&copy;システム開発チームC　2024-2025.　All rights reserved</small>
+        <small>Copyright　&copy;システム開発Cチーム　2025</small>
     </footer>
 </body>
 </html>
