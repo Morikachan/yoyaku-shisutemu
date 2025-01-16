@@ -1,12 +1,37 @@
 <?php
 session_start();
-
-// このページに直接飛ばされたとき
-if(!isset($_SESSION['results'])){
-    header("Location: ../backend/getUserData.php");
+// 直接このphpファイルパスを指定された場合、ログイン画面に遷移させる
+if(!isset($_SESSION['id']) || empty($_SESSION['id'])){
+    header("Location: ../../login.php");
     exit;
 }
+
+$id = $_SESSION['id'];
+// データベース接続
+require_once '../../core/Database.php';
+$db = Database::getInstance();
+$pdo = $db -> getPDO();
+
+$sql = "SELECT * FROM users_info WHERE id = :id";
+try {
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(':id', $id, PDO::PARAM_STR);
+    $stmt->execute();
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    // パスワードカラムを除外する
+    foreach ($results as &$row) {
+        unset($row['passwd']);
+    }
+    
+    $_SESSION['results'] = $results;
+} catch (PDOException $e) {
+    echo $e->getMessage();
+    exit();
+}
+
 $results = $_SESSION['results'];
+var_dump($results);
 ?>
 
 <!DOCTYPE html>
