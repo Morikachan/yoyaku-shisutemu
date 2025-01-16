@@ -1,18 +1,34 @@
 <?php 
 session_start();
-// session_destroy();
 // 直接このphpファイルパスを指定された場合、ログイン画面に遷移させる
 if((!isset($_SESSION['logged']) || $_SESSION['logged'] !== true)){
     header("Location: ../admin_login/admin_login.php");
     exit;
 }
 
-// 予約情報を取得する
-require_once '../get_data/get_data.php';
+require_once '../../core/Database.php';
+$db = Database::getInstance();
+$pdo = $db -> getPDO();
 
-// resultsに予約情報が入っているならエラーメッセージを消す
-if ($_SESSION['results']) {
+// 取得件数が0でテストをしたい場合は二つ目のsqlを使用してください
+$sql = "SELECT appointment.id, name, katakana, gender, birthday, occupation, school, tel, address, mail, course, day, time, message from appointment JOIN users_info ON appointment.id = users_info.id ORDER BY appointment.id ASC;";
+// $sql = "SELECT day from appointment WHERE day = 22/22";
+
+try {
+    $stmt = $pdo->query($sql);
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $_SESSION['results'] = $results;
+} catch (PDOException $e) {
+    echo $e->getMessage();
+    exit();
+}
+
+
+// 予約情報が取得できる場合はエラーメッセージを消す
+if (!empty($_SESSION['results'])) {
     $_SESSION['message'] = '';
+} else {
+    $_SESSION['message'] = '表示する予約情報がありません';
 }
 
 $results = $_SESSION['results'];
