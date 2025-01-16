@@ -64,7 +64,7 @@ h1{
     margin-bottom: 30px;
 }
 .content-container {
-    width: 700px;
+    width: 100%;
     margin: 0 auto;
 }
 h2 {
@@ -110,9 +110,13 @@ h2 {
     
 }
 .content-container .Reservation-button{
-    display: flex;
     justify-content: space-evenly;
     margin-top: 40px;
+}
+.Registration-button,
+    .cancel-button{
+        text-align: center;
+        margin-top: 10px;
 }
 .content-container h3{
     font-size: 1.5em;
@@ -180,6 +184,111 @@ td {
     margin-top: 30px;
 }
 
+/*モバイル対応*/
+
+/* スマホ向け*/
+@media (max-width: 370px){
+    .content-container{
+        max-width: 370px;
+        width: 100%;
+    }
+    main{
+        font-size: 8px;
+    }
+    .Registration-button,
+    .cancel-button{
+        width: 100%;
+        padding: 10px;
+        font-size: calc(0.6em + 0.7vw);
+    }
+
+    .content-container table{ 
+        max-width: 370px;
+        width: 100%;
+    }
+    .content-container thead{
+        font-size: calc(10px + 1vw);
+    }
+    .Reservation-day{
+        font-size: calc(0.9em + 5px);
+    }
+    .no{
+        width: 1%;
+    }
+    .day{
+        width: 64%;
+    }
+    .time{
+        width: 35%;
+    }
+
+}
+@media (min-width: 370px) and  (max-width: 600px) {
+    .content-container{
+        max-width: 600px;
+        width: 100%;
+    }
+    main{
+        font-size: 2.8vw;
+    }
+    .red-button{
+        font-size: 1.2em;
+    }
+    .Reservation-button{
+        justify-content: space-evenly;
+        padding-top: 0;
+    }
+    .Registration-button,
+    .cancel-button{
+        padding: 10px;
+        font-size: calc(0.7vw + 0.5rem);
+    }
+
+    .content-container table{ 
+        max-width: 600px;
+        width: 90%;
+    }
+    .content-container thead{
+        font-size: calc(0.5vw + 0.5rem);
+    }
+    .Reservation-day{
+        font-size: calc(1.3vw + 0.4rem);
+    }
+    .no{
+        width: 1%;
+    }
+    .day{
+        width: 64%;
+    }
+    .time{
+        width: 35%;
+    }
+}
+
+/* タブレット向け（画面幅が601pxから900px） */
+@media (min-width: 601px) and (max-width: 900px) {
+    
+    .content-container table{ 
+        max-width: 900px;
+        width: 80%;
+    }
+    .content-container thead{
+        font-size: calc(1vw + 0.8rem);
+    }
+    
+    .Reservation-day{
+        font-size: calc(1.5vw + 0.7rem);
+    }
+    .no{
+        width: 1%;
+    }
+    .day{
+        width: 64%;
+    }
+    .time{
+        width: 35%;
+    }
+}
 /*ここまででマイページのCSS終わり*/
 
 /* ここから下がハンバーガーメニューに関するCSS */
