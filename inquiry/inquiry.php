@@ -28,6 +28,7 @@ $photo = $_POST['avatar'];
 
         //メールの送信
         if(mail($to, $subject, $message , $headers)) {
+            yourmailSetting($mail,$content,$photo);
             header("Location:http://localhost/yoyaku-shisutemu/inquiry/views/index.html");
             exit();
 
@@ -69,5 +70,4 @@ $photo = $_POST['avatar'];
     }
 //ここまでメールの設定
     mailSetting($mail,$content,$photo);
-    yourmailSetting($mail,$content,$photo);
 ?>
