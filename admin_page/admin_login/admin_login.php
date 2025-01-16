@@ -5,37 +5,18 @@ if (isset($_SESSION['logged'])){
     header("Location: ../user_information/user_information.php");
     exit;
 }
-
-// require_once '../../core/Database.php';
+require_once '../../core/Database.php';
 
 // テストデータの記入内容
 /* -------------------
     adminId   = 1        
     passwd = aaa
 ------------------- */
-//ーーーーーーーーーーーーーーーーーーーーーーーーーーーーここから下は消す予定ーーーーーーーーーーーーーーーーーーーーーーーーーーーー
-const DB_SERVER_NAME = 'localhost';
-const DB_USER_NAME = 'root';
-const DB_PASSWORD = '';
-const DB_NAME = 'test';
-function getDbConnection() {
-    try {
-        $pdo = new PDO("mysql:host=" . DB_SERVER_NAME . 
-        ";dbname=" . DB_NAME,DB_USER_NAME,DB_PASSWORD);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        return $pdo;
-    } catch (PDOException $e) {
-        echo '接続失敗' . $e->getMessage();
-        exit();
-    }
-}
-//ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
-
 function selectUserData($pdo,$adminId) {
     $sql = "SELECT * FROM admin_info WHERE adminId = :adminId";
     try {
         $stmt = $pdo->prepare($sql);
-        $stmt->bindParam(':adminId',$adminId);
+        $stmt->bindParam(':adminId',$adminId,PDO::PARAM_STR);
         $stmt->execute();
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
         return $user;
@@ -44,18 +25,15 @@ function selectUserData($pdo,$adminId) {
         return false;
     }
 }
-
-if($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $pdo = getDbConnection();
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $db = Database::getInstance();
+    $pdo = $db -> getPDO();
     $adminId = $_POST['adminID'];
     $passwd = $_POST['passwd'];
     $user = selectUserData($pdo,$adminId);
-    
-    if (!$user || !password_verify($passwd,$user['adminPass'])) {
+    if(empty($user) || !password_verify($passwd,$user['adminPass'])){
         $_SESSION['error'] = 'IDまたはパスワードが違います</br>もう一度やり直してください。';
-        header("Location: ./admin_login.php");
-        exit;
-    } else if ($user && password_verify($passwd,$user['adminPass'])) {
+    } else if (isset($user) && password_verify($passwd,$user['adminPass'])) {
         $_SESSION['logged'] = true;
         header("Location: ../user_information/user_information.php");
         exit;
