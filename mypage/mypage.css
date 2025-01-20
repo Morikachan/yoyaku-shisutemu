@@ -114,9 +114,9 @@ h2 {
     margin-top: 40px;
 }
 .Registration-button,
-    .cancel-button{
-        text-align: center;
-        margin-top: 10px;
+.cancel-button{
+    text-align: center;
+    margin-top: 30px;
 }
 .content-container h3{
     font-size: 1.5em;
@@ -187,9 +187,9 @@ td {
 /*モバイル対応*/
 
 /* スマホ向け*/
-@media (max-width: 370px){
+@media (max-width: 380px){
     .content-container{
-        max-width: 370px;
+        max-width: 380px;
         width: 100%;
     }
     main{
@@ -199,11 +199,11 @@ td {
     .cancel-button{
         width: 100%;
         padding: 10px;
-        font-size: calc(0.6em + 0.7vw);
+        font-size: calc(1em + 0.7vw);
     }
 
     .content-container table{ 
-        max-width: 370px;
+        max-width: 380px;
         width: 100%;
     }
     .content-container thead{
@@ -223,7 +223,7 @@ td {
     }
 
 }
-@media (min-width: 370px) and  (max-width: 600px) {
+@media (min-width: 380px) and  (max-width: 600px) {
     .content-container{
         max-width: 600px;
         width: 100%;
@@ -241,18 +241,17 @@ td {
     .Registration-button,
     .cancel-button{
         padding: 10px;
-        font-size: calc(0.7vw + 0.5rem);
+        font-size: calc(0.7vw + 0.8rem);
     }
 
     .content-container table{ 
         max-width: 600px;
-        width: 90%;
     }
     .content-container thead{
-        font-size: calc(0.5vw + 0.5rem);
+        font-size: calc(6.6px + 0.5em);
     }
     .Reservation-day{
-        font-size: calc(1.3vw + 0.4rem);
+        font-size: calc(9px + 0.5em);
     }
     .no{
         width: 1%;
