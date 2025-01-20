@@ -20,6 +20,7 @@ header{
     box-shadow: 0 5px 2px -2px gray;
     width: 100vw;
     padding: 12px 0;
+    z-index: 9;
 }
 header img {
     width: 420px;
@@ -150,6 +151,7 @@ td {
 }
 input[type=checkbox]{
     transform: scale(1.5);
+    z-index: 0;
 }
 h4{
     font-size: 1.2em;
@@ -204,7 +206,6 @@ h4{
     margin-top: 10px;
     margin-left: 50px;
 }
-/*ここまでで予約キャンセルのCSS終わり*/
 
 /* ここから下がハンバーガーメニューに関するCSS */
 /* ここまででハンバーガメニュー終わり */
@@ -216,14 +217,12 @@ h4{
     .content-container{
         max-width: 370px;
         width: 100%;
-        margin: 0 auto;
     }
     main{
-        font-size: calc(0.6em + 0.5vw);
+        font-size: calc(0.55em + 0.1vw);
     }
     .Reservation{
         max-width: 370px;
-        width: 100%;
     }
     .error{
         font-size: 1.3em;
@@ -264,6 +263,9 @@ h4{
     main{
         font-size: 2.5vw;
     }
+    .Reservation thead{
+        font-size: 3vw;
+    }
     .error{
         font-size: 1.5em;
     }
@@ -279,10 +281,13 @@ h4{
 
 /* タブレット向け（画面幅が601pxから900px） */
 @media (min-width: 601px) and (max-width: 900px) {
-    
+    .content-container{
+        max-width: 900px;
+        width: 100%;
+    }
     .content-container table{ 
         max-width: 900px;
-        width: 50%;
+        width: 80%;
     }
     .content-container thead{
         font-size: calc(1vw + 0.8rem);
@@ -298,4 +303,4 @@ h4{
         width: 100%;
     }
 }
-/*ここまででマイページのCSS終わり*/
+/*ここまでで予約キャンセルのCSS終わり*/
