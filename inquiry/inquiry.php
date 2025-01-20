@@ -4,70 +4,140 @@
 //メールの送信を行っています。
 $mail = $_POST['inquiryEmail'];
 $content  = $_POST['inquiryContent'];
-$photo = $_POST['avatar'];
+
+// Setting($mail,$content,$sendto,$maintext,$sendsubject);
 
 
+// function Setting($mail,$content,$sendto,$maintext,$sendsubject){
+//     try {
+//         $IMGNAME = isset($_FILES['avatar']['name']) ? $_FILES['avatar']['name'] : NULL;
+//         $IMGTMP = isset($_FILES['avatar']['tmp_name']) ? $_FILES['avatar']['tmp_name'] : NULL;
+//         $fp = @fopen($IMGTMP, "rb");
+//         $img = @fread($fp, filesize($IMGTMP));
+//         @fclose($fp);
+//         $IMGSIZE = floor(strlen($img) / 1024);
+//         $ENCODEIMG = base64_encode($img);
+//         $imginfo = @getimagesize('data:application/octet-stream;base64,' . $ENCODEIMG);
+//         $IMGTYPE = $imginfo['mime'];
+//         $BOUNDARY = '__BOUNDARY__' .md5(rand());
+//         $to = 'k248007@kccollege.ac.jp';
+//         $subject = "{$mail}様からお問い合わせです";
+//         $header = implode("\r\n",array(
+//             'Content-Type: multipart/mixed;boundary=' . $BOUNDARY ,
+//             'From: webmaster@example.com',
+//             'Reply-To: webmaster@example.com',
+//         ));
+//         $body = "--" . $BOUNDARY . "\n";
+//         $body .= 'Content-Type: text/plain; charset="ISO-2022-JP' . "\n";
+//         $body .= "{$mail}様から。\r\n お問い合わせ内容 \r\n {$content}" . "\n";
+//         $body .= '--' . $BOUNDARY . "\n";
+//         $body .= 'Content-Type: ' . $IMGTYPE . '; name=' . $IMGNAME . "\n";
+//         $body .= 'Content-Disposition: attachment; filename=' . $IMGNAME . "\n";
+//         $body .= 'Content-Transfer-Encoding: base64' . "\n";
+//         $body .= chunk_split($ENCODEIMG) . "\n";
+//         $body .= '--' . $BOUNDARY . '--';
+//                 //メールの送信
+//         if(mail($to, $subject,$body,$header)) {
+//             yourmailSetting($mail,$content);
+//         } else {
+//             header("Location:http://localhost/yoyaku-shisutemu/inquiry/views/mail_error.html");
+//             exit();
+//         }
+//     } catch (Exception $e) {
+//         $ERRMSG = $e->getMessage();
+//     }
+
+// }
 
 //メールの設定
-    function mailSetting($mail,$content,$photo){
 
-        //送信先{管理者のメアドを登録してください}
+function mailSetting($mail,$content){
+    try {
+        $IMGNAME = isset($_FILES['avatar']['name']) ? $_FILES['avatar']['name'] : NULL;
+        $IMGTMP = isset($_FILES['avatar']['tmp_name']) ? $_FILES['avatar']['tmp_name'] : NULL;
+        $fp = @fopen($IMGTMP, "rb");
+        $img = @fread($fp, filesize($IMGTMP));
+        @fclose($fp);
+        $IMGSIZE = floor(strlen($img) / 1024);
+        $ENCODEIMG = base64_encode($img);
+        $imginfo = @getimagesize('data:application/octet-stream;base64,' . $ENCODEIMG);
+        $IMGTYPE = $imginfo['mime'];
+        $BOUNDARY = '__BOUNDARY__' .md5(rand());
         $to = 'k248007@kccollege.ac.jp';
-
-        //送信するメールの表題
-        $subject = 'お問い合わせメールです。';
-
-        //本文
-        
-        $message = "{$mail}様から。\r\n お問い合わせ内容 \r\n {$content} \r\n 添付ファイル \r\n {$photo}";
-
-        //送信元{送信者のメアドか管理者のメアドを入れてください}
-        //$headers = "From: {$mail}";
-        $headers = "From: k248007@kccollege.ac.jp";
-
-
-        //メールの送信
-        if(mail($to, $subject, $message , $headers)) {
-            yourmailSetting($mail,$content,$photo);
-            header("Location:http://localhost/yoyaku-shisutemu/inquiry/views/index.html");
-            exit();
-
+        $subject = "{$mail}様からお問い合わせです";
+        $header = implode("\r\n",array(
+            'Content-Type: multipart/mixed;boundary=' . $BOUNDARY ,
+            'From: webmaster@example.com',
+            'Reply-To: webmaster@example.com',
+        ));
+        $body = "--" . $BOUNDARY . "\n";
+        $body .= 'Content-Type: text/plain; charset="ISO-2022-JP' . "\n";
+        $body .= "{$mail}様から。\r\n お問い合わせ内容 \r\n {$content}" . "\n";
+        $body .= '--' . $BOUNDARY . "\n";
+        $body .= 'Content-Type: ' . $IMGTYPE . '; name=' . $IMGNAME . "\n";
+        $body .= 'Content-Disposition: attachment; filename=' . $IMGNAME . "\n";
+        $body .= 'Content-Transfer-Encoding: base64' . "\n";
+        $body .= chunk_split($ENCODEIMG) . "\n";
+        $body .= '--' . $BOUNDARY . '--';
+                //メールの送信
+        if(mail($to, $subject,$body,$header)) {
+            yourmailSetting($mail,$content);
         } else {
             header("Location:http://localhost/yoyaku-shisutemu/inquiry/views/mail_error.html");
             exit();
         }
+    } catch (Exception $e) {
+        $ERRMSG = $e->getMessage();
     }
+
+}
+    
 
 
 
     
-    function yourmailSetting($mail,$content,$photo){
-
-        //送信先{管理者のメアドを登録してください}
-        $to = $mail;
-
-        //送信するメールの表題
-        $subject = 'お問い合わせを受け付けました。';
-
-        //本文
-        
-        $message = "{$mail}様\r\nお問い合わせ内容 \r\n {$content} \r\n 添付ファイル \r\n {$photo}\r\n上記の通りお問い合わせを受け付けました。\r\n 後ほどご連絡させて頂きますので少々お待ちください。";
-
-        //送信元{送信者のメアドか管理者のメアドを入れてください}
-        //$headers = "From: {$mail}";
-        $headers = "From: k248007@kccollege.ac.jp";
-
-
-        //メールの送信
-        if(mail($to, $subject, $message , $headers)) {
-            header("Location:http://localhost/yoyaku-shisutemu/inquiry/views/index.html");
-            exit();
-
-        } else {
-            header("Location:http://localhost/yoyaku-shisutemu/inquiry/views/mail_error.html");
-            exit();
+    function yourmailSetting($mail,$content){
+        try {
+            $IMGNAME = isset($_FILES['avatar']['name']) ? $_FILES['avatar']['name'] : NULL;
+            $IMGTMP = isset($_FILES['avatar']['tmp_name']) ? $_FILES['avatar']['tmp_name'] : NULL;
+            $fp = @fopen($IMGTMP, "rb");
+            $img = @fread($fp, filesize($IMGTMP));
+            @fclose($fp);
+            $IMGSIZE = floor(strlen($img) / 1024);
+            $ENCODEIMG = base64_encode($img);
+            $imginfo = @getimagesize('data:application/octet-stream;base64,' . $ENCODEIMG);
+            $IMGTYPE = $imginfo['mime'];
+            $BOUNDARY = '__BOUNDARY__' .md5(rand());
+            $to = $mail;
+            $subject = "お問い合わせを受け付けました。";
+            $header = implode("\r\n",array(
+                'Content-Type: multipart/mixed;boundary=' . $BOUNDARY ,
+                'From: webmaster@example.com',
+                'Reply-To: webmaster@example.com',
+            ));
+            $body = "--" . $BOUNDARY . "\n";
+            $body .= 'Content-Type: text/plain; charset="ISO-2022-JP' . "\n";
+            $body .= "以下の内容でお問い合わせを受け付けました。\r\n お問い合わせ内容 \r\n {$content}\n ご連絡させていただきますので少々お待ちください". "\n";
+            $body .= '--' . $BOUNDARY . "\n";
+            $body .= 'Content-Type: ' . $IMGTYPE . '; name=' . $IMGNAME . "\n";
+            $body .= 'Content-Disposition: attachment; filename=' . $IMGNAME . "\n";
+            $body .= 'Content-Transfer-Encoding: base64' . "\n";
+            $body .= chunk_split($ENCODEIMG) . "\n";
+            $body .= '--' . $BOUNDARY . '--';
+                    //メールの送信
+            if(mail($to, $subject,$body,$header)) {
+                header("Location:http://localhost/yoyaku-shisutemu/inquiry/views/index.html");
+                exit();
+            } else {
+                header("Location:http://localhost/yoyaku-shisutemu/inquiry/views/mail_error.html");
+                exit();
+            }
+        } catch (Exception $e) {
+            $ERRMSG = $e->getMessage();
         }
+    
     }
+    
 //ここまでメールの設定
-    mailSetting($mail,$content,$photo);
+    mailSetting($mail,$content);
 ?>
