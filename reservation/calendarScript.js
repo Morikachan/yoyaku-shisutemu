@@ -47,7 +47,7 @@ function renderCalendar() {
   const prevLastDayDate = prevLastDay.getDate(); // 先月の最終日
   const nextDays = 7 - lastDayIndex - 1; // 来月の初日の曜日
 
-  month.innerHTML = `${months[currentMonth]} ${currentYear}`;
+  month.innerHTML = `${months[currentMonth]} ${currentYear}年`;
 
   let days = "";
   for (let i = firstDay.getDay(); i > 0; i--) {
@@ -75,10 +75,12 @@ function renderCalendar() {
       currentYear === new Date().getFullYear()
     ) {
       days += `<div class="day current-prev">${i}</div>`;
-    } else if ( new Date(currentYear, currentMonth,i).getDay() === 0 || new Date(currentYear, currentMonth, i).getDay() === 6) {
-      days += `<div class="day prev weekend" data-day="${currentYear}-${currentMonth + 1}-${i}">${i}</div>`;
+    } else if (new Date(currentYear, currentMonth, i).getDay() === 6) {
+        days += `<div class="day weekend saturday" data-day="${currentYear}-${currentMonth + 1}-${i}">${i}</div>`;
+    } else if (new Date(currentYear, currentMonth,i).getDay() === 0) {
+      days += `<div class="day weekend" data-day="${currentYear}-${currentMonth + 1}-${i}">${i}</div>`;
     } else if (weekends.includes(new Date(currentYear, currentMonth, i).toLocaleDateString("ja-JP", {year: "numeric",month: "2-digit",day: "2-digit"}).replaceAll('/', '-'))) {
-      days += `<div class="day prev weekend" data-day="${currentYear}-${currentMonth + 1}-${i}">${i}</div>`;
+      days += `<div class="day weekend" data-day="${currentYear}-${currentMonth + 1}-${i}">${i}</div>`;
     }
     else {
       days += `<div class="day" data-day="${currentYear}-${currentMonth + 1}-${i}">${i}</div>`;
@@ -114,7 +116,7 @@ function addListener() {
             const days = document.querySelectorAll(".day");
             days.forEach((day) => {
               if (
-                !day.classList.contains("prev") &&
+                !day.classList.contains("prev") && !day.classList.contains("weekend") && !day.classList.contains("weekend") &&
                 day.innerHTML === e.target.innerHTML
               ) {
                 day.classList.add("active");

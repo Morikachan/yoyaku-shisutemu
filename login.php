@@ -56,7 +56,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="./admin_page/admin_login/style.css"><!-- 後で消します(梶浦) -->
-    <script src="./hamburger.js"></script>
+    <script src="./hamburger.js" defer></script>
+    <script src="./scrollTop.js" defer></script>
     <script src="https://kit.fontawesome.com/f640a591db.js" crossorigin="anonymous"></script>
     <title>ログイン</title>
 </head>
@@ -195,5 +196,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
         <small>Copyright　&copy;システム開発Cチーム　2025</small>
     </footer>
+    <a id="page-top">TOP</a>
 </body>
 </html>
