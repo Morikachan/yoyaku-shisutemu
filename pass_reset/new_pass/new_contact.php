@@ -130,41 +130,39 @@ if(searchToken($pdo, $passwordResetToken)){
     <script src="../../hamburger.js"></script>
     
     <header class="c-header c-hamburger-menu">
-        
-        <!-- アーツカレッジヨコハマのロゴ -->
-        <div class="flex_logo">
-            <a href="https://www.kccollege.ac.jp/" class="c-header__logo"><img src="../../img/image 1.png" alt="Arts_Logo"></a>
-        </div>
-        
-        <!-- ロゴを除くオブジェクトを右に固定するためのdiv -->
-        <div class="flex_header">    
-            
-            <!-- ハンバーガメニューのリスト -->
-            <ul class="c-header__list c-hamburger-menu__list" id="hamburger-menu_list"><!-- 追記 クラスを追記 -->
-                <li class="c-header__list-item">
-                    <a href="https://www.kccollege.ac.jp/" class="c-header__list-link">ホームページへ</a>
-                </li>
-                <li class="c-header__list-item">
-                    <a href="#" class="c-header__list-link">参加履歴</a>
-                </li>
-                <li class="c-header__list-item">
-                    <a href="#" class="c-header__list-link">登録内容の変更</a>
-                </li>
-                <li class="c-header__list-item">
-                    <a href="http://localhost/yoyaku-shisutemu\delete_account\html\delete.html" class="c-header__list-link">アカウント削除</a>
-                </li>
-                      <li class="c-header__list-item">
-                        <a href="http://localhost/yoyaku-shisutemu/inquiry/inquiry.html" class="c-header__list-link">お問い合わせ</a>
-                    </li>
-                </ul>
-                
-                <!-- 新規登録ボタン -->
-                <a href="#" class="red-button">新規登録</a>
-                <!-- ハンバーガボタン -->
-                <div id="hamburger-btn" class="open" onclick="hamburgerClick()"></div>
+            <!-- アーツカレッジヨコハマのロゴ -->
+            <div class="flex_logo">
+                <a href="https://www.kccollege.ac.jp/" class="c-header__logo"><img src="img/image 1.png" alt="Arts_Logo"></a>
             </div>
-            
-        </header>
+
+            <!-- ロゴを除くオブジェクトを右に固定するためのdiv -->
+            <div class="flex_header">    
+                
+                  <!-- ハンバーガメニューのリスト -->
+                  <ul class="c-header__list c-hamburger-menu__list" id="hamburger-menu_list"><!-- 追記 クラスを追記 -->
+                      <li class="c-header__list-item">
+                        <a href="https://www.kccollege.ac.jp/" class="c-header__list-link">ホームページへ</a>
+                      </li>
+                      <li class="c-header__list-item">
+                        <a href="./../../participation_history/participation_history.html" class="c-header__list-link">参加履歴</a>
+                      </li>
+                      <li class="c-header__list-item">
+                        <a href="./../../change_Information/view/change_Information.php" class="c-header__list-link">登録内容の変更</a>
+                      </li>
+                      <li class="c-header__list-item">
+                        <a href="./../../delete_account/html/delete.html" class="c-header__list-link">アカウント削除</a>
+                      </li>
+                      <li class="c-header__list-item">
+                        <a href="./../../inquiry/inquiry.html" class="c-header__list-link">お問い合わせ</a>
+                      </li>
+                  </ul>
+                  
+                  <!-- 新規登録ボタン -->
+                  <a href="./registration/registration.php" class="red-button">新規登録</a>
+                  <!-- ハンバーガボタン -->
+                  <div id="hamburger-btn" class="open" onclick="hamburgerClick()"></div>
+            </div>
+    </header>
         <main id="main">
             <h1>パスワードリセット</h1>
             
@@ -189,7 +187,7 @@ if(searchToken($pdo, $passwordResetToken)){
                     </form>
                 </div>
             </main>
-            <footer>
+    <footer>
         <div class="footer-container">
             <div class="footer-section">
                 <!-- CONTACT INFO + SNS -->
@@ -229,8 +227,9 @@ if(searchToken($pdo, $passwordResetToken)){
                 <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d6499.293489360595!2d139.609711!3d35.463539!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60185c09e09a76a5%3A0xd9f33045278944be!2z44Ki44O844OE44Kr44Os44OD44K444Oo44Kz44OP44Oe!5e0!3m2!1sja!2sjp!4v1736212708651!5m2!1sja!2sjp" width="500" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </div>
-        <small>Copyright　&copy;システム開発チームC　2024-2025.　All rights reserved</small>
+        <small>Copyright　&copy;システム開発Cチーム　2025</small>
     </footer>
+    <a id="page-top">TOP</a>
     <script src="./new_contact.js"></script>
 </body>
 </html>
