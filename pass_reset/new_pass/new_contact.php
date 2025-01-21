@@ -124,6 +124,8 @@ if(searchToken($pdo, $passwordResetToken)){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="../pass_reset.css">
+    <script src="./../../scrollTop.js" defer></script>
+    <script src="https://kit.fontawesome.com/f640a591db.js" crossorigin="anonymous"></script>
     <title>パスワードの再設定</title>
 </head>
 <body id="body">
