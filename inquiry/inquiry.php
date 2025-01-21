@@ -83,7 +83,7 @@ function mailSetting($mail,$content){
         if(mail($to, $subject,$body,$header)) {
             yourmailSetting($mail,$content);
         } else {
-            header("Location:http://localhost/yoyaku-shisutemu/inquiry/views/mail_error.html");
+            header("Location: ./views/mail_error.html");
             exit();
         }
     } catch (Exception $e) {
@@ -126,10 +126,10 @@ function mailSetting($mail,$content){
             $body .= '--' . $BOUNDARY . '--';
                     //メールの送信
             if(mail($to, $subject,$body,$header)) {
-                header("Location:http://localhost/yoyaku-shisutemu/inquiry/views/index.html");
+                header("Location: ./views/index.html");
                 exit();
             } else {
-                header("Location:http://localhost/yoyaku-shisutemu/inquiry/views/mail_error.html");
+                header("Location: ./views/mail_error.html");
                 exit();
             }
         } catch (Exception $e) {

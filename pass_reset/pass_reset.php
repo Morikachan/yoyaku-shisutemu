@@ -26,10 +26,10 @@ $passwordResetToken = bin2hex(random_bytes(32));
 
         //メールの送信
         if(mail($to, $subject, $message , $headers)) {
-            header("Location:http://localhost/yoyaku-shisutemu/pass_reset/views/mail_complete.html");
+            header("Location: ./views/mail_complete.html");
         
         } else {
-            header("Location:http://localhost/yoyaku-shisutemu/pass_reset/views/mail_error.html");
+            header("Location: ./views/mail_error.html");
             exit();
         }
         //header("Location:http://localhost/pass_reset/views/pass_reset.html");
@@ -104,7 +104,7 @@ $pdo = Database::getInstance()->getPDO();
                 mailSetting($mail,$passwordResetToken);
                 insertToken($pdo, $mail , $passwordResetToken);
             } else{
-                header("Location:http://localhost/yoyaku-shisutemu/pass_reset/views/null_mail.html");
+                header("Location: ./views/null_mail.html");
                 exit();
             }
 

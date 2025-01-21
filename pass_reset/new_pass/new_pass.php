@@ -33,7 +33,7 @@ $pdo = Database::getInstance()->getPDO();
          return $result['email'];
 
          } catch (PDOException $e){
-             header("Location:http://localhost/yoyaku-shisutemu/pass_reset/views/databeses_error.html");
+             header('Location: ../../pass_reset/views/databeses_error.html');
              exit();
          } 
  }    
@@ -85,13 +85,13 @@ $pdo = Database::getInstance()->getPDO();
 if($newpass == "" || $repeatpass == ""){
     $mail = searchData($pdo, $passwordResetToken);
     deleteData($pdo , $mail);
-    header("Location:http://localhost/yoyaku-shisutemu/pass_reset/views/null_pass.html");
+    header('Location: ../../pass_reset/views/null_pass.html');
     exit();
 } else {
     if($newpass != $repeatpass){
         $mail = searchData($pdo, $passwordResetToken);
         deleteData($pdo , $mail);
-        header("Location:http://localhost/yoyaku-shisutemu/pass_reset/views/pass_same.html");
+        header('Location: ../../pass_reset/views/pass_same.html');
         exit();
     } else {    
         $mail = searchData($pdo, $passwordResetToken);
@@ -101,11 +101,11 @@ if($newpass == "" || $repeatpass == ""){
 
             if($delete_result){
             } else {
-                header("Location:http://localhost/yoyaku-shisutemu/pass_reset/views/error.html");
+                header('Location: ../../pass_reset/views/error.html');
                 exit();
             }
         } else {
-            header("Location:http://localhost/yoyaku-shisutemu/pass_reset/views/error.html");
+            header('Location: ../../pass_reset/views/error.html');
             exit();
         }
     }
