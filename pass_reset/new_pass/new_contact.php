@@ -41,7 +41,7 @@ function token_time($pdo,$passwordResetToken){
         if ($date < $nowtime) {
             $mail = searchData($pdo, $passwordResetToken);
             deleteData($pdo , $mail);
-            header("Location:http://localhost/yoyaku-shisutemu/pass_reset/views/token_timeout.html");
+            header('Location: ../../pass_reset/views/token_timeout.html');
             exit();
         }            
 }
@@ -63,7 +63,7 @@ try{
     return $result[0];
     
     } catch (PDOException $e){
-        header("Location:http://localhost/yoyaku-shisutemu/pass_reset/views/databeses_error.html");
+        header('Location: ../../pass_reset/views/databeses_error.html');
         $mail = searchData($pdo, $passwordResetToken);
         deleteData($pdo , $mail);
         exit();
@@ -109,7 +109,7 @@ if(searchToken($pdo, $passwordResetToken)){
 } else {
     $mail = searchData($pdo, $passwordResetToken);
     deleteData($pdo , $mail);
-    header("Location:http://localhost/yoyaku-shisutemu/pass_reset/views/token_timeout.html");
+    header('Location: ../../pass_reset/views/token_timeout.html');
     
     exit();
 }
