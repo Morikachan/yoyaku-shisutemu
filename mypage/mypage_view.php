@@ -16,7 +16,6 @@ $results = $_SESSION['results'];
         <title>マイページ</title>
     </head>
     <body>
-    <script src="./hamburger.js"></script>
     <header class="c-header c-hamburger-menu">
             <!-- アーツカレッジヨコハマのロゴ -->
             <div class="flex_logo">
@@ -50,9 +49,8 @@ $results = $_SESSION['results'];
                   <!-- ハンバーガボタン -->
                   <div id="hamburger-btn" class="open" onclick="hamburgerClick()"></div>
             </div>
-    </header>
-
-        <main>
+    </header>        
+    <main>
             <p class="locatoin"><a href="">ホームページ</a>へ/マイページ</p>
             <h1>マイページ</h1>
             <div class="content-container">
