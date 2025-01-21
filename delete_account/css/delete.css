@@ -77,6 +77,7 @@ h1{
 .content-container {
     width: 700px;
     margin: 0 auto;
+    height: 1000px;
 }
 h2 {
     margin: 20px 0px;
@@ -98,7 +99,6 @@ h2{
     margin: 0 auto;
     margin-top: 20px;
     width: 100%;
-    
 }
 .delete-form input{
     width: 100%;
@@ -115,9 +115,8 @@ h2{
 .delete-form .red-button{
     border: none;
 }
-/*ここまでアカウント削除のCSS*/
+/*削除確認ページ*/
 .check{
-    display: flex;
     text-align: center;
     justify-content: space-between;
 }
@@ -127,15 +126,20 @@ h2{
 .check a{
     flex-basis: 40%;
 }
-
-
+.content-container .check-delete{
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #CF220E;
+}
+/*削除成功ページ*/
 .success{
     margin: 0 auto;
     text-align: center;
     width: 80%;
     margin-top: 50px;
 }
-
+/*ここまでアカウント削除のCSS*/
 /*エラー文章*/
 .error{
     width: 80%;
@@ -160,3 +164,76 @@ h2{
 .faluse-button{
     padding-bottom: 40px;
 }
+/*モバイル対応*/
+
+/* スマホ向け*/
+@media (max-width: 370px){
+    .content-container{
+        max-width: 370px;
+        width: 100%;
+    }
+    main{
+        font-size: 0.5em;
+    }
+    .red-button{
+        font-size: 2em;
+    }
+    .error{
+        font-size: 1em;
+    }
+    .faluse-button{
+        font-size: 1.5em;
+        padding-bottom: 30px;
+    }
+    .check{
+        font-size: 0.5em;
+    }
+
+}
+@media (min-width: 370px) and  (max-width: 600px) {
+    .content-container{
+        max-width: 600px;
+        width: 100%;
+    }
+    main{
+        font-size: 2vw;
+    }
+    h2{
+        font-size: 1.4em;
+    }
+    .red-button{
+        font-size: 1.5em;
+    }
+    .delete-form input{
+        max-width: 600px;
+    }
+    .error{
+        font-size: 1.5em;
+    }
+    .error-font{
+        font-size: 1.5em;
+    }
+    .check{
+        font-size: 1em;
+    }
+}
+
+/* タブレット向け（画面幅が601pxから900px） */
+@media (min-width: 601px) and (max-width: 900px) {
+    .content-container{
+        max-width: 900px;
+        width: 100%;
+    }
+    main{
+        font-size: 2vw;
+    }
+    .error{
+        font-size: 1em;
+    }
+}
+
+/* PC向け（画面幅が901px以上） */
+@media (min-width: 901px) {
+    
+}
+/*ここまででマイページのCSS終わり*/
