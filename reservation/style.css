@@ -112,12 +112,12 @@ h3 {
     color: #ccc;
   }
   .calendar .days .day.weekend {
-    background-color: rgba(255, 97, 97, 0.5);
-    color: rgba(255, 97, 97);
+    background-color: rgba(255, 97, 97, 0.4);
+    color: rgb(255, 0, 0);
   }
   .calendar .days .day.weekend.saturday {
-    background-color: rgba(97, 171, 255, 0.5);
-    color: rgba(97, 171, 255);
+    background-color: rgba(97, 171, 255, 0.4);
+    color: rgb(0, 119, 255);
   }
   .calendar .days .day.active {
     color: #fff;
