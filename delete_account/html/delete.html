@@ -3,15 +3,20 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../css/style.css">
         <link rel="stylesheet" href="../css/delete.css">
+        <script src="./hamburger.js" defer></script>
+        <script src="./scrollTop.js" defer></script>
+        <script src="https://kit.fontawesome.com/f640a591db.js" crossorigin="anonymous"></script>
         <title>アカウント削除</title>
     </head>
     <body>
-        <script src="../hamburger.js"></script>
-        <header>
-            <div class="header-wrap">
-                <img src="../img/image 1.png" alt="Arts_Logo">
+        <header class="c-header c-hamburger-menu">
+            <!-- アーツカレッジヨコハマのロゴ -->
+            <div class="flex_logo">
+                <a href="https://www.kccollege.ac.jp/" class="c-header__logo"><img src="img/image 1.png" alt="Arts_Logo"></a>
             </div>
+
             <!-- ロゴを除くオブジェクトを右に固定するためのdiv -->
             <div class="flex_header">    
                 
@@ -21,26 +26,25 @@
                         <a href="https://www.kccollege.ac.jp/" class="c-header__list-link">ホームページへ</a>
                       </li>
                       <li class="c-header__list-item">
-                        <a href="#" class="c-header__list-link">参加履歴</a>
+                        <a href="./participation_history/participation_history.html" class="c-header__list-link">参加履歴</a>
                       </li>
                       <li class="c-header__list-item">
-                        <a href="#" class="c-header__list-link">登録内容の変更</a>
+                        <a href="./change_Information/view/change_Information.php" class="c-header__list-link">登録内容の変更</a>
                       </li>
                       <li class="c-header__list-item">
-                        <a href="#" class="c-header__list-link">アカウント削除</a>
+                        <a href="./delete_account/html/delete.html" class="c-header__list-link">アカウント削除</a>
                       </li>
                       <li class="c-header__list-item">
-                        <a href="#" class="c-header__list-link">お問い合わせ</a>
+                        <a href="./inquiry/inquiry.html" class="c-header__list-link">お問い合わせ</a>
                       </li>
                   </ul>
                   
                   <!-- 新規登録ボタン -->
-                  <a href="#" class="red-button">新規登録</a>
+                  <a href="./registration/registration.php" class="red-button">新規登録</a>
                   <!-- ハンバーガボタン -->
                   <div id="hamburger-btn" class="open" onclick="hamburgerClick()"></div>
             </div>
-        </header>
-
+    </header>
         <main>
             <p class="locatoin"><a href="">ホームページ</a>へ/<a href="../../mypage/mypage.html">マイページ</a>へ/アカウント削除</p>
             <h1>アカウント削除</h1>
