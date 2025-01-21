@@ -132,7 +132,7 @@ if(searchToken($pdo, $passwordResetToken)){
     <header class="c-header c-hamburger-menu">
             <!-- アーツカレッジヨコハマのロゴ -->
             <div class="flex_logo">
-                <a href="https://www.kccollege.ac.jp/" class="c-header__logo"><img src="img/image 1.png" alt="Arts_Logo"></a>
+                <a href="https://www.kccollege.ac.jp/" class="c-header__logo"><img src="./../../img/image 1.png" alt="Arts_Logo"></a>
             </div>
 
             <!-- ロゴを除くオブジェクトを右に固定するためのdiv -->
