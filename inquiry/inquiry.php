@@ -117,7 +117,7 @@ function mailSetting($mail,$content){
             ));
             $body = "--" . $BOUNDARY . "\n";
             $body .= 'Content-Type: text/plain; charset="ISO-2022-JP' . "\n";
-            $body .= "以下の内容でお問い合わせを受け付けました。\r\n お問い合わせ内容 \r\n {$content}\n ご連絡させていただきますので少々お待ちください". "\n";
+            $body .= "以下の内容でお問い合わせを受け付けました。\r\n お問い合わせ内容 \r\n {$content}\n 担当者が確認次第ご連絡させていただきますので少々お待ちください". "\n";
             $body .= '--' . $BOUNDARY . "\n";
             $body .= 'Content-Type: ' . $IMGTYPE . '; name=' . $IMGNAME . "\n";
             $body .= 'Content-Disposition: attachment; filename=' . $IMGNAME . "\n";
