@@ -185,5 +185,119 @@ td {
     padding: 40px 70px;
     border-radius: 20px;
 }
+/*モバイル対応*/
+
+/* スマホ向け*/
+@media (max-width: 370px){
+    .content-container{
+        max-width: 370px;
+        width: 100%;
+    }
+    main{
+        font-size: 3vw;
+    }
+    .move-button{
+        font-size: 1rem;
+    }
+    .content-container table{
+        max-width: 370px;
+    }
+    .No{
+        width: 1%;
+    }
+    .day{
+        width: 60%;
+    }
+    .time{
+        width: 39%;
+    }
+    .No,
+    .day,
+    .time{
+        font-size: 0.8rem;
+    }
+    .table-size{
+        font-size: 0.8rem;
+    }
+    .dialogDemo{
+        font-size: 1.3em;
+    }
+    .yes,
+    .no,
+    .close {
+        font-size: 0.8em;
+    }
+    .chose{
+        font-size: 0.8em;
+    }
+    .close-font{
+        font-size: 1.3em;
+    }
+    .deletedialog{
+        font-size: 1.5em;
+    }
+}
+@media (min-width: 370px) and  (max-width: 600px) {
+    .content-container{
+        max-width: 600px;
+        width: 100%;
+    }
+    main{
+        font-size: 3vw;
+    }
+    .move-button{
+        font-size: 1em;
+    }
+    .content-container table{
+        max-width: 600px;
+    }
+    .No{
+        width: 1%;
+    }
+    .day{
+        width: 60%;
+    }
+    .time{
+        width: 39%;
+    }
+    .No,
+    .day,
+    .time{
+        font-size: 0.5em;
+    }
+    .table-size{
+        font-size: 0.8em;
+    }
+    .dialogDemo{
+        font-size: 1.5em;
+    }
+    .chose{
+        font-size: 0.1em;
+    }
+    .yes,
+    .no,
+    .close {
+        font-size: 1rem;
+    }
+    .close-font{
+        font-size: 1.2em;
+    }
+    .deletedialog{
+        font-size: 1.5em;
+    }
+
+}
+
+/* タブレット向け（画面幅が601pxから900px） */
+@media (min-width: 601px) and (max-width: 900px) {
+    .content-container{
+        max-width: 900px;
+        width: 100%;
+    }
+}
+
+@media (min-width: 900px){
+    
+}
 
 /*ここまで参加履歴についてのCSS*/
