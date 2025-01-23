@@ -8,7 +8,7 @@ $results_mypage = $_SESSION['results_mypage'];
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="../css/style.css">
         <link rel="stylesheet" href="./cancel.css">
         <script src="./hamburger.js" defer></script>
         <script src="./scrollTop.js" defer></script>
@@ -100,13 +100,13 @@ $results_mypage = $_SESSION['results_mypage'];
                                     <input type="password" name="passwd" class="check">
                                 </P>
                             </div>
-                            <button type="submit" class="red-button cancel-button">予約キャンセル</button>
-                            <P><a href="../mypage/mypage.php" class="red-button mypage-move">マイページ</a></p>
+                            <button type="submit" class="cancel-button">予約キャンセル</button>
+                            <P><a href="../mypage/mypage.php" class="cancel-button mypage-move">マイページ</a></p>
                         </form>
                     <?php else: ?>
                         <h3>・現在の予約状況</h3>
                         <P class="not-cancel">現在予約はありません</p>
-                        <P><a href="../mypage/mypage.php" class="red-button">マイページ</a></p>
+                        <P><a href="../mypage/mypage.php" class="cancel-button">マイページ</a></p>
                     <?php endif; ?>
                 </div>
             </div>
