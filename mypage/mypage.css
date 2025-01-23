@@ -25,7 +25,7 @@ header img {
     width: 420px;
     margin-left: 20px;
 }
-.red-button {
+.mypage-button {
     background-color: #CF220E ;
     padding: 0px 12px;
     border-radius: 4px;
@@ -231,7 +231,7 @@ td {
     main{
         font-size: 2.8vw;
     }
-    .red-button{
+    .mypage-button{
         font-size: 1.2em;
     }
     .Reservation-button{
