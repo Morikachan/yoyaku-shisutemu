@@ -225,7 +225,7 @@ td {
     .yes,
     .no,
     .close {
-        font-size: 0.8em;
+        font-size: 0.7em;
     }
     .chose{
         font-size: 0.8em;
@@ -235,6 +235,23 @@ td {
     }
     .deletedialog{
         font-size: 1.5em;
+    }
+    
+    .dialogDemo{
+        max-width: 370px;
+        width: 80%;
+        margin: 0 auto;
+        text-align: center;
+    }
+    .chose{
+        width: 100%;
+    }
+    .yes,
+    .no{
+        flex-basis: 45%;
+    }
+    .close{
+        width: 80%;
     }
 }
 @media (min-width: 370px) and  (max-width: 600px) {
@@ -286,6 +303,19 @@ td {
     .deletedialog{
         font-size: 1.5em;
     }
+    .dialogDemo{
+        max-width: 900px;
+        width: 80%;
+        margin: 0 auto;
+        text-align: center;
+    }
+    .close{
+        width: 80%;
+    }
+    .yes,
+    .no{
+        flex-basis: 45%;
+    }
 
 }
 
@@ -294,6 +324,19 @@ td {
     .content-container{
         max-width: 900px;
         width: 100%;
+    }
+    .dialogDemo{
+        max-width: 900px;
+        width: 80%;
+        margin: 0 auto;
+        text-align: center;
+    }
+    .close{
+        width: 80%;
+    }
+    .yes,
+    .no{
+        flex-basis: 45%;
     }
 }
 
