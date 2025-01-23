@@ -1,6 +1,6 @@
 <?php
 session_start();
-$results = $_SESSION['results'];
+$results_mypage = $_SESSION['results_mypage'];
 ?>
 
 <!DOCTYPE html>
@@ -56,7 +56,7 @@ $results = $_SESSION['results'];
             <div class="content-container">
                 <h2>予約情報</h2>
                 <div class="Reservation">
-                    <?php if($results): ?>
+                    <?php if($results_mypage): ?>
                         <h3>・現在の予約状況</h3>
                         <table border="1">
                             <thead>
@@ -67,7 +67,7 @@ $results = $_SESSION['results'];
                                 </tr>
                             </thead>
                             <tbody>
-                            <?php $counter = 1;foreach ($results as $row):?>
+                            <?php $counter = 1;foreach ($results_mypage as $row):?>
                                 <tr>
                                     <th class="Reservation-day"><?php echo $counter; ?></th>
                                     <th class="Reservation-day"><?php echo $row['day']; ?></th>
@@ -78,14 +78,14 @@ $results = $_SESSION['results'];
                         </table>
                         <h3 class="reserve">・予約する</h3>
                         <diV class="Reservation-button">
-                            <p><a href="../reservation/reservation.php" class="red-button Registration-button">予約登録</a></p>
-                            <p><a href="../cancel_reservation/cancel.php" class="red-button cancel-button">予約キャンセル</a></p>
+                            <p><a href="../reservation/reservation.php" class="Registration-button mypage-button">予約登録</a></p>
+                            <p><a href="../cancel_reservation/cancel.php" class="cancel-button mypage-button">予約キャンセル</a></p>
                         </div>
                     <?php else: ?>
                         <h3>・現在の予約状況</h3>
                         <p class="not-Reservation">予約はありません</p>
                         <h3 class="reserve">・予約する</h3>
-                        <p><a href="../reservation/reservation.php" class="red-button not-Reservation-button">予約登録</a></p>
+                        <p><a href="../reservation/reservation.php" class="not-Reservation-button mypage-button">予約登録</a></p>
                     <?php endif; ?>  
                 </div>
             </div>
