@@ -18,14 +18,14 @@ function getDBConnection() {
 }
 //予約日の表示させるやつ
 function checkData($pdo ,$id , $day){
-    $sql = "SELECT DATE_FORMAT(day, '%Y-%m-%d') as day ,time FROM appointment WHERE id = :id AND DATE_FORMAT(day, '%Y-%m-%d') >= :day";
+    $sql = "SELECT DATE_FORMAT(day, '%Y-%m-%d') as day ,time FROM appointment WHERE id = :id AND DATE_FORMAT(day, '%Y-%m-%d') >= :day AND display = ''  order by day asc;";
     try{
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':id', $id);
         $stmt->bindParam(':day', $day);
         $stmt->execute();
-        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        $_SESSION['results'] = $results;
+        $results_mypage = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $_SESSION['results_mypage'] = $results_mypage;
         $rowsAffected = $stmt->rowCount();
         return $rowsAffected > 0;
     }
@@ -36,7 +36,7 @@ function checkData($pdo ,$id , $day){
 }
 //予約日を確認するやつ
 function checknumber($pdo , $id , $day){
-    $sql = "SELECT * FROM appointment WHERE id = :id AND DATE_FORMAT(day, '%Y-%m-%d') >= :day";
+    $sql = "SELECT * FROM appointment WHERE id = :id AND DATE_FORMAT(day, '%Y-%m-%d') >= :day AND display = ''  order by day asc;";
 
     try{
         $stmt = $pdo->prepare($sql);
@@ -53,6 +53,10 @@ function checknumber($pdo , $id , $day){
         return false;
     }
 }
+
+$delte = 0;
+$_SESSION['delte'] = $delte;
+
 $id = $_SESSION['id'];
 $mail = $_SESSION['mail'];
 $day = date("Y-m-d");
