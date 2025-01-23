@@ -26,7 +26,7 @@ header img {
     width: 420px;
     margin-left: 20px;
 }
-.red-button {
+.cancel-button {
     background-color: #CF220E ;
     padding: 0px 12px;
     border-radius: 4px;
@@ -109,7 +109,7 @@ h2 {
     font-size: 0.9em;
     
 }
-.content-container .red-button{
+.content-container .cancel-button{
     margin: 0 auto;
     margin-top: 40px;
     width: 80%;
@@ -206,6 +206,7 @@ h4{
     margin-top: 10px;
     margin-left: 50px;
 }
+/*ここまでで予約キャンセルのCSS終わり*/
 
 /* ここから下がハンバーガーメニューに関するCSS */
 /* ここまででハンバーガメニュー終わり */
@@ -269,7 +270,7 @@ h4{
     .error{
         font-size: 1.5em;
     }
-    .red-button{
+    .cancel-button{
         font-size: 1.2em;
     }
     .cancel-button,
@@ -303,4 +304,4 @@ h4{
         width: 100%;
     }
 }
-/*ここまでで予約キャンセルのCSS終わり*/
+/*ここまででマイページのCSS終わり*/
