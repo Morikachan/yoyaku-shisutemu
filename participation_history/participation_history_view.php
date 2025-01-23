@@ -1,6 +1,6 @@
 <?php
 session_start();
-$results = $_SESSION['results'];
+$results_participation_history = $_SESSION['results_participation_history'];
 $delte = $_SESSION['delte'];
 ?>
 <!DOCTYPE html>
@@ -8,7 +8,7 @@ $delte = $_SESSION['delte'];
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="../css/style.css">
         <link rel="stylesheet" href="./reservation_history.css">
         <script src="./hamburger.js" defer></script>
         <script src="./scrollTop.js" defer></script>
@@ -56,7 +56,7 @@ $delte = $_SESSION['delte'];
             <p class="locatoin"><a href="">ホームページ</a>へ/<a href="../mypage/mypage.php">マイページ</a>へ/参加履歴</p>
             <h1>参加履歴</h1>
             <div class="content-container">
-                <?php if($results): ?>
+                <?php if($results_participation_history): ?>
                     <h2>参加情報</h2>
                     <div class="participation">
                         <h3>・参加履歴</h3>
@@ -95,7 +95,7 @@ $delte = $_SESSION['delte'];
                                 </tr>
                             </thead>
                             <tbody>
-                            <?php $counter = 1;foreach ($results as $row):?>
+                            <?php $counter = 1;foreach ($results_participation_history as $row):?>
                                 <tr>
                                     <th class="table-size"><?php echo $counter; ?></th>
                                     <th class="table-size"><?php echo $row['day']; ?></th>
@@ -104,7 +104,7 @@ $delte = $_SESSION['delte'];
                             <?php $counter++; endforeach; ?>
                             </tbody>
                         </table>
-                        <p class="mypage-move"><a href="../mypage/mypage.php" class="red-button">マイページ</a></p>
+                        <p class="mypage-move"><a href="../mypage/mypage.php" class="participation_history-button">マイページ</a></p>
                     </div>
                 <?php else: ?>
                     <h2>参加情報</h2>
@@ -125,7 +125,7 @@ $delte = $_SESSION['delte'];
                         <?php $_SESSION['delte'] = 0;} ?>
                         <h3>参加履歴</h3>
                         <p class="none-participation">・現在参加履歴はありません</p>
-                        <p class="mypage-move"><a href="../mypage/mypage.php" class="red-button move-button">マイページ</a></p>
+                        <p class="mypage-move"><a href="../mypage/mypage.php" class="participation_history-button move-button">マイページ</a></p>
                     </div>
                 <?php endif; ?>        
             </div>
