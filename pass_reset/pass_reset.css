@@ -39,7 +39,21 @@
 .modal-content p {
     margin: 10px 6px;
 }
-  
+.back{
+    background-color:#CF220E;
+    border-radius: 4px;
+    color: #ffffff;
+    border: none;
+    /* クリックした際に枠線をnone消す */
+    outline: none;
+    text-decoration: none;
+    display: block;
+    margin: 20px auto;
+    width: 250px;
+    height: 30px;
+    line-height: 30px;
+
+}
 .modal-content p {
     margin: 3px;
 }

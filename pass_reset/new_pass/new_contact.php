@@ -146,26 +146,18 @@ if(searchToken($pdo, $passwordResetToken)){
                         <a href="https://www.kccollege.ac.jp/" class="c-header__list-link">ホームページへ</a>
                       </li>
                       <li class="c-header__list-item">
-                        <a href="./../../participation_history/participation_history.html" class="c-header__list-link">参加履歴</a>
-                      </li>
-                      <li class="c-header__list-item">
-                        <a href="./../../change_Information/view/change_Information.php" class="c-header__list-link">登録内容の変更</a>
-                      </li>
-                      <li class="c-header__list-item">
-                        <a href="./../../delete_account/html/delete.html" class="c-header__list-link">アカウント削除</a>
-                      </li>
-                      <li class="c-header__list-item">
                         <a href="./../../inquiry/inquiry.html" class="c-header__list-link">お問い合わせ</a>
                       </li>
                   </ul>
                   
                   <!-- 新規登録ボタン -->
-                  <a href="./registration/registration.php" class="red-button">新規登録</a>
+                  <a href="../../login.php" class="red-button">ログイン</a>
                   <!-- ハンバーガボタン -->
                   <div id="hamburger-btn" class="open" onclick="hamburgerClick()"></div>
             </div>
     </header>
         <main id="main">
+        <p class="location"><a href="https://www.kccollege.ac.jp/">ホームページ</a> / <a href="../login.php">ログインページ</a> / <a href="../pass_reset.html">パスワードのリセット</a>/ 新パスワードの入力</p>
             <h1>パスワードリセット</h1>
             
             
