@@ -27,7 +27,7 @@ header img {
     width: 420px;
     margin-left: 20px;
 }
-.red-button {
+.delete-button {
     background-color: #CF220E ;
     padding: 0px 12px;
     border-radius: 4px;
@@ -77,7 +77,6 @@ h1{
 .content-container {
     width: 700px;
     margin: 0 auto;
-    height: 1000px;
 }
 h2 {
     margin: 20px 0px;
@@ -95,7 +94,7 @@ h2{
     margin: 0 auto;
     margin-top: 30px;
 }
-.delete-form .red-button{
+.delete-form .delete-button{
     margin: 0 auto;
     margin-top: 20px;
     width: 100%;
@@ -112,7 +111,7 @@ h2{
     margin-top: 10px;
     font-size: 1.2em;
 }
-.delete-form .red-button{
+.delete-form .delete-button{
     border: none;
 }
 /*削除確認ページ*/
@@ -175,7 +174,7 @@ h2{
     main{
         font-size: 0.5em;
     }
-    .red-button{
+    .delete-button{
         font-size: 2em;
     }
     .error{
@@ -201,7 +200,7 @@ h2{
     h2{
         font-size: 1.4em;
     }
-    .red-button{
+    .delete-button{
         font-size: 1.5em;
     }
     .delete-form input{
