@@ -36,7 +36,7 @@ function checkData($pdo ,$id , $day){
 }
 //予約日を確認するやつ
 function checknumber($pdo , $id , $day){
-    $sql = "SELECT * FROM appointment WHERE id = :id AND DATE_FORMAT(day, '%Y-%m-%d') >= :day AND display = ''  order by day asc;";
+    $sql = "SELECT * FROM appointment WHERE id = :id AND DATE_FORMAT(day, '%Y-%m-%d') >= :day AND order by day asc;";
 
     try{
         $stmt = $pdo->prepare($sql);
@@ -58,7 +58,6 @@ $delte = 0;
 $_SESSION['delte'] = $delte;
 
 $id = $_SESSION['id'];
-$mail = $_SESSION['mail'];
 $day = date("Y-m-d");
 $pdo = getDBConnection();
 $result = checkData($pdo , $id , $day);
