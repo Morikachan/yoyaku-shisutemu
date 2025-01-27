@@ -49,7 +49,7 @@
             </div>
     </header>
             <main>
-                <p class="location"><a href="https://www.kccollege.ac.jp/">ホームページ</a>/<a href="../login.php">ログイン</a>/<a href="./registration.php">新規登録</a>新規登録確認</p>
+                <p class="location"><a href="https://www.kccollege.ac.jp/">ホームページ</a> / <a href="../login.php">ログイン</a> / <a href="./registration.php">新規登録</a> / 新規登録確認</p>
                 <h1 id="h1">新規登録確認</h1>
                 <div class="content-container">
                     <?php if(isset($_SESSION['error'])):?>
