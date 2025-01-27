@@ -38,7 +38,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit;
     } else if ($user && password_verify($passwd,$user['passwd'])) {
         $_SESSION['id'] = $user['id'];
-        header("Location: ./mypage/mypage.html");
+        header("Location: ./mypage/mypage_view.php");
     } else {
         $_SESSION['error'] = 'パスワードが違います。</br>もう一度やり直してください。';
         header("Location: ./login.php");
@@ -77,16 +77,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <a href="https://www.kccollege.ac.jp/" class="c-header__list-link">ホームページへ</a>
                       </li>
                       <li class="c-header__list-item">
-                        <a href="./participation_history/participation_history.html" class="c-header__list-link">参加履歴</a>
+                        <a href="../login.php" class="c-header__list-link">ログイン</a>
                       </li>
                       <li class="c-header__list-item">
-                        <a href="./change_Information/view/change_Information.php" class="c-header__list-link">登録内容の変更</a>
-                      </li>
-                      <li class="c-header__list-item">
-                        <a href="./delete_account/html/delete.html" class="c-header__list-link">アカウント削除</a>
-                      </li>
-                      <li class="c-header__list-item">
-                        <a href="./inquiry/inquiry.php" class="c-header__list-link">お問い合わせ</a>
+                        <a href="../inquiry/inquiry.html" class="c-header__list-link">お問い合わせ</a>
                       </li>
                   </ul>
                   
