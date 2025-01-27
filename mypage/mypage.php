@@ -58,7 +58,6 @@ $delte = 0;
 $_SESSION['delte'] = $delte;
 
 $id = $_SESSION['id'];
-$mail = $_SESSION['mail'];
 $day = date("Y-m-d");
 $pdo = getDBConnection();
 $result = checkData($pdo , $id , $day);
