@@ -18,12 +18,10 @@ try {
     $stmt->bindParam(':id', $id, PDO::PARAM_STR);
     $stmt->execute();
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-    // パスワードカラムを除外する
+    // 取得したパスワードを削除
     foreach ($results as &$row) {
         unset($row['passwd']);
     }
-    
     $_SESSION['results'] = $results;
 } catch (PDOException $e) {
     echo $e->getMessage();
@@ -100,7 +98,7 @@ var_dump($results);
                     <?php unset($_SESSION['message']); ?>
                 </div>
             <?php endif; ?>
-            <form action="../backend/checkData.php" method="post" class="h-adr">
+            <form action="../backend/checkData.php" method="post" class="h-adr" id="userData">
                 <?php foreach ($results as $row): ?>
                     <input name="id" type="hidden" value=<?php echo $row['id']?>>
                     <!-- 名前や電話番号を区切って配列に入れています -->
@@ -137,11 +135,14 @@ var_dump($results);
                                 </div>
                             </td>
                         </tr>
+
                         <tr>
                             <th>誕生日</th>
                             <td>
                                 <input class="width_100percent" type="date" name="birthday" value=<?php echo $row['birthday']; ?> required>
                             </td>
+                        </tr>
+
                         <tr>
                             <th>職業</th>
                             <td>
@@ -168,18 +169,21 @@ var_dump($results);
                                 </select>
                             </td>
                         </tr>
+
                         <tr>
                             <th>出身学校</th>
                             <td>
                                 <input class="width_100percent" type="text" name="school" value=<?php echo $row['school']?> required>
                             </td>
                         </tr>
+
                         <tr>
                             <th>電話番号</th>
                             <td>
                                 <input type="text" name="tel" value=<?php echo $row['tel']?> maxlength="11" required>
                             </td>
                         </tr>
+
                         <tr>
                             <th>住所</th>
                             <td>
@@ -188,19 +192,16 @@ var_dump($results);
                                 <input type="text" class="p-postal-code" name="postalcode" value=<?php echo $row['postalcode']?> maxlength="7" required><br>
                                 <p>住所</p>
                                 <input type="text" id="address" class="p-region p-locality p-street-address p-extended-address" name="address" value=<?php echo $row['address']?> required>
-                                <!-- <p>町域名・番地</p>
-                                <input type="text" id="address" class="p-street-address p-extended-address" name="address2" value=<?php echo $row['address']?>>
-                                <p>建物名 部屋番号</p>
-                                <input type="text" id="waddress" name="address3"> -->
                             </td>
                         </tr>
                         
                         <tr>
                             <th>メールアドレス</th>
                             <td>
-                                <input class="width_100percent" type="email" name="mail" value=<?php echo $row['mail']?> required>
+                                <input class="width_100percent" type="email" name="mail" id="mail" value=<?php echo $row['mail']?> required>
                             </td>
                         </tr>
+
                         <tr>
                             <th>希望学科</th>
                             <td>
@@ -214,7 +215,7 @@ var_dump($results);
                         </tr>
                     </table>
                 <?php endforeach; ?>
-                <button type="submit" class="login-submit btn-disabled" disabled>変更</button>
+                <button type="submit" class="login-submit btn-disabled" id="submitBtn" disabled>変更</button>
             </form>
         </div>
     </main>
@@ -222,102 +223,198 @@ var_dump($results);
 
 
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const form = document.querySelector("form");
-            const inputs = form.querySelectorAll("input, select, textarea"); // フォーム内すべての入力要素を取得
-            const submitButton = form.querySelector(".login-submit");
+        function disabled() {
+            console.log('ボタンが無効化されました');
+            submitButton.disabled = true;
+            submitButton.classList.remove("btn-enabled");
+            submitButton.classList.add("btn-disabled");
+        }
+        function enabled() {
+            console.log('ボタンが有効化されました');
+            submitButton.disabled = false;
+            submitButton.classList.remove("btn-disabled");
+            submitButton.classList.add("btn-enabled");
+        }
+        // 入力されたメールアドレスが正規表現か確認する関数
+        function validateEmail(email) {
+            const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            return regex.test(email);
+        }
 
-            // 初期値を保存
-            const initialValues = Array.from(inputs).map(input => {
-                if (input.type === "radio") {
-                    // ラジオボタンは選択されている値を保存
-                    const radioGroup = form.querySelectorAll(`input[name="${input.name}"]`);
-                    return Array.from(radioGroup).find(radio => radio.checked)?.value || "";
-                }
-                return input.value;
-            });
 
-            // 入力値が変更されたかどうかを確認する関数
-            function checkForChanges() {
-                let hasChanges = false;
-                inputs.forEach((input, index) => {
-                    if (input.type === "radio") {
-                        // ラジオボタンは選択されている値をチェック
-                        const radioGroup = form.querySelectorAll(`input[name="${input.name}"]`);
-                        const selectedValue = Array.from(radioGroup).find(radio => radio.checked)?.value || "";
-                        if (selectedValue !== initialValues[index]) {
-                            hasChanges = true;
-                        }
-                    } else {
-                        // その他の要素は値を直接比較
-                        if (input.value !== initialValues[index]) {
-                            hasChanges = true;
-                        }
-                    }
-                });
+        const buttonEnabled =  {
+            notEmpty: true,//空がないか
+            changed:false,//変更点
+            gender:false,//性別の変更
+            mail:true,//メールの正規表現
+        }
+        const keys = Object.keys(buttonEnabled);
+        console.log(buttonEnabled[keys[0]]);
 
-                // クラスと状態の切り替え
-                if (hasChanges) {
-                    submitButton.disabled = false;
-                    submitButton.classList.remove("btn-disabled");
-                    submitButton.classList.add("btn-enabled");
+        
+
+        const form = document.querySelector("form");
+        const inputs = form.querySelectorAll("input");
+        const selects = form.querySelectorAll("select");
+        const values = Array.from(inputs).map(input => input.value);
+        const submitButton = form.querySelector(".login-submit");
+        console.log(values);
+
+
+
+        //　入力欄のチェック
+        inputs.forEach(input => {
+            input.addEventListener("change", () => {
+                // 空の入力欄をチェック
+                console.log(input.getAttribute('name'));
+                const emptyFields = Array.from(inputs).filter(field => field.value === "");
+                if (emptyFields.length > 0) {
+                    buttonEnabled.notEmpty = false;
+                    console.log(buttonEnabled);
                 } else {
-                    submitButton.disabled = true;
-                    submitButton.classList.remove("btn-enabled");
-                    submitButton.classList.add("btn-disabled");
+                    buttonEnabled.notEmpty = true;
+                    console.log(buttonEnabled);
                 }
+            });
+        });
+
+        selects.forEach(select => {
+            select.addEventListener("change", () => {   
+                // 空の入力欄をチェック
+                console.log(select.getAttribute('name'));
+                const value = select.value;
+                console.log(value);
+                // if () {
+                // } else {
+                // }
+            });
+        });
+
+        // ラジオボタンの初期状態を取得
+        const selectedValue = document.querySelector('input[name="gender"]:checked').value;
+        document.getElementsByName('gender').forEach(radio => {
+            radio.addEventListener('change', (e) => {
+                // 性別が変更された場合の処理
+                if(e.target.value != selectedValue) {
+                    buttonEnabled.gender = true;
+                }else {
+                    buttonEnabled.gender = false;
+                }
+            });
+        });
+
+
+        // メアドの初期状態を取得
+        const defaultMail = document.getElementById("mail").value;
+        var changedMail = document.getElementById('mail');
+        changedMail.addEventListener('input', function() {
+            // 入力が変更されるたびに実行される処理
+            var inputValue = changedMail.value;
+            // メアドが正規表現かの確認
+            if (validateEmail(inputValue) && inputValue != defaultMail) {
+                buttonEnabled.mail = true;
+            } else {
+                buttonEnabled.mail = false;
             }
-
-            // 入力要素の変更を監視
-            inputs.forEach(input => {
-                input.addEventListener("input", checkForChanges);
-                input.addEventListener("change", checkForChanges); // ラジオボタンやセレクトボックスに対応
-            });
         });
 
-        document.addEventListener("DOMContentLoaded", function () {
-            const inputs = document.querySelectorAll("input[required], select[required]");
 
-            inputs.forEach(input => {
-                // フォーカスが外れた時の処理
-                input.addEventListener("blur", function () {
-                    const container = input.parentNode; // 親要素
-                    let errorMessage = container.querySelector(".error-text");
+        // document.addEventListener("DOMContentLoaded", function () {
+        //     const form = document.querySelector("form");
+        //     const inputs = form.querySelectorAll("input, select, textarea"); // フォーム内すべての入力要素を取得
+        //     const submitButton = form.querySelector(".login-submit");
 
-                    // 既存のエラーメッセージがある場合は削除
-                    if (errorMessage) {
-                        errorMessage.remove();
-                    }
+        //     // 初期値を保存
+        //     const initialValues = Array.from(inputs).map(input => {
+        //         if (input.type === "radio") {
+        //             // ラジオボタンは選択されている値を保存
+        //             const radioGroup = form.querySelectorAll(`input[name="${input.name}"]`);
+        //             return Array.from(radioGroup).find(radio => radio.checked)?.value || "";
+        //         }
+        //         return input.value;
+        //     });
 
-                    // 入力が空の場合のみエラーメッセージを表示
-                    if (!input.value.trim()) {
-                        const error = document.createElement("div");
-                        error.className = "error-text";
-                        error.style.color = "red";
-                        error.style.fontSize = "0.9em";
+        //     // 入力値が変更されたかどうかを確認する関数
+        //     function checkForChanges() {
+        //         let hasChanges = false;
+        //         inputs.forEach((input, index) => {
+        //             if (input.type === "radio") {
+        //                 // ラジオボタンは選択されている値をチェック
+        //                 const radioGroup = form.querySelectorAll(`input[name="${input.name}"]`);
+        //                 const selectedValue = Array.from(radioGroup).find(radio => radio.checked)?.value || "";
+        //                 if (selectedValue !== initialValues[index]) {
+        //                     hasChanges = true;
+        //                 }
+        //             } else {
+        //                 // その他の要素は値を直接比較
+        //                 if (input.value !== initialValues[index]) {
+        //                     hasChanges = true;
+        //                 }
+        //             }
+        //         });
 
-                        // 関連するthタグまたはpタグの内容を取得
-                        const th = input.closest("tr")?.querySelector("th");
-                        const p = input.previousElementSibling?.tagName === "P" ? input.previousElementSibling : null;
+        //         // クラスと状態の切り替え
+        //         if (hasChanges) {
+        //             submitButton.disabled = false;
+        //             submitButton.classList.remove("btn-disabled");
+        //             submitButton.classList.add("btn-enabled");
+        //         } else {
+        //             submitButton.disabled = true;
+        //             submitButton.classList.remove("btn-enabled");
+        //             submitButton.classList.add("btn-disabled");
+        //         }
+        //     }
 
-                        const fieldName = th ? th.innerText : (p ? p.innerText.replace('：', '') : "この項目");
+        //     // 入力要素の変更を監視
+        //     inputs.forEach(input => {
+        //         input.addEventListener("input", checkForChanges);
+        //         input.addEventListener("change", checkForChanges); // ラジオボタンやセレクトボックスに対応
+        //     });
+        // });
 
-                        error.innerText = `${fieldName} を入力してください。`;
-                        container.appendChild(error);
-                    }
-                });
+        // document.addEventListener("DOMContentLoaded", function () {
+        //     const inputs = document.querySelectorAll("input[required], select[required]");
 
-                // 入力が行われた時の処理（エラーメッセージ削除）
-                input.addEventListener("input", function () {
-                    const container = input.parentNode;
-                    let errorMessage = container.querySelector(".error-text");
+        //     inputs.forEach(input => {
+        //         // フォーカスが外れた時の処理
+        //         input.addEventListener("blur", function () {
+        //             const container = input.parentNode; // 親要素
+        //             let errorMessage = container.querySelector(".error-text");
 
-                    if (errorMessage) {
-                        errorMessage.remove();
-                    }
-                });
-            });
-        });
+        //             // 既存のエラーメッセージがある場合は削除
+        //             if (errorMessage) {
+        //                 errorMessage.remove();
+        //             }
+
+        //             // 入力が空の場合のみエラーメッセージを表示
+        //             if (!input.value.trim()) {
+        //                 const error = document.createElement("div");
+        //                 error.className = "error-text";
+        //                 error.style.color = "red";
+        //                 error.style.fontSize = "0.9em";
+
+        //                 // 関連するthタグまたはpタグの内容を取得
+        //                 const th = input.closest("tr")?.querySelector("th");
+        //                 const p = input.previousElementSibling?.tagName === "P" ? input.previousElementSibling : null;
+
+        //                 const fieldName = th ? th.innerText : (p ? p.innerText.replace('：', '') : "この項目");
+
+        //                 error.innerText = `${fieldName} を入力してください。`;
+        //                 container.appendChild(error);
+        //             }
+        //         });
+
+        //         // 入力が行われた時の処理（エラーメッセージ削除）
+        //         input.addEventListener("input", function () {
+        //             const container = input.parentNode;
+        //             let errorMessage = container.querySelector(".error-text");
+
+        //             if (errorMessage) {
+        //                 errorMessage.remove();
+        //             }
+        //         });
+        //     });
+        // });
     </script>
 </body>
 </html>

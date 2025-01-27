@@ -76,7 +76,7 @@ $results = $_SESSION['results'];
                   </ul>
                   
                   <!-- 新規登録ボタン -->
-                  <a href="#" class="red-button">新規登録</a>
+                  <a href="#" class="red-button">ログアウト</a>
                   <!-- ハンバーガボタン -->
                   <div id="hamburger-btn" class="open" onclick="hamburgerClick()"></div>
             </div>
