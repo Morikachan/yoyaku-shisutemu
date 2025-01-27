@@ -48,7 +48,7 @@
         
     </header>
     <main id="main">
-        <p class="location"><a href="https://www.kccollege.ac.jp/">ホームページ</a>/<a href="../login.php">ログイン</a>/新規登録</p>
+        <p class="location"><a href="https://www.kccollege.ac.jp/">ホームページ</a> / <a href="../login.php">ログイン</a> / 新規登録</p>
         <h1>新規登録</h1>
             <div class="content-container">
                 <?php if(isset($_SESSION['error'])):?>

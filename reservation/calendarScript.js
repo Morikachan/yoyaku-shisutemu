@@ -58,7 +58,7 @@ function renderCalendar() {
     ) {
       days += `<div class="day current-prev">${prevDay}</div>`;
     } else {
-      days += `<div class="day prev" data-day="${currentYear}-${currentMonth}-${i}">${prevDay}</div>`;
+      days += `<div class="day prev" data-day="${currentYear}-${(currentMonth + 1).toString().padStart(2, '0')}-${i.toString().padStart(2, '0')}">${prevDay}</div>`;
     }
   }
 
@@ -68,7 +68,7 @@ function renderCalendar() {
       currentMonth === new Date().getMonth() &&
       currentYear === new Date().getFullYear()
     ) {
-      days += `<div class="day today active" data-day="${currentYear}-${currentMonth + 1}-${i}">${i}</div>`;
+      days += `<div class="day today active" data-day="${currentYear}-${(currentMonth + 1).toString().padStart(2, '0')}-${i.toString().padStart(2, '0')}">${i}</div>`;
     } else if (
       i <= today &&
       currentMonth === new Date().getMonth() &&
@@ -76,19 +76,19 @@ function renderCalendar() {
     ) {
       days += `<div class="day current-prev">${i}</div>`;
     } else if (new Date(currentYear, currentMonth, i).getDay() === 6) {
-        days += `<div class="day weekend saturday" data-day="${currentYear}-${currentMonth + 1}-${i}">${i}</div>`;
+        days += `<div class="day weekend saturday" data-day="${currentYear}-${(currentMonth + 1).toString().padStart(2, '0')}-${i.toString().padStart(2, '0')}">${i}</div>`;
     } else if (new Date(currentYear, currentMonth,i).getDay() === 0) {
-      days += `<div class="day weekend" data-day="${currentYear}-${currentMonth + 1}-${i}">${i}</div>`;
+      days += `<div class="day weekend" data-day="${currentYear}-${(currentMonth + 1).toString().padStart(2, '0')}-${i.toString().padStart(2, '0')}">${i}</div>`;
     } else if (weekends.includes(new Date(currentYear, currentMonth, i).toLocaleDateString("ja-JP", {year: "numeric",month: "2-digit",day: "2-digit"}).replaceAll('/', '-'))) {
-      days += `<div class="day weekend" data-day="${currentYear}-${currentMonth + 1}-${i}">${i}</div>`;
+      days += `<div class="day weekend" data-day="${currentYear}-${(currentMonth + 1).toString().padStart(2, '0')}-${i.toString().padStart(2, '0')}">${i}</div>`;
     }
     else {
-      days += `<div class="day" data-day="${currentYear}-${currentMonth + 1}-${i}">${i}</div>`;
+      days += `<div class="day" data-day="${currentYear}-${(currentMonth + 1).toString().padStart(2, '0')}-${i.toString().padStart(2, '0')}">${i}</div>`;
     }
   }
 
   for (let i = 1; i <= nextDays; i++) {
-    days += `<div class="day next" data-day="${currentYear}-${currentMonth + 1}-${i}">${i}</div>`;
+    days += `<div class="day next" data-day="${currentYear}-${(currentMonth + 1).toString().padStart(2, '0')}-${i.toString().padStart(2, '0')}">${i}</div>`;
   }
 
   daysContainer.innerHTML = days;
@@ -157,6 +157,8 @@ function createTimetable (date) {
   let timeInfo = "";
   let reservedTime = [];
   const data = { date: date };
+  const today = new Date();
+  console.log(today);
 
   fetch('checkDate.php', {
     method: 'POST',
@@ -168,10 +170,17 @@ function createTimetable (date) {
   .then((response) =>  response.json())
   .then((responseData) => {
     try {
+      let reserveLimitTime = today.getHours() + 2;
       if (responseData.status === true) {
         reservedTime = responseData.time;
         for(let i = 9; i <= 16; i++) {
-          !reservedTime.includes(i) ? timeInfo += `<li class="time">${i}:00</li>` : timeInfo += `<li class="time reserved">${i}:00</li>`;
+          console.log(date);
+          console.log(`${today.getFullYear()}-${(today.getMonth() + 1).toString().padStart(2, '0')}-${(today.getDate()).toString().padStart(2, '0')}`);
+          if((i <= reserveLimitTime && date === `${today.getFullYear()}-${(today.getMonth() + 1).toString().padStart(2, '0')}-${(today.getDate()).toString().padStart(2, '0')}`) || reservedTime.includes(i)) {
+            timeInfo += `<li class="time reserved">${i}:00</li>`
+          } else {
+            timeInfo += `<li class="time">${i}:00</li>`
+          }
         }
         timeContainer.innerHTML = timeInfo;
 
