@@ -56,12 +56,6 @@ body {
 	font-family: "Roboto", sans-serif;
 	overflow-x: hidden;
 }
-main{
-    max-width: 1400px;
-    background-color: #fff;
-    margin: 0 auto;
-    padding: 120px 40px;
-}
 h1{
     border-bottom: 3px #CF220E solid;
     margin-bottom: 30px;
@@ -206,7 +200,11 @@ td {
         padding: 10px;
         font-size: calc(1em + 0.7vw);
     }
-
+    .Reservation{
+        margin-bottom: 0;
+        padding-bottom: 20px;
+        width: 100%;
+    }
     .content-container table{ 
         max-width: 380px;
         width: 100%;
@@ -267,6 +265,12 @@ td {
     }
     .time{
         width: 35%;
+    }
+    
+    .Reservation{
+        margin-bottom: 0;
+        padding-bottom: 20px;
+        width: 100%;
     }
 }
 
