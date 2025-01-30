@@ -38,6 +38,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         header("Location: ../user_information/user_information.php");
         exit;
     }
+    header("Location: ./admin_login.php");
+    exit;
 }
 ?>
 

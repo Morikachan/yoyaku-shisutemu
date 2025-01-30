@@ -61,14 +61,6 @@ $results = $_SESSION['results'];
                       <li class="c-header__list-item">
                         <a href="https://www.kccollege.ac.jp/" class="c-header__list-link">ホームページへ</a>
                       </li>
-                      <li class="c-header__list-item">
-                        <a href="#" class="c-header__list-link">参加履歴</a>
-                      </li>
-                      <li class="c-header__list-item">
-                        <a href="#" class="c-header__list-link">登録内容の変更</a>
-                      </li>
-                      <li class="c-header__list-item">
-                        <a href="#" class="c-header__list-link">アカウント削除</a>
                       </li>
                       <li class="c-header__list-item">
                         <a href="#" class="c-header__list-link">お問い合わせ</a>
@@ -85,8 +77,8 @@ $results = $_SESSION['results'];
         <h1>予約情報</h1>
 
         <!-- 選択ボタン -->
-        <button type="button" id="select-button">選択</button>
-        <button>変更</button>
+        <!-- <button type="button" id="select-button">選択</button>
+        <button>変更</button> -->
 
         <div class="table_wrap">
             <table>
