@@ -29,7 +29,7 @@ try {
 }
 
 $results = $_SESSION['results'];
-var_dump($results);
+// var_dump($results);
 ?>
 
 <!DOCTYPE html>
@@ -69,21 +69,21 @@ var_dump($results);
                     <a href="https://www.kccollege.ac.jp/" class="c-header__list-link">ホームページへ</a>
                 </li>
                 <li class="c-header__list-item">
-                    <a href="#" class="c-header__list-link">参加履歴</a>
+                    <a href="../../participation_history/participation_history.html" class="c-header__list-link">参加履歴</a>
                 </li>
                 <li class="c-header__list-item">
                     <a href="#" class="c-header__list-link">登録内容の変更</a>
                 </li>
                 <li class="c-header__list-item">
-                    <a href="#" class="c-header__list-link">アカウント削除</a>
+                    <a href="../../delete_account/html/delete.html" class="c-header__list-link">アカウント削除</a>
                 </li>
                 <li class="c-header__list-item">
-                    <a href="#" class="c-header__list-link">お問い合わせ</a>
+                    <a href="../../inquiry/inquiry.php" class="c-header__list-link">お問い合わせ</a>
                 </li>
             </ul>
             
-            <!-- 新規登録ボタン -->
-            <a href="#" class="red-button">新規登録</a>
+            <!--　ログアウトボタン -->
+            <a href="../../logout.php" class="red-button">ログアウト</a>
             <!-- ハンバーガボタン -->
             <div id="hamburger-btn" class="open" onclick="hamburgerClick()"></div>
         </div>
@@ -220,201 +220,243 @@ var_dump($results);
         </div>
     </main>
 
-
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <!-- CONTACT INFO + SNS -->
+                <h3>お問い合わせの情報</h3>
+                <div>
+                    <p>アーツカレッジヨコハマ</p>
+                    <p>〒220-0072</p>
+                    <p>神奈川県横浜市西区浅間町2-105-8</p>
+                    <p> TEL：
+                        <a href="tel:0120-557-754">0120-557-754</a>
+                        （平日9〜17時）
+                    </p>
+                    <p>MAIL：
+                        <a href="mailto:master@kccollege.ac.jp">master@kccollege.ac.jp</a>
+                    </p>
+                    <a href="#">お問い合わせフォームへ</a>
+                    <div class="icons">
+                        <a href="https://twitter.com/artscollege" class="twitter"><i class="fa-brands fa-x-twitter"></i></a>
+                        <a href="https://www.instagram.com/artscollegeofficial/" class="insta"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://lin.ee/tqexEQX" class="line"><i class="fa-brands fa-line"></i></a>
+                        <a href="https://www.youtube.com/channel/UCADAYqNIxMTkg2OE8_5aNzA/" class="youtube"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="https://ja-jp.facebook.com/artscollegeyokohama" id="facebook"><i class="fa-brands fa-facebook"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-section">
+                <!-- ACCESS -->
+                <h3>アクセス</h3>
+                <div>
+                    <p>横浜駅西口より徒歩15分 相鉄線平沼橋駅より徒歩11分</p>
+                    <p>横浜駅西口ターミナルからバス25、202系統</p>
+                    <p>「浅岡橋」バス停下車徒歩2分</p>  
+                </div>
+            </div>
+            <div class="footer-section">
+                <!-- MAP -->
+                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d6499.293489360595!2d139.609711!3d35.463539!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60185c09e09a76a5%3A0xd9f33045278944be!2z44Ki44O844OE44Kr44Os44OD44K444Oo44Kz44OP44Oe!5e0!3m2!1sja!2sjp!4v1736212708651!5m2!1sja!2sjp" width="500" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+        <small>Copyright　&copy;システム開発Cチーム　2025</small>
+    </footer>
+    <a id="page-top">TOP</a>
 
     <script>
-        function disabled() {
-            console.log('ボタンが無効化されました');
-            submitButton.disabled = true;
-            submitButton.classList.remove("btn-enabled");
-            submitButton.classList.add("btn-disabled");
-        }
-        function enabled() {
-            console.log('ボタンが有効化されました');
-            submitButton.disabled = false;
-            submitButton.classList.remove("btn-disabled");
-            submitButton.classList.add("btn-enabled");
-        }
-        // 入力されたメールアドレスが正規表現か確認する関数
-        function validateEmail(email) {
-            const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-            return regex.test(email);
-        }
+        // function disabled() {
+        //     console.log('ボタンが無効化されました');
+        //     submitButton.disabled = true;
+        //     submitButton.classList.remove("btn-enabled");
+        //     submitButton.classList.add("btn-disabled");
+        // }
+        // function enabled() {
+        //     console.log('ボタンが有効化されました');
+        //     submitButton.disabled = false;
+        //     submitButton.classList.remove("btn-disabled");
+        //     submitButton.classList.add("btn-enabled");
+        // }
+        // // 入力されたメールアドレスが正規表現か確認する関数
+        // function validateEmail(email) {
+        //     const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        //     return regex.test(email);
+        // }
 
 
-        const buttonEnabled =  {
-            notEmpty: true,//空がないか
-            changed:false,//変更点
-            gender:false,//性別の変更
-            mail:true,//メールの正規表現
-        }
-        const keys = Object.keys(buttonEnabled);
-        console.log(buttonEnabled[keys[0]]);
+        // const buttonEnabled =  {
+        //     notEmpty: true,//空がないか
+        //     changed:false,//変更点
+        //     gender:false,//性別の変更
+        //     mail:true,//メールの正規表現
+        // }
+        // const keys = Object.keys(buttonEnabled);
+        // console.log(buttonEnabled[keys[0]]);
 
         
 
-        const form = document.querySelector("form");
-        const inputs = form.querySelectorAll("input");
-        const selects = form.querySelectorAll("select");
-        const values = Array.from(inputs).map(input => input.value);
-        const submitButton = form.querySelector(".login-submit");
-        console.log(values);
+        // const form = document.querySelector("form");
+        // const inputs = form.querySelectorAll("input");
+        // const selects = form.querySelectorAll("select");
+        // const values = Array.from(inputs).map(input => input.value);
+        // const submitButton = form.querySelector(".login-submit");
+        // console.log(values);
 
 
 
-        //　入力欄のチェック
-        inputs.forEach(input => {
-            input.addEventListener("change", () => {
-                // 空の入力欄をチェック
-                console.log(input.getAttribute('name'));
-                const emptyFields = Array.from(inputs).filter(field => field.value === "");
-                if (emptyFields.length > 0) {
-                    buttonEnabled.notEmpty = false;
-                    console.log(buttonEnabled);
-                } else {
-                    buttonEnabled.notEmpty = true;
-                    console.log(buttonEnabled);
-                }
-            });
-        });
-
-        selects.forEach(select => {
-            select.addEventListener("change", () => {   
-                // 空の入力欄をチェック
-                console.log(select.getAttribute('name'));
-                const value = select.value;
-                console.log(value);
-                // if () {
-                // } else {
-                // }
-            });
-        });
-
-        // ラジオボタンの初期状態を取得
-        const selectedValue = document.querySelector('input[name="gender"]:checked').value;
-        document.getElementsByName('gender').forEach(radio => {
-            radio.addEventListener('change', (e) => {
-                // 性別が変更された場合の処理
-                if(e.target.value != selectedValue) {
-                    buttonEnabled.gender = true;
-                }else {
-                    buttonEnabled.gender = false;
-                }
-            });
-        });
-
-
-        // メアドの初期状態を取得
-        const defaultMail = document.getElementById("mail").value;
-        var changedMail = document.getElementById('mail');
-        changedMail.addEventListener('input', function() {
-            // 入力が変更されるたびに実行される処理
-            var inputValue = changedMail.value;
-            // メアドが正規表現かの確認
-            if (validateEmail(inputValue) && inputValue != defaultMail) {
-                buttonEnabled.mail = true;
-            } else {
-                buttonEnabled.mail = false;
-            }
-        });
-
-
-        // document.addEventListener("DOMContentLoaded", function () {
-        //     const form = document.querySelector("form");
-        //     const inputs = form.querySelectorAll("input, select, textarea"); // フォーム内すべての入力要素を取得
-        //     const submitButton = form.querySelector(".login-submit");
-
-        //     // 初期値を保存
-        //     const initialValues = Array.from(inputs).map(input => {
-        //         if (input.type === "radio") {
-        //             // ラジオボタンは選択されている値を保存
-        //             const radioGroup = form.querySelectorAll(`input[name="${input.name}"]`);
-        //             return Array.from(radioGroup).find(radio => radio.checked)?.value || "";
-        //         }
-        //         return input.value;
-        //     });
-
-        //     // 入力値が変更されたかどうかを確認する関数
-        //     function checkForChanges() {
-        //         let hasChanges = false;
-        //         inputs.forEach((input, index) => {
-        //             if (input.type === "radio") {
-        //                 // ラジオボタンは選択されている値をチェック
-        //                 const radioGroup = form.querySelectorAll(`input[name="${input.name}"]`);
-        //                 const selectedValue = Array.from(radioGroup).find(radio => radio.checked)?.value || "";
-        //                 if (selectedValue !== initialValues[index]) {
-        //                     hasChanges = true;
-        //                 }
-        //             } else {
-        //                 // その他の要素は値を直接比較
-        //                 if (input.value !== initialValues[index]) {
-        //                     hasChanges = true;
-        //                 }
-        //             }
-        //         });
-
-        //         // クラスと状態の切り替え
-        //         if (hasChanges) {
-        //             submitButton.disabled = false;
-        //             submitButton.classList.remove("btn-disabled");
-        //             submitButton.classList.add("btn-enabled");
+        // //　入力欄のチェック
+        // inputs.forEach(input => {
+        //     input.addEventListener("change", () => {
+        //         // 空の入力欄をチェック
+        //         console.log(input.getAttribute('name'));
+        //         const emptyFields = Array.from(inputs).filter(field => field.value === "");
+        //         if (emptyFields.length > 0) {
+        //             buttonEnabled.notEmpty = false;
+        //             console.log(buttonEnabled);
         //         } else {
-        //             submitButton.disabled = true;
-        //             submitButton.classList.remove("btn-enabled");
-        //             submitButton.classList.add("btn-disabled");
+        //             buttonEnabled.notEmpty = true;
+        //             console.log(buttonEnabled);
         //         }
+        //     });
+        // });
+
+        // selects.forEach(select => {
+        //     select.addEventListener("change", () => {   
+        //         // 空の入力欄をチェック
+        //         console.log(select.getAttribute('name'));
+        //         const value = select.value;
+        //         console.log(value);
+        //         // if () {
+        //         // } else {
+        //         // }
+        //     });
+        // });
+
+        // // ラジオボタンの初期状態を取得
+        // const selectedValue = document.querySelector('input[name="gender"]:checked').value;
+        // document.getElementsByName('gender').forEach(radio => {
+        //     radio.addEventListener('change', (e) => {
+        //         // 性別が変更された場合の処理
+        //         if(e.target.value != selectedValue) {
+        //             buttonEnabled.gender = true;
+        //         }else {
+        //             buttonEnabled.gender = false;
+        //         }
+        //     });
+        // });
+
+
+        // // メアドの初期状態を取得
+        // const defaultMail = document.getElementById("mail").value;
+        // var changedMail = document.getElementById('mail');
+        // changedMail.addEventListener('input', function() {
+        //     // 入力が変更されるたびに実行される処理
+        //     var inputValue = changedMail.value;
+        //     // メアドが正規表現かの確認
+        //     if (validateEmail(inputValue) && inputValue != defaultMail) {
+        //         buttonEnabled.mail = true;
+        //     } else {
+        //         buttonEnabled.mail = false;
         //     }
-
-        //     // 入力要素の変更を監視
-        //     inputs.forEach(input => {
-        //         input.addEventListener("input", checkForChanges);
-        //         input.addEventListener("change", checkForChanges); // ラジオボタンやセレクトボックスに対応
-        //     });
         // });
 
-        // document.addEventListener("DOMContentLoaded", function () {
-        //     const inputs = document.querySelectorAll("input[required], select[required]");
 
-        //     inputs.forEach(input => {
-        //         // フォーカスが外れた時の処理
-        //         input.addEventListener("blur", function () {
-        //             const container = input.parentNode; // 親要素
-        //             let errorMessage = container.querySelector(".error-text");
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.querySelector("form");
+            const inputs = form.querySelectorAll("input, select, textarea"); // フォーム内すべての入力要素を取得
+            const submitButton = form.querySelector(".login-submit");
 
-        //             // 既存のエラーメッセージがある場合は削除
-        //             if (errorMessage) {
-        //                 errorMessage.remove();
-        //             }
+            // 初期値を保存
+            const initialValues = Array.from(inputs).map(input => {
+                if (input.type === "radio") {
+                    // ラジオボタンは選択されている値を保存
+                    const radioGroup = form.querySelectorAll(`input[name="${input.name}"]`);
+                    return Array.from(radioGroup).find(radio => radio.checked)?.value || "";
+                }
+                return input.value;
+            });
 
-        //             // 入力が空の場合のみエラーメッセージを表示
-        //             if (!input.value.trim()) {
-        //                 const error = document.createElement("div");
-        //                 error.className = "error-text";
-        //                 error.style.color = "red";
-        //                 error.style.fontSize = "0.9em";
+            // 入力値が変更されたかどうかを確認する関数
+            function checkForChanges() {
+                let hasChanges = false;
+                inputs.forEach((input, index) => {
+                    if (input.type === "radio") {
+                        // ラジオボタンは選択されている値をチェック
+                        const radioGroup = form.querySelectorAll(`input[name="${input.name}"]`);
+                        const selectedValue = Array.from(radioGroup).find(radio => radio.checked)?.value || "";
+                        if (selectedValue !== initialValues[index]) {
+                            hasChanges = true;
+                        }
+                    } else {
+                        // その他の要素は値を直接比較
+                        if (input.value !== initialValues[index]) {
+                            hasChanges = true;
+                        }
+                    }
+                });
 
-        //                 // 関連するthタグまたはpタグの内容を取得
-        //                 const th = input.closest("tr")?.querySelector("th");
-        //                 const p = input.previousElementSibling?.tagName === "P" ? input.previousElementSibling : null;
+                // クラスと状態の切り替え
+                if (hasChanges) {
+                    submitButton.disabled = false;
+                    submitButton.classList.remove("btn-disabled");
+                    submitButton.classList.add("btn-enabled");
+                } else {
+                    submitButton.disabled = true;
+                    submitButton.classList.remove("btn-enabled");
+                    submitButton.classList.add("btn-disabled");
+                }
+            }
 
-        //                 const fieldName = th ? th.innerText : (p ? p.innerText.replace('：', '') : "この項目");
+            // 入力要素の変更を監視
+            inputs.forEach(input => {
+                input.addEventListener("input", checkForChanges);
+                input.addEventListener("change", checkForChanges); // ラジオボタンやセレクトボックスに対応
+            });
+        });
 
-        //                 error.innerText = `${fieldName} を入力してください。`;
-        //                 container.appendChild(error);
-        //             }
-        //         });
+        document.addEventListener("DOMContentLoaded", function () {
+            const inputs = document.querySelectorAll("input[required], select[required]");
 
-        //         // 入力が行われた時の処理（エラーメッセージ削除）
-        //         input.addEventListener("input", function () {
-        //             const container = input.parentNode;
-        //             let errorMessage = container.querySelector(".error-text");
+            inputs.forEach(input => {
+                // フォーカスが外れた時の処理
+                input.addEventListener("blur", function () {
+                    const container = input.parentNode; // 親要素
+                    let errorMessage = container.querySelector(".error-text");
 
-        //             if (errorMessage) {
-        //                 errorMessage.remove();
-        //             }
-        //         });
-        //     });
-        // });
+                    // 既存のエラーメッセージがある場合は削除
+                    if (errorMessage) {
+                        errorMessage.remove();
+                    }
+
+                    // 入力が空の場合のみエラーメッセージを表示
+                    if (!input.value.trim()) {
+                        const error = document.createElement("div");
+                        error.className = "error-text";
+                        error.style.color = "red";
+                        error.style.fontSize = "0.9em";
+
+                        // 関連するthタグまたはpタグの内容を取得
+                        const th = input.closest("tr")?.querySelector("th");
+                        const p = input.previousElementSibling?.tagName === "P" ? input.previousElementSibling : null;
+
+                        const fieldName = th ? th.innerText : (p ? p.innerText.replace('：', '') : "この項目");
+
+                        error.innerText = `${fieldName} を入力してください。`;
+                        container.appendChild(error);
+                    }
+                });
+
+                // 入力が行われた時の処理（エラーメッセージ削除）
+                input.addEventListener("input", function () {
+                    const container = input.parentNode;
+                    let errorMessage = container.querySelector(".error-text");
+
+                    if (errorMessage) {
+                        errorMessage.remove();
+                    }
+                });
+            });
+        });
     </script>
 </body>
 </html>
