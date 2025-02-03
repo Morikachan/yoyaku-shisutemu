@@ -105,7 +105,7 @@ $results_participation_history = $_SESSION['results_participation_history'];
                     <p>MAIL：
                         <a href="mailto:master@kccollege.ac.jp">master@kccollege.ac.jp</a>
                     </p>
-                    <a href="#">お問い合わせフォームへ</a>
+                    <a href="../inquiry/inquiry.html">お問い合わせフォームへ</a>
                     <div class="icons">
                         <a href="https://twitter.com/artscollege" class="twitter"><i class="fa-brands fa-x-twitter"></i></a>
                         <a href="https://www.instagram.com/artscollegeofficial/" class="insta"><i class="fa-brands fa-instagram"></i></a>
