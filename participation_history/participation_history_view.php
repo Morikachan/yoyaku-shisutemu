@@ -30,7 +30,7 @@ $results_participation_history = $_SESSION['results_participation_history'];
                         <a href="https://www.kccollege.ac.jp/" class="c-header__list-link">ホームページへ</a>
                       </li>
                       <li class="c-header__list-item">
-                        <a href="./participation_history/participation_history.php" class="c-header__list-link">参加履歴</a>
+                        <a href="./participation_history.php" class="c-header__list-link">参加履歴</a>
                       </li>
                       <li class="c-header__list-item">
                         <a href="../change_Information/view/change_Information.php" class="c-header__list-link">登録内容の変更</a>
