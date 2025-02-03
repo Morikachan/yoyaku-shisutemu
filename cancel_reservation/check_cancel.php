@@ -61,7 +61,7 @@
          
         //送信元
         $headers = 'From: ' . $mail . "\r\n" .
-    'Content-type:text/html;charset=UTF-8' . "\r\n" ;;
+        'Content-type:text/html;charset=UTF-8' . "\r\n" ;;
 
         //送信先
         $to = 'k248001@kccollege.ac.jp';
@@ -73,7 +73,7 @@
         //本文
         $message = $mail . 'の予約がキャンセルされました'."<br>"."<br>";
 
-        $message .= "<html><body><table border='1'><h1 style='color: blue;";
+        $message .= "<html><body><table border='1'>";
         foreach($day_cancel as $key => $day){
             $message .= "<tr><th>" . '予約日 ' . "</th><th>". $day . "</th><th>" . '予約時間' . "</th><th>" . $time_cancel[$key] . '時'. "</th></tr>" . "\n";
         }
