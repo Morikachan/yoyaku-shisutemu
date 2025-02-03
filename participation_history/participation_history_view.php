@@ -44,7 +44,7 @@ $results_participation_history = $_SESSION['results_participation_history'];
                   </ul>
                   
                   <!-- 新規登録ボタン -->
-                  <a href="./registration/registration.php" class="red-button">新規登録</a>
+                  <a href="../registration/registration.php" class="red-button">新規登録</a>
                   <!-- ハンバーガボタン -->
                   <div id="hamburger-btn" class="open" onclick="hamburgerClick()"></div>
             </div>
