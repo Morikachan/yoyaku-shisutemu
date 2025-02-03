@@ -157,7 +157,7 @@ if(searchToken($pdo, $passwordResetToken)){
             </div>
     </header>
         <main id="main">
-        <p class="location"><a href="https://www.kccollege.ac.jp/">ホームページ</a> / <a href="../login.php">ログインページ</a> / <a href="../pass_reset.html">パスワードのリセット</a>/ 新パスワードの入力</p>
+        <p class="location"><a href="https://www.kccollege.ac.jp/">ホームページ</a> / <a href="../../login.php">ログインページ</a> / <a href="../pass_reset.html">パスワードのリセット</a>/ 新パスワードの入力</p>
             <h1>パスワードリセット</h1>
             
             
