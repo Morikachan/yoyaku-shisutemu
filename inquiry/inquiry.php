@@ -32,7 +32,7 @@
                         <a href="https://www.kccollege.ac.jp/" class="c-header__list-link">ホームページへ</a>
                     </li>
                     <li class="c-header__list-item">
-                        <a href="../mypage/" class="c-header__list-link">マイページ</a>
+                        <a href="../mypage/mypage.php" class="c-header__list-link">マイページ</a>
                     </li>
                     <li class="c-header__list-item">
                         <a href="./../participation_history/participation_history.html" class="c-header__list-link">参加履歴</a>
@@ -44,7 +44,7 @@
                         <a href="./../delete_account/html/delete.html" class="c-header__list-link">アカウント削除</a>
                     </li>
                     <li class="c-header__list-item">
-                        <a href="./../inquiry/inquiry.html" class="c-header__list-link">お問い合わせ</a>
+                        <a href="./../inquiry/inquiry.php" class="c-header__list-link">お問い合わせ</a>
                     </li>
                 </ul>
                 
