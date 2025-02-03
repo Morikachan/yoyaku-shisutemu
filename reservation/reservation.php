@@ -38,7 +38,7 @@
                         <a href="../mypage/mypage.html" class="c-header__list-link">マイページ</a>
                       </li>
                       <li class="c-header__list-item">
-                        <a href="../participation_history/participation_history.html" class="c-header__list-link">参加履歴</a>
+                        <a href="../participation_history/participation_history.php" class="c-header__list-link">参加履歴</a>
                       </li>
                       <li class="c-header__list-item">
                         <a href="../change_Information/view/change_Information.php" class="c-header__list-link">登録内容の変更</a>
@@ -47,7 +47,7 @@
                         <a href="../delete_account/html/delete.html" class="c-header__list-link">アカウント削除</a>
                       </li>
                       <li class="c-header__list-item">
-                        <a href="../inquiry/inquiry.html" class="c-header__list-link">お問い合わせ</a>
+                        <a href="../inquiry/inquiry.php" class="c-header__list-link">お問い合わせ</a>
                       </li>
                   </ul>
                   

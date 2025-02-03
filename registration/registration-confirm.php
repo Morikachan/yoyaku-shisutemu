@@ -39,7 +39,7 @@
                         <a href="../login.php" class="c-header__list-link">ログイン</a>
                       </li>
                       <li class="c-header__list-item">
-                        <a href="../inquiry/inquiry.html" class="c-header__list-link">お問い合わせ</a>
+                        <a href="../inquiry/inquiry.php" class="c-header__list-link">お問い合わせ</a>
                       </li>
                   </ul>
                   <!-- 新規登録ボタン -->
@@ -128,7 +128,7 @@
                             <p>MAIL：
                                 <a href="mailto:master@kccollege.ac.jp">master@kccollege.ac.jp</a>
                             </p>
-                            <a href="#">お問い合わせフォームへ</a>
+                            <a href="../inquiry/inquiry.php">お問い合わせフォームへ</a>
                             <div class="icons">
                                 <a href="https://twitter.com/artscollege" class="twitter"><i class="fa-brands fa-x-twitter"></i></a>
                                 <a href="https://www.instagram.com/artscollegeofficial/" class="insta"><i class="fa-brands fa-instagram"></i></a>
