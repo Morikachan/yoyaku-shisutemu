@@ -1,7 +1,6 @@
 <?php
 session_start();
 $results_participation_history = $_SESSION['results_participation_history'];
-$delte = $_SESSION['delte'];
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -19,7 +18,7 @@ $delte = $_SESSION['delte'];
     <header class="c-header c-hamburger-menu">
             <!-- アーツカレッジヨコハマのロゴ -->
             <div class="flex_logo">
-                <a href="https://www.kccollege.ac.jp/" class="c-header__logo"><img src="img/image 1.png" alt="Arts_Logo"></a>
+                <a href="https://www.kccollege.ac.jp/" class="c-header__logo"><img src="../img/image 1.png" alt="Arts_Logo"></a>
             </div>
 
             <!-- ロゴを除くオブジェクトを右に固定するためのdiv -->
@@ -60,32 +59,6 @@ $delte = $_SESSION['delte'];
                     <h2>参加情報</h2>
                     <div class="participation">
                         <h3>・参加履歴</h3>
-                        <p class="delete-history"><button class="openDialog">・<span>履歴をリセット</span>する</button></p>
-                        <dialog class="dialogDemo">
-                            <p>本当に削除しますか？</P>
-                            <div class="chose">
-                                <button class="yes">はい</button>
-                                <button class="no">キャンセル</button>
-                            </div>
-                        </dialog>
-                        <script>
-                            const openBtn = document.querySelector('.openDialog');
-                            const dialogDemo = document.querySelector('.dialogDemo');
-                            const yes = document.querySelector('.yes');
-                            const no = document.querySelector('.no');
-                            //ダイアログを開く
-                            openBtn.addEventListener('click', () => {
-                                dialogDemo.showModal();
-                            });
-                            //ダイアログを閉じる
-                            no.addEventListener('click', () => {
-                                dialogDemo.close();
-                            });
-                            //移動する
-                            yes.addEventListener('click', () => {
-                                location.href = './delete_history.php';
-                            });
-                        </script>
                         <table border="1">
                             <thead>
                                 <tr>
@@ -109,20 +82,6 @@ $delte = $_SESSION['delte'];
                 <?php else: ?>
                     <h2>参加情報</h2>
                     <div class="participation">
-                        <?php if(!empty($delte)){ ?>
-                            <dialog open class="deletedialog">
-                                <p>削除が完了しました</P>
-                                <p class="close-font"><button class="close">閉じる</button></P>
-                            </dialog>
-                            <script>
-                                const deletedialog = document.querySelector('.deletedialog');
-                                const close = document.querySelector('.close');
-                                //ダイアログを閉じる
-                                close.addEventListener('click', () => {
-                                    deletedialog.close();
-                                });
-                            </script>
-                        <?php $_SESSION['delte'] = 0;} ?>
                         <h3>参加履歴</h3>
                         <p class="none-participation">・現在参加履歴はありません</p>
                         <p class="mypage-move"><a href="../mypage/mypage.php" class="participation_history-button move-button">マイページ</a></p>
