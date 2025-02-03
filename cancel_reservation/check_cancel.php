@@ -37,7 +37,7 @@
 
     //予約キャンセル
     function deletappoint($pdo , $id , $day , $time ){
-        $sql = "UPDATE appointment SET id = :id , day = :day , time = :time , display = 'cancel' WHERE id = :id AND DATE_FORMAT(day, '%Y-%m-%d') = :day AND time = :time  order by day asc;";
+        $sql = "UPDATE appointment SET id = :id , day = :day , time = :time , message = 'cancel' WHERE id = :id AND DATE_FORMAT(day, '%Y-%m-%d') = :day AND time = :time  order by day asc;";
     
         try{
             $stmt = $pdo->prepare($sql);
@@ -63,7 +63,7 @@
         $headers = 'From: ' . $mail . "\r\n" .
     'Content-type:text/html;charset=UTF-8' . "\r\n" ;;
 
-        //送信先 管理者
+        //送信先
         $to = 'k248001@kccollege.ac.jp';
 
         //送信するメールの表題
@@ -71,28 +71,13 @@
 
 
         //本文
-        $message = '<html><body>';
-        $message .= '<h1 style="font-size: 20px;">■ 予約がキャンセルされました</h1>';
-        $message .= '<div style="margin-left: 20px;">';
-        $message .= '<h2 style="font-size: 15px;">● ' . $mail . 'の予約がキャンセルされました</h2>';
-        $message .= '<h2 style="font-size: 15px;">● キャンセル内容</h2>';
-        $message .= '<div style="margin-left: 20px;">';
-        $message .= '<table border="2" style="border-collapse: collapse;">';
+        $message = $mail . 'の予約がキャンセルされました'."<br>"."<br>";
+
+        $message .= "<html><body><table border='1'><h1 style='color: blue;";
         foreach($day_cancel as $key => $day){
-            $message .= "<tr style='border: 2px solid black;'>
-                            <th style='border: 2px solid black;'>" 
-                                . '予約日 ' . "</th><th style='border: 2px solid black;'>"
-                                . $day . "</th><th style='border: 2px solid black;'>" 
-                                . '予約時間' . "</th><th>" 
-                                . $time_cancel[$key] 
-                                . '時'
-                            ."</th>"
-                        ."</tr>";
+            $message .= "<tr><th>" . '予約日 ' . "</th><th>". $day . "</th><th>" . '予約時間' . "</th><th>" . $time_cancel[$key] . '時'. "</th></tr>" . "\n";
         }
-        $message .= '</table>';
-        $message .= '</div>';
-        $message .= '</div>';
-        $message .= '</body></html>';
+        $message .= "<style> body{background-color: #CF220E;} table{ border-collapse: collapse;} </style> </table></body></html>" ."\n";
         
         
         if(mail($to , $subject , $message , $headers)) {
