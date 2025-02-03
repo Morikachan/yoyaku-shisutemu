@@ -77,10 +77,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <a href="https://www.kccollege.ac.jp/" class="c-header__list-link">ホームページへ</a>
                       </li>
                       <li class="c-header__list-item">
-                        <a href="../login.php" class="c-header__list-link">ログイン</a>
+                        <a href="./login.php" class="c-header__list-link">ログイン</a>
                       </li>
                       <li class="c-header__list-item">
-                        <a href="../inquiry/inquiry.html" class="c-header__list-link">お問い合わせ</a>
+                        <a href="./inquiry/inquiry.html" class="c-header__list-link">お問い合わせ</a>
                       </li>
                   </ul>
                   
