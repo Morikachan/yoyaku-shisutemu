@@ -1,4 +1,7 @@
 @charset "UTF-8";
+main {
+min-height: 35vh;
+}
 .modal {
     display: block;
     position: fixed;
@@ -168,6 +171,7 @@ button[type="submit"].active{
         font-size: 10px;
     }
     main{
+        min-height: 25vh;
         padding-bottom: 40px;
     }
     .modal-content {
