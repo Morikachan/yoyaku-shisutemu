@@ -10,8 +10,8 @@ $results_mypage = $_SESSION['results_mypage'];
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="../css/style.css">
         <link rel="stylesheet" href="./mypage.css">
-        <script src="./hamburger.js" defer></script>
-        <script src="./scrollTop.js" defer></script>
+        <script src="../hamburger.js" defer></script>
+        <script src="../scrollTop.js" defer></script>
         <script src="https://kit.fontawesome.com/f640a591db.js" crossorigin="anonymous"></script>
         <title>マイページ</title>
     </head>
