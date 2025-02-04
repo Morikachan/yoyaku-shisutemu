@@ -93,7 +93,7 @@
                         <span class="required">必須</span><h3>電話番号</h3>
                             <input type="tel" name="tel" id="tel" value=<?php echo $UserRegistrationInfo['tel'] ?> readonly>
                         <span class="required">必須</span><h3>住所</h3>
-                            <input type="text" name="zipcode" id="zipcode" value=<?php echo $UserRegistrationInfo['zipcode'] ?> readonly>
+                            <input type="text" name="postalcode" id="postalcode" value=<?php echo $UserRegistrationInfo['postalcode'] ?> readonly>
                             <div class="address">
                                 <input type="text" name="address1" id="address1" value=<?php echo $UserRegistrationInfo['address1'] ?> readonly>
                                 <input type="text" name="address2" id="address2" value=<?php echo $UserRegistrationInfo['address2'] ?> readonly>

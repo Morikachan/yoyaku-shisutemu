@@ -12,11 +12,20 @@ $occupations = [
     "highschool2" => "高校2年生",
     "highschool3" => "高校3年生",
     "highschool4" => "高校4年生",
+    "prepSchoolStudent" => "予備校生",
+    "gradStudent" => "大学院生",
     "university" => "大学生",
     "juniorCollege" => "短大生",
+    "collegeStudent" => "高専生",
     "vocationalSchool" => "専門学校生",
+    "juniorHighSchoolStudent" => "中学生",
+    "elementarySchoolStudent" => "小学生",
+    "otherStudent" => "その他の学生",
     "adult" => "社会人",
     "internationalStudent" => "留学生",
+    "parents" => "保護者",
+    "teacher" => "先生",
+    "highSchoolGraduation" => "高卒認定",
     "different" => "その他",
 ]; 
 function searchMail($pdo, $mail){
@@ -55,7 +64,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     $tel = $_POST['tel'];
 
     // 住所
-    $zipcode = $_POST['zipcode'];
+    $postalcode = $_POST['postalcode'];
     $address1 = $_POST['address1'];
     $address2 = $_POST['address2'];
 
@@ -72,7 +81,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         'occupation' => $occupations[$occupation],
         'school' => $school,
         'tel' => $tel,
-        'zipcode' => $zipcode,
+        'postalcode' => $postalcode,
         'address1' => $address1,
         'address2' => $address2,
       ];

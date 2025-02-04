@@ -15,7 +15,7 @@ const course = document.getElementById("course");
 const occupation = document.getElementById("occupation");
 const school = document.getElementById("school");
 const tel = document.getElementById("tel");
-const zipcode = document.getElementById("zipcode");
+const postalcode = document.getElementById("postalcode");
 const address1 = document.getElementById("address1");
 const address2 = document.getElementById("address2");
 
@@ -73,8 +73,8 @@ const registrationInfo = {
     elementError: document.getElementById("telError"),
     elementErrorText: "電話番号を入れてください",
   },
-  zipcode: {
-    element: zipcode,
+  postalcode: {
+    element: postalcode,
     elementError: document.getElementById("addressError"),
     elementErrorText: "郵便番号を入れてください",
   },
@@ -104,7 +104,7 @@ const userInfo = {
   occupation: null,
   school: null,
   tel: null,
-  zipcode: null,
+  postalcode: null,
   address1: null,
   address2: null,
 };

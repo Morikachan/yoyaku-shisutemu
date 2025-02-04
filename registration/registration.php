@@ -117,11 +117,20 @@
                                 <option value="highschool2">高校2年生</option>
                                 <option value="highschool3">高校3年生</option>
                                 <option value="highschool3">高校4年生</option>
+                                <option value="prepSchoolStudent">予備校生</option>
+                                <option value="gradStudent">大学院生</option>
                                 <option value="university">大学生</option>
                                 <option value="juniorCollege">短大生</option>
+                                <option value="collegeStudent">高専生</option>
                                 <option value="vocationalSchool">専門学校生</option>
+                                <option value="juniorHighSchoolStudent">中学生</option>
+                                <option value="elementarySchoolStudent">小学生</option>
+                                <option value="otherStudent">その他の学生</option>
                                 <option value="adult">社会人</option>
                                 <option value="internationalStudent">留学生</option>
+                                <option value="parents">保護者</option>
+                                <option value="teacher">先生</option>
+                                <option value="highSchoolGraduation">高卒認定</option>
                                 <option value="different">その他</option>
                             </select>
                         <span id="occupationError" class="errorMessage"></span><br>
@@ -138,7 +147,7 @@
                             
                             <span class="required">必須</span><h3>住所</h3>
                             <span class="p-country-name" style="display:none;">Japan</span>
-                                <input type="text" class="p-postal-code" size="8" maxlength="8" id="zipcode" placeholder="〒" name="zipcode">
+                                <input type="text" class="p-postal-code" size="8" maxlength="8" id="postalcode" placeholder="〒" name="postalcode">
                             <div class="address">
                                 <input type="text" class="p-region p-locality p-street-address p-extended-address" name="address1" id="address1">
                                 <input type="text" class="" name="address2" id="address2">
