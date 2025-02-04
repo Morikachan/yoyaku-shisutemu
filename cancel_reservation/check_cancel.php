@@ -64,7 +64,7 @@
         'Content-type:text/html;charset=UTF-8' . "\r\n" ;;
 
         //送信先
-        $to = 'k248001@kccollege.ac.jp';
+        $to = 'atrsteamcipsup24@gmail.com';
 
         //送信するメールの表題
         $subject = '予約キャンセル';
