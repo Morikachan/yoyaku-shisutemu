@@ -45,7 +45,7 @@ $results_mypage = $_SESSION['results_mypage'];
                   </ul>
                   
                   <!-- 新規登録ボタン -->
-                  <a href="../registration/registration.php" class="red-button">新規登録</a>
+                  <a href="../logout.php" class="red-button">ログアウト</a>
                   <!-- ハンバーガボタン -->
                   <div id="hamburger-btn" class="open" onclick="hamburgerClick()"></div>
             </div>
