@@ -1,5 +1,4 @@
 @charset "UTF-8";
-
 .table_wrap {
     overflow-x: auto;
 }
@@ -36,11 +35,29 @@ table tr:nth-child(odd){
 table tr:nth-child(even){
     background-color:white;
 }
+/* 備考のスクロール */
 .message_scroll {
     height: 80px;
     overflow: auto;
 }
+/* 検索 */
+/* .searchTextBox{
+} */
+.serchButton{
+    padding: 40px;
+    background: transparent;
+    border: none;
+    
 
+    background-image: url(../../img/search.png);
+    background-repeat: no-repeat;
+    background-position: center center;    
+    background-size: 30px;
+    position: relative;
+    border-radius: 15px;
 
-
-/* ---------------------------------変更点--------------------------------- */
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 90%;
+}
