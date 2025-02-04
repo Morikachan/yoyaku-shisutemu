@@ -2,7 +2,7 @@
 session_start();
 $results_mypage = $_SESSION['results_mypage'];
 ?>
-
+<?php if(isset($_SESSION['id'])){ ?>
 <!DOCTYPE html>
 <html lang="ja">
     <head>
@@ -135,3 +135,8 @@ $results_mypage = $_SESSION['results_mypage'];
     <a id="page-top">TOP</a>
     </body>
 </html>
+<?php }else{
+    header('Location: ../login.php');
+    }
+?>
+
