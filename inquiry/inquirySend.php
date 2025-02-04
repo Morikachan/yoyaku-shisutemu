@@ -16,6 +16,7 @@ $sendto2 = $mail;
 $sendsubject2 = "お問い合わせを受け付けました";
 $maintext2 = "以下の内容でお問い合わせを受け付けました。\r\n お問い合わせ内容 \r\n {$content}\n 担当者が確認次第ご連絡させていただきますので少々お待ちください". "\n";
 
+
 $BOUNDARY = '__BOUNDARY__' .md5(rand());
 
 
@@ -42,11 +43,6 @@ if(mail($sendto, $sendsubject,$body,$header)) {
     header("Location: ./views/mail_error.php");
     exit();
 }
-
-
-// function SettingBOUNDARY(){
-//     return '__BOUNDARY__' .md5(rand());
-// }
 
 function mailbody($mail,$content,$maintext,$BOUNDARY){
    if($IMGTMP = isset($_FILES['avatar']['tmp_name']) ? $_FILES['avatar']['tmp_name'] : NULL){
