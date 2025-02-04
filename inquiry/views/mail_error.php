@@ -1,3 +1,7 @@
+<?php
+    session_start();
+?>
+
 <!DOCTYPE html>
 <!-- お問い合わせのトップページです。 -->
 <html lang="ja">
@@ -22,28 +26,53 @@
         <div class="flex_header">    
             
               <!-- ハンバーガメニューのリスト -->
+              <?php if(isset($_SESSION['id'])) :?>
+                <!-- ハンバーガメニューのリスト -->
+                <ul class="c-header__list c-hamburger-menu__list" id="hamburger-menu_list"><!-- 追記 クラスを追記 -->
+                    <li class="c-header__list-item">
+                        <a href="https://www.kccollege.ac.jp/" class="c-header__list-link">ホームページへ</a>
+                    </li>
+                    <li class="c-header__list-item">
+                        <a href="../mypage/mypage.php" class="c-header__list-link">マイページ</a>
+                    </li>
+                    <li class="c-header__list-item">
+                        <a href="./../participation_history/participation_history.html" class="c-header__list-link">参加履歴</a>
+                    </li>
+                    <li class="c-header__list-item">
+                        <a href="./../change_Information/view/change_Information.php" class="c-header__list-link">登録内容の変更</a>
+                    </li>
+                    <li class="c-header__list-item">
+                        <a href="./../delete_account/html/delete.html" class="c-header__list-link">アカウント削除</a>
+                    </li>
+                    <li class="c-header__list-item">
+                        <a href="./../inquiry/inquiry.php" class="c-header__list-link">お問い合わせ</a>
+                    </li>
+                </ul>
+                
+                <!-- 新規登録ボタン -->
+                <a href="../logout.php" class="red-button">ログアウト</a>
+                <!-- ハンバーガボタン -->
+                <div id="hamburger-btn" class="open" onclick="hamburgerClick()"></div>
+
+                <?php else: ?>
+                    <!-- ハンバーガメニューのリスト -->
               <ul class="c-header__list c-hamburger-menu__list" id="hamburger-menu_list"><!-- 追記 クラスを追記 -->
                   <li class="c-header__list-item">
                     <a href="https://www.kccollege.ac.jp/" class="c-header__list-link">ホームページへ</a>
                   </li>
                   <li class="c-header__list-item">
-                    <a href="./../../participation_history/participation_history.html" class="c-header__list-link">参加履歴</a>
+                    <a href="./../participation_history/participation_history.html" class="c-header__list-link">ログイン</a>
                   </li>
                   <li class="c-header__list-item">
-                    <a href="./../../change_Information/view/change_Information.php" class="c-header__list-link">登録内容の変更</a>
-                  </li>
-                  <li class="c-header__list-item">
-                    <a href="./../../delete_account/html/delete.html" class="c-header__list-link">アカウント削除</a>
-                  </li>
-                  <li class="c-header__list-item">
-                    <a href="./../../inquiry/inquiry.php" class="c-header__list-link">お問い合わせ</a>
+                    <a href="./../inquiry/inquiry.php" class="c-header__list-link">お問い合わせ</a>
                   </li>
               </ul>
               
               <!-- 新規登録ボタン -->
-              <a href="../../registration/registration.php" class="red-button">新規登録</a>
+              <a href="./registration/registration.php" class="red-button">新規登録</a>
               <!-- ハンバーガボタン -->
               <div id="hamburger-btn" class="open" onclick="hamburgerClick()"></div>
+            <?php endif;?>
         </div>
 </header>
     <main id="main">

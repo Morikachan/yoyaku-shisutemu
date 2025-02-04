@@ -30,16 +30,16 @@ if(mail($sendto, $sendsubject,$body,$header)) {
     $body = mailbody($mail,$content,$maintext2,$BOUNDARY);
 
     if(mail($sendto2, $sendsubject2,$body,$header)){
-        header("Location: ./views/index.html");
+        header("Location: ./views/index.php");
         exit();   
     } else{
-        header("Location: ./views/mail_error.html");
+        header("Location: ./views/mail_error.php");
         exit(); 
     }
 
 
 } else {
-    header("Location: ./views/mail_error.html");
+    header("Location: ./views/mail_error.php");
     exit();
 }
 
