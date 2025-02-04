@@ -18,7 +18,7 @@ function getDBConnection() {
 }
 //予約日の表示させるやつ
 function checkData($pdo ,$id , $day){
-    $sql = "SELECT DATE_FORMAT(day, '%Y-%m-%d') as day ,time FROM appointment WHERE id = :id AND DATE_FORMAT(day, '%Y-%m-%d') >= :day order by day asc;";
+    $sql = "SELECT DATE_FORMAT(day, '%Y-%m-%d') as day ,time FROM appointment WHERE id = :id AND DATE_FORMAT(day, '%Y-%m-%d') >= :day AND NOT message = 'cancel' order by day asc;";
     try{
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':id', $id);
