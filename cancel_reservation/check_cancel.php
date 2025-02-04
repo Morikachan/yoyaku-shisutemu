@@ -54,7 +54,7 @@
         }
     }
     //メールおくる
-    function sendmail($mail){
+    function yoursendmail($mail){
         //予約日のやつ
         $day_cancel = $_SESSION['day_cancel'];
         $time_cancel = $_SESSION['time_cancel'];
@@ -82,6 +82,47 @@
         
         if(mail($to , $subject , $message , $headers)) {
             header('Location: ./susess.html');
+            exit();
+        }
+        else{
+            //メール用予約キャンセルしたやつを表示
+            $day_cancel = $_SESSION['day_cancel'];
+            $time_cancel = $_SESSION['time_cancel'];
+            for($i=0; $i < count($day_cancel); $i++){
+                echo '予約日' . $day_cancel[$i] . '予約時間' . $time_cancel[$i] . '時';
+                echo '<br>';
+            }
+        }
+    }
+
+    function sendmail($mail){
+        //予約日のやつ
+        $day_cancel = $_SESSION['day_cancel'];
+        $time_cancel = $_SESSION['time_cancel'];
+         
+        //送信元
+        $headers = 'From: ' . 'atrsteamcipsup24@gmail.com' . "\r\n" .
+        'Content-type:text/html;charset=UTF-8' . "\r\n" ;;
+
+        //送信先
+        $to = $mail;
+
+        //送信するメールの表題
+        $subject = '予約キャンセル';
+
+
+        //本文
+        $message = $mail . 'の予約がキャンセルされました'."<br>"."<br>";
+
+        $message .= "<html><body><table border='1'>";
+        foreach($day_cancel as $key => $day){
+            $message .= "<tr><th>" . '予約日 ' . "</th><th>". $day . "</th><th>" . '予約時間' . "</th><th>" . $time_cancel[$key] . '時'. "</th></tr>" . "\n";
+        }
+        $message .= "<style> body{background-color: #CF220E;} table{ border-collapse: collapse;} </style> </table></body></html>" ."\n";
+        
+        
+        if(mail($to , $subject , $message , $headers)) {
+            yoursendmail($mail);
         }
         else{
             //メール用予約キャンセルしたやつを表示
