@@ -6,8 +6,8 @@ session_start();
 $UserRegistrationInfo = $_SESSION['UserRegistrationInfo'];
 
 function insertStudentData($pdo, $UserRegistrationInfo){
-        $sql = "INSERT INTO users_info (mail, passwd, name, katakana, gender, birthday, occupation, school, tel, address, course) 
-        VALUES (:mail, :passwd, :name, :katakana, :gender, :birthday, :occupation, :school, :tel, :address, :course)";
+        $sql = "INSERT INTO users_info (mail, passwd, name, katakana, gender, birthday, occupation, school, tel, postalcode, address, course) 
+        VALUES (:mail, :passwd, :name, :katakana, :gender, :birthday, :occupation, :school, :tel, :postalcode, :address, :course)";
         try{
             $smtp = $pdo->prepare($sql);
             $passwordHash = password_hash($UserRegistrationInfo['password'], PASSWORD_DEFAULT);
@@ -24,6 +24,7 @@ function insertStudentData($pdo, $UserRegistrationInfo){
             $smtp->bindParam(':occupation', $UserRegistrationInfo['occupation']);
             $smtp->bindParam(':school', $UserRegistrationInfo['school']);
             $smtp->bindParam(':tel', $UserRegistrationInfo['tel']);
+            $smtp->bindParam(':postalcode', $UserRegistrationInfo['postalcode']);
             $smtp->bindParam(':address', $address);
             $smtp->bindParam(':course', $UserRegistrationInfo['course']);
             return $smtp->execute();
