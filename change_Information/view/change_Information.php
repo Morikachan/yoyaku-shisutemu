@@ -40,6 +40,7 @@ $results = $_SESSION['results'];
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="../css/style.css">
     <script src="../../login.js"></script>
+    <script src="https://kit.fontawesome.com/f640a591db.js" crossorigin="anonymous"></script>
     <script src="https://yubinbango.github.io/yubinbango/yubinbango.js" charset="UTF-8"></script>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -69,10 +70,10 @@ $results = $_SESSION['results'];
                     <a href="https://www.kccollege.ac.jp/" class="c-header__list-link">ホームページへ</a>
                 </li>
                 <li class="c-header__list-item">
-                    <a href="../../participation_history/participation_history.php" class="c-header__list-link">参加履歴</a>
+                    <a href="../../mypage/mypage.php" class="c-header__list-link">マイページ</a>
                 </li>
                 <li class="c-header__list-item">
-                    <a href="#" class="c-header__list-link">登録内容の変更</a>
+                    <a href="../../participation_history/participation_history.php" class="c-header__list-link">参加履歴</a>
                 </li>
                 <li class="c-header__list-item">
                     <a href="../../delete_account/html/delete.html" class="c-header__list-link">アカウント削除</a>
@@ -92,7 +93,7 @@ $results = $_SESSION['results'];
         <h1>登録情報の変更</h1>
         <div class="content-container">
             <!-- inputに予めvalueで値を入れておく -->
-            <?php if (isset($_SESSION['message'])): ?>
+            <?php if (!empty($_SESSION['message'])): ?>
                 <div class="info-message">
                     <?php echo htmlspecialchars($_SESSION['message'], ENT_QUOTES, 'UTF-8'); ?>
                     <?php unset($_SESSION['message']); ?>

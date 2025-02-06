@@ -35,24 +35,32 @@ $results = $_SESSION['results'];
 
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
     $search = $_POST['search'];
-    $students = array_filter($results, function($student) use ($search) {
-        return $student['id'] == $search ||
-        $student['name'] == $search ||
-        str_contains($student['name'], $search) ||
-        $student['katakana'] == $search ||
-        str_contains($student['katakana'], $search) ||
-        $student['gender'] == $search ||
-        $student['birthday'] == $search ||
-        $student['occupation'] == $search ||
-        $student['school'] == $search ||
-        $student['tel'] == $search ||
-        $student['address'] == $search ||
-        $student['postalcode'] == $search ||
-        $student['mail'] == $search ||
-        $student['course'] == $search;
+    $getData = array_filter($results, function($userData) use ($search) {
+        return $userData['id'] == $search ||
+        $userData['name'] == $search ||
+        str_contains($userData['name'], $search) ||
+        $userData['katakana'] == $search ||
+        str_contains($userData['katakana'], $search) ||
+        $userData['gender'] == $search ||
+        str_contains($userData['gender'], $search) ||
+        $userData['birthday'] == $search ||
+        str_contains($userData['birthday'], $search) ||
+        $userData['occupation'] == $search ||
+        str_contains($userData['occupation'], $search) ||
+        $userData['school'] == $search ||
+        str_contains($userData['school'], $search) ||
+        $userData['tel'] == $search ||
+        str_contains($userData['tel'], $search) ||
+        $userData['address'] == $search ||
+        str_contains($userData['address'], $search) ||
+        $userData['postalcode'] == $search ||
+        str_contains($userData['postalcode'], $search) ||
+        $userData['mail'] == $search ||
+        str_contains($userData['mail'], $search) ||
+        $userData['course'] == $search ||
+        str_contains($userData['course'], $search);
     });
-    $_SESSION['search_results'] = $students;
-    // header("Location: ");
+    $_SESSION['search_results'] = $getData;
     header("Location: ./user_information.php");
     exit;
 }
@@ -67,6 +75,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="./style.css">
     <script src="../../login.js"></script>
+    <script src="https://kit.fontawesome.com/f640a591db.js" crossorigin="anonymous"></script>
     <title>管理者ページ</title>
 </head>
 <body>
@@ -101,8 +110,22 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         <h1>予約情報</h1>
         <div>
             <form method="post" action="">
-                <input style="width=80%" type="text" class="searchTextBox" placeholder="検索" name="search">
-                <button type="submit" class="serchButton"></button>
+                <div class="container">
+                <div class="search-area">
+                    <input
+                        type="text"
+                        class="search-input"
+                        id="city-search-input"
+                        name="search"
+                        autofocus="on"
+                        autocomplete="off"
+                        placeholder="検索"
+                    />
+                    <button class="search-btn" type="submit">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </div>
+                </div>
             </form>
         </div>
 
@@ -125,60 +148,52 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <th>時間</th>
                     <th>備考</th>
                 </tr>
+
                 <?php if(!empty($_SESSION['message'])):?>
                     <div class="error-message">
                         <?php echo $_SESSION['message']?>
                     </div>
                 <?php endif;?>
-                <?php if(!empty($_SESSION['search_results'])):?>
-                    <?php foreach ($_SESSION['search_results'] as $row): ?>
-                        <tr>
-                            <td><?php echo $row['id']; ?></td>
-                            <td><?php echo $row['name']; ?></td>
-                            <td><?php echo $row['katakana']; ?></td>
-                            <td><?php echo $row['gender']; ?></td>
-                            <td><?php echo $row['birthday']; ?></td>
-                            <td><?php echo $row['occupation']; ?></td>
-                            <td><?php echo $row['school']; ?></td>
-                            <td><?php echo $row['tel']; ?></td>
-                            <td><?php echo $row['postalcode']; ?></td>
-                            <td><?php echo $row['address']; ?></td>
-                            <td><?php echo $row['mail']; ?></td>
-                            <td><?php echo $row['course']; ?></td>
-                            <td><?php echo $row['day']; ?></td>
-                            <td><?php echo $row['time']; ?></td>
-                            <td>
-                                <div class = "message_scroll">
-                                    <?php echo $row['message']; ?>
-                                </div>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                <?php else: ?>
-                    <?php foreach ($results as $row): ?>
-                        <tr>
-                            <td><?php echo $row['id']; ?></td>
-                            <td><?php echo $row['name']; ?></td>
-                            <td><?php echo $row['katakana']; ?></td>
-                            <td><?php echo $row['gender']; ?></td>
-                            <td><?php echo $row['birthday']; ?></td>
-                            <td><?php echo $row['occupation']; ?></td>
-                            <td><?php echo $row['school']; ?></td>
-                            <td><?php echo $row['tel']; ?></td>
-                            <td><?php echo $row['postalcode']; ?></td>
-                            <td><?php echo $row['address']; ?></td>
-                            <td><?php echo $row['mail']; ?></td>
-                            <td><?php echo $row['course']; ?></td>
-                            <td><?php echo $row['day']; ?></td>
-                            <td><?php echo $row['time']; ?></td>
-                            <td>
-                                <div class = "message_scroll">
-                                    <?php echo $row['message']; ?>
-                                </div>
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
-                <?php endif;?>
+                <?php
+                    if(!empty($_SESSION['search_results'])){
+                        $table = $_SESSION['search_results'];
+                    }else{
+                        $table = $_SESSION['results'];
+                    }
+                ?>
+                <?php foreach ($table as $row): ?>
+                    <tr>
+                        <td><?php echo $row['id']; ?></td>
+                        <td><?php echo $row['name']; ?></td>
+                        <td><?php echo $row['katakana']; ?></td>
+                        <td><?php echo $row['gender']; ?></td>
+                        <td>
+                            <?php 
+                                $day = new DateTime($row['birthday']);
+                                echo $day->format('Y年n月j日'); 
+                            ?>
+                        </td>
+                        <td><?php echo $row['occupation']; ?></td>
+                        <td><?php echo $row['school']; ?></td>
+                        <td><?php echo $row['tel']; ?></td>
+                        <td><?php echo $row['postalcode']; ?></td>
+                        <td><?php echo $row['address']; ?></td>
+                        <td><?php echo $row['mail']; ?></td>
+                        <td><?php echo $row['course']; ?></td>
+                        <td>
+                            <?php 
+                                $day = new DateTime($row['day']);
+                                echo $day->format('Y年n月j日'); 
+                            ?>
+                        </td>
+                        <td><?php echo htmlspecialchars($row['time']) . '時'; ?></td>
+                        <td>
+                            <div class = "message_scroll">
+                                <?php echo $row['message']; ?>
+                            </div>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
                 <?php unset($_SESSION['search_results']) ?>
             </table>
         </div>
