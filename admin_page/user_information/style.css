@@ -41,8 +41,9 @@ table tr:nth-child(even){
     overflow: auto;
 }
 /* 検索 */
-/* .searchTextBox{
-} */
+.searchTextBox{
+    position: absolute;
+}
 .serchButton{
     padding: 40px;
     background: transparent;
@@ -53,11 +54,55 @@ table tr:nth-child(even){
     background-repeat: no-repeat;
     background-position: center center;    
     background-size: 30px;
-    position: relative;
     border-radius: 15px;
 
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+    position: relative;
+    top: -10px;
+    /* transform: translateY(-50%); */
     left: 90%;
+}
+
+.search-area {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px;
+    margin: 30px auto;
+    background-color: #ececec;
+    border-radius: 30px;
+  }
+  
+  .search-input {
+    padding-left: 20px;
+    margin-left: 20px;
+    border: 0;
+    outline: 0;
+    background: none;
+    caret-color: #142d4c;
+    font-size: 1.2em;
+    line-height: 40px;
+  }
+  
+  .search-btn {
+    float: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 42px;
+    width: 45px;
+    border: 1.5px #142d4c solid;
+    border-radius: 60%;
+    transition: all 150ms ease-in-out;
+  }
+  
+  .search-btn:hover {
+    background-color: #142d4c;
+    color: #ececec;
+  }
+
+  input[type="text"]{
+    width: 100%;
+    padding: 0px;
+    margin-bottom: 0;
+    font-size: 18px;
 }
