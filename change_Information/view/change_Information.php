@@ -70,10 +70,10 @@ $results = $_SESSION['results'];
                     <a href="https://www.kccollege.ac.jp/" class="c-header__list-link">ホームページへ</a>
                 </li>
                 <li class="c-header__list-item">
-                    <a href="../../mypage/mypage.php" class="c-header__list-link">マイページ</a>
+                    <a href="../../participation_history/participation_history.php" class="c-header__list-link">参加履歴</a>
                 </li>
                 <li class="c-header__list-item">
-                    <a href="../../participation_history/participation_history.php" class="c-header__list-link">参加履歴</a>
+                    <a href="../../mypage/mypage.php" class="c-header__list-link">マイページ</a>
                 </li>
                 <li class="c-header__list-item">
                     <a href="../../delete_account/html/delete.html" class="c-header__list-link">アカウント削除</a>
@@ -104,8 +104,8 @@ $results = $_SESSION['results'];
                     <input name="id" type="hidden" value=<?php echo $row['id']?>>
                     <!-- 名前や電話番号を区切って配列に入れています -->
                     <?php
-                        $name = explode("　",$row['name']);
-                        $katakana = explode("　",$row['katakana']);
+                        $name = explode(" ",$row['name']);
+                        $katakana = explode(" ",$row['katakana']);
                     ?>
                     <table border="0">
                         <tr>
