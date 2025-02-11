@@ -58,7 +58,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         $userData['mail'] == $search ||
         str_contains($userData['mail'], $search) ||
         $userData['course'] == $search ||
-        str_contains($userData['course'], $search);
+        str_contains($userData['course'], $search) ||
+        $userData['message'] == $search ||
+        str_contains($userData['message'], $search);
     });
     $_SESSION['search_results'] = $getData;
     header("Location: ./user_information.php");

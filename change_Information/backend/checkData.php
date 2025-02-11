@@ -1,8 +1,8 @@
 <?php
 session_start();
 // データの連結
-$name = $_POST['lastName']."　".$_POST['firstName'];//漢字
-$kana = $_POST['lastKana']."　".$_POST['firstKana'];//カタカナ
+$name = $_POST['lastName']." ".$_POST['firstName'];//漢字
+$kana = $_POST['lastKana']." ".$_POST['firstKana'];//カタカナ
 
 require_once '../../core/Database.php';
 $db = Database::getInstance();
